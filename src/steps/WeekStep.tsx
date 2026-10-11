@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
+import { AVOID_GROUPS } from '../data/avoidGroups';
 import { MEAL_CATEGORIES } from '../data/categories';
+import { findIngredientByName, ingredientName } from '../lib/ingredients';
 import { usePlanner } from '../state/PlannerContext';
 import type { CookingStyle, MealCategory } from '../types';
 
@@ -18,8 +21,11 @@ const TIME_OPTIONS: { value: number; label: string }[] = [
 ];
 
 export function WeekStep() {
-  const { state, dispatch } = usePlanner();
+  const { state, dispatch, allIngredients, lookup } = usePlanner();
   const prefs = state.preferences;
+  const [avoidInput, setAvoidInput] = useState('');
+  const [avoidMessage, setAvoidMessage] = useState('');
+  const avoidSet = new Set(prefs.avoidIngredientIds);
   const update = (patch: Partial<typeof prefs>) => dispatch({ type: 'updatePreferences', patch });
   const next = () => dispatch({ type: 'goToStep', step: 1 });
 
@@ -29,6 +35,30 @@ export function WeekStep() {
         ? prefs.mealCategories.filter((c) => c !== category)
         : [...prefs.mealCategories, category],
     });
+
+  const groupChecked = (ids: string[]) => ids.every((id) => avoidSet.has(id));
+  const toggleGroup = (ids: string[]) => {
+    const next = new Set(avoidSet);
+    if (groupChecked(ids)) ids.forEach((id) => next.delete(id));
+    else ids.forEach((id) => next.add(id));
+    update({ avoidIngredientIds: [...next] });
+  };
+  // Show individual chips only for items not already covered by a ticked group.
+  const coveredByGroup = new Set(AVOID_GROUPS.filter((g) => groupChecked(g.ingredientIds)).flatMap((g) => g.ingredientIds));
+  const individuallyAvoided = prefs.avoidIngredientIds.filter((id) => !coveredByGroup.has(id));
+
+  const addAvoid = () => {
+    const name = avoidInput.trim();
+    if (!name) return;
+    const ingredient = findIngredientByName(name, allIngredients);
+    if (!ingredient) {
+      setAvoidMessage(`“${name}” isn’t in our ingredient list yet, so it won’t change the meal ideas.`);
+      return;
+    }
+    if (!avoidSet.has(ingredient.id)) update({ avoidIngredientIds: [...prefs.avoidIngredientIds, ingredient.id] });
+    setAvoidMessage(`Avoiding ${ingredient.name}.`);
+    setAvoidInput('');
+  };
 
   return (
     <section aria-labelledby="step-title">
@@ -91,6 +121,80 @@ export function WeekStep() {
           </div>
         </fieldset>
 
+        <fieldset className="card">
+          <legend>Anything you’re avoiding?</legend>
+          <p className="small muted">
+            Tick foods that <strong>nobody</strong> you’re cooking for eats. Meals will use a swap where one exists, or
+            be hidden. If only <strong>some</strong> people avoid a food, leave it unticked: each meal has swap buttons
+            so you can add an alternative for them.
+          </p>
+          <div className="choice-grid choice-grid--compact">
+            {AVOID_GROUPS.map((group) => (
+              <label key={group.id} className="choice">
+                <input
+                  type="checkbox"
+                  checked={groupChecked(group.ingredientIds)}
+                  onChange={() => toggleGroup(group.ingredientIds)}
+                />
+                <span>{group.label}</span>
+              </label>
+            ))}
+          </div>
+
+          <div className="avoid-add">
+            <label htmlFor="avoid-input">Avoid a specific ingredient</label>
+            <div className="inline-input">
+              <input
+                id="avoid-input"
+                type="text"
+                list="avoid-options"
+                autoComplete="off"
+                placeholder="e.g. mushrooms"
+                value={avoidInput}
+                onChange={(e) => {
+                  setAvoidInput(e.target.value);
+                  setAvoidMessage('');
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addAvoid();
+                  }
+                }}
+              />
+              <datalist id="avoid-options">
+                {allIngredients.map((i) => (
+                  <option key={i.id} value={i.name} />
+                ))}
+              </datalist>
+              <button type="button" className="btn btn--secondary" onClick={addAvoid}>
+                Add
+              </button>
+            </div>
+            <p className="small" role="status" aria-live="polite">
+              {avoidMessage}
+            </p>
+          </div>
+
+          {individuallyAvoided.length > 0 && (
+            <ul className="chip-list" aria-label="Ingredients you’re avoiding">
+              {individuallyAvoided.map((id) => (
+                <li key={id}>
+                  <button
+                    type="button"
+                    className="chip chip--small chip--removable"
+                    aria-label={`Stop avoiding ${ingredientName(lookup, id)}`}
+                    onClick={() => update({ avoidIngredientIds: prefs.avoidIngredientIds.filter((x) => x !== id) })}
+                  >
+                    {ingredientName(lookup, id)} <span aria-hidden="true">✕</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="small muted">For allergies, always check product labels. This planner can’t guarantee ingredients are allergen-free.</p>
+        </fieldset>
+
         <div className="card field-row">
           <div className="field">
             <label htmlFor="budget">
@@ -109,7 +213,7 @@ export function WeekStep() {
           </div>
           <div className="field">
             <label htmlFor="household">
-              People in your household <span className="muted">(optional)</span>
+              How many people are you shopping for? <span className="muted">(optional)</span>
             </label>
             <input
               id="household"

@@ -4,11 +4,12 @@ interface IngredientRowProps {
   ingredient: Ingredient;
   status: IngredientStatus | undefined;
   matchedAlias?: string;
+  avoided?: boolean;
   onChange: (status: IngredientStatus | null) => void;
   onRemoveCustom?: () => void;
 }
 
-export function IngredientRow({ ingredient, status, matchedAlias, onChange, onRemoveCustom }: IngredientRowProps) {
+export function IngredientRow({ ingredient, status, matchedAlias, avoided, onChange, onRemoveCustom }: IngredientRowProps) {
   const toggle = (next: IngredientStatus) => onChange(status === next ? null : next);
   return (
     <li className={`ingredient-row${status ? ` is-${status}` : ''}`}>
@@ -16,6 +17,7 @@ export function IngredientRow({ ingredient, status, matchedAlias, onChange, onRe
         <span>{ingredient.name}</span>
         {matchedAlias && <span className="muted small"> (matches “{matchedAlias}”)</span>}
         {ingredient.custom && <span className="badge">Your item</span>}
+        {avoided && <span className="badge badge--avoid">Avoiding</span>}
       </div>
       <div className="ingredient-row__actions" role="group" aria-label={ingredient.name}>
         <button

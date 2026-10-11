@@ -7,6 +7,7 @@ import { copyText } from '../lib/clipboard';
 import { groceryListToText } from '../lib/format';
 import { buildGroceryList, groupGroceryList, removedItemIds } from '../lib/groceryList';
 import { findIngredientByName } from '../lib/ingredients';
+import { shareText } from '../lib/share';
 import { matchKey, tidyName } from '../lib/text';
 import { usePlanner } from '../state/PlannerContext';
 import type { GroceryCategoryId, GroceryListItem } from '../types';
@@ -16,6 +17,7 @@ export function GroceryListStep() {
   const [newName, setNewName] = useState('');
   const [newCategory, setNewCategory] = useState<GroceryCategoryId>('other');
   const [status, setStatus] = useState<{ kind: 'info' | 'error'; text: string } | null>(null);
+  const [addStatus, setAddStatus] = useState<{ kind: 'info' | 'error'; text: string } | null>(null);
 
   const items = useMemo(
     () =>
@@ -25,8 +27,10 @@ export function GroceryListStep() {
         lookup,
         overrides: state.groceryOverrides,
         manualItems: state.manualItems,
+        mealExtras: state.mealExtras,
+        avoidIngredientIds: state.preferences.avoidIngredientIds,
       }),
-    [state.ingredientStatuses, selectedMeals, lookup, state.groceryOverrides, state.manualItems],
+    [state.ingredientStatuses, selectedMeals, lookup, state.groceryOverrides, state.manualItems, state.mealExtras, state.preferences.avoidIngredientIds],
   );
   const groups = useMemo(() => groupGroceryList(items), [items]);
   const removedCount = removedItemIds(state.groceryOverrides).length;
@@ -45,17 +49,17 @@ export function GroceryListStep() {
   const addItem = () => {
     const name = tidyName(newName);
     if (!name) {
-      setStatus({ kind: 'error', text: 'Type an item name first.' });
+      setAddStatus({ kind: 'error', text: 'Type an item name first.' });
       return;
     }
     const ingredient = findIngredientByName(name, allIngredients);
     const listed = items.find((i) => (ingredient && i.id === ingredient.id) || matchKey(i.name) === matchKey(name));
     if (listed) {
-      setStatus({ kind: 'info', text: `“${listed.name}” is already on your list.` });
+      setAddStatus({ kind: 'info', text: `“${listed.name}” is already on your list.` });
       return;
     }
     if (ingredient && state.ingredientStatuses[ingredient.id] === 'have') {
-      setStatus({
+      setAddStatus({
         kind: 'info',
         text: `You marked “${ingredient.name}” as Already have. Change it in Step 2 if you’re running low.`,
       });
@@ -75,13 +79,31 @@ export function GroceryListStep() {
         },
       });
     }
-    setStatus({ kind: 'info', text: `Added “${ingredient?.name ?? name}”.` });
+    setAddStatus({ kind: 'info', text: `Added “${ingredient?.name ?? name}”.` });
     setNewName('');
   };
 
   const copy = async () => {
     const ok = await copyText(groceryListToText(groups));
-    setStatus(ok ? { kind: 'info', text: 'List copied to your clipboard.' } : { kind: 'error', text: 'Copy didn’t work in this browser. Try Print instead.' });
+    setStatus(
+      ok
+        ? { kind: 'info', text: 'List copied. Paste it into Notes, a text message or an email.' }
+        : { kind: 'error', text: 'Copy didn’t work in this browser. Try Print instead.' },
+    );
+  };
+
+  const share = async () => {
+    const outcome = await shareText('Grocery list', groceryListToText(groups));
+    if (outcome === 'shared') setStatus({ kind: 'info', text: 'List shared.' });
+    else if (outcome === 'unsupported' || outcome === 'failed') {
+      // Desktop browsers often have no share sheet: copy instead and say so.
+      const ok = await copyText(groceryListToText(groups));
+      setStatus(
+        ok
+          ? { kind: 'info', text: 'Sharing isn’t available in this browser, so we copied the list instead. Paste it wherever you like.' }
+          : { kind: 'error', text: 'Sharing isn’t available in this browser. Try Print instead.' },
+      );
+    }
   };
 
   const { budget, householdSize } = state.preferences;
@@ -98,7 +120,11 @@ export function GroceryListStep() {
       {(budget || householdSize) && (
         <p className="plan-summary small">
           {budget && <span>Budget: {budget}</span>}
-          {householdSize && <span>Household: {householdSize}</span>}
+          {householdSize && (
+            <span>
+              Shopping for: {householdSize} {householdSize === 1 ? 'person' : 'people'}
+            </span>
+          )}
         </p>
       )}
 
@@ -108,6 +134,9 @@ export function GroceryListStep() {
           {checkedCount > 0 && ` · ${checkedCount} checked off`}
         </p>
         <div className="button-row">
+          <button type="button" className="btn btn--primary" onClick={share} disabled={items.length === 0}>
+            Share list
+          </button>
           <button type="button" className="btn btn--secondary" onClick={copy} disabled={items.length === 0}>
             Copy list
           </button>
@@ -116,6 +145,31 @@ export function GroceryListStep() {
           </button>
         </div>
       </div>
+
+      <p className={`small no-print list-status ${status?.kind === 'error' ? 'error' : ''}`} role="status" aria-live="polite">
+        {status?.text}
+      </p>
+
+      {items.length > 0 && (
+        <details className="save-help card no-print" open>
+          <summary>How to save or share your list</summary>
+          <ul>
+            <li>
+              <strong>On your phone:</strong> tap <em>Share list</em>, then choose Notes to keep it, or Messages, email or
+              WhatsApp to send it to someone you shop with.
+            </li>
+            <li>
+              <strong>On a computer:</strong> tap <em>Copy list</em> and paste it into an email or note, or tap{' '}
+              <em>Print list</em> and choose “Save as PDF”.
+            </li>
+            <li>
+              <strong>Coming back later:</strong> your plan is kept automatically in this browser on this device. It isn’t
+              saved online, so it won’t appear on other devices, and clearing your browser data will erase it. Share or
+              save a copy if you want to keep it.
+            </li>
+          </ul>
+        </details>
+      )}
 
       {items.length === 0 ? (
         <div className="empty card">
@@ -191,7 +245,7 @@ export function GroceryListStep() {
               value={newName}
               onChange={(e) => {
                 setNewName(e.target.value);
-                setStatus(null);
+                setAddStatus(null);
               }}
             />
           </div>
@@ -210,11 +264,10 @@ export function GroceryListStep() {
         <button type="submit" className="btn btn--secondary">
           Add to list
         </button>
+        <p className={`small add-status ${addStatus?.kind === 'error' ? 'error' : ''}`} role="status" aria-live="polite">
+          {addStatus?.text}
+        </p>
       </form>
-
-      <p className={`small no-print ${status?.kind === 'error' ? 'error' : ''}`} role="status" aria-live="polite">
-        {status?.text}
-      </p>
 
       <StepFooter
         onBack={() => dispatch({ type: 'goToStep', step: 2 })}

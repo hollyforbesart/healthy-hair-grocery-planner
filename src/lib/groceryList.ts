@@ -5,10 +5,11 @@ import type {
   GroceryListItem,
   IngredientStatusMap,
   ManualGroceryItem,
+  MealExtras,
   MealTemplate,
 } from '../types';
 import type { IngredientLookup } from './ingredients';
-import { matchMeal } from './matching';
+import { extraKind, matchMeal } from './matching';
 import { matchKey } from './text';
 
 export interface BuildGroceryListInput {
@@ -17,12 +18,17 @@ export interface BuildGroceryListInput {
   lookup: IngredientLookup;
   overrides?: Record<string, GroceryItemOverride>;
   manualItems?: ManualGroceryItem[];
+  /** Optional extras / swaps tapped on meal cards (only used for selected meals). */
+  mealExtras?: MealExtras;
+  /** Ingredients the household avoids; meals use swaps for these. */
+  avoidIngredientIds?: string[];
 }
 
 /**
  * Combine manually chosen groceries ("Need to Buy") with the missing required
- * ingredients of selected meals. De-duplicates by ingredient ID, never
- * includes anything marked "Already Have", then applies the user's edits.
+ * ingredients of selected meals and any extras the user tapped for them.
+ * De-duplicates by ingredient ID, never includes anything marked
+ * "Already Have", then applies the user's edits.
  */
 export function buildGroceryList({
   statuses,
@@ -30,10 +36,13 @@ export function buildGroceryList({
   lookup,
   overrides = {},
   manualItems = [],
+  mealExtras = {},
+  avoidIngredientIds = [],
 }: BuildGroceryListInput): GroceryListItem[] {
   const byId = new Map<string, GroceryListItem>();
+  const avoid = new Set(avoidIngredientIds);
 
-  const upsert = (ingredientId: string, source: 'chosen' | 'meal', mealName?: string) => {
+  const upsert = (ingredientId: string, source: 'chosen' | 'meal' | 'extra', mealName?: string, note?: string) => {
     if (statuses[ingredientId] === 'have') return;
     let item = byId.get(ingredientId);
     if (!item) {
@@ -45,18 +54,25 @@ export function buildGroceryList({
         checked: false,
         sources: [],
         forMeals: [],
+        extraNotes: [],
       };
       byId.set(ingredientId, item);
     }
     if (!item.sources.includes(source)) item.sources.push(source);
     if (mealName && !item.forMeals.includes(mealName)) item.forMeals.push(mealName);
+    if (note && !item.extraNotes.includes(note)) item.extraNotes.push(note);
   };
 
   for (const [ingredientId, status] of Object.entries(statuses)) {
     if (status === 'need') upsert(ingredientId, 'chosen');
   }
   for (const meal of selectedMeals) {
-    for (const id of matchMeal(meal, statuses).missingIds) upsert(id, 'meal', meal.name);
+    for (const id of matchMeal(meal, statuses, avoid).missingIds) upsert(id, 'meal', meal.name);
+    for (const id of mealExtras[meal.id] ?? []) {
+      const kind = extraKind(meal, id);
+      if (!kind || avoid.has(id)) continue;
+      upsert(id, 'extra', undefined, `${kind === 'optional' ? 'Optional for' : 'Swap option for'} ${meal.name}`);
+    }
   }
 
   const items: GroceryListItem[] = [];
@@ -86,6 +102,7 @@ export function buildGroceryList({
       checked: manual.checked,
       sources: ['added'],
       forMeals: [],
+      extraNotes: [],
     });
   }
 

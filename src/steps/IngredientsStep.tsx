@@ -112,6 +112,7 @@ export function IngredientsStep() {
                 ingredient={ingredient}
                 status={statuses[ingredient.id]}
                 matchedAlias={matchedAlias}
+                avoided={state.preferences.avoidIngredientIds.includes(ingredient.id)}
                 onChange={(status) => setStatus(ingredient.id, status)}
                 onRemoveCustom={
                   ingredient.custom

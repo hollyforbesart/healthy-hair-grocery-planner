@@ -57,6 +57,8 @@ export interface WeekPreferences {
   /** Free text so users can type "$80" or "about 100". */
   budget: string;
   householdSize: number | null;
+  /** Ingredients nobody in the household eats. Meals swap them out or are hidden. */
+  avoidIngredientIds: string[];
 }
 
 /** A user edit layered over a generated grocery item. */
@@ -76,7 +78,11 @@ export interface ManualGroceryItem {
   ingredientId?: string;
 }
 
-export type GrocerySource = 'chosen' | 'meal' | 'added';
+/**
+ * Why an item is on the list: chosen in Step 2, needed by a selected meal,
+ * an optional extra or swap the user tapped on a meal card, or typed in.
+ */
+export type GrocerySource = 'chosen' | 'meal' | 'extra' | 'added';
 
 export interface GroceryListItem {
   /** Ingredient ID for generated items; `manual-…` for hand-added ones. */
@@ -87,7 +93,12 @@ export interface GroceryListItem {
   sources: GrocerySource[];
   /** Names of selected meals that need this item. */
   forMeals: string[];
+  /** Labels for tapped extras, e.g. "Optional for Chickpea Quinoa Bowl". */
+  extraNotes: string[];
 }
+
+/** Optional extras / swap alternatives the user tapped, keyed by meal ID. */
+export type MealExtras = Record<string, string[]>;
 
 export interface FeedbackDraft {
   rating: number | null;

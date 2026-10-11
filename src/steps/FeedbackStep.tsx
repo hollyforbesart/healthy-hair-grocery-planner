@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
 import { APP_VERSION, feedbackService } from '../services/feedback';
@@ -18,6 +18,7 @@ export function FeedbackStep() {
   const { state, dispatch } = usePlanner();
   const { rating, wish } = state.feedback;
   const [send, setSend] = useState<SendState>({ kind: 'idle' });
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const canSend = feedbackService.isConfigured;
   const hasContent = rating !== null || wish.trim().length > 0;
 
@@ -29,6 +30,7 @@ export function FeedbackStep() {
       wish: wish.trim(),
       submittedAt: new Date().toISOString(),
       appVersion: APP_VERSION,
+      botcheck: honeypotRef.current?.checked ?? false,
     });
     if (result.ok) {
       setSend({ kind: 'sent' });
@@ -91,11 +93,15 @@ export function FeedbackStep() {
             />
           </div>
 
+          {/* Spam trap: hidden from people, sometimes filled in by bots. */}
+          <input ref={honeypotRef} type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: 'none' }} />
+
           {canSend ? (
             <div className="button-row">
               <button type="submit" className="btn btn--primary" disabled={!hasContent || send.kind === 'sending'}>
                 {send.kind === 'sending' ? 'Sending…' : 'Send feedback'}
               </button>
+              {!hasContent && <p className="small muted">Choose a rating or write a note to send.</p>}
             </div>
           ) : (
             <div className="notice" role="note">

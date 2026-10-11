@@ -6,11 +6,11 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 ## How it works
 
-1. **Start with your week:** cooking style, available time, the meals you're planning, and an optional budget and household size. You can skip every question.
+1. **Start with your week:** cooking style, available time, the meals you're planning, foods the household avoids, and an optional budget and number of people. You can skip every question.
 2. **Choose your ingredients:** foods are grouped into Proteins, Carbohydrates, Vegetables & Fruit, and Fats & Extras, sorted alphabetically, with search (aliases work, so "garbanzo beans" finds Chickpeas). Mark each one **Already have** or **Need to buy**, or add your own. Duplicates are blocked.
-3. **Find meal ideas:** meals are ranked so the ones needing the fewest extra ingredients come first. Each card shows what you have, what's already on your list, what you'd need to buy, and the optional extras.
-4. **Grocery list:** combines your "Need to buy" items with whatever your chosen meals are missing. Duplicates are removed, anything marked "Already have" is left out, and the list is grouped by category. You can add, edit, remove and check off items, then **Copy** or **Print** the list.
-5. **Feedback:** an optional rating and an open question. Nothing is sent until a feedback endpoint is configured (see below).
+3. **Find meal ideas:** meals that use the most of what's already at home come first. Each card separates **Already have**, **Already on shopping list** and **Still need**. Optional extras and swaps ("+ Feta", "+ Tofu instead of salmon") are tappable chips that add the item to the list.
+4. **Grocery list:** combines your "Need to buy" items, whatever your chosen meals still need, and any extras you tapped. Duplicates are removed, anything marked "Already have" is left out, and the list is grouped by category. You can add, edit, remove and check off items, then **Share**, **Copy** or **Print** the list. Instructions on the page explain how to save or send it.
+5. **Feedback:** an optional rating and an open question, sent by email through Web3Forms once an access key is configured (see below).
 
 ## Local development
 
@@ -50,9 +50,17 @@ See [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md) for the design 
 
 ### Matching rules
 
-- Required ingredients are covered by: having the ingredient, having one of its listed substitutes, or having it already marked "Need to buy". Anything else counts as an additional purchase.
-- Optional ingredients are only shown for information. They are never counted as missing and never added to the list.
-- Ranking: fewest additional ingredients first, then meals that fit the user's available time, then the most ingredients already owned.
+Each required ingredient lands in exactly one group:
+
+- **Already have:** the user has it, or has one of its listed substitutes.
+- **Already on shopping list:** it's marked "Need to buy".
+- **Still need:** anything else. This goes on the list when the meal is chosen.
+
+Ranking puts the meals with the fewest ingredients *not already at home* first. That counts Still need plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to fewer Still need, then meals that fit the available time, then more owned ingredients.
+
+**Optional ingredients** are never counted as missing. They only go on the list when the user taps their "+" chip on a meal card. Tapping an extra on a meal that isn't in the plan yet adds the meal too, and removing the meal removes its extras.
+
+**Avoided foods** (Step 1) are for things *nobody* in the household eats. A meal uses the first acceptable substitute and labels it ("Chicken breast (instead of salmon)"). If no substitute exists, the meal is hidden and the page says how many were hidden. When only *some* people avoid a food, users tap a swap chip on the meal ("+ Tofu instead of salmon") to buy an alternative just for them. Quick-pick groups (Fish & seafood, Dairy and so on) are defined in `src/data/avoidGroups.ts`. Keep them in sync with the ingredient catalog.
 
 ### Adding an AI recommendation service later
 
@@ -64,15 +72,18 @@ recommend(request: RecommendationRequest, options?: { signal?: AbortSignal }): P
 
 To switch providers, implement that interface (for example, by calling a Cloudflare Pages Function that calls your AI service), then export your provider from `src/services/recommendations/index.ts`. You can keep `localRecommendationProvider` as a fallback. No UI changes are needed, because the hook already handles loading and error states.
 
-### Connecting feedback collection
+### Connecting feedback (Web3Forms)
 
-`src/services/feedback.ts` sends a JSON `POST` to `VITE_FEEDBACK_ENDPOINT`:
+Feedback is emailed to you through [Web3Forms](https://web3forms.com), a free form-to-email service that works from static sites.
 
-```json
-{ "rating": 4, "wish": "…", "submittedAt": "2026-01-01T12:00:00.000Z", "appVersion": "1.0.0" }
-```
+1. Go to web3forms.com and create an access key with the email address that should receive feedback. No domain is needed for this.
+2. Name the form something you'll recognize in your inbox, such as **Healthy Hair Grocery Planner Feedback**. Each email arrives with the subject "New feedback: Healthy Hair Grocery Planner".
+3. In Cloudflare Pages, open your project, then **Settings → Variables and Secrets**, and add `VITE_WEB3FORMS_ACCESS_KEY` with your key, for both Production and Preview.
+4. Redeploy. `VITE_` variables are built into the site, so a change only takes effect after a new deployment.
 
-If that variable is not set, the form says plainly that sending isn't connected yet and keeps answers on the device only. It never shows a "sent" message unless the server actually accepted the request. Copy `.env.example` to `.env.local` to set the endpoint locally. On Cloudflare Pages, add it as an environment variable. `VITE_` variables are embedded at build time, so redeploy after you change one.
+To test locally, copy `.env.example` to `.env.local`, add the key, and run `npm run dev`.
+
+The access key is designed to be public, since it can only send email to your inbox. A hidden "botcheck" field filters simple spam bots. Until a key is set, the form says plainly that sending isn't connected and keeps answers on the device. It only shows "sent" when Web3Forms confirms it received the feedback. If you later use your own backend instead, set `VITE_FEEDBACK_ENDPOINT` to a URL that accepts a JSON `POST`.
 
 ## Deploying to Cloudflare Pages
 
@@ -97,6 +108,10 @@ npx wrangler pages deploy dist --project-name healthy-hair-grocery-planner
 
 `public/_headers` adds basic security headers and long-term caching for hashed assets.
 
+### Using a custom subdomain
+
+The site works on its free `*.pages.dev` address right away. To use your own subdomain (for example `planner.yourdomain.com`), open the Pages project, go to **Custom domains → Set up a custom domain**, and enter the subdomain. If your domain's DNS is on Cloudflare, the record is added for you. If not, Cloudflare shows a CNAME record to add at your DNS provider. Nothing in the code needs to change.
+
 ## Privacy
 
-Version 1 stores everything in the visitor's own browser (`localStorage` key `healthy-hair-grocery-planner:v1`). Nothing is sent anywhere. **Start over** clears all of it.
+Planning data stays in the visitor's own browser (`localStorage` key `healthy-hair-grocery-planner:v1`) and is never uploaded. **Start over** clears all of it. The only data that leaves the browser is feedback, and only when the visitor presses **Send feedback**.

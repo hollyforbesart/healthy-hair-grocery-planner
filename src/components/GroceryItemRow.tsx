@@ -25,12 +25,12 @@ export function GroceryItemRow({ item, onToggle, onRename, onRemove }: GroceryIt
     requestAnimationFrame(() => editBtnRef.current?.focus());
   };
 
-  const detail =
-    item.forMeals.length > 0
-      ? `For ${item.forMeals.join(', ')}`
-      : item.sources.includes('added')
-        ? 'Added by you'
-        : null;
+  const detailParts = [
+    ...(item.forMeals.length > 0 ? [`For ${item.forMeals.join(', ')}`] : []),
+    ...item.extraNotes,
+    ...(item.sources.includes('added') ? ['Added by you'] : []),
+  ];
+  const detail = detailParts.length > 0 ? detailParts.join(' · ') : null;
 
   return (
     <li className={`grocery-item${item.checked ? ' is-checked' : ''}`}>

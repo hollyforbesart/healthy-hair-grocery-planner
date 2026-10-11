@@ -55,7 +55,7 @@ describe('matchMeal', () => {
 
 describe('rankMeals', () => {
   const base = { ingredients: INGREDIENTS, meals: MEALS };
-  const prefs = { cookingStyle: null, maxPrepMinutes: null, mealCategories: [], budget: '', householdSize: null };
+  const prefs = { cookingStyle: null, maxPrepMinutes: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
 
   it('puts meals needing fewer additional ingredients first', () => {
     const ranked = rankMeals({
@@ -100,8 +100,90 @@ describe('time preference', () => {
       ingredients: INGREDIENTS,
       meals: MEALS,
       ingredientStatuses: {},
-      preferences: { cookingStyle: null, maxPrepMinutes: 0, mealCategories: [], budget: '', householdSize: null },
+      preferences: { cookingStyle: null, maxPrepMinutes: 0, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] },
     });
     expect(ranked.every((r) => r.fitsTime)).toBe(true);
+  });
+});
+
+describe('pantry vs shopping list in ranking', () => {
+  const meal = (id: string, required: string[]): MealTemplate => ({
+    id,
+    name: id,
+    category: 'dinner',
+    requiredIngredients: required,
+    optionalIngredients: [],
+    substitutions: [],
+    prepTimeMinutes: 20,
+    instructions: [],
+  });
+  const prefs = { cookingStyle: null, maxPrepMinutes: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
+
+  it('ranks a meal mostly at home above one that is all on the shopping list', () => {
+    const allOnList = meal('all-on-list', ['a', 'b', 'c', 'd', 'e']);
+    const mostlyHome = meal('mostly-home', ['f', 'g', 'h', 'i', 'j']);
+    const ranked = rankMeals({
+      ingredients: [],
+      meals: [allOnList, mostlyHome],
+      preferences: prefs,
+      ingredientStatuses: { a: 'need', b: 'need', c: 'need', d: 'need', e: 'need', f: 'have', g: 'have', h: 'have', i: 'have' },
+    });
+    expect(ranked.map((r) => r.meal.id)).toEqual(['mostly-home', 'all-on-list']);
+    expect(ranked[1].match).toMatchObject({ haveCount: 0, onListCount: 5, missingCount: 0 });
+    expect(ranked[0].match).toMatchObject({ haveCount: 4, onListCount: 0, missingCount: 1 });
+  });
+
+  it('uses Already on list only to break ties between equal pantry matches', () => {
+    const onList = meal('on-list', ['a', 'b']);
+    const notPlanned = meal('not-planned', ['c', 'd']);
+    const ranked = rankMeals({
+      ingredients: [],
+      meals: [notPlanned, onList],
+      preferences: prefs,
+      ingredientStatuses: { a: 'have', b: 'need', c: 'have' },
+    });
+    expect(ranked.map((r) => r.meal.id)).toEqual(['on-list', 'not-planned']);
+  });
+});
+
+describe('avoided ingredients', () => {
+  const salmon = MEALS.find((m) => m.id === 'sheet-pan-salmon')!;
+  const soup = MEALS.find((m) => m.id === 'lentil-vegetable-soup')!;
+
+  it('swaps an avoided required ingredient for an acceptable alternative', () => {
+    const m = matchMeal(salmon, {}, new Set(['salmon']));
+    const req = m.required.find((r) => r.ingredientId === 'salmon')!;
+    expect(req).toMatchObject({ status: 'missing', substituteId: 'chicken-breast', avoided: true });
+    expect(m.missingIds).toContain('chicken-breast');
+    expect(m.missingIds).not.toContain('salmon');
+  });
+
+  it('prefers a swap the user already has, and skips swaps that are also avoided', () => {
+    const m = matchMeal(salmon, { tofu: 'have' }, new Set(['salmon', 'chicken-breast']));
+    expect(m.required.find((r) => r.ingredientId === 'salmon')).toMatchObject({ status: 'have-substitute', substituteId: 'tofu' });
+  });
+
+  it('blocks meals with an avoided ingredient that has no swap, and the provider hides them', () => {
+    expect(matchMeal(soup, {}, new Set(['lentils']))).toMatchObject({ blocked: true, blockedBy: ['lentils'] });
+    const ranked = rankMeals({
+      ingredients: INGREDIENTS,
+      meals: MEALS,
+      ingredientStatuses: {},
+      preferences: { cookingStyle: null, maxPrepMinutes: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: ['lentils'] },
+    });
+    expect(ranked.map((r) => r.meal.id)).not.toContain('lentil-vegetable-soup');
+  });
+
+  it('offers swap options for households that eat differently', () => {
+    const m = matchMeal(salmon, {});
+    expect(m.swapOptions).toContainEqual({ ingredientId: 'salmon', alternatives: ['chicken-breast', 'tofu'] });
+  });
+});
+
+describe('swap options when an ingredient is avoided', () => {
+  it('still offers the other alternatives', () => {
+    const salmon = MEALS.find((m) => m.id === 'sheet-pan-salmon')!;
+    const m = matchMeal(salmon, {}, new Set(['salmon']));
+    expect(m.swapOptions).toContainEqual({ ingredientId: 'salmon', alternatives: ['tofu'] });
   });
 });

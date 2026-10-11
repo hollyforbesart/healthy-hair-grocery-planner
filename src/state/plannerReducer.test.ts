@@ -34,4 +34,19 @@ describe('plannerReducer', () => {
     state = plannerReducer(state, { type: 'setIngredientStatus', ingredientId: 'eggs', status: null });
     expect(state.ingredientStatuses).toEqual({});
   });
+
+  it('tapping an extra adds the meal to the plan; removing the meal drops its extras', () => {
+    let state = plannerReducer(createInitialState(), { type: 'toggleMealExtra', mealId: 'chickpea-quinoa-bowl', ingredientId: 'feta' });
+    expect(state.selectedMealIds).toEqual(['chickpea-quinoa-bowl']);
+    expect(state.mealExtras).toEqual({ 'chickpea-quinoa-bowl': ['feta'] });
+    state = plannerReducer(state, { type: 'toggleMeal', mealId: 'chickpea-quinoa-bowl' });
+    expect(state.selectedMealIds).toEqual([]);
+    expect(state.mealExtras).toEqual({});
+  });
+
+  it('loads saves from before avoid lists and extras existed', () => {
+    const state = hydrateState({ version: 1, preferences: { budget: '$50' } });
+    expect(state.preferences).toMatchObject({ budget: '$50', avoidIngredientIds: [] });
+    expect(state.mealExtras).toEqual({});
+  });
 });

@@ -10,7 +10,7 @@ import type { MealCategory } from '../types';
 
 export function MealsStep() {
   const { state, dispatch, allIngredients, meals, lookup } = usePlanner();
-  const { preferences, ingredientStatuses, selectedMealIds } = state;
+  const { preferences, ingredientStatuses, selectedMealIds, mealExtras } = state;
   const [filter, setFilter] = useState<MealCategory[]>(preferences.mealCategories);
 
   const request = useMemo<RecommendationRequest>(
@@ -21,6 +21,7 @@ export function MealsStep() {
 
   const visible = result.data.filter((r) => filter.length === 0 || filter.includes(r.meal.category));
   const hasAnything = Object.values(ingredientStatuses).some((s) => s === 'have');
+  const hiddenByAvoid = result.status === 'ready' ? meals.length - result.data.length : 0;
 
   const toggleFilter = (category: MealCategory) =>
     setFilter((f) => (f.includes(category) ? f.filter((c) => c !== category) : [...f, category]));
@@ -29,8 +30,8 @@ export function MealsStep() {
     <section aria-labelledby="step-title">
       <StepHeader step={3} title="Find meal ideas">
         <p>
-          Meals that need the fewest extra ingredients come first. Choose any you’d like to make — their missing
-          ingredients will go on your grocery list.
+          Meals that use the most of what you already have at home come first. Choose any you’d like to make —
+          anything they still need goes on your grocery list.
         </p>
       </StepHeader>
 
@@ -45,6 +46,16 @@ export function MealsStep() {
             for better suggestions.
           </p>
         </div>
+      )}
+
+      {hiddenByAvoid > 0 && (
+        <p className="small muted">
+          {hiddenByAvoid} meal{hiddenByAvoid === 1 ? ' is' : 's are'} hidden because {hiddenByAvoid === 1 ? 'it uses' : 'they use'} foods
+          you’re avoiding, with no swap available.{' '}
+          <button type="button" className="link-btn" onClick={() => dispatch({ type: 'goToStep', step: 0 })}>
+            Change what you avoid
+          </button>
+        </p>
       )}
 
       <div className="filter-bar" role="group" aria-label="Show meal types">
@@ -85,8 +96,13 @@ export function MealsStep() {
             key={recommendation.meal.id}
             recommendation={recommendation}
             lookup={lookup}
+            statuses={ingredientStatuses}
             selected={selectedMealIds.includes(recommendation.meal.id)}
+            extras={mealExtras[recommendation.meal.id] ?? []}
             onToggle={() => dispatch({ type: 'toggleMeal', mealId: recommendation.meal.id })}
+            onToggleExtra={(ingredientId) =>
+              dispatch({ type: 'toggleMealExtra', mealId: recommendation.meal.id, ingredientId })
+            }
           />
         ))}
       </div>

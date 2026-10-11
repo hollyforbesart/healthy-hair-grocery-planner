@@ -102,3 +102,58 @@ describe('groupGroceryList', () => {
     expect(groups[1].items.map((i) => i.name)).toEqual(['Broccoli', 'Spinach']);
   });
 });
+
+describe('tapped extras', () => {
+  const bowl = meal('chickpea-quinoa-bowl');
+  const salmonMeal = meal('sheet-pan-salmon');
+
+  it('adds tapped optional extras and swaps with clear labels', () => {
+    const items = buildGroceryList({
+      lookup,
+      statuses: {},
+      selectedMeals: [bowl, salmonMeal],
+      mealExtras: { 'chickpea-quinoa-bowl': ['feta'], 'sheet-pan-salmon': ['chicken-breast'] },
+    });
+    expect(items.find((i) => i.id === 'feta')).toMatchObject({
+      sources: ['extra'],
+      extraNotes: ['Optional for Chickpea Quinoa Bowl'],
+    });
+    expect(items.find((i) => i.id === 'chicken-breast')!.extraNotes).toEqual([
+      'Swap option for Sheet-Pan Salmon, Sweet Potato & Broccoli',
+    ]);
+  });
+
+  it('never adds untapped optional extras', () => {
+    const items = buildGroceryList({ lookup, statuses: {}, selectedMeals: [bowl] });
+    expect(items.map((i) => i.id)).not.toContain('feta');
+    expect(items.map((i) => i.id)).not.toContain('tahini');
+  });
+
+  it('ignores extras for meals that are not selected, and extras already at home', () => {
+    const items = buildGroceryList({
+      lookup,
+      statuses: { lemons: 'have' },
+      selectedMeals: [bowl],
+      mealExtras: { 'chickpea-quinoa-bowl': ['lemons'], 'sheet-pan-salmon': ['chicken-breast'] },
+    });
+    expect(items.map((i) => i.id)).not.toContain('lemons');
+    expect(items.map((i) => i.id)).not.toContain('chicken-breast');
+  });
+
+  it('merges an extra with the same item needed by another meal', () => {
+    const items = buildGroceryList({
+      lookup,
+      statuses: {},
+      selectedMeals: [bowl, meal('lentil-vegetable-soup')],
+      mealExtras: { 'chickpea-quinoa-bowl': ['lemons'] },
+    });
+    expect(items.filter((i) => i.id === 'lemons')).toHaveLength(1);
+  });
+
+  it('buys the swap instead of an avoided ingredient', () => {
+    const items = buildGroceryList({ lookup, statuses: {}, selectedMeals: [salmonMeal], avoidIngredientIds: ['salmon'] });
+    const ids = items.map((i) => i.id);
+    expect(ids).toContain('chicken-breast');
+    expect(ids).not.toContain('salmon');
+  });
+});

@@ -6,6 +6,7 @@ import type {
   IngredientStatus,
   IngredientStatusMap,
   ManualGroceryItem,
+  MealExtras,
   WeekPreferences,
 } from '../types';
 
@@ -26,6 +27,8 @@ export interface PlannerState {
   ingredientStatuses: IngredientStatusMap;
   customIngredients: Ingredient[];
   selectedMealIds: string[];
+  /** Optional extras and swaps tapped on meal cards. */
+  mealExtras: MealExtras;
   groceryOverrides: Record<string, GroceryItemOverride>;
   manualItems: ManualGroceryItem[];
   feedback: FeedbackDraft;
@@ -37,16 +40,18 @@ export const DEFAULT_PREFERENCES: WeekPreferences = {
   mealCategories: [],
   budget: '',
   householdSize: null,
+  avoidIngredientIds: [],
 };
 
 export function createInitialState(): PlannerState {
   return {
     version: STATE_VERSION,
     currentStep: 0,
-    preferences: { ...DEFAULT_PREFERENCES },
+    preferences: { ...DEFAULT_PREFERENCES, avoidIngredientIds: [] },
     ingredientStatuses: {},
     customIngredients: [],
     selectedMealIds: [],
+    mealExtras: {},
     groceryOverrides: {},
     manualItems: [],
     feedback: { rating: null, wish: '' },
@@ -60,6 +65,7 @@ export type PlannerAction =
   | { type: 'addCustomIngredient'; ingredient: Ingredient; status?: IngredientStatus }
   | { type: 'removeCustomIngredient'; ingredientId: string }
   | { type: 'toggleMeal'; mealId: string }
+  | { type: 'toggleMealExtra'; mealId: string; ingredientId: string }
   | { type: 'updateGroceryItem'; itemId: string; patch: GroceryItemOverride }
   | { type: 'restoreRemovedItems' }
   | { type: 'addManualItem'; item: ManualGroceryItem }
@@ -110,12 +116,31 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
       };
 
     case 'toggleMeal':
+      return state.selectedMealIds.includes(action.mealId)
+        ? {
+            ...state,
+            selectedMealIds: state.selectedMealIds.filter((id) => id !== action.mealId),
+            // Removing a meal also drops the extras tapped for it.
+            mealExtras: withoutKey(state.mealExtras, action.mealId),
+          }
+        : { ...state, selectedMealIds: [...state.selectedMealIds, action.mealId] };
+
+    case 'toggleMealExtra': {
+      const current = state.mealExtras[action.mealId] ?? [];
+      const adding = !current.includes(action.ingredientId);
+      const next = adding ? [...current, action.ingredientId] : current.filter((id) => id !== action.ingredientId);
       return {
         ...state,
-        selectedMealIds: state.selectedMealIds.includes(action.mealId)
-          ? state.selectedMealIds.filter((id) => id !== action.mealId)
-          : [...state.selectedMealIds, action.mealId],
+        mealExtras: { ...state.mealExtras, [action.mealId]: next },
+        // Adding an extra implies the user wants to make the meal.
+        selectedMealIds:
+          adding && !state.selectedMealIds.includes(action.mealId)
+            ? [...state.selectedMealIds, action.mealId]
+            : state.selectedMealIds,
+        // Bring the item back if it was removed from the list earlier.
+        groceryOverrides: adding ? withoutKey(state.groceryOverrides, action.ingredientId) : state.groceryOverrides,
       };
+    }
 
     case 'updateGroceryItem':
       return {
@@ -166,6 +191,9 @@ const CATEGORY_IDS: GroceryCategoryId[] = ['proteins', 'carbohydrates', 'produce
 
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 
+const stringArray = (v: unknown): string[] =>
+  Array.isArray(v) ? [...new Set(v.filter((x): x is string => typeof x === 'string'))] : [];
+
 /**
  * Rebuild state from untrusted saved JSON. Anything malformed falls back to
  * its default so an old or corrupt save can never crash the app.
@@ -187,6 +215,7 @@ export function hydrateState(saved: unknown): PlannerState {
       : [],
     budget: typeof prefs.budget === 'string' ? prefs.budget : '',
     householdSize: typeof prefs.householdSize === 'number' ? prefs.householdSize : null,
+    avoidIngredientIds: stringArray(prefs.avoidIngredientIds),
   };
 
   const ingredientStatuses: IngredientStatusMap = {};
@@ -244,9 +273,10 @@ export function hydrateState(saved: unknown): PlannerState {
     preferences,
     ingredientStatuses,
     customIngredients,
-    selectedMealIds: Array.isArray(saved.selectedMealIds)
-      ? saved.selectedMealIds.filter((id): id is string => typeof id === 'string')
-      : [],
+    selectedMealIds: stringArray(saved.selectedMealIds),
+    mealExtras: isRecord(saved.mealExtras)
+      ? Object.fromEntries(Object.entries(saved.mealExtras).map(([id, v]) => [id, stringArray(v)]))
+      : {},
     groceryOverrides,
     manualItems,
     feedback: {
