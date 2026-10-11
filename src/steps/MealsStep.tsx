@@ -31,7 +31,7 @@ export function MealsStep() {
       <StepHeader step={3} title="Find meal ideas">
         <p>
           Meals that use the most of what you already have at home come first. Choose any you’d like to make —
-          anything they still need goes on your grocery list.
+          anything you need to buy goes on your grocery list.
         </p>
       </StepHeader>
 
@@ -97,6 +97,7 @@ export function MealsStep() {
             recommendation={recommendation}
             lookup={lookup}
             statuses={ingredientStatuses}
+            maxPrepMinutes={preferences.maxPrepMinutes}
             selected={selectedMealIds.includes(recommendation.meal.id)}
             extras={mealExtras[recommendation.meal.id] ?? []}
             onToggle={() => dispatch({ type: 'toggleMeal', mealId: recommendation.meal.id })}

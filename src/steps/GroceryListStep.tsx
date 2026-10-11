@@ -151,7 +151,7 @@ export function GroceryListStep() {
       </p>
 
       {items.length > 0 && (
-        <details className="save-help card no-print" open>
+        <details className="save-help card no-print">
           <summary>How to save or share your list</summary>
           <ul>
             <li>

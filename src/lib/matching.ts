@@ -157,9 +157,9 @@ export function extraKind(meal: MealTemplate, ingredientId: string): 'optional' 
 
 /**
  * Order, best first:
- * 1. Fewest ingredients not already at home (Still need + Already on list),
+ * 1. Fewest ingredients not already at home (need to buy + already on list),
  *    so a meal cooked from the kitchen beats one that is all shopping.
- * 2. Fewest Still need, so items already planned for purchase break ties.
+ * 2. Fewest new items to buy, so items already planned for purchase break ties.
  * 3. Most ingredients already at home, then alphabetical for stability.
  */
 export function compareMatches(

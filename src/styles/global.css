@@ -361,6 +361,9 @@ textarea:focus-visible {
   .choice-grid--compact {
     grid-template-columns: repeat(4, 1fr);
   }
+  .choice-grid--meals {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 .choice {
   display: flex;
@@ -674,110 +677,122 @@ textarea:focus-visible {
 .meal-card {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.9rem;
   background: var(--white);
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
-  padding: 1rem 1.1rem;
+  padding: 1.15rem 1.15rem 1.25rem;
   box-shadow: var(--shadow);
+}
+@media (min-width: 640px) {
+  .meal-card {
+    padding: 1.35rem 1.4rem 1.4rem;
+  }
 }
 .meal-card.is-selected {
   border-color: var(--plum);
   box-shadow: 0 0 0 2px var(--lavender), var(--shadow);
 }
-.meal-card__top {
+.meal-card__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 0.75rem;
 }
 .meal-card h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 .meal-card__meta {
-  margin: 0.2rem 0 0;
+  margin: 0.3rem 0 0;
   font-size: 0.875rem;
   color: var(--plum-60);
 }
 .meal-card__desc {
-  margin: 0;
+  margin: -0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--plum-60);
 }
-.pill {
+.availability {
   flex-shrink: 0;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
   font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
 }
-.pill--ok {
-  background: var(--lavender);
+.availability__dots {
+  display: inline-flex;
+  gap: 3px;
 }
-.pill--buy {
+.availability__dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
   background: var(--sand);
 }
-.tags {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-.tag {
-  padding: 0.1rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid var(--purple);
-  font-size: 0.75rem;
-  font-weight: 600;
+.availability__dots span.is-on {
+  background: var(--plum);
 }
 .meal-card__lists {
   margin: 0;
   display: grid;
-  gap: 0.45rem;
-}
-.meal-card__lists > div {
-  padding: 0.45rem 0.65rem;
-  border-radius: var(--radius-sm);
-  background: var(--lavender-soft);
-}
-.meal-card__lists > .on-list {
-  background: var(--cream);
-  border: 1px dashed var(--sand);
-}
-.meal-card__lists > .still-need {
-  background: var(--sand-soft);
-}
-.meal-card__extras-title {
-  margin: 0 0 0.35rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.meal-card__hint {
-  margin: 0;
+  gap: 0.75rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--lavender);
 }
 .meal-card__lists dt {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  color: var(--plum-60);
+  margin-bottom: 0.15rem;
 }
 .meal-card__lists dd {
   margin: 0;
+  font-weight: 600;
 }
-.meal-card__reasons {
-  margin: 0;
+.meal-card__lists .need dd {
+  padding-left: 0.6rem;
+  border-left: 3px solid var(--sand);
 }
-.meal-card__details summary {
+.meal-card__on-list {
+  font-weight: 400;
+}
+.meal-card__extras {
+  border-top: 1px solid var(--lavender);
+  padding-top: 0.6rem;
+}
+.meal-card__extras summary {
   cursor: pointer;
   font-weight: 600;
-  min-height: 32px;
+  font-size: 0.9rem;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
-.meal-card__details ol {
-  padding-left: 1.25rem;
-  margin: 0.5rem 0;
+.meal-card__added {
+  color: var(--plum-60);
+  font-weight: 400;
+}
+.meal-card__extras-body {
+  display: grid;
+  gap: 0.8rem;
+  padding-top: 0.5rem;
+}
+.meal-card__extras-body p {
+  margin: 0;
+}
+.meal-card__extras-title {
+  margin: 0 0 0.35rem !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--plum-60);
 }
 .meal-card__select {
   margin-top: auto;
@@ -844,6 +859,14 @@ textarea:focus-visible {
   justify-content: center;
   min-height: 40px;
   cursor: pointer;
+}
+.grocery-item__name {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.grocery-item__detail {
+  font-weight: 400;
+  line-height: 1.35;
 }
 .grocery-item.is-checked .grocery-item__name {
   text-decoration: line-through;

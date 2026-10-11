@@ -8,8 +8,8 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 1. **Start with your week:** cooking style, available time, the meals you're planning, foods the household avoids, and an optional budget and number of people. You can skip every question.
 2. **Choose your ingredients:** foods are grouped into Proteins, Carbohydrates, Vegetables & Fruit, and Fats & Extras, sorted alphabetically, with search (aliases work, so "garbanzo beans" finds Chickpeas). Mark each one **Already have** or **Need to buy**, or add your own. Duplicates are blocked.
-3. **Find meal ideas:** meals that use the most of what's already at home come first. Each card separates **Already have**, **Already on shopping list** and **Still need**. Optional extras and swaps ("+ Feta", "+ Tofu instead of salmon") are tappable chips that add the item to the list.
-4. **Grocery list:** combines your "Need to buy" items, whatever your chosen meals still need, and any extras you tapped. Duplicates are removed, anything marked "Already have" is left out, and the list is grouped by category. You can add, edit, remove and check off items, then **Share**, **Copy** or **Print** the list. Instructions on the page explain how to save or send it.
+3. **Find meal ideas:** meals that use the most of what's already at home come first. Each card shows what you **Already have** and what you **Need to buy** (items already on your list are marked as such). Optional extras and swaps ("+ Feta", "+ Tofu instead of salmon") sit in a collapsed "Optional extras & swaps" section and add the item to the list when tapped. Preparation steps are kept in the meal data for a future recipes feature but aren't shown in Version 1.
+4. **Grocery list:** combines your "Need to buy" items, whatever your chosen meals need, and any extras you tapped. Duplicates are removed, anything marked "Already have" is left out, and the list is grouped by category. You can add, edit, remove and check off items, then **Share**, **Copy** or **Print** the list. Instructions on the page explain how to save or send it.
 5. **Feedback:** an optional rating and an open question, sent by email through Web3Forms once an access key is configured (see below).
 
 ## Local development
@@ -54,9 +54,9 @@ Each required ingredient lands in exactly one group:
 
 - **Already have:** the user has it, or has one of its listed substitutes.
 - **Already on shopping list:** it's marked "Need to buy".
-- **Still need:** anything else. This goes on the list when the meal is chosen.
+- **Need to buy:** anything else. This goes on the list when the meal is chosen.
 
-Ranking puts the meals with the fewest ingredients *not already at home* first. That counts Still need plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to fewer Still need, then meals that fit the available time, then more owned ingredients.
+Ranking puts the meals with the fewest ingredients *not already at home* first. That counts Need to buy plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to fewer new items to buy, then meals that fit the available time, then more owned ingredients.
 
 **Optional ingredients** are never counted as missing. They only go on the list when the user taps their "+" chip on a meal card. Tapping an extra on a meal that isn't in the plan yet adds the meal too, and removing the meal removes its extras.
 
