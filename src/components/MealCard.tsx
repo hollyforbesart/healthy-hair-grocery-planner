@@ -8,6 +8,8 @@ interface MealCardProps {
   recommendation: MealRecommendation;
   lookup: IngredientLookup;
   statuses: IngredientStatusMap;
+  /** The user's usual cooking time, to flag longer meals. */
+  maxPrepMinutes: number | null;
   selected: boolean;
   /** Extras (optional ingredients or swaps) the user tapped for this meal. */
   extras: string[];
@@ -23,18 +25,35 @@ const TAG_LABELS: Record<string, string> = {
   pescatarian: 'Pescatarian',
 };
 
-export function MealCard({ recommendation, lookup, statuses, selected, extras, onToggle, onToggleExtra }: MealCardProps) {
-  const { meal, match, fitsTime, reasons } = recommendation;
+// Meal instructions stay in the data for a future recipes feature but are
+// intentionally not shown in Version 1.
+export function MealCard({
+  recommendation,
+  lookup,
+  statuses,
+  maxPrepMinutes,
+  selected,
+  extras,
+  onToggle,
+  onToggleExtra,
+}: MealCardProps) {
+  const { meal, match, fitsTime } = recommendation;
   const name = (id: string) => ingredientName(lookup, id);
   const headingId = `meal-${meal.id}`;
 
-  const describe = (r: { ingredientId: string; substituteId?: string; avoided?: boolean }) =>
+  const describe = (r: { ingredientId: string; substituteId?: string }) =>
     r.substituteId ? `${name(r.substituteId)} (instead of ${name(r.ingredientId).toLowerCase()})` : name(r.ingredientId);
 
   const have = match.required.filter((r) => r.status === 'have' || r.status === 'have-substitute');
+  // "Need to buy" = new purchases first, then items already on the shopping list (marked as such).
+  const needToBuy = match.required.filter((r) => r.status === 'missing');
   const onList = match.required.filter((r) => r.status === 'on-list');
-  const stillNeed = match.required.filter((r) => r.status === 'missing');
   const total = match.required.length;
+  const allAtHome = have.length === total;
+
+  const tags = (meal.dietaryTags ?? []).map((t) => TAG_LABELS[t] ?? t);
+  const hasExtras = match.optional.length > 0 || match.swapOptions.length > 0;
+  const addedCount = extras.length;
 
   /** A tappable "+ item" chip, or a plain note when the user already has / plans to buy it. */
   const extraChip = (id: string, label: string) => {
@@ -50,93 +69,95 @@ export function MealCard({ recommendation, lookup, statuses, selected, extras, o
 
   return (
     <article className={`meal-card${selected ? ' is-selected' : ''}`} aria-labelledby={headingId}>
-      <div className="meal-card__top">
-        <div>
+      <header className="meal-card__header">
+        <div className="meal-card__title">
           <h3 id={headingId}>{meal.name}</h3>
           <p className="meal-card__meta">
-            <span>{MEAL_CATEGORY_LABELS[meal.category]}</span>
-            <span aria-hidden="true"> · </span>
-            <span className={fitsTime ? undefined : 'warn'}>About {meal.prepTimeMinutes} min</span>
+            {MEAL_CATEGORY_LABELS[meal.category]} · About {meal.prepTimeMinutes} min
+            {!fitsTime && maxPrepMinutes ? <span className="warn"> · longer than your usual {maxPrepMinutes}</span> : null}
+            {tags.length > 0 && <span> · {tags.join(', ')}</span>}
           </p>
         </div>
-        <span className={`pill ${have.length === total ? 'pill--ok' : 'pill--buy'}`}>
-          {have.length} of {total} at home
+        <span
+          className={`availability ${allAtHome ? 'availability--full' : ''}`}
+          aria-label={`${have.length} of ${total} ingredients at home`}
+        >
+          <span className="availability__dots" aria-hidden="true">
+            {match.required.map((r, i) => (
+              <span key={i} className={r.status === 'have' || r.status === 'have-substitute' ? 'is-on' : ''} />
+            ))}
+          </span>
+          <span aria-hidden="true">
+            {have.length}/{total} at home
+          </span>
         </span>
-      </div>
+      </header>
 
       {meal.description && <p className="meal-card__desc">{meal.description}</p>}
 
-      {(meal.dietaryTags?.length ?? 0) > 0 && (
-        <ul className="tags" aria-label="Dietary tags">
-          {meal.dietaryTags!.map((tag) => (
-            <li key={tag} className="tag">
-              {TAG_LABELS[tag] ?? tag}
-            </li>
-          ))}
-        </ul>
-      )}
-
       <dl className="meal-card__lists">
-        <div className="have">
+        <div>
           <dt>Already have</dt>
-          <dd>{have.length > 0 ? have.map(describe).join(', ') : <span className="muted">Nothing yet</span>}</dd>
+          <dd>{have.length > 0 ? have.map(describe).join(', ') : <span className="muted">None yet</span>}</dd>
         </div>
-        {onList.length > 0 && (
-          <div className="on-list">
-            <dt>Already on shopping list</dt>
-            <dd>{onList.map(describe).join(', ')}</dd>
-          </div>
-        )}
-        {stillNeed.length > 0 && (
-          <div className="still-need">
-            <dt>Still need</dt>
-            <dd>{stillNeed.map(describe).join(', ')}</dd>
-          </div>
-        )}
+        <div className="need">
+          <dt>Need to buy</dt>
+          <dd>
+            {needToBuy.length === 0 && onList.length === 0 ? (
+              <span className="muted">Nothing — you have it all</span>
+            ) : (
+              <>
+                {needToBuy.map(describe).join(', ')}
+                {onList.length > 0 && (
+                  <span className="meal-card__on-list">
+                    {needToBuy.length > 0 && <br />}
+                    {onList.map(describe).join(', ')} <span className="muted">(already on your list)</span>
+                  </span>
+                )}
+              </>
+            )}
+          </dd>
+        </div>
       </dl>
 
-      {match.optional.length > 0 && (
-        <div className="meal-card__extras">
-          <p className="meal-card__extras-title">Optional extras</p>
-          <ul className="chip-list">
-            {match.optional.map((o) => {
-              const id = effectiveId(o);
-              return <li key={o.ingredientId}>{extraChip(id, name(id))}</li>;
-            })}
-          </ul>
-        </div>
-      )}
-
-      {match.swapOptions.length > 0 && (
-        <div className="meal-card__extras">
-          <p className="meal-card__extras-title">Cooking for someone who eats differently?</p>
-          <ul className="chip-list">
-            {match.swapOptions.flatMap((s) =>
-              s.alternatives.map((alt) => (
-                <li key={`${s.ingredientId}-${alt}`}>{extraChip(alt, `${name(alt)} instead of ${name(s.ingredientId).toLowerCase()}`)}</li>
-              )),
+      {hasExtras && (
+        <details className="meal-card__extras">
+          <summary>
+            Optional extras &amp; swaps
+            {addedCount > 0 && <span className="meal-card__added"> · {addedCount} added</span>}
+          </summary>
+          <div className="meal-card__extras-body">
+            {match.optional.length > 0 && (
+              <div>
+                <p className="meal-card__extras-title">Optional extras</p>
+                <ul className="chip-list">
+                  {match.optional.map((o) => {
+                    const id = effectiveId(o);
+                    return <li key={o.ingredientId}>{extraChip(id, name(id))}</li>;
+                  })}
+                </ul>
+              </div>
             )}
-          </ul>
-        </div>
+            {match.swapOptions.length > 0 && (
+              <div>
+                <p className="meal-card__extras-title">Swaps for anyone who eats differently</p>
+                <ul className="chip-list">
+                  {match.swapOptions.flatMap((s) =>
+                    s.alternatives.map((alt) => (
+                      <li key={`${s.ingredientId}-${alt}`}>
+                        {extraChip(alt, `${name(alt)} instead of ${name(s.ingredientId).toLowerCase()}`)}
+                      </li>
+                    )),
+                  )}
+                </ul>
+              </div>
+            )}
+            <p className="small muted">
+              Tap an item to add it to your grocery list{selected ? '.' : ' (this also adds the meal to your plan).'}
+            </p>
+          </div>
+        </details>
       )}
-
-      {(match.optional.length > 0 || match.swapOptions.length > 0) && (
-        <p className="small muted meal-card__hint">Tap an extra to add it to your grocery list{selected ? '.' : ' (this also adds the meal to your plan).'}</p>
-      )}
-
-      {reasons.length > 0 && <p className="meal-card__reasons small muted">{reasons.join(' · ')}</p>}
-
-      <details className="meal-card__details">
-        <summary>How to make it</summary>
-        <ol>
-          {meal.instructions.map((step, i) => (
-            <li key={i}>{step}</li>
-          ))}
-        </ol>
-        {meal.substitutions.some((s) => s.note) && (
-          <p className="small muted">{meal.substitutions.filter((s) => s.note).map((s) => s.note).join(' ')}</p>
-        )}
-      </details>
 
       <button
         type="button"

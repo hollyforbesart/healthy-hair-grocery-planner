@@ -16,17 +16,18 @@ type SendState = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { k
 
 export function FeedbackStep() {
   const { state, dispatch } = usePlanner();
-  const { rating, wish } = state.feedback;
+  const { rating, helpful, wish } = state.feedback;
   const [send, setSend] = useState<SendState>({ kind: 'idle' });
   const honeypotRef = useRef<HTMLInputElement>(null);
   const canSend = feedbackService.isConfigured;
-  const hasContent = rating !== null || wish.trim().length > 0;
+  const hasContent = rating !== null || helpful.trim().length > 0 || wish.trim().length > 0;
 
   const submit = async () => {
     if (!canSend || !hasContent) return;
     setSend({ kind: 'sending' });
     const result = await feedbackService.submit({
       rating,
+      helpful: helpful.trim(),
       wish: wish.trim(),
       submittedAt: new Date().toISOString(),
       appVersion: APP_VERSION,
@@ -34,7 +35,7 @@ export function FeedbackStep() {
     });
     if (result.ok) {
       setSend({ kind: 'sent' });
-      dispatch({ type: 'updateFeedback', patch: { rating: null, wish: '' } });
+      dispatch({ type: 'updateFeedback', patch: { rating: null, helpful: '', wish: '' } });
     } else {
       setSend({ kind: 'error', message: result.error });
     }
@@ -83,6 +84,17 @@ export function FeedbackStep() {
           </fieldset>
 
           <div className="card field">
+            <label htmlFor="helpful">What made this planner helpful?</label>
+            <textarea
+              id="helpful"
+              rows={4}
+              maxLength={2000}
+              value={helpful}
+              onChange={(e) => dispatch({ type: 'updateFeedback', patch: { helpful: e.target.value } })}
+            />
+          </div>
+
+          <div className="card field">
             <label htmlFor="wish">What do you wish this planner could also do?</label>
             <textarea
               id="wish"
@@ -101,7 +113,7 @@ export function FeedbackStep() {
               <button type="submit" className="btn btn--primary" disabled={!hasContent || send.kind === 'sending'}>
                 {send.kind === 'sending' ? 'Sending…' : 'Send feedback'}
               </button>
-              {!hasContent && <p className="small muted">Choose a rating or write a note to send.</p>}
+              {!hasContent && <p className="small muted">Choose a rating or answer a question to send.</p>}
             </div>
           ) : (
             <div className="notice" role="note">

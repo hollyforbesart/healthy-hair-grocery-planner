@@ -32,6 +32,10 @@ export interface PlannerState {
   groceryOverrides: Record<string, GroceryItemOverride>;
   manualItems: ManualGroceryItem[];
   feedback: FeedbackDraft;
+  /** Ingredients the user always keeps on hand; pre-marked each new week. */
+  staples: string[];
+  /** True right after "Start a new week", until the user leaves Step 2. */
+  reviewingPantry: boolean;
 }
 
 export const DEFAULT_PREFERENCES: WeekPreferences = {
@@ -54,8 +58,21 @@ export function createInitialState(): PlannerState {
     mealExtras: {},
     groceryOverrides: {},
     manualItems: [],
-    feedback: { rating: null, wish: '' },
+    feedback: { rating: null, helpful: '', wish: '' },
+    staples: [],
+    reviewingPantry: false,
   };
+}
+
+/** True once the user has started planning, so the home page can offer "Continue". */
+export function hasPlannerProgress(state: PlannerState): boolean {
+  return (
+    state.currentStep > 0 ||
+    Object.keys(state.ingredientStatuses).length > 0 ||
+    state.selectedMealIds.length > 0 ||
+    state.manualItems.length > 0 ||
+    state.staples.length > 0
+  );
 }
 
 export type PlannerAction =
@@ -73,6 +90,8 @@ export type PlannerAction =
   | { type: 'removeManualItem'; itemId: string }
   | { type: 'clearChecked'; generatedIds: string[] }
   | { type: 'updateFeedback'; patch: Partial<FeedbackDraft> }
+  | { type: 'toggleStaple'; ingredientId: string }
+  | { type: 'startNewWeek' }
   | { type: 'reset' };
 
 function withoutKey<T>(record: Record<string, T>, key: string): Record<string, T> {
@@ -83,11 +102,20 @@ function withoutKey<T>(record: Record<string, T>, key: string): Record<string, T
 
 export function plannerReducer(state: PlannerState, action: PlannerAction): PlannerState {
   switch (action.type) {
-    case 'goToStep':
-      return { ...state, currentStep: Math.min(Math.max(action.step, 0), STEPS.length - 1) };
+    case 'goToStep': {
+      const currentStep = Math.min(Math.max(action.step, 0), STEPS.length - 1);
+      // The pantry check-in banner only belongs to the first visit to Step 2 of a new week.
+      return { ...state, currentStep, reviewingPantry: state.reviewingPantry && currentStep === 1 };
+    }
 
-    case 'updatePreferences':
-      return { ...state, preferences: { ...state.preferences, ...action.patch } };
+    case 'updatePreferences': {
+      const preferences = { ...state.preferences, ...action.patch };
+      if (!action.patch.avoidIngredientIds) return { ...state, preferences };
+      // Avoided foods can't be marked Have / Need to buy, so drop any earlier choice.
+      const ingredientStatuses = { ...state.ingredientStatuses };
+      for (const id of action.patch.avoidIngredientIds) delete ingredientStatuses[id];
+      return { ...state, preferences, ingredientStatuses };
+    }
 
     case 'setIngredientStatus': {
       const ingredientStatuses = action.status
@@ -179,6 +207,41 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
 
     case 'updateFeedback':
       return { ...state, feedback: { ...state.feedback, ...action.patch } };
+
+    case 'toggleStaple': {
+      const isStaple = state.staples.includes(action.ingredientId);
+      return {
+        ...state,
+        staples: isStaple
+          ? state.staples.filter((id) => id !== action.ingredientId)
+          : [...state.staples, action.ingredientId],
+        // A new staple is something the user has right now.
+        ingredientStatuses:
+          !isStaple && !state.ingredientStatuses[action.ingredientId]
+            ? { ...state.ingredientStatuses, [action.ingredientId]: 'have' }
+            : state.ingredientStatuses,
+      };
+    }
+
+    case 'startNewWeek': {
+      // Keep preferences, own ingredients, staples and feedback. Staples start
+      // as "Already have" so the user only has to switch the ones that ran out;
+      // everything else is re-checked from scratch, since last week's food
+      // may have been used up.
+      const avoid = new Set(state.preferences.avoidIngredientIds);
+      const ingredientStatuses: IngredientStatusMap = {};
+      for (const id of state.staples) if (!avoid.has(id)) ingredientStatuses[id] = 'have';
+      return {
+        ...state,
+        currentStep: 1,
+        ingredientStatuses,
+        selectedMealIds: [],
+        mealExtras: {},
+        groceryOverrides: {},
+        manualItems: [],
+        reviewingPantry: true,
+      };
+    }
 
     case 'reset':
       return createInitialState();
@@ -281,7 +344,10 @@ export function hydrateState(saved: unknown): PlannerState {
     manualItems,
     feedback: {
       rating: typeof feedback.rating === 'number' ? feedback.rating : null,
+      helpful: typeof feedback.helpful === 'string' ? feedback.helpful : '',
       wish: typeof feedback.wish === 'string' ? feedback.wish : '',
     },
+    staples: stringArray(saved.staples),
+    reviewingPantry: saved.reviewingPantry === true,
   };
 }

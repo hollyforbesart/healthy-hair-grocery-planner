@@ -4,8 +4,9 @@ import { StepHeader } from '../components/StepHeader';
 import { AVOID_GROUPS } from '../data/avoidGroups';
 import { MEAL_CATEGORIES } from '../data/categories';
 import { findIngredientByName, ingredientName } from '../lib/ingredients';
+import { isAllMeals, toggleMealChoice, type MealChoice } from '../lib/mealSelection';
 import { usePlanner } from '../state/PlannerContext';
-import type { CookingStyle, MealCategory } from '../types';
+import type { CookingStyle } from '../types';
 
 const STYLE_OPTIONS: { value: CookingStyle; label: string; hint: string }[] = [
   { value: 'quick', label: 'Quick & simple', hint: 'Mostly fast meals with little prep' },
@@ -29,12 +30,7 @@ export function WeekStep() {
   const update = (patch: Partial<typeof prefs>) => dispatch({ type: 'updatePreferences', patch });
   const next = () => dispatch({ type: 'goToStep', step: 1 });
 
-  const toggleMealCategory = (category: MealCategory) =>
-    update({
-      mealCategories: prefs.mealCategories.includes(category)
-        ? prefs.mealCategories.filter((c) => c !== category)
-        : [...prefs.mealCategories, category],
-    });
+  const chooseMeal = (choice: MealChoice) => update({ mealCategories: toggleMealChoice(prefs.mealCategories, choice) });
 
   const groupChecked = (ids: string[]) => ids.every((id) => avoidSet.has(id));
   const toggleGroup = (ids: string[]) => {
@@ -106,14 +102,18 @@ export function WeekStep() {
 
         <fieldset className="card">
           <legend>Which meals are you planning for?</legend>
-          <p className="small muted">Leave all unticked to see every kind of meal.</p>
-          <div className="choice-grid choice-grid--compact">
+          <p className="small muted">Select the meals you’d like ideas for.</p>
+          <div className="choice-grid choice-grid--meals">
+            <label className="choice">
+              <input type="checkbox" checked={isAllMeals(prefs.mealCategories)} onChange={() => chooseMeal('all')} />
+              <span>All meals</span>
+            </label>
             {MEAL_CATEGORIES.map((category) => (
               <label key={category.id} className="choice">
                 <input
                   type="checkbox"
                   checked={prefs.mealCategories.includes(category.id)}
-                  onChange={() => toggleMealCategory(category.id)}
+                  onChange={() => chooseMeal(category.id)}
                 />
                 <span>{category.label}</span>
               </label>
@@ -124,9 +124,7 @@ export function WeekStep() {
         <fieldset className="card">
           <legend>Anything you’re avoiding?</legend>
           <p className="small muted">
-            Tick foods that <strong>nobody</strong> you’re cooking for eats. Meals will use a swap where one exists, or
-            be hidden. If only <strong>some</strong> people avoid a food, leave it unticked: each meal has swap buttons
-            so you can add an alternative for them.
+            Select any foods you don’t want included in your meal ideas. We’ll suggest alternatives when available.
           </p>
           <div className="choice-grid choice-grid--compact">
             {AVOID_GROUPS.map((group) => (
