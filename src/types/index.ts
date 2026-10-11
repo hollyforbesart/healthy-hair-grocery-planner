@@ -102,5 +102,8 @@ export type MealExtras = Record<string, string[]>;
 
 export interface FeedbackDraft {
   rating: number | null;
+  /** What made the planner helpful. */
+  helpful: string;
+  /** What else they wish it could do. */
   wish: string;
 }

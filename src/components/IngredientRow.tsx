@@ -11,8 +11,9 @@ interface IngredientRowProps {
 
 export function IngredientRow({ ingredient, status, matchedAlias, avoided, onChange, onRemoveCustom }: IngredientRowProps) {
   const toggle = (next: IngredientStatus) => onChange(status === next ? null : next);
+  const rowState = avoided ? ' is-avoided' : status ? ` is-${status}` : '';
   return (
-    <li className={`ingredient-row${status ? ` is-${status}` : ''}`}>
+    <li className={`ingredient-row${rowState}`}>
       <div className="ingredient-row__name">
         <span>{ingredient.name}</span>
         {matchedAlias && <span className="muted small"> (matches “{matchedAlias}”)</span>}
@@ -23,7 +24,8 @@ export function IngredientRow({ ingredient, status, matchedAlias, avoided, onCha
         <button
           type="button"
           className="toggle toggle--have"
-          aria-pressed={status === 'have'}
+          aria-pressed={!avoided && status === 'have'}
+          disabled={avoided}
           onClick={() => toggle('have')}
         >
           Already have
@@ -31,7 +33,8 @@ export function IngredientRow({ ingredient, status, matchedAlias, avoided, onCha
         <button
           type="button"
           className="toggle toggle--need"
-          aria-pressed={status === 'need'}
+          aria-pressed={!avoided && status === 'need'}
+          disabled={avoided}
           onClick={() => toggle('need')}
         >
           Need to buy

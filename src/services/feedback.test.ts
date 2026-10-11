@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { WEB3FORMS_URL, createFeedbackService } from './feedback';
 
-const payload = { rating: 4, wish: 'Weekly plans', submittedAt: '2026-01-01T00:00:00Z', appVersion: '1.1.0' };
+const payload = { rating: 4, helpful: 'Quick list', wish: 'Weekly plans', submittedAt: '2026-01-01T00:00:00Z', appVersion: '1.1.0' };
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
@@ -23,6 +23,7 @@ describe('createFeedbackService', () => {
     expect(body).toMatchObject({
       access_key: 'test-key',
       'Helpfulness rating': '4/5 (Helpful)',
+      'What made this planner helpful?': 'Quick list',
       'What do you wish this planner could also do?': 'Weekly plans',
       botcheck: false,
     });

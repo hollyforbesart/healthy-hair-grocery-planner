@@ -1,5 +1,6 @@
 export interface FeedbackPayload {
   rating: number | null;
+  helpful: string;
   wish: string;
   submittedAt: string;
   appVersion: string;
@@ -42,6 +43,7 @@ export function toWeb3FormsBody(accessKey: string, payload: FeedbackPayload) {
     subject: 'New feedback: Healthy Hair Grocery Planner',
     from_name: 'Healthy Hair Grocery Planner',
     'Helpfulness rating': payload.rating ? `${payload.rating}/5 (${RATING_LABELS[payload.rating]})` : 'Not answered',
+    'What made this planner helpful?': payload.helpful || 'Not answered',
     'What do you wish this planner could also do?': payload.wish || 'Not answered',
     'Submitted at': payload.submittedAt,
     'App version': payload.appVersion,

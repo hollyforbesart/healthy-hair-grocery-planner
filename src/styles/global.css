@@ -534,7 +534,7 @@ textarea:focus-visible {
   text-align: center;
   margin: 1rem 0;
 }
-.badge--avoid {
+.badge.badge--avoid {
   background: var(--plum);
   color: var(--cream);
 }
@@ -610,6 +610,20 @@ textarea:focus-visible {
 }
 .ingredient-row.is-need {
   background: var(--sand-soft);
+}
+.ingredient-row.is-avoided {
+  background: #f1eef3;
+}
+.ingredient-row.is-avoided .ingredient-row__name > span:first-child {
+  color: var(--plum-60);
+  text-decoration: line-through;
+}
+.toggle:disabled {
+  border-color: var(--border);
+  background: transparent;
+  color: var(--plum-60);
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 .ingredient-row__name {
   font-weight: 600;

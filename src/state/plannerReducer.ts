@@ -54,7 +54,7 @@ export function createInitialState(): PlannerState {
     mealExtras: {},
     groceryOverrides: {},
     manualItems: [],
-    feedback: { rating: null, wish: '' },
+    feedback: { rating: null, helpful: '', wish: '' },
   };
 }
 
@@ -86,8 +86,14 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
     case 'goToStep':
       return { ...state, currentStep: Math.min(Math.max(action.step, 0), STEPS.length - 1) };
 
-    case 'updatePreferences':
-      return { ...state, preferences: { ...state.preferences, ...action.patch } };
+    case 'updatePreferences': {
+      const preferences = { ...state.preferences, ...action.patch };
+      if (!action.patch.avoidIngredientIds) return { ...state, preferences };
+      // Avoided foods can't be marked Have / Need to buy, so drop any earlier choice.
+      const ingredientStatuses = { ...state.ingredientStatuses };
+      for (const id of action.patch.avoidIngredientIds) delete ingredientStatuses[id];
+      return { ...state, preferences, ingredientStatuses };
+    }
 
     case 'setIngredientStatus': {
       const ingredientStatuses = action.status
@@ -281,6 +287,7 @@ export function hydrateState(saved: unknown): PlannerState {
     manualItems,
     feedback: {
       rating: typeof feedback.rating === 'number' ? feedback.rating : null,
+      helpful: typeof feedback.helpful === 'string' ? feedback.helpful : '',
       wish: typeof feedback.wish === 'string' ? feedback.wish : '',
     },
   };

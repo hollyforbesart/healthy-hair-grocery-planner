@@ -49,4 +49,19 @@ describe('plannerReducer', () => {
     expect(state.preferences).toMatchObject({ budget: '$50', avoidIngredientIds: [] });
     expect(state.mealExtras).toEqual({});
   });
+
+  it('avoiding a food clears any Have / Need to buy choice for it', () => {
+    let state = plannerReducer(createInitialState(), { type: 'setIngredientStatus', ingredientId: 'salmon', status: 'need' });
+    state = plannerReducer(state, { type: 'setIngredientStatus', ingredientId: 'eggs', status: 'have' });
+    state = plannerReducer(state, { type: 'updatePreferences', patch: { avoidIngredientIds: ['salmon'] } });
+    expect(state.ingredientStatuses).toEqual({ eggs: 'have' });
+  });
+
+  it('loads feedback drafts saved before the "helpful" question existed', () => {
+    expect(hydrateState({ version: 1, feedback: { rating: 5, wish: 'More meals' } }).feedback).toEqual({
+      rating: 5,
+      helpful: '',
+      wish: 'More meals',
+    });
+  });
 });

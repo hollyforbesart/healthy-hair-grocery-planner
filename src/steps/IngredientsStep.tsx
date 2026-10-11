@@ -40,6 +40,15 @@ export function IngredientsStep() {
         setMessage({ kind: 'error', text: 'Type an ingredient name first.' });
       } else {
         const existing = result.existing;
+        if (state.preferences.avoidIngredientIds.includes(existing.id)) {
+          setMessage({
+            kind: 'info',
+            text: `You’re avoiding “${existing.name}”. To include it, remove it from your avoid list in Step 1.`,
+          });
+          setQuery(existing.name);
+          setCustomName('');
+          return;
+        }
         const current = statuses[existing.id];
         // Never silently overwrite a choice the user already made.
         if (!current) setStatus(existing.id, status);
