@@ -1,0 +1,226 @@
+import { useMemo, useState } from 'react';
+import { GroceryItemRow } from '../components/GroceryItemRow';
+import { StepFooter } from '../components/StepFooter';
+import { StepHeader } from '../components/StepHeader';
+import { GROCERY_CATEGORIES } from '../data/categories';
+import { copyText } from '../lib/clipboard';
+import { groceryListToText } from '../lib/format';
+import { buildGroceryList, groupGroceryList, removedItemIds } from '../lib/groceryList';
+import { findIngredientByName } from '../lib/ingredients';
+import { matchKey, tidyName } from '../lib/text';
+import { usePlanner } from '../state/PlannerContext';
+import type { GroceryCategoryId, GroceryListItem } from '../types';
+
+export function GroceryListStep() {
+  const { state, dispatch, lookup, allIngredients, selectedMeals } = usePlanner();
+  const [newName, setNewName] = useState('');
+  const [newCategory, setNewCategory] = useState<GroceryCategoryId>('other');
+  const [status, setStatus] = useState<{ kind: 'info' | 'error'; text: string } | null>(null);
+
+  const items = useMemo(
+    () =>
+      buildGroceryList({
+        statuses: state.ingredientStatuses,
+        selectedMeals,
+        lookup,
+        overrides: state.groceryOverrides,
+        manualItems: state.manualItems,
+      }),
+    [state.ingredientStatuses, selectedMeals, lookup, state.groceryOverrides, state.manualItems],
+  );
+  const groups = useMemo(() => groupGroceryList(items), [items]);
+  const removedCount = removedItemIds(state.groceryOverrides).length;
+  const checkedCount = items.filter((i) => i.checked).length;
+  const isManual = (item: GroceryListItem) => item.sources.includes('added');
+
+  const update = (item: GroceryListItem, patch: { name?: string; checked?: boolean; removed?: boolean }) => {
+    if (isManual(item)) {
+      if (patch.removed) dispatch({ type: 'removeManualItem', itemId: item.id });
+      else dispatch({ type: 'updateManualItem', itemId: item.id, patch });
+    } else {
+      dispatch({ type: 'updateGroceryItem', itemId: item.id, patch });
+    }
+  };
+
+  const addItem = () => {
+    const name = tidyName(newName);
+    if (!name) {
+      setStatus({ kind: 'error', text: 'Type an item name first.' });
+      return;
+    }
+    const ingredient = findIngredientByName(name, allIngredients);
+    const listed = items.find((i) => (ingredient && i.id === ingredient.id) || matchKey(i.name) === matchKey(name));
+    if (listed) {
+      setStatus({ kind: 'info', text: `“${listed.name}” is already on your list.` });
+      return;
+    }
+    if (ingredient && state.ingredientStatuses[ingredient.id] === 'have') {
+      setStatus({
+        kind: 'info',
+        text: `You marked “${ingredient.name}” as Already have. Change it in Step 2 if you’re running low.`,
+      });
+      return;
+    }
+    if (ingredient && state.groceryOverrides[ingredient.id]?.removed) {
+      dispatch({ type: 'updateGroceryItem', itemId: ingredient.id, patch: { removed: false } });
+    } else {
+      dispatch({
+        type: 'addManualItem',
+        item: {
+          id: `manual-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
+          name: ingredient?.name ?? name.charAt(0).toUpperCase() + name.slice(1),
+          category: ingredient?.category ?? newCategory,
+          checked: false,
+          ingredientId: ingredient?.id,
+        },
+      });
+    }
+    setStatus({ kind: 'info', text: `Added “${ingredient?.name ?? name}”.` });
+    setNewName('');
+  };
+
+  const copy = async () => {
+    const ok = await copyText(groceryListToText(groups));
+    setStatus(ok ? { kind: 'info', text: 'List copied to your clipboard.' } : { kind: 'error', text: 'Copy didn’t work in this browser. Try Print instead.' });
+  };
+
+  const { budget, householdSize } = state.preferences;
+
+  return (
+    <section aria-labelledby="step-title">
+      <StepHeader step={4} title="Your grocery list">
+        <p className="no-print">
+          Everything you marked <strong>Need to buy</strong>, plus what your chosen meals are missing. Items you already
+          have are left off.
+        </p>
+      </StepHeader>
+
+      {(budget || householdSize) && (
+        <p className="plan-summary small">
+          {budget && <span>Budget: {budget}</span>}
+          {householdSize && <span>Household: {householdSize}</span>}
+        </p>
+      )}
+
+      <div className="list-toolbar no-print">
+        <p className="small muted">
+          {items.length} item{items.length === 1 ? '' : 's'}
+          {checkedCount > 0 && ` · ${checkedCount} checked off`}
+        </p>
+        <div className="button-row">
+          <button type="button" className="btn btn--secondary" onClick={copy} disabled={items.length === 0}>
+            Copy list
+          </button>
+          <button type="button" className="btn btn--secondary" onClick={() => window.print()} disabled={items.length === 0}>
+            Print list
+          </button>
+        </div>
+      </div>
+
+      {items.length === 0 ? (
+        <div className="empty card">
+          <p>Your list is empty.</p>
+          <p className="small muted">
+            Mark ingredients as <strong>Need to buy</strong> or choose meals, or add items below.
+          </p>
+          <div className="button-row">
+            <button type="button" className="btn btn--secondary" onClick={() => dispatch({ type: 'goToStep', step: 1 })}>
+              Choose ingredients
+            </button>
+            <button type="button" className="btn btn--secondary" onClick={() => dispatch({ type: 'goToStep', step: 2 })}>
+              Find meal ideas
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="grocery-groups">
+          {groups.map((group) => (
+            <section key={group.category} className="grocery-group card" aria-labelledby={`list-${group.category}`}>
+              <h3 id={`list-${group.category}`}>{group.label}</h3>
+              <ul>
+                {group.items.map((item) => (
+                  <GroceryItemRow
+                    key={item.id}
+                    item={item}
+                    onToggle={(checked) => update(item, { checked })}
+                    onRename={(name) => update(item, { name })}
+                    onRemove={() => update(item, { removed: true })}
+                  />
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      )}
+
+      <div className="list-secondary-actions no-print">
+        {removedCount > 0 && (
+          <button type="button" className="link-btn" onClick={() => dispatch({ type: 'restoreRemovedItems' })}>
+            Restore {removedCount} removed item{removedCount === 1 ? '' : 's'}
+          </button>
+        )}
+        {checkedCount > 0 && (
+          <button
+            type="button"
+            className="link-btn"
+            onClick={() =>
+              dispatch({ type: 'clearChecked', generatedIds: items.filter((i) => !isManual(i)).map((i) => i.id) })
+            }
+          >
+            Uncheck all
+          </button>
+        )}
+      </div>
+
+      <form
+        className="card add-item-form no-print"
+        onSubmit={(e) => {
+          e.preventDefault();
+          addItem();
+        }}
+      >
+        <h3>Add an item</h3>
+        <div className="field-row">
+          <div className="field">
+            <label htmlFor="new-item">Item</label>
+            <input
+              id="new-item"
+              type="text"
+              autoComplete="off"
+              maxLength={60}
+              value={newName}
+              onChange={(e) => {
+                setNewName(e.target.value);
+                setStatus(null);
+              }}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="new-item-category">Category</label>
+            <select id="new-item-category" value={newCategory} onChange={(e) => setNewCategory(e.target.value as GroceryCategoryId)}>
+              {GROCERY_CATEGORIES.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <p className="small muted">Known ingredients go into their usual category automatically.</p>
+        <button type="submit" className="btn btn--secondary">
+          Add to list
+        </button>
+      </form>
+
+      <p className={`small no-print ${status?.kind === 'error' ? 'error' : ''}`} role="status" aria-live="polite">
+        {status?.text}
+      </p>
+
+      <StepFooter
+        onBack={() => dispatch({ type: 'goToStep', step: 2 })}
+        onNext={() => dispatch({ type: 'goToStep', step: 4 })}
+        nextLabel="Share feedback"
+      />
+    </section>
+  );
+}
