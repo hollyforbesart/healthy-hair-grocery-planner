@@ -64,4 +64,50 @@ describe('plannerReducer', () => {
       wish: 'More meals',
     });
   });
+
+  it('marking a staple also marks it Already have (without overriding Need to buy)', () => {
+    let state = plannerReducer(createInitialState(), { type: 'toggleStaple', ingredientId: 'olive-oil' });
+    expect(state.staples).toEqual(['olive-oil']);
+    expect(state.ingredientStatuses['olive-oil']).toBe('have');
+    state = plannerReducer(state, { type: 'setIngredientStatus', ingredientId: 'garlic', status: 'need' });
+    state = plannerReducer(state, { type: 'toggleStaple', ingredientId: 'garlic' });
+    expect(state.ingredientStatuses.garlic).toBe('need');
+    state = plannerReducer(state, { type: 'toggleStaple', ingredientId: 'olive-oil' });
+    expect(state.staples).toEqual(['garlic']);
+  });
+
+  it('starting a new week keeps preferences and staples, clears the rest of the plan', () => {
+    let state = createInitialState();
+    state = plannerReducer(state, { type: 'updatePreferences', patch: { budget: '$80', avoidIngredientIds: ['salmon'] } });
+    state = plannerReducer(state, { type: 'toggleStaple', ingredientId: 'olive-oil' });
+    state = plannerReducer(state, { type: 'toggleStaple', ingredientId: 'eggs' });
+    state = plannerReducer(state, { type: 'setIngredientStatus', ingredientId: 'eggs', status: 'need' }); // ran out
+    state = plannerReducer(state, { type: 'setIngredientStatus', ingredientId: 'spinach', status: 'have' });
+    state = plannerReducer(state, { type: 'toggleMealExtra', mealId: 'chickpea-quinoa-bowl', ingredientId: 'feta' });
+    state = plannerReducer(state, { type: 'updateGroceryItem', itemId: 'eggs', patch: { checked: true } });
+    state = plannerReducer(state, { type: 'addManualItem', item: { id: 'm1', name: 'Tea', category: 'other', checked: false } });
+    state = plannerReducer(state, { type: 'goToStep', step: 3 });
+
+    state = plannerReducer(state, { type: 'startNewWeek' });
+    expect(state.currentStep).toBe(1);
+    expect(state.reviewingPantry).toBe(true);
+    expect(state.preferences).toMatchObject({ budget: '$80', avoidIngredientIds: ['salmon'] });
+    expect(state.staples).toEqual(['olive-oil', 'eggs']);
+    // Staples start as "Already have" again; last week's other pantry items need re-checking.
+    expect(state.ingredientStatuses).toEqual({ 'olive-oil': 'have', eggs: 'have' });
+    expect(state.selectedMealIds).toEqual([]);
+    expect(state.mealExtras).toEqual({});
+    expect(state.groceryOverrides).toEqual({});
+    expect(state.manualItems).toEqual([]);
+
+    state = plannerReducer(state, { type: 'goToStep', step: 2 });
+    expect(state.reviewingPantry).toBe(false);
+  });
+
+  it('does not pre-mark staples that are now avoided', () => {
+    let state = plannerReducer(createInitialState(), { type: 'toggleStaple', ingredientId: 'tuna' });
+    state = plannerReducer(state, { type: 'updatePreferences', patch: { avoidIngredientIds: ['tuna'] } });
+    state = plannerReducer(plannerReducer(state, { type: 'startNewWeek' }), { type: 'goToStep', step: 1 });
+    expect(state.ingredientStatuses).toEqual({});
+  });
 });

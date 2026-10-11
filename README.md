@@ -6,11 +6,26 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 ## How it works
 
+The site has two pages:
+
+- **`/` (home):** what the planner is, how to use it, how to install it on a phone, and privacy. Returning visitors get **Continue your plan** and **Start a new week**. This is the link to send buyers.
+- **`/planner`:** the five-step planner. It can be linked directly, and it's where the installed app opens.
+
+The planner's steps:
+
 1. **Start with your week:** cooking style, available time, the meals you're planning, foods the household avoids, and an optional budget and number of people. You can skip every question.
-2. **Choose your ingredients:** foods are grouped into Proteins, Carbohydrates, Vegetables & Fruit, and Fats & Extras, sorted alphabetically, with search (aliases work, so "garbanzo beans" finds Chickpeas). Mark each one **Already have** or **Need to buy**, or add your own. Duplicates are blocked.
+2. **Choose your ingredients:** foods are grouped into Proteins, Carbohydrates, Vegetables & Fruit, and Fats & Extras, sorted alphabetically, with search (aliases work, so "garbanzo beans" finds Chickpeas). Mark each one **Already have** or **Need to buy**, or add your own. Duplicates are blocked. Foods on the avoid list are greyed out. Tap ☆ to mark a **staple** (something always kept on hand). Staples appear in a "Your staples" group at the top.
 3. **Find meal ideas:** meals that use the most of what's already at home come first. Each card shows what you **Already have** and what you **Need to buy** (items already on your list are marked as such). Optional extras and swaps ("+ Feta", "+ Tofu instead of salmon") sit in a collapsed "Optional extras & swaps" section and add the item to the list when tapped. Preparation steps are kept in the meal data for a future recipes feature but aren't shown in Version 1.
 4. **Grocery list:** combines your "Need to buy" items, whatever your chosen meals need, and any extras you tapped. Duplicates are removed, anything marked "Already have" is left out, and the list is grouped by category. You can add, edit, remove and check off items, then **Share**, **Copy** or **Print** the list. Instructions on the page explain how to save or send it.
-5. **Feedback:** an optional rating and an open question, sent by email through Web3Forms once an access key is configured (see below).
+5. **Feedback:** an optional rating, "What made this planner helpful?" and "What do you wish this planner could also do?", sent by email through Web3Forms once an access key is configured (see below).
+
+**Start a new week** (home page, or the bottom of the grocery list) keeps preferences, the avoid list, own ingredients and staples. It clears meals, extras and the grocery list, then opens Step 2 with a "check your pantry" note. Staples start as **Already have**, so the user only switches the ones that ran out to **Need to buy**, which puts them on the list. Every other pantry item is cleared to be checked again, since last week's food may have been used up. **Start over** erases everything.
+
+### Works offline and installs like an app
+
+The site is a Progressive Web App. `public/manifest.webmanifest` holds the name, colours and icons; the installed app opens at `/planner`. `public/sw.js` is the service worker: it caches the page and its files on the first visit, so the planner opens with no connection, which is handy in a store with poor signal. Pages are fetched fresh when online. Install instructions for iPhone, Android and computers are on the home page.
+
+The icons in `public/icons/` are placeholders made from the logo mark. To replace them, keep the same file names and sizes: `icon-192.png` (192×192), `icon-512.png` (512×512, with the important part inside the centre 80% so it also works as a "maskable" icon) and `apple-touch-icon.png` (180×180). If you change cached files in a way that must reach installed apps immediately, bump `CACHE` in `public/sw.js`.
 
 ## Local development
 

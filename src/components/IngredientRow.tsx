@@ -5,17 +5,41 @@ interface IngredientRowProps {
   status: IngredientStatus | undefined;
   matchedAlias?: string;
   avoided?: boolean;
+  isStaple?: boolean;
+  onToggleStaple?: () => void;
   onChange: (status: IngredientStatus | null) => void;
   onRemoveCustom?: () => void;
 }
 
-export function IngredientRow({ ingredient, status, matchedAlias, avoided, onChange, onRemoveCustom }: IngredientRowProps) {
+export function IngredientRow({
+  ingredient,
+  status,
+  matchedAlias,
+  avoided,
+  isStaple,
+  onToggleStaple,
+  onChange,
+  onRemoveCustom,
+}: IngredientRowProps) {
   const toggle = (next: IngredientStatus) => onChange(status === next ? null : next);
   const rowState = avoided ? ' is-avoided' : status ? ` is-${status}` : '';
   return (
     <li className={`ingredient-row${rowState}`}>
       <div className="ingredient-row__name">
-        <span>{ingredient.name}</span>
+        {onToggleStaple && (
+          <button
+            type="button"
+            className={`staple-btn${isStaple ? ' is-on' : ''}`}
+            aria-pressed={isStaple}
+            aria-label={`Staple: ${ingredient.name}`}
+            title={isStaple ? 'Staple — tap to remove' : 'Mark as a staple you always keep on hand'}
+            disabled={avoided}
+            onClick={onToggleStaple}
+          >
+            <span aria-hidden="true">{isStaple ? '★' : '☆'}</span>
+          </button>
+        )}
+        <span className="ingredient-row__label">{ingredient.name}</span>
         {matchedAlias && <span className="muted small"> (matches “{matchedAlias}”)</span>}
         {ingredient.custom && <span className="badge">Your item</span>}
         {avoided && <span className="badge badge--avoid">Avoiding</span>}

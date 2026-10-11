@@ -11,3 +11,12 @@ createRoot(document.getElementById('root')!).render(
     </PlannerProvider>
   </StrictMode>,
 );
+
+// Offline support: only in production builds, so local development isn't cached.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      // The planner works fine without offline support.
+    });
+  });
+}

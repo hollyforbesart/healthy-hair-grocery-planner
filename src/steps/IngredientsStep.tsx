@@ -20,15 +20,23 @@ export function IngredientsStep() {
   const haveCount = Object.values(statuses).filter((s) => s === 'have').length;
   const needCount = Object.values(statuses).filter((s) => s === 'need').length;
 
+  const staples = state.staples;
   const groups = useMemo(() => {
     const results = searchIngredients(query, allIngredients);
-    return INGREDIENT_CATEGORIES.map((category) => ({
-      ...category,
-      results: sortByName(
-        results.filter((r) => r.ingredient.category === category.id).map((r) => ({ ...r, name: r.ingredient.name })),
-      ),
-    })).filter((g) => g.results.length > 0);
-  }, [query, allIngredients]);
+    const withName = (list: typeof results) => sortByName(list.map((r) => ({ ...r, name: r.ingredient.name })));
+    // Without a search, staples get their own group at the top so they're easy to re-check each week.
+    const showStapleGroup = !query.trim() && staples.length > 0;
+    const inStapleGroup = (id: string) => showStapleGroup && staples.includes(id);
+    const categoryGroups = INGREDIENT_CATEGORIES.map((category) => ({
+      id: category.id as string,
+      label: category.label,
+      results: withName(results.filter((r) => r.ingredient.category === category.id && !inStapleGroup(r.ingredient.id))),
+    }));
+    const stapleGroup = showStapleGroup
+      ? [{ id: 'staples', label: 'Your staples', results: withName(results.filter((r) => staples.includes(r.ingredient.id))) }]
+      : [];
+    return [...stapleGroup, ...categoryGroups].filter((g) => g.results.length > 0);
+  }, [query, allIngredients, staples]);
 
   const setStatus = (ingredientId: string, status: IngredientStatus | null) =>
     dispatch({ type: 'setIngredientStatus', ingredientId, status });
@@ -77,6 +85,17 @@ export function IngredientsStep() {
         </p>
       </StepHeader>
 
+      {state.reviewingPantry && (
+        <div className="notice" role="status">
+          <p>
+            <strong>New week — check your pantry.</strong>{' '}
+            {staples.length > 0
+              ? 'Your staples are marked Already have. Ran out of one? Switch it to Need to buy. Then mark anything else you have on hand.'
+              : 'Mark what you have on hand this week and what you need to buy.'}
+          </p>
+        </div>
+      )}
+
       <div className="ingredients-toolbar card">
         <div className="field">
           <label htmlFor="ingredient-search">Search ingredients</label>
@@ -94,6 +113,10 @@ export function IngredientsStep() {
           <span className="count count--need">{needCount} need to buy</span>
         </p>
       </div>
+
+      <p className="small muted staple-hint">
+        Tap ☆ to save foods you always keep on hand. Each new week starts with them marked Already have.
+      </p>
 
       {groups.length === 0 && (
         <div className="empty card" role="status">
@@ -122,6 +145,8 @@ export function IngredientsStep() {
                 status={statuses[ingredient.id]}
                 matchedAlias={matchedAlias}
                 avoided={state.preferences.avoidIngredientIds.includes(ingredient.id)}
+                isStaple={staples.includes(ingredient.id)}
+                onToggleStaple={() => dispatch({ type: 'toggleStaple', ingredientId: ingredient.id })}
                 onChange={(status) => setStatus(ingredient.id, status)}
                 onRemoveCustom={
                   ingredient.custom

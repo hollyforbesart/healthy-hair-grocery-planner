@@ -4,6 +4,7 @@ import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
 import { GROCERY_CATEGORIES } from '../data/categories';
 import { copyText } from '../lib/clipboard';
+import { NEW_WEEK_CONFIRM } from '../lib/confirmations';
 import { groceryListToText } from '../lib/format';
 import { buildGroceryList, groupGroceryList, removedItemIds } from '../lib/groceryList';
 import { findIngredientByName } from '../lib/ingredients';
@@ -268,6 +269,21 @@ export function GroceryListStep() {
           {addStatus?.text}
         </p>
       </form>
+
+      <div className="card new-week no-print">
+        <h3>Done shopping?</h3>
+        <p className="small">
+          Next week, start fresh: your preferences and staples are kept, and you’ll check your pantry for anything that
+          ran out.
+        </p>
+        <button
+          type="button"
+          className="btn btn--secondary"
+          onClick={() => window.confirm(NEW_WEEK_CONFIRM) && dispatch({ type: 'startNewWeek' })}
+        >
+          Start a new week
+        </button>
+      </div>
 
       <StepFooter
         onBack={() => dispatch({ type: 'goToStep', step: 2 })}
