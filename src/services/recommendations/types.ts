@@ -17,8 +17,6 @@ export interface RecommendationRequest {
 export interface MealRecommendation {
   meal: MealTemplate;
   match: MealMatch;
-  /** False when the meal takes longer than the user's stated time. */
-  fitsTime: boolean;
   /** Short, factual reasons shown on the card (no health claims). */
   reasons: string[];
 }

@@ -3,15 +3,15 @@ import type { MealTemplate } from '../types';
 import { matchMeal } from './matching';
 import { rankMeals } from '../services/recommendations/localProvider';
 import { INGREDIENTS } from '../data/ingredients';
-import { MEALS } from '../data/meals';
+import { FIXTURE_MEALS as MEALS } from '../test/fixtureMeals';
 
 const bowl: MealTemplate = {
   id: 'bowl',
   name: 'Test Bowl',
   category: 'lunch',
   requiredIngredients: ['chickpeas', 'quinoa', 'cucumber'],
-  optionalIngredients: ['feta', 'lemons'],
-  substitutions: [{ ingredientId: 'quinoa', alternatives: ['brown-rice'] }],
+  optionalIngredients: ['feta-cheese', 'lemon'],
+  substitutions: [{ ingredientId: 'quinoa', alternatives: ['rice'] }],
   prepTimeMinutes: 20,
   instructions: [],
 };
@@ -29,13 +29,13 @@ describe('matchMeal', () => {
     expect(m.missingCount).toBe(0);
     expect(m.isComplete).toBe(true);
     expect(m.optional.map((o) => o.status)).toEqual(['not-have', 'not-have']);
-    expect(m.missingIds).not.toContain('feta');
+    expect(m.missingIds).not.toContain('feta-cheese');
   });
 
   it('accepts an owned substitution for a required ingredient', () => {
-    const m = matchMeal(bowl, { chickpeas: 'have', 'brown-rice': 'have' });
+    const m = matchMeal(bowl, { chickpeas: 'have', 'rice': 'have' });
     const quinoa = m.required.find((r) => r.ingredientId === 'quinoa');
-    expect(quinoa).toEqual({ ingredientId: 'quinoa', status: 'have-substitute', substituteId: 'brown-rice' });
+    expect(quinoa).toEqual({ ingredientId: 'quinoa', status: 'have-substitute', substituteId: 'rice' });
     expect(m.missingIds).toEqual(['cucumber']);
   });
 
@@ -55,7 +55,7 @@ describe('matchMeal', () => {
 
 describe('rankMeals', () => {
   const base = { ingredients: INGREDIENTS, meals: MEALS };
-  const prefs = { cookingStyle: null, maxPrepMinutes: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
+  const prefs = { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
 
   it('puts meals needing fewer additional ingredients first', () => {
     const ranked = rankMeals({
@@ -68,11 +68,6 @@ describe('rankMeals', () => {
     expect(missing).toEqual([...missing].sort((a, b) => a - b));
   });
 
-  it('flags meals longer than the available time', () => {
-    const ranked = rankMeals({ ...base, preferences: { ...prefs, maxPrepMinutes: 15 }, ingredientStatuses: {} });
-    const soup = ranked.find((r) => r.meal.id === 'lentil-vegetable-soup')!;
-    expect(soup.fitsTime).toBe(false);
-  });
 });
 
 describe('sample data integrity', () => {
@@ -87,22 +82,25 @@ describe('sample data integrity', () => {
       const referenced = [
         ...meal.requiredIngredients,
         ...meal.optionalIngredients,
-        ...meal.substitutions.flatMap((s) => [s.ingredientId, ...s.alternatives]),
+        ...(meal.substitutions ?? []).flatMap((s) => [s.ingredientId, ...s.alternatives]),
       ];
       for (const id of referenced) expect(ids, `${meal.id} → ${id}`).toContain(id);
     }
   });
 });
 
-describe('time preference', () => {
-  it('treats 0 as "no time limit"', () => {
+describe('preparation time', () => {
+  it('is never used for ranking', () => {
+    const quick: MealTemplate = { id: 'a-quick', name: 'B quick', category: 'lunch', requiredIngredients: ['eggs'], optionalIngredients: [], prepTimeMinutes: 5 };
+    const slow: MealTemplate = { id: 'a-slow', name: 'A slow', category: 'lunch', requiredIngredients: ['eggs'], optionalIngredients: [], prepTimeMinutes: 90 };
     const ranked = rankMeals({
       ingredients: INGREDIENTS,
-      meals: MEALS,
+      meals: [quick, slow],
       ingredientStatuses: {},
-      preferences: { cookingStyle: null, maxPrepMinutes: 0, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] },
+      preferences: { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] },
     });
-    expect(ranked.every((r) => r.fitsTime)).toBe(true);
+    // Same pantry fit, so alphabetical — the 90-minute meal is not pushed down.
+    expect(ranked.map((r) => r.meal.id)).toEqual(['a-slow', 'a-quick']);
   });
 });
 
@@ -117,7 +115,7 @@ describe('pantry vs shopping list in ranking', () => {
     prepTimeMinutes: 20,
     instructions: [],
   });
-  const prefs = { cookingStyle: null, maxPrepMinutes: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
+  const prefs = { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
 
   it('ranks a meal mostly at home above one that is all on the shopping list', () => {
     const allOnList = meal('all-on-list', ['a', 'b', 'c', 'd', 'e']);
@@ -169,7 +167,7 @@ describe('avoided ingredients', () => {
       ingredients: INGREDIENTS,
       meals: MEALS,
       ingredientStatuses: {},
-      preferences: { cookingStyle: null, maxPrepMinutes: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: ['lentils'] },
+      preferences: { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: ['lentils'] },
     });
     expect(ranked.map((r) => r.meal.id)).not.toContain('lentil-vegetable-soup');
   });

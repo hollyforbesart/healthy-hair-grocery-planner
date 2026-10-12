@@ -1,4 +1,5 @@
-import type { GroceryCategoryId, Ingredient } from '../types';
+import { defaultStoreSection } from '../data/categories';
+import type { FoodGroupId, Ingredient } from '../types';
 import { matchKey, normalizeName, slugify, tidyName } from './text';
 
 export type IngredientLookup = Map<string, Ingredient>;
@@ -65,7 +66,7 @@ export type CustomIngredientResult =
  */
 export function createCustomIngredient(
   rawName: string,
-  category: GroceryCategoryId,
+  category: FoodGroupId,
   existing: Ingredient[],
 ): CustomIngredientResult {
   const name = tidyName(rawName);
@@ -79,5 +80,8 @@ export function createCustomIngredient(
   for (let n = 2; ids.has(id); n += 1) id = `${base}-${n}`;
 
   const displayName = name.charAt(0).toUpperCase() + name.slice(1);
-  return { ok: true, ingredient: { id, name: displayName, category, custom: true } };
+  return {
+    ok: true,
+    ingredient: { id, name: displayName, category, storeSection: defaultStoreSection(category), custom: true },
+  };
 }

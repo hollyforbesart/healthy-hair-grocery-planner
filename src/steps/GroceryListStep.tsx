@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { GroceryItemRow } from '../components/GroceryItemRow';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
-import { GROCERY_CATEGORIES } from '../data/categories';
+import { OTHER_SECTION, STORE_SECTIONS } from '../data/categories';
 import { copyText } from '../lib/clipboard';
 import { NEW_WEEK_CONFIRM } from '../lib/confirmations';
 import { groceryListToText } from '../lib/format';
@@ -11,12 +11,12 @@ import { findIngredientByName } from '../lib/ingredients';
 import { shareText } from '../lib/share';
 import { matchKey, tidyName } from '../lib/text';
 import { usePlanner } from '../state/PlannerContext';
-import type { GroceryCategoryId, GroceryListItem } from '../types';
+import type { GroceryListItem, StoreSectionId } from '../types';
 
 export function GroceryListStep() {
   const { state, dispatch, lookup, allIngredients, selectedMeals } = usePlanner();
   const [newName, setNewName] = useState('');
-  const [newCategory, setNewCategory] = useState<GroceryCategoryId>('other');
+  const [newSection, setNewSection] = useState<StoreSectionId>(OTHER_SECTION);
   const [status, setStatus] = useState<{ kind: 'info' | 'error'; text: string } | null>(null);
   const [addStatus, setAddStatus] = useState<{ kind: 'info' | 'error'; text: string } | null>(null);
 
@@ -74,7 +74,7 @@ export function GroceryListStep() {
         item: {
           id: `manual-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
           name: ingredient?.name ?? name.charAt(0).toUpperCase() + name.slice(1),
-          category: ingredient?.category ?? newCategory,
+          section: ingredient?.storeSection ?? newSection,
           checked: false,
           ingredientId: ingredient?.id,
         },
@@ -190,8 +190,8 @@ export function GroceryListStep() {
       ) : (
         <div className="grocery-groups">
           {groups.map((group) => (
-            <section key={group.category} className="grocery-group card" aria-labelledby={`list-${group.category}`}>
-              <h3 id={`list-${group.category}`}>{group.label}</h3>
+            <section key={group.section} className="grocery-group card" aria-labelledby={`list-${group.section}`}>
+              <h3 id={`list-${group.section}`}>{group.label}</h3>
               <ul>
                 {group.items.map((item) => (
                   <GroceryItemRow
@@ -251,9 +251,9 @@ export function GroceryListStep() {
             />
           </div>
           <div className="field">
-            <label htmlFor="new-item-category">Category</label>
-            <select id="new-item-category" value={newCategory} onChange={(e) => setNewCategory(e.target.value as GroceryCategoryId)}>
-              {GROCERY_CATEGORIES.map((c) => (
+            <label htmlFor="new-item-category">Store section</label>
+            <select id="new-item-category" value={newSection} onChange={(e) => setNewSection(e.target.value)}>
+              {STORE_SECTIONS.map((c) => (
                 <option key={c.id} value={c.id}>
                   {c.label}
                 </option>
@@ -261,7 +261,7 @@ export function GroceryListStep() {
             </select>
           </div>
         </div>
-        <p className="small muted">Known ingredients go into their usual category automatically.</p>
+        <p className="small muted">Known ingredients go into their usual store section automatically.</p>
         <button type="submit" className="btn btn--secondary">
           Add to list
         </button>

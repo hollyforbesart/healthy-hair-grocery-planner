@@ -828,6 +828,22 @@ textarea:focus-visible {
 .meal-card__on-list {
   font-weight: 400;
 }
+.meal-card__note {
+  border-top: 1px solid var(--lavender);
+  padding-top: 0.6rem;
+}
+.meal-card__note summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+.meal-card__note p {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+}
 .meal-card__extras {
   border-top: 1px solid var(--lavender);
   padding-top: 0.6rem;

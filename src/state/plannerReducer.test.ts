@@ -85,7 +85,7 @@ describe('plannerReducer', () => {
     state = plannerReducer(state, { type: 'setIngredientStatus', ingredientId: 'spinach', status: 'have' });
     state = plannerReducer(state, { type: 'toggleMealExtra', mealId: 'chickpea-quinoa-bowl', ingredientId: 'feta' });
     state = plannerReducer(state, { type: 'updateGroceryItem', itemId: 'eggs', patch: { checked: true } });
-    state = plannerReducer(state, { type: 'addManualItem', item: { id: 'm1', name: 'Tea', category: 'other', checked: false } });
+    state = plannerReducer(state, { type: 'addManualItem', item: { id: 'm1', name: 'Tea', section: 'other', checked: false } });
     state = plannerReducer(state, { type: 'goToStep', step: 3 });
 
     state = plannerReducer(state, { type: 'startNewWeek' });
@@ -109,5 +109,39 @@ describe('plannerReducer', () => {
     state = plannerReducer(state, { type: 'updatePreferences', patch: { avoidIngredientIds: ['tuna'] } });
     state = plannerReducer(plannerReducer(state, { type: 'startNewWeek' }), { type: 'goToStep', step: 1 });
     expect(state.ingredientStatuses).toEqual({});
+  });
+
+  it('moves a plan saved under the old catalog onto the current ingredient IDs', () => {
+    const state = hydrateState({
+      version: 1,
+      currentStep: 3,
+      preferences: { maxPrepMinutes: 30, mealCategories: ['dinner'], avoidIngredientIds: ['tuna', 'kale'] },
+      ingredientStatuses: { bananas: 'have', lemons: 'need', banana: 'need', berries: 'have', eggs: 'have' },
+      staples: ['brown-rice', 'olive-oil'],
+      selectedMealIds: ['sheet-pan-salmon'],
+      mealExtras: { 'chickpea-quinoa-bowl': ['feta', 'lemons'] },
+      groceryOverrides: { lemons: { name: 'Lemons (3)' }, 'rolled-oats': { removed: true } },
+      manualItems: [
+        { id: 'm1', name: 'Paper towels', category: 'other', checked: true },
+        { id: 'm2', name: 'Kiwi', category: 'produce', checked: false },
+        { id: 'm3', name: 'Tuna steak', category: 'proteins', checked: false, ingredientId: 'tuna' },
+      ],
+      customIngredients: [{ id: 'custom-dragon-fruit', name: 'Dragon fruit', category: 'produce', custom: true }],
+    });
+    // Current IDs win over old ones when a plan has both (banana).
+    expect(state.ingredientStatuses).toEqual({ banana: 'need', eggs: 'have', lemon: 'need', 'mixed-berries': 'have' });
+    expect(state.preferences.avoidIngredientIds).toEqual(['canned-tuna', 'kale']);
+    expect(state.preferences).not.toHaveProperty('maxPrepMinutes');
+    expect(state.staples).toEqual(['rice', 'olive-oil']);
+    expect(state.mealExtras).toEqual({ 'chickpea-quinoa-bowl': ['feta-cheese', 'lemon'] });
+    expect(state.groceryOverrides).toEqual({ lemon: { name: 'Lemons (3)' }, oats: { removed: true } });
+    expect(state.manualItems.map((i) => [i.section, i.ingredientId])).toEqual([
+      ['other', undefined],
+      ['produce', undefined],
+      ['other', 'canned-tuna'],
+    ]);
+    expect(state.customIngredients[0]).toMatchObject({ category: 'produce', storeSection: 'produce' });
+    // Meals that are no longer in the library are kept but simply don't resolve.
+    expect(state.selectedMealIds).toEqual(['sheet-pan-salmon']);
   });
 });

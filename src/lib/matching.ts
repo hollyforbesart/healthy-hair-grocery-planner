@@ -64,7 +64,7 @@ export function matchMeal(
   avoid: ReadonlySet<string> = new Set(),
 ): MealMatch {
   const alternativesFor = (id: string) =>
-    (meal.substitutions.find((s) => s.ingredientId === id)?.alternatives ?? []).filter((alt) => !avoid.has(alt));
+    ((meal.substitutions ?? []).find((s) => s.ingredientId === id)?.alternatives ?? []).filter((alt) => !avoid.has(alt));
 
   const blockedBy: string[] = [];
 
@@ -149,7 +149,7 @@ export function matchMeal(
  */
 export function extraKind(meal: MealTemplate, ingredientId: string): 'optional' | 'swap' | null {
   const isAltFor = (ids: string[]) =>
-    meal.substitutions.some((s) => ids.includes(s.ingredientId) && s.alternatives.includes(ingredientId));
+    (meal.substitutions ?? []).some((s) => ids.includes(s.ingredientId) && s.alternatives.includes(ingredientId));
   if (meal.optionalIngredients.includes(ingredientId) || isAltFor(meal.optionalIngredients)) return 'optional';
   if (isAltFor(meal.requiredIngredients)) return 'swap';
   return null;

@@ -14,13 +14,6 @@ const STYLE_OPTIONS: { value: CookingStyle; label: string; hint: string }[] = [
   { value: 'mixed', label: 'A bit of both', hint: 'Some quick meals, some bigger cooks' },
 ];
 
-const TIME_OPTIONS: { value: number; label: string }[] = [
-  { value: 15, label: 'Up to 15 minutes' },
-  { value: 30, label: 'Up to 30 minutes' },
-  { value: 45, label: 'Up to 45 minutes' },
-  { value: 0, label: 'No time limit' },
-];
-
 export function WeekStep() {
   const { state, dispatch, allIngredients, lookup } = usePlanner();
   const prefs = state.preferences;
@@ -78,23 +71,6 @@ export function WeekStep() {
                   <strong>{option.label}</strong>
                   <span className="small muted block">{option.hint}</span>
                 </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <fieldset className="card">
-          <legend>How much time do you usually have to cook a meal?</legend>
-          <div className="choice-grid choice-grid--compact">
-            {TIME_OPTIONS.map((option) => (
-              <label key={option.label} className="choice">
-                <input
-                  type="radio"
-                  name="maxPrepMinutes"
-                  checked={prefs.maxPrepMinutes === option.value}
-                  onChange={() => update({ maxPrepMinutes: option.value })}
-                />
-                <span>{option.label}</span>
               </label>
             ))}
           </div>

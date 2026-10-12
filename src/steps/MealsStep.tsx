@@ -97,7 +97,6 @@ export function MealsStep() {
             recommendation={recommendation}
             lookup={lookup}
             statuses={ingredientStatuses}
-            maxPrepMinutes={preferences.maxPrepMinutes}
             selected={selectedMealIds.includes(recommendation.meal.id)}
             extras={mealExtras[recommendation.meal.id] ?? []}
             onToggle={() => dispatch({ type: 'toggleMeal', mealId: recommendation.meal.id })}
