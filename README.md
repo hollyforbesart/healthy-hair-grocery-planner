@@ -8,7 +8,27 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 The site has two pages:
 
-- **`/` (home):** what the planner is, how to use it, how to install it on a phone, and privacy. Returning visitors get **Continue your plan** and **Plan a new week** (on the home page, or at the bottom of the grocery list):
+- **`/` (home):** what the planner is, the two ways to start, how to install it on a phone, and privacy. New visitors pick one of the two ways to start. Returning visitors get **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
+- **`/planner`:** the planner itself. It can be linked directly, and it's where the installed app opens.
+
+The planner starts by asking how the user wants to begin. Both paths share the same meal library and grocery list, and the user can switch at any time:
+
+- **Start with what I have:** Start → Your kitchen → Meal ideas → Review → Grocery list → Feedback
+- **Browse meal ideas:** Start → Meal ideas → Review → Grocery list → Feedback
+
+1. **Start:** pick a path, plus the optional details: which meal types, foods to avoid (quick-pick groups or specific ingredients), budget and number of people.
+2. **Your kitchen** (first path only): one section per food group (Proteins, Carbohydrates, Vegetables & Fruit, Fats & Extras).
+   - People tap common foods or type to get suggestions from the catalog. Other names work, so "garbanzo" finds Chickpeas.
+   - Adding something means "I have this". Anything not in the catalog can be added as the user's own item.
+   - ☆ marks a staple, which is added automatically each new week.
+3. **Meal ideas:** search by meal or ingredient, filter by meal type or ♥ favorites, and load 20 at a time.
+   - Ranking is pantry fit: fewest ingredients not already at home. Meals chosen in the last 14 days move down unless they're favorites, and never-chosen meals win ties.
+   - Each card shows how many of its ingredients you have ("You have 3 of 4"), plus **Already have** and **Need to buy**. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Optional extras are in a collapsed section and only go on the list when tapped.
+4. **Review:** the chosen meals (removable), then every ingredient they need, once each and grouped by store section. People tick off what they already have; anything left unticked goes on the list.
+5. **Grocery list:** grouped by store section. It shows what to buy, not how much. Items can be added, edited, removed and checked off, and the list can be shared, copied or printed.
+6. **Feedback:** an optional rating, "What made this planner helpful?" and "What do you wish this planner could also do?", sent through Web3Forms (see below).
+
+**Plan a new week** (on the home page, or at the bottom of the grocery list):
 - **Kept:** preferences, the avoid list, own ingredients, staples and favorites.
 - **Remembered:** this week's meals go into the history used for rotation.
 - **Cleared:** meals, extras and the grocery list.
