@@ -118,3 +118,15 @@ describe('legacy ingredient IDs and avoid groups', () => {
     }
   });
 });
+
+describe('avoidGroupsFor', () => {
+  it('names the ticked groups that cover an ingredient', async () => {
+    const { avoidGroupsFor } = await import('./avoidGroups');
+    const dairy = AVOID_GROUPS.find((g) => g.id === 'dairy')!.ingredientIds;
+    const nuts = AVOID_GROUPS.find((g) => g.id === 'nuts')!.ingredientIds;
+    expect(avoidGroupsFor('basil-pesto', [...dairy])).toEqual(['Dairy']);
+    expect(avoidGroupsFor('basil-pesto', [...dairy, ...nuts])).toEqual(['Dairy', 'Nuts & peanuts']);
+    // Avoided on its own, not through a group.
+    expect(avoidGroupsFor('basil-pesto', ['basil-pesto'])).toEqual([]);
+  });
+});

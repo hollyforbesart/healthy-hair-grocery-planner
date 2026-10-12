@@ -77,13 +77,15 @@ The grocery list is now grouped by `storeSection`, in the order of `store-sectio
 - **Avoid list:** the quick picks (Meat, Fish, Dairy, Eggs, Nuts, Soy, Wheat) were rebuilt from the new catalog.
 - **Old sample meals:** the 8 sample meals are no longer in the app. They're kept only as test data, because they include swaps and the matching engine still supports swaps. A saved plan that had chosen one of them still loads; that meal just no longer appears.
 
-## Content questions for you
+## Content decisions (answered)
 
-1. **Kale, tempeh and almonds** are in the catalog, but no meal uses them. They're kept so older saved plans still resolve, and people can still mark them. Should they stay, or would you rather add them to a meal?
-2. **Mixed berries** is in **Frozen Foods**; the single berries are in **Produce**. Is that what you want? Old "Berries" entries now point to Mixed Berries.
-3. **Feta, cheddar and shredded cheese** sit in the **Proteins** food group in Step 2. Previously, feta sat under Fats & Extras. Is Proteins right for cheeses?
-4. **Avoid-list quick picks** include some judgement calls. Please confirm:
-   - **Basil pesto** is in both Dairy and Nuts, because it's traditionally made with cheese and pine nuts.
-   - **Soy sauce** is in both Soy and Wheat.
-   - **Noodles, granola, protein powder and protein waffle mix** are not in any group, because their ingredients vary by brand. The planner already tells people to check labels for allergies.
-5. **Name style:** the reviewed names use Title Case ("Chicken Breast"), so the whole list now does. Previously it used sentence case ("Chicken breast"). Either works; tell me if you'd like the other.
+1. **Kale, tempeh and almonds:** kept. No meal uses them, so they don't affect meal ideas. People can still mark them, star them as staples or add them to their list, and older saved plans that use them still load.
+2. **Mixed berries:** stays in Frozen Foods; single berries stay in Produce. (Fresh and frozen are both fine; see "Possible later" below.)
+3. **Cheeses:** cheddar, feta, mozzarella, parmesan, ricotta and shredded cheese moved to **Fats & Extras** in Step 2. Cottage cheese stays in **Proteins**, where it was before; easy to move if preferred.
+4. **Avoid-list judgement calls:** kept. To make them visible, Step 2 now says *why* something is avoided, e.g. "Avoiding (Dairy, Nuts & peanuts)" on basil pesto. Step 1 has a "What's in each group?" list, which also explains that brand-dependent foods (noodles, granola, protein powder, protein waffle mix) can be added individually.
+5. **Names:** back to sentence case ("Chicken breast"). Proper names keep their capitals: Greek yogurt, Parmesan cheese, Brussels sprouts, Caribbean green seasoning, Sweet Thai chili sauce, BBQ sauce.
+
+## Possible later
+
+- **A short note on list items,** such as "fresh or frozen" for berries, mango, spinach, corn and edamame. This would be one optional field per ingredient, shown under the item on the grocery list.
+- **An "Include anyway" option** on an avoided food in Step 2, so someone avoiding Dairy can still allow pesto.

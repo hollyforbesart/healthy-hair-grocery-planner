@@ -68,3 +68,15 @@ export const AVOID_GROUPS: AvoidGroup[] = [
     ],
   },
 ];
+
+/**
+ * Which ticked quick-pick groups explain why an ingredient is avoided, so the
+ * UI can say "Avoiding (Dairy, Nuts)" instead of leaving people guessing.
+ * A group counts as ticked when all of its ingredients are on the avoid list.
+ */
+export function avoidGroupsFor(ingredientId: string, avoidIngredientIds: string[]): string[] {
+  const avoid = new Set(avoidIngredientIds);
+  return AVOID_GROUPS.filter((g) => g.ingredientIds.includes(ingredientId) && g.ingredientIds.every((id) => avoid.has(id))).map(
+    (g) => g.label,
+  );
+}

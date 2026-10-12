@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { IngredientRow } from '../components/IngredientRow';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
+import { avoidGroupsFor } from '../data/avoidGroups';
 import { FOOD_GROUP_LABELS, INGREDIENT_CATEGORIES } from '../data/categories';
 import { createCustomIngredient, searchIngredients, sortByName } from '../lib/ingredients';
 import { usePlanner } from '../state/PlannerContext';
@@ -145,6 +146,7 @@ export function IngredientsStep() {
                 status={statuses[ingredient.id]}
                 matchedAlias={matchedAlias}
                 avoided={state.preferences.avoidIngredientIds.includes(ingredient.id)}
+                avoidReasons={avoidGroupsFor(ingredient.id, state.preferences.avoidIngredientIds)}
                 isStaple={staples.includes(ingredient.id)}
                 onToggleStaple={() => dispatch({ type: 'toggleStaple', ingredientId: ingredient.id })}
                 onChange={(status) => setStatus(ingredient.id, status)}

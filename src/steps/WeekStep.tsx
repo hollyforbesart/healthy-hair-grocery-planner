@@ -115,6 +115,22 @@ export function WeekStep() {
             ))}
           </div>
 
+          <details className="avoid-groups-help">
+            <summary>What’s in each group?</summary>
+            <dl>
+              {AVOID_GROUPS.map((group) => (
+                <div key={group.id}>
+                  <dt>{group.label}</dt>
+                  <dd>{group.ingredientIds.map((id) => ingredientName(lookup, id)).join(', ')}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="small muted">
+              Some foods, like noodles, granola and protein powder, vary by brand, so they aren’t in a group. Add them
+              below if you need to avoid them.
+            </p>
+          </details>
+
           <div className="avoid-add">
             <label htmlFor="avoid-input">Avoid a specific ingredient</label>
             <div className="inline-input">

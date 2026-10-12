@@ -1,7 +1,7 @@
 [
   {
     "id": "almond-butter",
-    "name": "Almond Butter",
+    "name": "Almond butter",
     "category": "fats-extras",
     "storeSection": "nuts-seeds"
   },
@@ -34,7 +34,7 @@
   },
   {
     "id": "balsamic-glaze",
-    "name": "Balsamic Glaze",
+    "name": "Balsamic glaze",
     "category": "fats-extras",
     "storeSection": "oils-sauces-condiments"
   },
@@ -44,12 +44,12 @@
     "category": "produce",
     "storeSection": "produce",
     "aliases": [
-      "Bananas"
+      "bananas"
     ]
   },
   {
     "id": "basil-pesto",
-    "name": "Basil Pesto",
+    "name": "Basil pesto",
     "category": "fats-extras",
     "storeSection": "oils-sauces-condiments"
   },
@@ -61,13 +61,13 @@
   },
   {
     "id": "beef-strips",
-    "name": "Beef Strips",
+    "name": "Beef strips",
     "category": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "bell-peppers",
-    "name": "Bell Peppers",
+    "name": "Bell peppers",
     "category": "produce",
     "storeSection": "produce",
     "aliases": [
@@ -78,13 +78,13 @@
   },
   {
     "id": "black-beans",
-    "name": "Black Beans",
+    "name": "Black beans",
     "category": "proteins",
     "storeSection": "canned-jarred"
   },
   {
     "id": "black-eyed-peas",
-    "name": "Black Eyed Peas",
+    "name": "Black eyed peas",
     "category": "proteins",
     "storeSection": "canned-jarred",
     "aliases": [
@@ -120,13 +120,13 @@
   },
   {
     "id": "brussels-sprouts",
-    "name": "Brussels Sprouts",
+    "name": "Brussels sprouts",
     "category": "produce",
     "storeSection": "produce"
   },
   {
     "id": "burger-buns",
-    "name": "Burger Buns",
+    "name": "Burger buns",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta"
   },
@@ -138,7 +138,7 @@
   },
   {
     "id": "canned-salmon",
-    "name": "Canned Salmon",
+    "name": "Canned salmon",
     "category": "proteins",
     "storeSection": "canned-jarred",
     "aliases": [
@@ -147,13 +147,13 @@
   },
   {
     "id": "canned-tomatoes",
-    "name": "Canned Tomatoes",
+    "name": "Canned tomatoes",
     "category": "fats-extras",
     "storeSection": "canned-jarred"
   },
   {
     "id": "canned-tuna",
-    "name": "Canned Tuna",
+    "name": "Canned tuna",
     "category": "proteins",
     "storeSection": "canned-jarred",
     "aliases": [
@@ -163,7 +163,7 @@
   },
   {
     "id": "caribbean-green-seasoning",
-    "name": "Caribbean Green Seasoning",
+    "name": "Caribbean green seasoning",
     "category": "fats-extras",
     "storeSection": "oils-sauces-condiments"
   },
@@ -190,13 +190,13 @@
   },
   {
     "id": "cheddar-cheese",
-    "name": "Cheddar Cheese",
-    "category": "proteins",
+    "name": "Cheddar cheese",
+    "category": "fats-extras",
     "storeSection": "dairy-eggs"
   },
   {
     "id": "cherry-tomatoes",
-    "name": "Cherry Tomatoes",
+    "name": "Cherry tomatoes",
     "category": "produce",
     "storeSection": "produce",
     "aliases": [
@@ -205,7 +205,7 @@
   },
   {
     "id": "chia-seeds",
-    "name": "Chia Seeds",
+    "name": "Chia seeds",
     "category": "fats-extras",
     "storeSection": "nuts-seeds",
     "aliases": [
@@ -214,7 +214,7 @@
   },
   {
     "id": "chicken-breast",
-    "name": "Chicken Breast",
+    "name": "Chicken breast",
     "category": "proteins",
     "storeSection": "meat-seafood",
     "aliases": [
@@ -223,13 +223,13 @@
   },
   {
     "id": "chicken-legs",
-    "name": "Chicken Legs",
+    "name": "Chicken legs",
     "category": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "chicken-thighs",
-    "name": "Chicken Thighs",
+    "name": "Chicken thighs",
     "category": "proteins",
     "storeSection": "meat-seafood"
   },
@@ -251,19 +251,19 @@
   },
   {
     "id": "cocoa-powder",
-    "name": "Cocoa Powder",
+    "name": "Cocoa powder",
     "category": "fats-extras",
     "storeSection": "baking-pantry"
   },
   {
     "id": "coconut-flakes",
-    "name": "Coconut Flakes",
+    "name": "Coconut flakes",
     "category": "fats-extras",
     "storeSection": "baking-pantry"
   },
   {
     "id": "coconut-milk",
-    "name": "Coconut Milk",
+    "name": "Coconut milk",
     "category": "fats-extras",
     "storeSection": "canned-jarred"
   },
@@ -275,13 +275,13 @@
   },
   {
     "id": "corn-tortillas",
-    "name": "Corn Tortillas",
+    "name": "Corn tortillas",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "cottage-cheese",
-    "name": "Cottage Cheese",
+    "name": "Cottage cheese",
     "category": "proteins",
     "storeSection": "dairy-eggs"
   },
@@ -299,19 +299,19 @@
   },
   {
     "id": "curry-powder",
-    "name": "Curry Powder",
+    "name": "Curry powder",
     "category": "fats-extras",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "dark-chocolate",
-    "name": "Dark Chocolate",
+    "name": "Dark chocolate",
     "category": "fats-extras",
     "storeSection": "baking-pantry"
   },
   {
     "id": "dark-chocolate-chips",
-    "name": "Dark Chocolate Chips",
+    "name": "Dark chocolate chips",
     "category": "fats-extras",
     "storeSection": "baking-pantry"
   },
@@ -327,13 +327,13 @@
     "category": "proteins",
     "storeSection": "dairy-eggs",
     "aliases": [
-      "Egg"
+      "egg"
     ]
   },
   {
     "id": "feta-cheese",
-    "name": "Feta Cheese",
-    "category": "proteins",
+    "name": "Feta cheese",
+    "category": "fats-extras",
     "storeSection": "dairy-eggs",
     "aliases": [
       "feta"
@@ -341,7 +341,7 @@
   },
   {
     "id": "fresh-basil",
-    "name": "Fresh Basil",
+    "name": "Fresh basil",
     "category": "produce",
     "storeSection": "produce"
   },
@@ -371,7 +371,7 @@
   },
   {
     "id": "greek-yogurt",
-    "name": "Greek Yogurt",
+    "name": "Greek yogurt",
     "category": "proteins",
     "storeSection": "dairy-eggs",
     "aliases": [
@@ -382,13 +382,13 @@
   },
   {
     "id": "green-beans",
-    "name": "Green Beans",
+    "name": "Green beans",
     "category": "produce",
     "storeSection": "produce"
   },
   {
     "id": "ground-beef",
-    "name": "Ground Beef",
+    "name": "Ground beef",
     "category": "proteins",
     "storeSection": "meat-seafood",
     "aliases": [
@@ -399,7 +399,7 @@
   },
   {
     "id": "ground-flaxseed",
-    "name": "Ground Flaxseed",
+    "name": "Ground flaxseed",
     "category": "fats-extras",
     "storeSection": "nuts-seeds",
     "aliases": [
@@ -411,7 +411,7 @@
   },
   {
     "id": "ground-turkey",
-    "name": "Ground Turkey",
+    "name": "Ground turkey",
     "category": "proteins",
     "storeSection": "meat-seafood",
     "aliases": [
@@ -435,13 +435,13 @@
   },
   {
     "id": "jerk-seasoning",
-    "name": "Jerk Seasoning",
+    "name": "Jerk seasoning",
     "category": "fats-extras",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "jumbo-pasta-shells",
-    "name": "Jumbo Pasta Shells",
+    "name": "Jumbo pasta shells",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta"
   },
@@ -453,7 +453,7 @@
   },
   {
     "id": "kidney-beans",
-    "name": "Kidney Beans",
+    "name": "Kidney beans",
     "category": "proteins",
     "storeSection": "canned-jarred"
   },
@@ -469,7 +469,7 @@
     "category": "produce",
     "storeSection": "produce",
     "aliases": [
-      "Lemons"
+      "lemons"
     ]
   },
   {
@@ -502,7 +502,7 @@
   },
   {
     "id": "mandarin-oranges",
-    "name": "Mandarin Oranges",
+    "name": "Mandarin oranges",
     "category": "produce",
     "storeSection": "produce"
   },
@@ -514,7 +514,7 @@
   },
   {
     "id": "maple-syrup",
-    "name": "Maple Syrup",
+    "name": "Maple syrup",
     "category": "fats-extras",
     "storeSection": "baking-pantry"
   },
@@ -526,23 +526,23 @@
   },
   {
     "id": "mixed-berries",
-    "name": "Mixed Berries",
+    "name": "Mixed berries",
     "category": "produce",
     "storeSection": "frozen",
     "aliases": [
-      "Berries"
+      "berries"
     ]
   },
   {
     "id": "mixed-greens",
-    "name": "Mixed Greens",
+    "name": "Mixed greens",
     "category": "produce",
     "storeSection": "produce"
   },
   {
     "id": "mozzarella-cheese",
-    "name": "Mozzarella Cheese",
-    "category": "proteins",
+    "name": "Mozzarella cheese",
+    "category": "fats-extras",
     "storeSection": "dairy-eggs"
   },
   {
@@ -559,7 +559,7 @@
   },
   {
     "id": "oats",
-    "name": "Rolled Oats",
+    "name": "Rolled oats",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta",
     "aliases": [
@@ -570,7 +570,7 @@
   },
   {
     "id": "olive-oil",
-    "name": "Olive Oil",
+    "name": "Olive oil",
     "category": "fats-extras",
     "storeSection": "oils-sauces-condiments",
     "aliases": [
@@ -596,8 +596,8 @@
   },
   {
     "id": "parmesan-cheese",
-    "name": "Parmesan Cheese",
-    "category": "proteins",
+    "name": "Parmesan cheese",
+    "category": "fats-extras",
     "storeSection": "dairy-eggs"
   },
   {
@@ -608,13 +608,13 @@
   },
   {
     "id": "peanut-butter",
-    "name": "Peanut Butter",
+    "name": "Peanut butter",
     "category": "fats-extras",
     "storeSection": "nuts-seeds"
   },
   {
     "id": "penne-pasta",
-    "name": "Penne Pasta",
+    "name": "Penne pasta",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta"
   },
@@ -635,7 +635,7 @@
   },
   {
     "id": "pita-bread",
-    "name": "Pita Bread",
+    "name": "Pita bread",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta"
   },
@@ -650,7 +650,7 @@
   },
   {
     "id": "protein-powder",
-    "name": "Protein Powder",
+    "name": "Protein powder",
     "category": "proteins",
     "storeSection": "health-supplements",
     "aliases": [
@@ -659,13 +659,13 @@
   },
   {
     "id": "protein-waffle-mix",
-    "name": "Protein Waffle Mix",
+    "name": "Protein waffle mix",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "pumpkin-seeds",
-    "name": "Pumpkin Seeds",
+    "name": "Pumpkin seeds",
     "category": "fats-extras",
     "storeSection": "nuts-seeds",
     "aliases": [
@@ -702,14 +702,14 @@
   },
   {
     "id": "rice-cakes",
-    "name": "Rice Cakes",
+    "name": "Rice cakes",
     "category": "carbohydrates",
     "storeSection": "baking-pantry"
   },
   {
     "id": "ricotta-cheese",
-    "name": "Ricotta Cheese",
-    "category": "proteins",
+    "name": "Ricotta cheese",
+    "category": "fats-extras",
     "storeSection": "dairy-eggs"
   },
   {
@@ -735,14 +735,14 @@
   },
   {
     "id": "sesame-seeds",
-    "name": "Sesame Seeds",
+    "name": "Sesame seeds",
     "category": "fats-extras",
     "storeSection": "nuts-seeds"
   },
   {
     "id": "shredded-cheese",
-    "name": "Shredded Cheese",
-    "category": "proteins",
+    "name": "Shredded cheese",
+    "category": "fats-extras",
     "storeSection": "dairy-eggs"
   },
   {
@@ -756,19 +756,19 @@
   },
   {
     "id": "sliced-turkey-breast",
-    "name": "Sliced Turkey Breast",
+    "name": "Sliced turkey breast",
     "category": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "smoked-salmon",
-    "name": "Smoked Salmon",
+    "name": "Smoked salmon",
     "category": "proteins",
     "storeSection": "refrigerated-deli"
   },
   {
     "id": "soy-sauce",
-    "name": "Soy Sauce",
+    "name": "Soy sauce",
     "category": "fats-extras",
     "storeSection": "oils-sauces-condiments",
     "aliases": [
@@ -795,7 +795,7 @@
   },
   {
     "id": "sweet-potatoes",
-    "name": "Sweet Potatoes",
+    "name": "Sweet potatoes",
     "category": "carbohydrates",
     "storeSection": "produce",
     "aliases": [
@@ -805,7 +805,7 @@
   },
   {
     "id": "sweet-thai-chili-sauce",
-    "name": "Sweet Thai Chili Sauce",
+    "name": "Sweet Thai chili sauce",
     "category": "fats-extras",
     "storeSection": "oils-sauces-condiments"
   },
@@ -835,7 +835,7 @@
   },
   {
     "id": "tomato-sauce",
-    "name": "Tomato Sauce",
+    "name": "Tomato sauce",
     "category": "fats-extras",
     "storeSection": "canned-jarred"
   },
@@ -872,25 +872,25 @@
   },
   {
     "id": "white-beans",
-    "name": "White Beans",
+    "name": "White beans",
     "category": "proteins",
     "storeSection": "canned-jarred"
   },
   {
     "id": "white-fish",
-    "name": "White Fish",
+    "name": "White fish",
     "category": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "whole-grain-crackers",
-    "name": "Whole Grain Crackers",
+    "name": "Whole grain crackers",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "whole-grain-wraps",
-    "name": "Whole Wheat Tortillas",
+    "name": "Whole wheat tortillas",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta",
     "aliases": [
@@ -901,7 +901,7 @@
   },
   {
     "id": "whole-wheat-bread",
-    "name": "Whole Wheat Bread",
+    "name": "Whole wheat bread",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta",
     "aliases": [
@@ -912,7 +912,7 @@
   },
   {
     "id": "whole-wheat-pasta",
-    "name": "Whole Wheat Pasta",
+    "name": "Whole wheat pasta",
     "category": "carbohydrates",
     "storeSection": "grains-bread-pasta",
     "aliases": [
