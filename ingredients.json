@@ -1,0 +1,1011 @@
+[
+  {
+    "id": "almond-butter",
+    "name": "Almond Butter",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": []
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "asparagus",
+    "name": "Asparagus",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "avocado",
+    "name": "Avocado",
+    "category": "fats-extras",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "bbq-sauce",
+    "name": "BBQ sauce",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "balsamic-glaze",
+    "name": "Balsamic Glaze",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "banana",
+    "name": "Banana",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "basil-pesto",
+    "name": "Basil Pesto",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "beef-strips",
+    "name": "Beef Strips",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": []
+  },
+  {
+    "id": "bell-peppers",
+    "name": "Bell Peppers",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": [
+      "sweet peppers | capsicum"
+    ]
+  },
+  {
+    "id": "black-beans",
+    "name": "Black Beans",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "black-eyed-peas",
+    "name": "Black Eyed Peas",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": [
+      "black-eyed peas"
+    ]
+  },
+  {
+    "id": "blueberries",
+    "name": "Blueberries",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": [
+      "blueberry"
+    ]
+  },
+  {
+    "id": "breadcrumbs",
+    "name": "Breadcrumbs",
+    "category": "fats-extras",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "broccoli",
+    "name": "Broccoli",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "broth",
+    "name": "Broth",
+    "category": "fats-extras",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "brussels-sprouts",
+    "name": "Brussels Sprouts",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "burger-buns",
+    "name": "Burger Buns",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "cabbage",
+    "name": "Cabbage",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "canned-salmon",
+    "name": "Canned Salmon",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": [
+      "tinned salmon"
+    ]
+  },
+  {
+    "id": "canned-tomatoes",
+    "name": "Canned Tomatoes",
+    "category": "fats-extras",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "canned-tuna",
+    "name": "Canned Tuna",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": [
+      "tuna in a can"
+    ]
+  },
+  {
+    "id": "caribbean-green-seasoning",
+    "name": "Caribbean Green Seasoning",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "carrots",
+    "name": "Carrots",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "cashews",
+    "name": "Cashews",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": []
+  },
+  {
+    "id": "cauliflower",
+    "name": "Cauliflower",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "cheddar-cheese",
+    "name": "Cheddar Cheese",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "cherry-tomatoes",
+    "name": "Cherry Tomatoes",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "chia-seeds",
+    "name": "Chia Seeds",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": []
+  },
+  {
+    "id": "chicken-breast",
+    "name": "Chicken Breast",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": [
+      "boneless chicken breast"
+    ]
+  },
+  {
+    "id": "chicken-legs",
+    "name": "Chicken Legs",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": []
+  },
+  {
+    "id": "chicken-thighs",
+    "name": "Chicken Thighs",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": []
+  },
+  {
+    "id": "chickpeas",
+    "name": "Chickpeas",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": [
+      "garbanzo beans"
+    ]
+  },
+  {
+    "id": "cinnamon",
+    "name": "Cinnamon",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "cocoa-powder",
+    "name": "Cocoa Powder",
+    "category": "fats-extras",
+    "storeSection": "baking-pantry",
+    "aliases": []
+  },
+  {
+    "id": "coconut-flakes",
+    "name": "Coconut Flakes",
+    "category": "fats-extras",
+    "storeSection": "baking-pantry",
+    "aliases": []
+  },
+  {
+    "id": "coconut-milk",
+    "name": "Coconut Milk",
+    "category": "fats-extras",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "corn",
+    "name": "Corn",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "corn-tortillas",
+    "name": "Corn Tortillas",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "cottage-cheese",
+    "name": "Cottage Cheese",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "couscous",
+    "name": "Couscous",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "curry-powder",
+    "name": "Curry Powder",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "dark-chocolate",
+    "name": "Dark Chocolate",
+    "category": "fats-extras",
+    "storeSection": "baking-pantry",
+    "aliases": []
+  },
+  {
+    "id": "dark-chocolate-chips",
+    "name": "Dark Chocolate Chips",
+    "category": "fats-extras",
+    "storeSection": "baking-pantry",
+    "aliases": []
+  },
+  {
+    "id": "edamame",
+    "name": "Edamame",
+    "category": "proteins",
+    "storeSection": "frozen",
+    "aliases": []
+  },
+  {
+    "id": "egg",
+    "name": "Egg",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": [
+      "eggs"
+    ]
+  },
+  {
+    "id": "eggs",
+    "name": "Eggs",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "feta-cheese",
+    "name": "Feta Cheese",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "fresh-basil",
+    "name": "Fresh Basil",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "garlic",
+    "name": "Garlic",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "ginger",
+    "name": "Ginger",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "granola",
+    "name": "Granola",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "grapes",
+    "name": "Grapes",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "greek-yogurt",
+    "name": "Greek Yogurt",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": [
+      "greek yoghurt"
+    ]
+  },
+  {
+    "id": "green-beans",
+    "name": "Green Beans",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "ground-beef",
+    "name": "Ground Beef",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": [
+      "beef mince"
+    ]
+  },
+  {
+    "id": "ground-flaxseed",
+    "name": "Ground Flaxseed",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": [
+      "ground linseed"
+    ]
+  },
+  {
+    "id": "ground-turkey",
+    "name": "Ground Turkey",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": [
+      "turkey mince"
+    ]
+  },
+  {
+    "id": "honey",
+    "name": "Honey",
+    "category": "fats-extras",
+    "storeSection": "baking-pantry",
+    "aliases": []
+  },
+  {
+    "id": "hummus",
+    "name": "Hummus",
+    "category": "fats-extras",
+    "storeSection": "refrigerated-deli",
+    "aliases": []
+  },
+  {
+    "id": "jerk-seasoning",
+    "name": "Jerk Seasoning",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "jumbo-pasta-shells",
+    "name": "Jumbo Pasta Shells",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "kidney-beans",
+    "name": "Kidney Beans",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "kiwi",
+    "name": "Kiwi",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "lemon",
+    "name": "Lemon",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "lentils",
+    "name": "Lentils",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "lettuce",
+    "name": "Lettuce",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "lime",
+    "name": "Lime",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "macaroni",
+    "name": "Macaroni",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "mandarin-oranges",
+    "name": "Mandarin Oranges",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "mango",
+    "name": "Mango",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "maple-syrup",
+    "name": "Maple Syrup",
+    "category": "fats-extras",
+    "storeSection": "baking-pantry",
+    "aliases": []
+  },
+  {
+    "id": "milk",
+    "name": "Milk",
+    "category": "fats-extras",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "mixed-berries",
+    "name": "Mixed Berries",
+    "category": "produce",
+    "storeSection": "frozen",
+    "aliases": []
+  },
+  {
+    "id": "mixed-greens",
+    "name": "Mixed Greens",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "mozzarella-cheese",
+    "name": "Mozzarella Cheese",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "mushrooms",
+    "name": "Mushrooms",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "noodles",
+    "name": "Noodles",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "olive-oil",
+    "name": "Olive Oil",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "onions",
+    "name": "Onions",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "orange",
+    "name": "Orange",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "parmesan-cheese",
+    "name": "Parmesan Cheese",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "pasta",
+    "name": "Pasta",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "peanut-butter",
+    "name": "Peanut Butter",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": []
+  },
+  {
+    "id": "penne-pasta",
+    "name": "Penne Pasta",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "pickles",
+    "name": "Pickles",
+    "category": "produce",
+    "storeSection": "canned-jarred",
+    "aliases": [
+      "dill pickles"
+    ]
+  },
+  {
+    "id": "pineapple",
+    "name": "Pineapple",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "pita-bread",
+    "name": "Pita Bread",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "potatoes",
+    "name": "Potatoes",
+    "category": "carbohydrates",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "protein-powder",
+    "name": "Protein Powder",
+    "category": "proteins",
+    "storeSection": "health-supplements",
+    "aliases": [
+      "protein supplement"
+    ]
+  },
+  {
+    "id": "protein-waffle-mix",
+    "name": "Protein Waffle Mix",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "pumpkin-seeds",
+    "name": "Pumpkin Seeds",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": []
+  },
+  {
+    "id": "quinoa",
+    "name": "Quinoa",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "raisins",
+    "name": "Raisins",
+    "category": "fats-extras",
+    "storeSection": "baking-pantry",
+    "aliases": []
+  },
+  {
+    "id": "raspberries",
+    "name": "Raspberries",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "rice",
+    "name": "Rice",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": [
+      "white rice | brown rice"
+    ]
+  },
+  {
+    "id": "rice-cakes",
+    "name": "Rice Cakes",
+    "category": "carbohydrates",
+    "storeSection": "baking-pantry",
+    "aliases": []
+  },
+  {
+    "id": "ricotta-cheese",
+    "name": "Ricotta Cheese",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "rolled-oats",
+    "name": "Rolled Oats",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": [
+      "old fashioned oats"
+    ]
+  },
+  {
+    "id": "salmon",
+    "name": "Salmon",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": []
+  },
+  {
+    "id": "salsa",
+    "name": "Salsa",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "sardines",
+    "name": "Sardines",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "sesame-seeds",
+    "name": "Sesame Seeds",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": []
+  },
+  {
+    "id": "shredded-cheese",
+    "name": "Shredded Cheese",
+    "category": "proteins",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  },
+  {
+    "id": "shrimp",
+    "name": "Shrimp",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": [
+      "prawns"
+    ]
+  },
+  {
+    "id": "sliced-turkey-breast",
+    "name": "Sliced Turkey Breast",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": []
+  },
+  {
+    "id": "smoked-salmon",
+    "name": "Smoked Salmon",
+    "category": "proteins",
+    "storeSection": "refrigerated-deli",
+    "aliases": []
+  },
+  {
+    "id": "soy-sauce",
+    "name": "Soy Sauce",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "spinach",
+    "name": "Spinach",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "strawberries",
+    "name": "Strawberries",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": [
+      "strawberry"
+    ]
+  },
+  {
+    "id": "sweet-potatoes",
+    "name": "Sweet Potatoes",
+    "category": "carbohydrates",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "sweet-thai-chili-sauce",
+    "name": "Sweet Thai Chili Sauce",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "tahini",
+    "name": "Tahini",
+    "category": "fats-extras",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": []
+  },
+  {
+    "id": "tofu",
+    "name": "Tofu",
+    "category": "proteins",
+    "storeSection": "refrigerated-deli",
+    "aliases": []
+  },
+  {
+    "id": "tomato-sauce",
+    "name": "Tomato Sauce",
+    "category": "fats-extras",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "tomatoes",
+    "name": "Tomatoes",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": [
+      "tomato"
+    ]
+  },
+  {
+    "id": "trout",
+    "name": "Trout",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": []
+  },
+  {
+    "id": "tzatziki",
+    "name": "Tzatziki",
+    "category": "fats-extras",
+    "storeSection": "refrigerated-deli",
+    "aliases": [
+      "tzatziki sauce",
+      "cucumber yogurt dip"
+    ]
+  },
+  {
+    "id": "walnuts",
+    "name": "Walnuts",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": []
+  },
+  {
+    "id": "white-beans",
+    "name": "White Beans",
+    "category": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": []
+  },
+  {
+    "id": "white-fish",
+    "name": "White Fish",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": []
+  },
+  {
+    "id": "whole-grain-crackers",
+    "name": "Whole Grain Crackers",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "whole-wheat-bread",
+    "name": "Whole Wheat Bread",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "whole-wheat-pasta",
+    "name": "Whole Wheat Pasta",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "whole-wheat-tortillas",
+    "name": "Whole Wheat Tortillas",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": [
+      "whole-wheat wraps"
+    ]
+  },
+  {
+    "id": "zucchini",
+    "name": "Zucchini",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "tempeh",
+    "name": "Tempeh",
+    "category": "proteins",
+    "storeSection": "refrigerated-deli",
+    "aliases": []
+  },
+  {
+    "id": "tuna",
+    "name": "Canned tuna",
+    "category": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": []
+  },
+  {
+    "id": "brown-rice",
+    "name": "Brown rice",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "oats",
+    "name": "Rolled oats",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "whole-grain-wraps",
+    "name": "Whole grain wraps",
+    "category": "carbohydrates",
+    "storeSection": "grains-bread-pasta",
+    "aliases": []
+  },
+  {
+    "id": "bananas",
+    "name": "Bananas",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "berries",
+    "name": "Berries",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "kale",
+    "name": "Kale",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "lemons",
+    "name": "Lemons",
+    "category": "produce",
+    "storeSection": "produce",
+    "aliases": []
+  },
+  {
+    "id": "almonds",
+    "name": "Almonds",
+    "category": "fats-extras",
+    "storeSection": "nuts-seeds",
+    "aliases": []
+  },
+  {
+    "id": "feta",
+    "name": "Feta cheese",
+    "category": "fats-extras",
+    "storeSection": "dairy-eggs",
+    "aliases": []
+  }
+]

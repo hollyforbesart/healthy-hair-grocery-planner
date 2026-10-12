@@ -1,0 +1,1577 @@
+[
+  {
+    "id": "strawberry-overnight-oats",
+    "name": "Strawberry Overnight Oats",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "oats",
+      "strawberries",
+      "greek-yogurt",
+      "milk"
+    ],
+    "optionalIngredients": [
+      "chia-seeds",
+      "honey"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "tropical-green-protein-smoothie",
+    "name": "Tropical Green Protein Smoothie",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "mango",
+      "banana",
+      "spinach",
+      "greek-yogurt",
+      "milk"
+    ],
+    "optionalIngredients": [
+      "chia-seeds",
+      "protein-powder"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "spinach-egg-breakfast-burrito",
+    "name": "Spinach + Egg Breakfast Burrito",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "eggs",
+      "spinach",
+      "whole-grain-wraps",
+      "tomatoes",
+      "shredded-cheese"
+    ],
+    "optionalIngredients": [
+      "salsa"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "berry-crunch-yogurt-bowl",
+    "name": "Berry Crunch Yogurt Bowl",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "greek-yogurt",
+      "mixed-berries",
+      "granola"
+    ],
+    "optionalIngredients": [
+      "pumpkin-seeds"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "tropical-yogurt-bowl",
+    "name": "Tropical Yogurt Bowl",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "greek-yogurt",
+      "mango",
+      "pineapple",
+      "granola"
+    ],
+    "optionalIngredients": [
+      "coconut-flakes"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "apple-cinnamon-oats-eggs",
+    "name": "Apple Cinnamon Oats + Eggs",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "oats",
+      "apple",
+      "cinnamon",
+      "eggs",
+      "milk"
+    ],
+    "optionalIngredients": [
+      "walnuts"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "chicken-crunch-wrap",
+    "name": "Chicken Crunch Wrap",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chicken-breast",
+      "whole-grain-wraps",
+      "lettuce",
+      "tomatoes",
+      "greek-yogurt"
+    ],
+    "optionalIngredients": [
+      "shredded-cheese"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "chickpea-egg-salad",
+    "name": "Chickpea + Egg Salad",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chickpeas",
+      "eggs",
+      "spinach",
+      "cucumber",
+      "tomatoes"
+    ],
+    "optionalIngredients": [
+      "olive-oil",
+      "lemon",
+      "whole-grain-crackers"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "tuna-salad-sandwich-with-tomato-cucumber-feta-salad",
+    "name": "Tuna Salad Sandwich with Tomato Cucumber + Feta Salad",
+    "category": "lunch",
+    "requiredIngredients": [
+      "canned-tuna",
+      "whole-wheat-bread",
+      "tomatoes",
+      "cucumber",
+      "feta-cheese"
+    ],
+    "optionalIngredients": [
+      "greek-yogurt",
+      "lemon"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "chicken-quinoa-veggie-bowl",
+    "name": "Chicken + Quinoa Veggie Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chicken-breast",
+      "quinoa",
+      "broccoli",
+      "bell-peppers"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "turkey-chili-rice-bowl",
+    "name": "Turkey Chili Rice Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "ground-turkey",
+      "kidney-beans",
+      "rice",
+      "canned-tomatoes",
+      "onions"
+    ],
+    "optionalIngredients": [
+      "shredded-cheese"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "beef-broccoli-with-noodles",
+    "name": "Beef + Broccoli with Noodles",
+    "category": "lunch",
+    "requiredIngredients": [
+      "beef-strips",
+      "broccoli",
+      "noodles",
+      "soy-sauce"
+    ],
+    "optionalIngredients": [
+      "garlic"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "chicken-black-bean-quesadilla",
+    "name": "Chicken + Black Bean Quesadilla",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-breast",
+      "black-beans",
+      "whole-grain-wraps",
+      "shredded-cheese"
+    ],
+    "optionalIngredients": [
+      "salsa"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "spinach-cheese-tortilla-pizza",
+    "name": "Spinach + Cheese Tortilla Pizza",
+    "category": "dinner",
+    "requiredIngredients": [
+      "whole-grain-wraps",
+      "spinach",
+      "mozzarella-cheese",
+      "tomato-sauce"
+    ],
+    "optionalIngredients": [
+      "bell-peppers"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "turkey-burger-sweet-potato-wedges",
+    "name": "Turkey Burger + Sweet Potato Wedges",
+    "category": "dinner",
+    "requiredIngredients": [
+      "ground-turkey",
+      "burger-buns",
+      "sweet-potatoes",
+      "lettuce",
+      "tomatoes"
+    ],
+    "optionalIngredients": [
+      "pickles"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "sweet-thai-chili-salmon-with-rice-green-beans",
+    "name": "Sweet Thai Chili Salmon with Rice + Green Beans",
+    "category": "dinner",
+    "requiredIngredients": [
+      "salmon",
+      "rice",
+      "green-beans",
+      "sweet-thai-chili-sauce"
+    ],
+    "optionalIngredients": [
+      "sesame-seeds"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "chicken-veggie-stir-fry",
+    "name": "Chicken Veggie Stir-Fry",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-breast",
+      "rice",
+      "broccoli",
+      "bell-peppers",
+      "soy-sauce"
+    ],
+    "optionalIngredients": [
+      "garlic"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "garlic-chicken-with-roasted-sweet-potatoes-cauliflower",
+    "name": "Garlic Chicken with Roasted Sweet Potatoes + Cauliflower",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-breast",
+      "sweet-potatoes",
+      "cauliflower",
+      "garlic"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "apple-peanut-butter",
+    "name": "Apple + Peanut Butter",
+    "category": "snack",
+    "requiredIngredients": [
+      "apple",
+      "peanut-butter"
+    ],
+    "optionalIngredients": [],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "walnut-cashew-pumpkin-seed-trail-mix",
+    "name": "Walnut Cashew + Pumpkin Seed Trail Mix",
+    "category": "snack",
+    "requiredIngredients": [
+      "walnuts",
+      "cashews",
+      "pumpkin-seeds"
+    ],
+    "optionalIngredients": [
+      "raisins"
+    ],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "hummus-vegetable-sticks",
+    "name": "Hummus + Vegetable Sticks",
+    "category": "snack",
+    "requiredIngredients": [
+      "hummus",
+      "carrots",
+      "cucumber",
+      "bell-peppers"
+    ],
+    "optionalIngredients": [],
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": null
+  },
+  {
+    "id": "smoked-salmon-avocado-toast",
+    "name": "Smoked Salmon + Avocado Toast",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "smoked-salmon",
+      "avocado",
+      "whole-wheat-bread"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "sweet-potato-egg-breakfast-hash",
+    "name": "Sweet Potato + Egg Breakfast Hash",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "sweet-potatoes",
+      "eggs",
+      "bell-peppers",
+      "onions"
+    ],
+    "optionalIngredients": [
+      "spinach"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "peanut-butter-banana-overnight-oats",
+    "name": "Peanut Butter Banana Overnight Oats",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "oats",
+      "banana",
+      "peanut-butter",
+      "milk"
+    ],
+    "optionalIngredients": [
+      "ground-flaxseed"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "spinach-mushroom-feta-omelet",
+    "name": "Spinach Mushroom + Feta Omelet",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "eggs",
+      "spinach",
+      "mushrooms",
+      "feta-cheese"
+    ],
+    "optionalIngredients": [
+      "whole-wheat-bread"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "cottage-cheese-berry-breakfast-bowl",
+    "name": "Cottage Cheese + Berry Breakfast Bowl",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "cottage-cheese",
+      "mixed-berries"
+    ],
+    "optionalIngredients": [
+      "pumpkin-seeds"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "breakfast-egg-black-bean-tacos",
+    "name": "Breakfast Egg + Black Bean Tacos",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "eggs",
+      "black-beans",
+      "corn-tortillas",
+      "tomatoes"
+    ],
+    "optionalIngredients": [
+      "avocado"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "chia-pudding-with-mango-pumpkin-seeds",
+    "name": "Chia Pudding with Mango + Pumpkin Seeds",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "chia-seeds",
+      "mango",
+      "milk",
+      "pumpkin-seeds"
+    ],
+    "optionalIngredients": [
+      "greek-yogurt"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "avocado-egg-breakfast-sandwich",
+    "name": "Avocado + Egg Breakfast Sandwich",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "avocado",
+      "eggs",
+      "whole-wheat-bread"
+    ],
+    "optionalIngredients": [
+      "tomatoes"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "tofu-scramble-with-peppers-potatoes",
+    "name": "Tofu Scramble with Peppers + Potatoes",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "tofu",
+      "bell-peppers",
+      "potatoes"
+    ],
+    "optionalIngredients": [
+      "onions"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "peanut-butter-strawberry-toast-with-yogurt",
+    "name": "Peanut Butter + Strawberry Toast with Yogurt",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "peanut-butter",
+      "strawberries",
+      "whole-wheat-bread",
+      "greek-yogurt"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "salmon-spinach-breakfast-wrap",
+    "name": "Salmon + Spinach Breakfast Wrap",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "canned-salmon",
+      "spinach",
+      "whole-grain-wraps"
+    ],
+    "optionalIngredients": [
+      "eggs"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "banana-oat-pancakes-with-greek-yogurt",
+    "name": "Banana Oat Pancakes with Greek Yogurt",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "banana",
+      "oats",
+      "eggs",
+      "greek-yogurt"
+    ],
+    "optionalIngredients": [
+      "mixed-berries",
+      "cinnamon",
+      "maple-syrup",
+      "peanut-butter"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": "Blend banana, eggs, and rolled oats into a batter. Cook small pancakes in a lightly oiled skillet and serve with Greek yogurt."
+  },
+  {
+    "id": "lentil-roasted-vegetable-grain-bowl",
+    "name": "Lentil + Roasted Vegetable Grain Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "lentils",
+      "quinoa",
+      "zucchini",
+      "bell-peppers"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "salmon-avocado-rice-bowl",
+    "name": "Salmon + Avocado Rice Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "salmon",
+      "avocado",
+      "rice",
+      "cucumber"
+    ],
+    "optionalIngredients": [
+      "soy-sauce"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "mediterranean-chickpea-pita",
+    "name": "Mediterranean Chickpea Pita",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chickpeas",
+      "pita-bread",
+      "cucumber",
+      "tomatoes"
+    ],
+    "optionalIngredients": [
+      "feta-cheese"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "turkey-hummus-veggie-wrap",
+    "name": "Turkey + Hummus Veggie Wrap",
+    "category": "lunch",
+    "requiredIngredients": [
+      "sliced-turkey-breast",
+      "hummus",
+      "whole-grain-wraps",
+      "spinach"
+    ],
+    "optionalIngredients": [
+      "bell-peppers"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "black-bean-corn-burrito-bowl",
+    "name": "Black Bean + Corn Burrito Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "black-beans",
+      "corn",
+      "rice",
+      "tomatoes",
+      "whole-grain-wraps"
+    ],
+    "optionalIngredients": [
+      "avocado"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "sardine-tomato-toast",
+    "name": "Sardine + Tomato Toast",
+    "category": "lunch",
+    "requiredIngredients": [
+      "sardines",
+      "tomatoes",
+      "whole-wheat-bread"
+    ],
+    "optionalIngredients": [
+      "lemon"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "chicken-white-bean-soup",
+    "name": "Chicken + White Bean Soup",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chicken-breast",
+      "white-beans",
+      "carrots",
+      "onions",
+      "broth"
+    ],
+    "optionalIngredients": [
+      "spinach"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "tofu-edamame-noodle-bowl",
+    "name": "Tofu + Edamame Noodle Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "tofu",
+      "edamame",
+      "noodles",
+      "carrots"
+    ],
+    "optionalIngredients": [
+      "soy-sauce"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "greek-chicken-cucumber-pita",
+    "name": "Greek Chicken + Cucumber Pita",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chicken-breast",
+      "cucumber",
+      "pita-bread",
+      "greek-yogurt"
+    ],
+    "optionalIngredients": [
+      "lemon"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "sweet-potato-black-bean-bowl",
+    "name": "Sweet Potato + Black Bean Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "sweet-potatoes",
+      "black-beans",
+      "spinach",
+      "rice"
+    ],
+    "optionalIngredients": [
+      "salsa"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "shrimp-mango-rice-bowl",
+    "name": "Shrimp + Mango Rice Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "shrimp",
+      "mango",
+      "rice",
+      "bell-peppers"
+    ],
+    "optionalIngredients": [
+      "lime"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "egg-avocado-salad-sandwich",
+    "name": "Egg + Avocado Salad Sandwich",
+    "category": "lunch",
+    "requiredIngredients": [
+      "eggs",
+      "avocado",
+      "whole-wheat-bread",
+      "lettuce"
+    ],
+    "optionalIngredients": [
+      "lemon"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "lentil-spinach-soup-with-whole-grain-toast",
+    "name": "Lentil + Spinach Soup with Whole-Grain Toast",
+    "category": "lunch",
+    "requiredIngredients": [
+      "lentils",
+      "spinach",
+      "carrots",
+      "broth",
+      "whole-wheat-bread"
+    ],
+    "optionalIngredients": [
+      "onions"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "tuna-white-bean-salad",
+    "name": "Tuna + White Bean Salad",
+    "category": "lunch",
+    "requiredIngredients": [
+      "canned-tuna",
+      "white-beans",
+      "tomatoes",
+      "spinach"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "chicken-pesto-pasta-salad",
+    "name": "Chicken Pesto Pasta Salad",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chicken-breast",
+      "pasta",
+      "basil-pesto",
+      "cherry-tomatoes"
+    ],
+    "optionalIngredients": [
+      "spinach"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "roasted-vegetable-feta-couscous-bowl",
+    "name": "Roasted Vegetable + Feta Couscous Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "couscous",
+      "zucchini",
+      "bell-peppers",
+      "feta-cheese"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "lemon-garlic-salmon-quinoa-asparagus",
+    "name": "Lemon Garlic Salmon + Quinoa + Asparagus",
+    "category": "dinner",
+    "requiredIngredients": [
+      "salmon",
+      "quinoa",
+      "asparagus",
+      "lemon",
+      "garlic"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "beef-black-bean-stuffed-peppers",
+    "name": "Beef + Black Bean Stuffed Peppers",
+    "category": "dinner",
+    "requiredIngredients": [
+      "ground-beef",
+      "black-beans",
+      "bell-peppers",
+      "rice"
+    ],
+    "optionalIngredients": [
+      "shredded-cheese"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "turkey-spinach-meatballs-with-pasta",
+    "name": "Turkey + Spinach Meatballs with Pasta",
+    "category": "dinner",
+    "requiredIngredients": [
+      "ground-turkey",
+      "spinach",
+      "pasta",
+      "tomato-sauce",
+      "egg"
+    ],
+    "optionalIngredients": [
+      "breadcrumbs"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "coconut-chickpea-spinach-curry-with-rice",
+    "name": "Coconut Chickpea + Spinach Curry with Rice",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chickpeas",
+      "spinach",
+      "coconut-milk",
+      "rice",
+      "curry-powder"
+    ],
+    "optionalIngredients": [
+      "onions"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "sheet-pan-chicken-brussels-sprouts-potatoes",
+    "name": "Sheet-Pan Chicken + Brussels Sprouts + Potatoes",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-thighs",
+      "brussels-sprouts",
+      "potatoes"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "garlic-shrimp-vegetable-pasta",
+    "name": "Garlic Shrimp + Vegetable Pasta",
+    "category": "dinner",
+    "requiredIngredients": [
+      "shrimp",
+      "pasta",
+      "zucchini",
+      "garlic"
+    ],
+    "optionalIngredients": [
+      "olive-oil",
+      "spinach"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "baked-tofu-peanut-noodles",
+    "name": "Baked Tofu + Peanut Noodles",
+    "category": "dinner",
+    "requiredIngredients": [
+      "tofu",
+      "noodles",
+      "peanut-butter",
+      "soy-sauce",
+      "carrots"
+    ],
+    "optionalIngredients": [
+      "lime",
+      "bell-peppers"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "lentil-bolognese-with-whole-wheat-pasta",
+    "name": "Lentil Bolognese with Whole-Wheat Pasta",
+    "category": "dinner",
+    "requiredIngredients": [
+      "lentils",
+      "whole-wheat-pasta",
+      "tomato-sauce",
+      "onions"
+    ],
+    "optionalIngredients": [
+      "garlic"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "fish-tacos-with-cabbage-slaw",
+    "name": "Fish Tacos with Cabbage Slaw",
+    "category": "dinner",
+    "requiredIngredients": [
+      "white-fish",
+      "corn-tortillas",
+      "cabbage",
+      "greek-yogurt"
+    ],
+    "optionalIngredients": [
+      "lime"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "beef-vegetable-stir-fry-with-rice",
+    "name": "Beef + Vegetable Stir-Fry with Rice",
+    "category": "dinner",
+    "requiredIngredients": [
+      "beef-strips",
+      "rice",
+      "broccoli",
+      "bell-peppers",
+      "soy-sauce"
+    ],
+    "optionalIngredients": [
+      "garlic"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "black-eyed-pea-sweet-potato-stew",
+    "name": "Black-Eyed Pea + Sweet Potato Stew",
+    "category": "dinner",
+    "requiredIngredients": [
+      "black-eyed-peas",
+      "sweet-potatoes",
+      "canned-tomatoes",
+      "onions"
+    ],
+    "optionalIngredients": [
+      "spinach"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "turkey-kidney-bean-chili",
+    "name": "Turkey + Kidney Bean Chili",
+    "category": "dinner",
+    "requiredIngredients": [
+      "ground-turkey",
+      "kidney-beans",
+      "canned-tomatoes",
+      "onions"
+    ],
+    "optionalIngredients": [
+      "bell-peppers"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "baked-trout-roasted-carrots-rice",
+    "name": "Baked Trout + Roasted Carrots + Rice",
+    "category": "dinner",
+    "requiredIngredients": [
+      "trout",
+      "carrots",
+      "rice"
+    ],
+    "optionalIngredients": [
+      "lemon"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "chicken-fajita-bowls",
+    "name": "Chicken Fajita Bowls",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-breast",
+      "rice",
+      "bell-peppers",
+      "onions"
+    ],
+    "optionalIngredients": [
+      "avocado"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "spinach-ricotta-stuffed-shells",
+    "name": "Spinach + Ricotta Stuffed Shells",
+    "category": "dinner",
+    "requiredIngredients": [
+      "jumbo-pasta-shells",
+      "ricotta-cheese",
+      "spinach",
+      "tomato-sauce"
+    ],
+    "optionalIngredients": [
+      "mozzarella-cheese"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "ginger-salmon-broccoli-noodle-bowl",
+    "name": "Ginger Salmon + Broccoli Noodle Bowl",
+    "category": "dinner",
+    "requiredIngredients": [
+      "salmon",
+      "broccoli",
+      "noodles",
+      "ginger",
+      "soy-sauce"
+    ],
+    "optionalIngredients": [
+      "sesame-seeds"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "greek-yogurt-kiwi-chia-seeds",
+    "name": "Greek Yogurt + Kiwi + Chia Seeds",
+    "category": "snack",
+    "requiredIngredients": [
+      "greek-yogurt",
+      "kiwi",
+      "chia-seeds"
+    ],
+    "optionalIngredients": [
+      "pumpkin-seeds"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "boiled-eggs-orange-slices",
+    "name": "Boiled Eggs + Orange Slices",
+    "category": "snack",
+    "requiredIngredients": [
+      "eggs",
+      "orange"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "roasted-chickpeas-bell-pepper-strips",
+    "name": "Roasted Chickpeas + Bell Pepper Strips",
+    "category": "snack",
+    "requiredIngredients": [
+      "chickpeas",
+      "bell-peppers"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": "Drain, rinse, and thoroughly dry canned chickpeas. Toss with a little olive oil; season with garlic powder, smoked paprika, salt, and black pepper. Roast at 400°F (200°C) for 25–35 minutes, shaking the pan halfway through, until golden and crisp. Serve with raw bell pepper strips."
+  },
+  {
+    "id": "cottage-cheese-pineapple",
+    "name": "Cottage Cheese + Pineapple",
+    "category": "snack",
+    "requiredIngredients": [
+      "cottage-cheese",
+      "pineapple"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "whole-grain-crackers-tuna",
+    "name": "Whole-Grain Crackers + Tuna",
+    "category": "snack",
+    "requiredIngredients": [
+      "whole-grain-crackers",
+      "canned-tuna"
+    ],
+    "optionalIngredients": [
+      "lemon"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "edamame-mandarin-orange",
+    "name": "Edamame + Mandarin Orange",
+    "category": "snack",
+    "requiredIngredients": [
+      "edamame",
+      "mandarin-oranges"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "banana-almond-butter",
+    "name": "Banana + Almond Butter",
+    "category": "snack",
+    "requiredIngredients": [
+      "banana",
+      "almond-butter"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "cheese-whole-grain-crackers-grapes",
+    "name": "Cheese + Whole-Grain Crackers + Grapes",
+    "category": "snack",
+    "requiredIngredients": [
+      "cheddar-cheese",
+      "whole-grain-crackers",
+      "grapes"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "strawberries-pumpkin-seeds-dark-chocolate",
+    "name": "Strawberries + Pumpkin Seeds + Dark Chocolate",
+    "category": "snack",
+    "requiredIngredients": [
+      "strawberries",
+      "pumpkin-seeds",
+      "dark-chocolate"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "strawberry-banana-protein-smoothie",
+    "name": "Strawberry Banana Protein Smoothie",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "greek-yogurt",
+      "strawberries",
+      "banana",
+      "milk",
+      "chia-seeds"
+    ],
+    "optionalIngredients": [
+      "protein-powder"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "blueberry-almond-butter-smoothie",
+    "name": "Blueberry Almond Butter Smoothie",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "blueberries",
+      "almond-butter",
+      "greek-yogurt",
+      "milk",
+      "ground-flaxseed"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "mango-pineapple-protein-smoothie",
+    "name": "Mango Pineapple Protein Smoothie",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "mango",
+      "pineapple",
+      "greek-yogurt",
+      "milk",
+      "chia-seeds"
+    ],
+    "optionalIngredients": [
+      "protein-powder"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "chocolate-peanut-butter-banana-smoothie",
+    "name": "Chocolate Peanut Butter Banana Smoothie",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "banana",
+      "peanut-butter",
+      "cocoa-powder",
+      "milk",
+      "greek-yogurt"
+    ],
+    "optionalIngredients": [
+      "protein-powder"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "kiwi-avocado-green-smoothie",
+    "name": "Kiwi Avocado Green Smoothie",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "kiwi",
+      "avocado",
+      "spinach",
+      "greek-yogurt",
+      "milk"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "bbq-chicken-rice-bowl",
+    "name": "BBQ Chicken Rice Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chicken-breast",
+      "rice",
+      "corn",
+      "cabbage",
+      "bell-peppers",
+      "bbq-sauce"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "bbq-chicken-with-roasted-sweet-potatoes-broccoli",
+    "name": "BBQ Chicken with Roasted Sweet Potatoes + Broccoli",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-thighs",
+      "bbq-sauce",
+      "sweet-potatoes",
+      "broccoli"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "ground-turkey-taco-bowl",
+    "name": "Ground Turkey Taco Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "ground-turkey",
+      "rice",
+      "black-beans",
+      "lettuce",
+      "tomatoes",
+      "avocado"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "ground-turkey-spinach-skillet-with-rice",
+    "name": "Ground Turkey + Spinach Skillet with Rice",
+    "category": "dinner",
+    "requiredIngredients": [
+      "ground-turkey",
+      "spinach",
+      "tomatoes",
+      "onions",
+      "rice"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "pesto-chicken-pasta",
+    "name": "Pesto Chicken Pasta",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-breast",
+      "pasta",
+      "basil-pesto",
+      "cherry-tomatoes",
+      "spinach"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "pesto-chicken-quinoa-bowl",
+    "name": "Pesto Chicken + Quinoa Bowl",
+    "category": "lunch",
+    "requiredIngredients": [
+      "chicken-breast",
+      "quinoa",
+      "basil-pesto",
+      "zucchini",
+      "tomatoes"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "mac-cheese-with-chicken-broccoli",
+    "name": "Mac + Cheese with Chicken + Broccoli",
+    "category": "dinner",
+    "requiredIngredients": [
+      "macaroni",
+      "cheddar-cheese",
+      "milk",
+      "chicken-breast",
+      "broccoli"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "jerk-chicken-pasta",
+    "name": "Jerk Chicken Pasta",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-breast",
+      "jerk-seasoning",
+      "penne-pasta",
+      "bell-peppers",
+      "onions",
+      "milk",
+      "parmesan-cheese"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "sweet-thai-chili-tofu-bowl",
+    "name": "Sweet Thai Chili Tofu Bowl",
+    "category": "dinner",
+    "requiredIngredients": [
+      "tofu",
+      "rice",
+      "broccoli",
+      "bell-peppers",
+      "sweet-thai-chili-sauce"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "mac-cheese-with-black-beans-roasted-cauliflower",
+    "name": "Mac + Cheese with Black Beans + Roasted Cauliflower",
+    "category": "dinner",
+    "requiredIngredients": [
+      "macaroni",
+      "cheddar-cheese",
+      "milk",
+      "black-beans",
+      "cauliflower"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "honey-garlic-salmon-bites-bowl",
+    "name": "Honey Garlic Salmon Bites Bowl",
+    "category": "dinner",
+    "requiredIngredients": [
+      "salmon",
+      "rice",
+      "cucumber",
+      "avocado",
+      "honey",
+      "garlic",
+      "soy-sauce"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "salmon-cakes-with-roasted-potatoes-side-salad",
+    "name": "Salmon Cakes with Roasted Potatoes + Side Salad",
+    "category": "lunch",
+    "requiredIngredients": [
+      "canned-salmon",
+      "egg",
+      "breadcrumbs",
+      "potatoes",
+      "mixed-greens",
+      "lemon"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "chocolate-raspberry-chia-pudding",
+    "name": "Chocolate Raspberry Chia Pudding",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "chia-seeds",
+      "milk",
+      "cocoa-powder",
+      "raspberries",
+      "greek-yogurt"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "protein-waffles-with-berries-greek-yogurt",
+    "name": "Protein Waffles with Berries + Greek Yogurt",
+    "category": "breakfast",
+    "requiredIngredients": [
+      "protein-waffle-mix",
+      "greek-yogurt",
+      "strawberries",
+      "blueberries"
+    ],
+    "optionalIngredients": [
+      "almond-butter"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "caribbean-stew-chicken-legs-with-rice-cabbage",
+    "name": "Caribbean Stew Chicken Legs with Rice + Cabbage",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chicken-legs",
+      "rice",
+      "cabbage",
+      "carrots",
+      "onions",
+      "tomatoes"
+    ],
+    "optionalIngredients": [
+      "caribbean-green-seasoning"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "roasted-vegetable-chickpea-tray-bake",
+    "name": "Roasted Vegetable + Chickpea Tray Bake",
+    "category": "dinner",
+    "requiredIngredients": [
+      "chickpeas",
+      "zucchini",
+      "bell-peppers",
+      "cauliflower",
+      "olive-oil",
+      "tahini"
+    ],
+    "optionalIngredients": [
+      "tzatziki"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "white-bean-spinach-tomato-skillet",
+    "name": "White Bean + Spinach Tomato Skillet",
+    "category": "lunch",
+    "requiredIngredients": [
+      "white-beans",
+      "spinach",
+      "tomatoes",
+      "garlic",
+      "olive-oil",
+      "whole-wheat-bread"
+    ],
+    "optionalIngredients": [
+      "feta-cheese"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "strawberry-almond-butter-rice-cakes",
+    "name": "Strawberry + Almond Butter Rice Cakes",
+    "category": "snack",
+    "requiredIngredients": [
+      "rice-cakes",
+      "almond-butter",
+      "strawberries"
+    ],
+    "optionalIngredients": [
+      "chia-seeds"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "apple-nachos-with-peanut-butter-pumpkin-seeds",
+    "name": "Apple Nachos with Peanut Butter + Pumpkin Seeds",
+    "category": "snack",
+    "requiredIngredients": [
+      "apple",
+      "peanut-butter",
+      "pumpkin-seeds"
+    ],
+    "optionalIngredients": [
+      "dark-chocolate-chips"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "mini-caprese-skewers",
+    "name": "Mini Caprese Skewers",
+    "category": "snack",
+    "requiredIngredients": [
+      "cherry-tomatoes",
+      "mozzarella-cheese",
+      "fresh-basil"
+    ],
+    "optionalIngredients": [
+      "balsamic-glaze"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": null
+  },
+  {
+    "id": "turkey-cheese-roll-ups-with-grapes",
+    "name": "Turkey + Cheese Roll-Ups with Grapes",
+    "category": "snack",
+    "requiredIngredients": [
+      "sliced-turkey-breast",
+      "cheddar-cheese",
+      "grapes",
+      "whole-grain-crackers"
+    ],
+    "optionalIngredients": [],
+    "source": "Planner expansion",
+    "preparationNote": null
+  }
+]

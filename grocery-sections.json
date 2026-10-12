@@ -1,0 +1,50 @@
+[
+  {
+    "id": "produce",
+    "label": "Produce"
+  },
+  {
+    "id": "meat-seafood",
+    "label": "Meat & Seafood"
+  },
+  {
+    "id": "dairy-eggs",
+    "label": "Dairy & Eggs"
+  },
+  {
+    "id": "refrigerated-deli",
+    "label": "Refrigerated & Deli"
+  },
+  {
+    "id": "grains-bread-pasta",
+    "label": "Grains, Bread & Pasta"
+  },
+  {
+    "id": "canned-jarred",
+    "label": "Canned & Jarred"
+  },
+  {
+    "id": "frozen",
+    "label": "Frozen Foods"
+  },
+  {
+    "id": "nuts-seeds",
+    "label": "Nuts, Seeds & Nut Butters"
+  },
+  {
+    "id": "baking-pantry",
+    "label": "Baking & Pantry"
+  },
+  {
+    "id": "oils-sauces-condiments",
+    "label": "Oils, Sauces & Condiments"
+  },
+  {
+    "id": "health-supplements",
+    "label": "Health & Supplements"
+  },
+  {
+    "id": "other",
+    "label": "Other"
+  }
+]
