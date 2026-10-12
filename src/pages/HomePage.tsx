@@ -9,7 +9,7 @@ interface HomePageProps {
 }
 
 const HOW_IT_WORKS = [
-  { title: 'Start with your week', text: 'Tell us how much time you have, which meals you need, and any foods to leave out.' },
+  { title: 'Start with your week', text: 'Tell us which meals you need ideas for and any foods to leave out.' },
   { title: 'Check your kitchen', text: 'Mark what you already have and what you need to buy. Star the staples you always keep on hand.' },
   { title: 'Pick meal ideas', text: 'Meals that use what you already have come first. Add the ones you’d like to make.' },
   { title: 'Shop with one list', text: 'Get one tidy list, grouped and ready to share to your phone, copy or print.' },

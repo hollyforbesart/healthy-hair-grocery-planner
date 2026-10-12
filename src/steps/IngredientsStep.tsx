@@ -2,10 +2,11 @@ import { useMemo, useState } from 'react';
 import { IngredientRow } from '../components/IngredientRow';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
-import { GROCERY_CATEGORY_LABELS, INGREDIENT_CATEGORIES } from '../data/categories';
+import { avoidGroupsFor } from '../data/avoidGroups';
+import { FOOD_GROUP_LABELS, INGREDIENT_CATEGORIES } from '../data/categories';
 import { createCustomIngredient, searchIngredients, sortByName } from '../lib/ingredients';
 import { usePlanner } from '../state/PlannerContext';
-import type { GroceryCategoryId, IngredientStatus } from '../types';
+import type { FoodGroupId, IngredientStatus } from '../types';
 
 type Message = { kind: 'info' | 'error'; text: string } | null;
 
@@ -13,7 +14,7 @@ export function IngredientsStep() {
   const { state, dispatch, allIngredients } = usePlanner();
   const [query, setQuery] = useState('');
   const [customName, setCustomName] = useState('');
-  const [customCategory, setCustomCategory] = useState<GroceryCategoryId>('produce');
+  const [customCategory, setCustomCategory] = useState<FoodGroupId>('produce');
   const [message, setMessage] = useState<Message>(null);
 
   const statuses = state.ingredientStatuses;
@@ -63,8 +64,8 @@ export function IngredientsStep() {
         setMessage({
           kind: 'info',
           text: current
-            ? `“${existing.name}” is already in ${GROCERY_CATEGORY_LABELS[existing.category]} and marked ${current === 'have' ? 'Already have' : 'Need to buy'}.`
-            : `“${existing.name}” is already in ${GROCERY_CATEGORY_LABELS[existing.category]}, so we’ve marked it there.`,
+            ? `“${existing.name}” is already in ${FOOD_GROUP_LABELS[existing.category]} and marked ${current === 'have' ? 'Already have' : 'Need to buy'}.`
+            : `“${existing.name}” is already in ${FOOD_GROUP_LABELS[existing.category]}, so we’ve marked it there.`,
         });
         setQuery(existing.name);
         setCustomName('');
@@ -72,7 +73,7 @@ export function IngredientsStep() {
       return;
     }
     dispatch({ type: 'addCustomIngredient', ingredient: result.ingredient, status });
-    setMessage({ kind: 'info', text: `Added “${result.ingredient.name}” to ${GROCERY_CATEGORY_LABELS[customCategory]}.` });
+    setMessage({ kind: 'info', text: `Added “${result.ingredient.name}” to ${FOOD_GROUP_LABELS[customCategory]}.` });
     setCustomName('');
   };
 
@@ -145,6 +146,7 @@ export function IngredientsStep() {
                 status={statuses[ingredient.id]}
                 matchedAlias={matchedAlias}
                 avoided={state.preferences.avoidIngredientIds.includes(ingredient.id)}
+                avoidReasons={avoidGroupsFor(ingredient.id, state.preferences.avoidIngredientIds)}
                 isStaple={staples.includes(ingredient.id)}
                 onToggleStaple={() => dispatch({ type: 'toggleStaple', ingredientId: ingredient.id })}
                 onChange={(status) => setStatus(ingredient.id, status)}
@@ -187,7 +189,7 @@ export function IngredientsStep() {
             <select
               id="custom-category"
               value={customCategory}
-              onChange={(e) => setCustomCategory(e.target.value as GroceryCategoryId)}
+              onChange={(e) => setCustomCategory(e.target.value as FoodGroupId)}
             >
               {INGREDIENT_CATEGORIES.map((c) => (
                 <option key={c.id} value={c.id}>

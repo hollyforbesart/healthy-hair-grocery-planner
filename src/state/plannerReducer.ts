@@ -1,6 +1,8 @@
+import { OTHER_SECTION, STORE_SECTION_IDS, defaultStoreSection } from '../data/categories';
+import { canonicalIngredientId } from '../data/legacyIds';
 import type {
   FeedbackDraft,
-  GroceryCategoryId,
+  FoodGroupId,
   GroceryItemOverride,
   Ingredient,
   IngredientStatus,
@@ -40,7 +42,6 @@ export interface PlannerState {
 
 export const DEFAULT_PREFERENCES: WeekPreferences = {
   cookingStyle: null,
-  maxPrepMinutes: null,
   mealCategories: [],
   budget: '',
   householdSize: null,
@@ -86,7 +87,7 @@ export type PlannerAction =
   | { type: 'updateGroceryItem'; itemId: string; patch: GroceryItemOverride }
   | { type: 'restoreRemovedItems' }
   | { type: 'addManualItem'; item: ManualGroceryItem }
-  | { type: 'updateManualItem'; itemId: string; patch: Partial<Pick<ManualGroceryItem, 'name' | 'checked' | 'category'>> }
+  | { type: 'updateManualItem'; itemId: string; patch: Partial<Pick<ManualGroceryItem, 'name' | 'checked' | 'section'>> }
   | { type: 'removeManualItem'; itemId: string }
   | { type: 'clearChecked'; generatedIds: string[] }
   | { type: 'updateFeedback'; patch: Partial<FeedbackDraft> }
@@ -250,7 +251,31 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
 
 // ---------- Loading saved state ----------
 
-const CATEGORY_IDS: GroceryCategoryId[] = ['proteins', 'carbohydrates', 'produce', 'fats-extras', 'other'];
+const FOOD_GROUPS: FoodGroupId[] = ['proteins', 'carbohydrates', 'produce', 'fats-extras'];
+
+/** Ingredient IDs as saved, moved onto merged catalog records. */
+const migrateIds = (ids: string[]) => [...new Set(ids.map(canonicalIngredientId))];
+
+/**
+ * Re-key a saved ID→value map onto current ingredient IDs. When a plan has
+ * both an old and a current ID, the current one wins.
+ */
+function migrateKeys<T>(record: Record<string, T>): Record<string, T> {
+  const out: Record<string, T> = {};
+  for (const [id, value] of Object.entries(record)) if (canonicalIngredientId(id) === id) out[id] = value;
+  for (const [id, value] of Object.entries(record)) {
+    const current = canonicalIngredientId(id);
+    if (current !== id && !(current in out)) out[current] = value;
+  }
+  return out;
+}
+
+/** Manual list items saved before store sections used food groups as their category. */
+const sectionForSavedItem = (item: Record<string, unknown>): string => {
+  if (typeof item.section === 'string' && STORE_SECTION_IDS.has(item.section)) return item.section;
+  if (item.category === 'produce') return 'produce';
+  return OTHER_SECTION;
+};
 
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 
@@ -270,7 +295,6 @@ export function hydrateState(saved: unknown): PlannerState {
     cookingStyle: ['quick', 'batch', 'mixed'].includes(prefs.cookingStyle as string)
       ? (prefs.cookingStyle as WeekPreferences['cookingStyle'])
       : null,
-    maxPrepMinutes: typeof prefs.maxPrepMinutes === 'number' ? prefs.maxPrepMinutes : null,
     mealCategories: Array.isArray(prefs.mealCategories)
       ? (prefs.mealCategories.filter((c) =>
           ['breakfast', 'lunch', 'dinner', 'snack'].includes(c as string),
@@ -278,15 +302,16 @@ export function hydrateState(saved: unknown): PlannerState {
       : [],
     budget: typeof prefs.budget === 'string' ? prefs.budget : '',
     householdSize: typeof prefs.householdSize === 'number' ? prefs.householdSize : null,
-    avoidIngredientIds: stringArray(prefs.avoidIngredientIds),
+    avoidIngredientIds: migrateIds(stringArray(prefs.avoidIngredientIds)),
   };
 
-  const ingredientStatuses: IngredientStatusMap = {};
+  const savedStatuses: IngredientStatusMap = {};
   if (isRecord(saved.ingredientStatuses)) {
     for (const [id, status] of Object.entries(saved.ingredientStatuses)) {
-      if (status === 'have' || status === 'need') ingredientStatuses[id] = status;
+      if (status === 'have' || status === 'need') savedStatuses[id] = status;
     }
   }
+  const ingredientStatuses = migrateKeys(savedStatuses);
 
   const customIngredients = Array.isArray(saved.customIngredients)
     ? saved.customIngredients
@@ -295,29 +320,42 @@ export function hydrateState(saved: unknown): PlannerState {
             isRecord(i) &&
             typeof i.id === 'string' &&
             typeof i.name === 'string' &&
-            CATEGORY_IDS.includes(i.category as GroceryCategoryId) &&
-            i.category !== 'other',
+            FOOD_GROUPS.includes(i.category as FoodGroupId),
         )
-        .map((i) => ({ id: i.id, name: i.name, category: i.category, custom: true }))
+        .map((i) => ({
+          id: i.id,
+          name: i.name,
+          category: i.category,
+          storeSection:
+            typeof i.storeSection === 'string' && STORE_SECTION_IDS.has(i.storeSection)
+              ? i.storeSection
+              : defaultStoreSection(i.category),
+          custom: true,
+        }))
     : [];
 
   const manualItems = Array.isArray(saved.manualItems)
     ? saved.manualItems
         .filter(
-          (i): i is ManualGroceryItem =>
-            isRecord(i) &&
-            typeof i.id === 'string' &&
-            typeof i.name === 'string' &&
-            CATEGORY_IDS.includes(i.category as GroceryCategoryId),
+          (i): i is Record<string, unknown> & { id: string; name: string } =>
+            isRecord(i) && typeof i.id === 'string' && typeof i.name === 'string',
         )
-        .map((i) => ({ ...i, checked: Boolean(i.checked) }))
+        .map(
+          (i): ManualGroceryItem => ({
+            id: i.id,
+            name: i.name,
+            section: sectionForSavedItem(i),
+            checked: Boolean(i.checked),
+            ...(typeof i.ingredientId === 'string' ? { ingredientId: canonicalIngredientId(i.ingredientId) } : {}),
+          }),
+        )
     : [];
 
-  const groceryOverrides: Record<string, GroceryItemOverride> = {};
+  const savedOverrides: Record<string, GroceryItemOverride> = {};
   if (isRecord(saved.groceryOverrides)) {
     for (const [id, o] of Object.entries(saved.groceryOverrides)) {
       if (!isRecord(o)) continue;
-      groceryOverrides[id] = {
+      savedOverrides[id] = {
         ...(typeof o.name === 'string' ? { name: o.name } : {}),
         ...(typeof o.checked === 'boolean' ? { checked: o.checked } : {}),
         ...(typeof o.removed === 'boolean' ? { removed: o.removed } : {}),
@@ -325,6 +363,7 @@ export function hydrateState(saved: unknown): PlannerState {
     }
   }
 
+  const groceryOverrides = migrateKeys(savedOverrides);
   const feedback = isRecord(saved.feedback) ? saved.feedback : {};
 
   return {
@@ -338,7 +377,7 @@ export function hydrateState(saved: unknown): PlannerState {
     customIngredients,
     selectedMealIds: stringArray(saved.selectedMealIds),
     mealExtras: isRecord(saved.mealExtras)
-      ? Object.fromEntries(Object.entries(saved.mealExtras).map(([id, v]) => [id, stringArray(v)]))
+      ? Object.fromEntries(Object.entries(saved.mealExtras).map(([id, v]) => [id, migrateIds(stringArray(v))]))
       : {},
     groceryOverrides,
     manualItems,
@@ -347,7 +386,7 @@ export function hydrateState(saved: unknown): PlannerState {
       helpful: typeof feedback.helpful === 'string' ? feedback.helpful : '',
       wish: typeof feedback.wish === 'string' ? feedback.wish : '',
     },
-    staples: stringArray(saved.staples),
+    staples: migrateIds(stringArray(saved.staples)),
     reviewingPantry: saved.reviewingPantry === true,
   };
 }

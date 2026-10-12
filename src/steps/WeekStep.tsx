@@ -14,13 +14,6 @@ const STYLE_OPTIONS: { value: CookingStyle; label: string; hint: string }[] = [
   { value: 'mixed', label: 'A bit of both', hint: 'Some quick meals, some bigger cooks' },
 ];
 
-const TIME_OPTIONS: { value: number; label: string }[] = [
-  { value: 15, label: 'Up to 15 minutes' },
-  { value: 30, label: 'Up to 30 minutes' },
-  { value: 45, label: 'Up to 45 minutes' },
-  { value: 0, label: 'No time limit' },
-];
-
 export function WeekStep() {
   const { state, dispatch, allIngredients, lookup } = usePlanner();
   const prefs = state.preferences;
@@ -84,23 +77,6 @@ export function WeekStep() {
         </fieldset>
 
         <fieldset className="card">
-          <legend>How much time do you usually have to cook a meal?</legend>
-          <div className="choice-grid choice-grid--compact">
-            {TIME_OPTIONS.map((option) => (
-              <label key={option.label} className="choice">
-                <input
-                  type="radio"
-                  name="maxPrepMinutes"
-                  checked={prefs.maxPrepMinutes === option.value}
-                  onChange={() => update({ maxPrepMinutes: option.value })}
-                />
-                <span>{option.label}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <fieldset className="card">
           <legend>Which meals are you planning for?</legend>
           <p className="small muted">Select the meals you’d like ideas for.</p>
           <div className="choice-grid choice-grid--meals">
@@ -138,6 +114,22 @@ export function WeekStep() {
               </label>
             ))}
           </div>
+
+          <details className="avoid-groups-help">
+            <summary>What’s in each group?</summary>
+            <dl>
+              {AVOID_GROUPS.map((group) => (
+                <div key={group.id}>
+                  <dt>{group.label}</dt>
+                  <dd>{group.ingredientIds.map((id) => ingredientName(lookup, id)).join(', ')}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="small muted">
+              Some foods, like noodles, granola and protein powder, vary by brand, so they aren’t in a group. Add them
+              below if you need to avoid them.
+            </p>
+          </details>
 
           <div className="avoid-add">
             <label htmlFor="avoid-input">Avoid a specific ingredient</label>

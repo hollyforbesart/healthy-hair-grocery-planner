@@ -1,7 +1,13 @@
 // Shared domain types. Data lives in src/data, logic in src/lib.
 
-/** Grocery grouping. Ingredients use the four food groups; 'other' is for hand-added list items. */
-export type GroceryCategoryId = 'proteins' | 'carbohydrates' | 'produce' | 'fats-extras' | 'other';
+/** Food group used to organise ingredient selection (Step 2). */
+export type FoodGroupId = 'proteins' | 'carbohydrates' | 'produce' | 'fats-extras';
+
+/**
+ * Grocery-store section used to organise the shopping list. IDs come from
+ * src/data/library/store-sections.json ("other" is the catch-all).
+ */
+export type StoreSectionId = string;
 
 export type MealCategory = 'breakfast' | 'lunch' | 'dinner' | 'snack';
 
@@ -11,7 +17,9 @@ export type DietaryTag = 'vegetarian' | 'vegan' | 'dairy-free' | 'gluten-free' |
 export interface Ingredient {
   id: string;
   name: string;
-  category: GroceryCategoryId;
+  category: FoodGroupId;
+  /** Where it's usually found in a store, for the grocery list. */
+  storeSection: StoreSectionId;
   /** Other names people search for, e.g. "garbanzo beans" for chickpeas. */
   aliases?: string[];
   /** True for entries the user typed in themselves. */
@@ -34,11 +42,19 @@ export interface MealTemplate {
   description?: string;
   requiredIngredients: string[];
   optionalIngredients: string[];
-  substitutions: IngredientSubstitution[];
-  /** Approximate hands-on + cooking time in minutes. */
-  prepTimeMinutes: number;
-  /** Brief preparation steps. */
-  instructions: string[];
+  /** Reviewed swaps only. The v1 library has none. */
+  substitutions?: IngredientSubstitution[];
+  /**
+   * Approximate time in minutes. The v1 library has none, so times are not
+   * shown, filtered on or used for ranking. Never estimate one.
+   */
+  prepTimeMinutes?: number;
+  /** Brief preparation steps (kept for a future recipes feature; not shown). */
+  instructions?: string[];
+  /** A short, reviewed preparation note shown on the meal card. */
+  preparationNote?: string;
+  /** Internal editorial metadata (where the meal came from). Not shown to users. */
+  source?: string;
   dietaryTags?: DietaryTag[];
 }
 
@@ -51,8 +67,6 @@ export type CookingStyle = 'quick' | 'batch' | 'mixed';
 
 export interface WeekPreferences {
   cookingStyle: CookingStyle | null;
-  /** Typical time available to cook one meal, in minutes. 0 = no limit; null = not answered. */
-  maxPrepMinutes: number | null;
   mealCategories: MealCategory[];
   /** Free text so users can type "$80" or "about 100". */
   budget: string;
@@ -72,7 +86,7 @@ export interface GroceryItemOverride {
 export interface ManualGroceryItem {
   id: string;
   name: string;
-  category: GroceryCategoryId;
+  section: StoreSectionId;
   checked: boolean;
   /** Set when the typed name matches a catalog or custom ingredient. */
   ingredientId?: string;
@@ -88,7 +102,7 @@ export interface GroceryListItem {
   /** Ingredient ID for generated items; `manual-…` for hand-added ones. */
   id: string;
   name: string;
-  category: GroceryCategoryId;
+  section: StoreSectionId;
   checked: boolean;
   sources: GrocerySource[];
   /** Names of selected meals that need this item. */

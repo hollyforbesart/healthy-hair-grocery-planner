@@ -8,8 +8,6 @@ interface MealCardProps {
   recommendation: MealRecommendation;
   lookup: IngredientLookup;
   statuses: IngredientStatusMap;
-  /** The user's usual cooking time, to flag longer meals. */
-  maxPrepMinutes: number | null;
   selected: boolean;
   /** Extras (optional ingredients or swaps) the user tapped for this meal. */
   extras: string[];
@@ -31,13 +29,12 @@ export function MealCard({
   recommendation,
   lookup,
   statuses,
-  maxPrepMinutes,
   selected,
   extras,
   onToggle,
   onToggleExtra,
 }: MealCardProps) {
-  const { meal, match, fitsTime } = recommendation;
+  const { meal, match } = recommendation;
   const name = (id: string) => ingredientName(lookup, id);
   const headingId = `meal-${meal.id}`;
 
@@ -73,8 +70,7 @@ export function MealCard({
         <div className="meal-card__title">
           <h3 id={headingId}>{meal.name}</h3>
           <p className="meal-card__meta">
-            {MEAL_CATEGORY_LABELS[meal.category]} · About {meal.prepTimeMinutes} min
-            {!fitsTime && maxPrepMinutes ? <span className="warn"> · longer than your usual {maxPrepMinutes}</span> : null}
+            {MEAL_CATEGORY_LABELS[meal.category]}
             {tags.length > 0 && <span> · {tags.join(', ')}</span>}
           </p>
         </div>
@@ -120,10 +116,17 @@ export function MealCard({
         </div>
       </dl>
 
+      {meal.preparationNote && (
+        <details className="meal-card__note">
+          <summary>Preparation note</summary>
+          <p>{meal.preparationNote}</p>
+        </details>
+      )}
+
       {hasExtras && (
         <details className="meal-card__extras">
           <summary>
-            Optional extras &amp; swaps
+            {match.swapOptions.length > 0 ? 'Optional extras & swaps' : 'Optional extras'}
             {addedCount > 0 && <span className="meal-card__added"> · {addedCount} added</span>}
           </summary>
           <div className="meal-card__extras-body">

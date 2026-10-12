@@ -828,6 +828,22 @@ textarea:focus-visible {
 .meal-card__on-list {
   font-weight: 400;
 }
+.meal-card__note {
+  border-top: 1px solid var(--lavender);
+  padding-top: 0.6rem;
+}
+.meal-card__note summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+.meal-card__note p {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+}
 .meal-card__extras {
   border-top: 1px solid var(--lavender);
   padding-top: 0.6rem;
@@ -985,6 +1001,31 @@ textarea:focus-visible {
 }
 .avoid-add {
   margin-top: 1rem;
+}
+.avoid-groups-help {
+  margin-top: 0.75rem;
+}
+.avoid-groups-help summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+.avoid-groups-help dl {
+  margin: 0.35rem 0 0.5rem;
+  display: grid;
+  gap: 0.4rem;
+}
+.avoid-groups-help dt {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.avoid-groups-help dd {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--plum-60);
 }
 .avoid-add label {
   display: block;

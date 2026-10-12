@@ -5,6 +5,8 @@ interface IngredientRowProps {
   status: IngredientStatus | undefined;
   matchedAlias?: string;
   avoided?: boolean;
+  /** Quick-pick groups that caused the avoidance, e.g. ["Dairy"]. */
+  avoidReasons?: string[];
   isStaple?: boolean;
   onToggleStaple?: () => void;
   onChange: (status: IngredientStatus | null) => void;
@@ -16,6 +18,7 @@ export function IngredientRow({
   status,
   matchedAlias,
   avoided,
+  avoidReasons = [],
   isStaple,
   onToggleStaple,
   onChange,
@@ -42,7 +45,9 @@ export function IngredientRow({
         <span className="ingredient-row__label">{ingredient.name}</span>
         {matchedAlias && <span className="muted small"> (matches “{matchedAlias}”)</span>}
         {ingredient.custom && <span className="badge">Your item</span>}
-        {avoided && <span className="badge badge--avoid">Avoiding</span>}
+        {avoided && (
+          <span className="badge badge--avoid">Avoiding{avoidReasons.length > 0 && ` (${avoidReasons.join(', ')})`}</span>
+        )}
       </div>
       <div className="ingredient-row__actions" role="group" aria-label={ingredient.name}>
         <button

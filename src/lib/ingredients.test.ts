@@ -22,7 +22,7 @@ describe('createCustomIngredient', () => {
     const result = createCustomIngredient('  dragon   fruit ', 'produce', INGREDIENTS);
     expect(result).toEqual({
       ok: true,
-      ingredient: { id: 'custom-dragon-fruit', name: 'Dragon fruit', category: 'produce', custom: true },
+      ingredient: { id: 'custom-dragon-fruit', name: 'Dragon fruit', category: 'produce', storeSection: 'produce', custom: true },
     });
   });
 

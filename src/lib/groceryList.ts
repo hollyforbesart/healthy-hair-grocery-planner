@@ -1,12 +1,12 @@
-import { GROCERY_CATEGORIES } from '../data/categories';
+import { OTHER_SECTION, STORE_SECTIONS, STORE_SECTION_IDS } from '../data/categories';
 import type {
-  GroceryCategoryId,
   GroceryItemOverride,
   GroceryListItem,
   IngredientStatusMap,
   ManualGroceryItem,
   MealExtras,
   MealTemplate,
+  StoreSectionId,
 } from '../types';
 import type { IngredientLookup } from './ingredients';
 import { extraKind, matchMeal } from './matching';
@@ -50,7 +50,7 @@ export function buildGroceryList({
       item = {
         id: ingredientId,
         name: ingredient?.name ?? ingredientId,
-        category: ingredient?.category ?? 'other',
+        section: ingredient?.storeSection ?? OTHER_SECTION,
         checked: false,
         sources: [],
         forMeals: [],
@@ -98,7 +98,7 @@ export function buildGroceryList({
     items.push({
       id: manual.id,
       name: manual.name,
-      category: manual.category,
+      section: manual.section,
       checked: manual.checked,
       sources: ['added'],
       forMeals: [],
@@ -110,18 +110,22 @@ export function buildGroceryList({
 }
 
 export interface GroceryGroup {
-  category: GroceryCategoryId;
+  section: StoreSectionId;
   label: string;
   items: GroceryListItem[];
 }
 
-/** Group by grocery category in display order; empty groups are omitted. */
+/**
+ * Group by grocery-store section in store-walking order; anything with an
+ * unknown section goes under "Other". Empty groups are omitted.
+ */
 export function groupGroceryList(items: GroceryListItem[]): GroceryGroup[] {
-  return GROCERY_CATEGORIES.map(({ id, label }) => ({
-    category: id,
+  const sectionOf = (item: GroceryListItem) => (STORE_SECTION_IDS.has(item.section) ? item.section : OTHER_SECTION);
+  return STORE_SECTIONS.map(({ id, label }) => ({
+    section: id,
     label,
     items: items
-      .filter((item) => item.category === id)
+      .filter((item) => sectionOf(item) === id)
       .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })),
   })).filter((group) => group.items.length > 0);
 }

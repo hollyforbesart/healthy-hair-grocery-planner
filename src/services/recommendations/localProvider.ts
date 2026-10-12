@@ -6,38 +6,25 @@ function plural(n: number, word: string): string {
 }
 
 /**
- * Synchronous core, exported for tests. Meals that need an avoided
+ * Synchronous core, exported for tests. Ranks purely on pantry fit (see
+ * compareMatches); preparation time is not used. Meals that need an avoided
  * ingredient with no acceptable swap are left out.
  */
 export function rankMeals({ meals, ingredientStatuses, preferences }: RecommendationRequest): MealRecommendation[] {
-  const maxMinutes = preferences.maxPrepMinutes;
   const avoid = new Set(preferences.avoidIngredientIds);
 
-  const scored = meals
+  return meals
     .map((meal) => {
       const match = matchMeal(meal, ingredientStatuses, avoid);
-      const fitsTime = !maxMinutes || meal.prepTimeMinutes <= maxMinutes;
       const reasons: string[] = [];
       if (match.required.length > 0 && match.haveCount === match.required.length) reasons.push('Everything is already at home');
       else if (match.haveCount > 0) reasons.push(`Uses ${plural(match.haveCount, 'ingredient')} you already have`);
       if (match.required.some((r) => r.avoided)) reasons.push('Includes a swap for foods you avoid');
-      if (!fitsTime) reasons.push(`Takes longer than your usual ${maxMinutes} minutes`);
-      return { meal, match, fitsTime, reasons, name: meal.name };
+      return { meal, match, reasons, name: meal.name };
     })
-    .filter((r) => !r.match.blocked);
-
-  // Pantry fit first; available time breaks ties before ingredient overlap.
-  scored.sort((a, b) => {
-    const notAtHome = (x: typeof a) => x.match.missingCount + x.match.onListCount;
-    return (
-      notAtHome(a) - notAtHome(b) ||
-      a.match.missingCount - b.match.missingCount ||
-      Number(b.fitsTime) - Number(a.fitsTime) ||
-      compareMatches(a, b)
-    );
-  });
-
-  return scored.map(({ meal, match, fitsTime, reasons }) => ({ meal, match, fitsTime, reasons }));
+    .filter((r) => !r.match.blocked)
+    .sort(compareMatches)
+    .map(({ meal, match, reasons }) => ({ meal, match, reasons }));
 }
 
 /** Version 1 provider: rules-based matching against the local meal library. */
