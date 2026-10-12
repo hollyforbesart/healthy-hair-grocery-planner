@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { NEW_WEEK_CONFIRM } from '../lib/confirmations';
-import { STEPS, hasPlannerProgress } from '../state/plannerReducer';
+import { hasPlannerProgress } from '../state/plannerReducer';
+import { STEP_LABELS } from '../state/steps';
 import { usePlanner } from '../state/PlannerContext';
 
 interface HomePageProps {
@@ -9,10 +10,13 @@ interface HomePageProps {
 }
 
 const HOW_IT_WORKS = [
-  { title: 'Start with your week', text: 'Tell us which meals you need ideas for and any foods to leave out.' },
-  { title: 'Check your kitchen', text: 'Mark what you already have and what you need to buy. Star the staples you always keep on hand.' },
-  { title: 'Pick meal ideas', text: 'Meals that use what you already have come first. Add the ones you’d like to make.' },
-  { title: 'Shop with one list', text: 'Get one tidy list, grouped and ready to share to your phone, copy or print.' },
+  {
+    title: 'Pick how to start',
+    text: 'Use what you already have in your kitchen, or browse meal ideas. You can switch any time.',
+  },
+  { title: 'Choose your meals', text: 'Search, filter by meal, and save favorites. Meals you’ve had recently move down so ideas stay fresh.' },
+  { title: 'Review', text: 'See your meals together and tick off the ingredients you already have.' },
+  { title: 'Shop with one list', text: 'Get one tidy list, grouped by store section, ready to share to your phone, copy or print.' },
 ];
 
 /**
@@ -47,7 +51,7 @@ export function HomePage({ onOpenPlanner }: HomePageProps) {
         </p>
         <div className="button-row">
           <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
-            {returning ? `Continue your plan (${STEPS[state.currentStep].label})` : 'Start planning'} →
+            {returning ? `Continue your plan (${STEP_LABELS[state.currentStep]})` : 'Start planning'} →
           </button>
           {returning && (
             <button type="button" className="btn btn--secondary" onClick={startNewWeek}>

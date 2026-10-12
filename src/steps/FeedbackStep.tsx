@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { StepFooter } from '../components/StepFooter';
+import { useStepNav } from '../hooks/useStepNav';
 import { StepHeader } from '../components/StepHeader';
 import { APP_VERSION, feedbackService } from '../services/feedback';
 import { usePlanner } from '../state/PlannerContext';
@@ -16,6 +17,7 @@ type SendState = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { k
 
 export function FeedbackStep() {
   const { state, dispatch } = usePlanner();
+  const { goBack } = useStepNav();
   const { rating, helpful, wish } = state.feedback;
   const [send, setSend] = useState<SendState>({ kind: 'idle' });
   const honeypotRef = useRef<HTMLInputElement>(null);
@@ -43,7 +45,7 @@ export function FeedbackStep() {
 
   return (
     <section aria-labelledby="step-title">
-      <StepHeader step={5} title="Share your feedback">
+      <StepHeader title="Share your feedback">
         <p>Optional — tell us how the planner worked for you.</p>
       </StepHeader>
 
@@ -132,7 +134,7 @@ export function FeedbackStep() {
         </form>
       )}
 
-      <StepFooter onBack={() => dispatch({ type: 'goToStep', step: 3 })} />
+      <StepFooter onBack={goBack} />
     </section>
   );
 }

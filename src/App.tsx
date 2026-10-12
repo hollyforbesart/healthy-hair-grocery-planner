@@ -4,24 +4,33 @@ import { useRoute } from './hooks/useRoute';
 import { START_OVER_CONFIRM } from './lib/confirmations';
 import { HomePage } from './pages/HomePage';
 import { usePlanner } from './state/PlannerContext';
+import { stepsForPath, type StepId } from './state/steps';
 import { FeedbackStep } from './steps/FeedbackStep';
 import { GroceryListStep } from './steps/GroceryListStep';
-import { IngredientsStep } from './steps/IngredientsStep';
+import { KitchenStep } from './steps/KitchenStep';
 import { MealsStep } from './steps/MealsStep';
-import { WeekStep } from './steps/WeekStep';
+import { ReviewStep } from './steps/ReviewStep';
+import { SetupStep } from './steps/SetupStep';
 
-const STEP_COMPONENTS = [WeekStep, IngredientsStep, MealsStep, GroceryListStep, FeedbackStep];
+const STEP_COMPONENTS: Record<StepId, () => JSX.Element> = {
+  setup: SetupStep,
+  kitchen: KitchenStep,
+  meals: MealsStep,
+  review: ReviewStep,
+  list: GroceryListStep,
+  feedback: FeedbackStep,
+};
 
 export function App() {
   const { state, dispatch } = usePlanner();
   const [route, navigate] = useRoute();
-  const Step = STEP_COMPONENTS[state.currentStep] ?? WeekStep;
+  const Step = STEP_COMPONENTS[state.currentStep] ?? SetupStep;
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [state.currentStep]);
 
-  const goTo = (step: number) => dispatch({ type: 'goToStep', step });
+  const goTo = (step: StepId) => dispatch({ type: 'goToStep', step });
 
   const startOver = () => {
     if (window.confirm(START_OVER_CONFIRM)) dispatch({ type: 'reset' });
@@ -72,7 +81,7 @@ export function App() {
           </main>
         ) : (
           <>
-            <StepNav current={state.currentStep} onSelect={goTo} />
+            <StepNav steps={stepsForPath(state.path)} current={state.currentStep} onSelect={goTo} />
             <main id="main" className="main">
               {/* key remounts the step so its heading receives focus */}
               <Step key={state.currentStep} />

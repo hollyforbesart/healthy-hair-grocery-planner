@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { GroceryItemRow } from '../components/GroceryItemRow';
 import { StepFooter } from '../components/StepFooter';
+import { useStepNav } from '../hooks/useStepNav';
 import { StepHeader } from '../components/StepHeader';
 import { OTHER_SECTION, STORE_SECTIONS } from '../data/categories';
 import { copyText } from '../lib/clipboard';
@@ -15,6 +16,7 @@ import type { GroceryListItem, StoreSectionId } from '../types';
 
 export function GroceryListStep() {
   const { state, dispatch, lookup, allIngredients, selectedMeals } = usePlanner();
+  const { goBack, goNext, go } = useStepNav();
   const [newName, setNewName] = useState('');
   const [newSection, setNewSection] = useState<StoreSectionId>(OTHER_SECTION);
   const [status, setStatus] = useState<{ kind: 'info' | 'error'; text: string } | null>(null);
@@ -111,10 +113,10 @@ export function GroceryListStep() {
 
   return (
     <section aria-labelledby="step-title">
-      <StepHeader step={4} title="Your grocery list">
+      <StepHeader title="Your grocery list">
         <p className="no-print">
-          Everything you marked <strong>Need to buy</strong>, plus what your chosen meals are missing. Items you already
-          have are left off.
+          Everything your meals need that you don’t already have, plus anything you add. It shows what to buy, not how
+          much.
         </p>
       </StepHeader>
 
@@ -175,14 +177,9 @@ export function GroceryListStep() {
       {items.length === 0 ? (
         <div className="empty card">
           <p>Your list is empty.</p>
-          <p className="small muted">
-            Mark ingredients as <strong>Need to buy</strong> or choose meals, or add items below.
-          </p>
+          <p className="small muted">Pick some meals, or add items below.</p>
           <div className="button-row">
-            <button type="button" className="btn btn--secondary" onClick={() => dispatch({ type: 'goToStep', step: 1 })}>
-              Choose ingredients
-            </button>
-            <button type="button" className="btn btn--secondary" onClick={() => dispatch({ type: 'goToStep', step: 2 })}>
+            <button type="button" className="btn btn--secondary" onClick={() => go('meals')}>
               Find meal ideas
             </button>
           </div>
@@ -286,8 +283,8 @@ export function GroceryListStep() {
       </div>
 
       <StepFooter
-        onBack={() => dispatch({ type: 'goToStep', step: 2 })}
-        onNext={() => dispatch({ type: 'goToStep', step: 4 })}
+        onBack={goBack}
+        onNext={goNext}
         nextLabel="Share feedback"
       />
     </section>

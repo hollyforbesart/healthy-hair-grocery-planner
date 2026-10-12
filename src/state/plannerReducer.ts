@@ -9,22 +9,19 @@ import type {
   IngredientStatusMap,
   ManualGroceryItem,
   MealExtras,
+  MealHistoryEntry,
+  PlannerPath,
   WeekPreferences,
 } from '../types';
-
-export const STEPS = [
-  { id: 'week', label: 'Your week' },
-  { id: 'ingredients', label: 'Ingredients' },
-  { id: 'meals', label: 'Meal ideas' },
-  { id: 'list', label: 'Grocery list' },
-  { id: 'feedback', label: 'Feedback' },
-] as const;
+import { ALL_STEP_IDS, LEGACY_STEP_ORDER, type StepId } from './steps';
 
 export const STATE_VERSION = 1;
 
 export interface PlannerState {
   version: typeof STATE_VERSION;
-  currentStep: number;
+  currentStep: StepId;
+  /** Chosen on the Start step; null until the user picks. */
+  path: PlannerPath | null;
   preferences: WeekPreferences;
   ingredientStatuses: IngredientStatusMap;
   customIngredients: Ingredient[];
@@ -36,12 +33,22 @@ export interface PlannerState {
   feedback: FeedbackDraft;
   /** Ingredients the user always keeps on hand; pre-marked each new week. */
   staples: string[];
-  /** True right after "Start a new week", until the user leaves Step 2. */
+  /** True right after "Start a new week", until the user leaves the kitchen step. */
   reviewingPantry: boolean;
+  /** Meals the user hearted; never pushed down for being recent. */
+  favorites: string[];
+  /** Meals from earlier weeks, newest first (kept for HISTORY_WEEKS weeks). */
+  mealHistory: MealHistoryEntry[];
 }
 
+/** How many past weeks of meal choices to remember. */
+export const HISTORY_WEEKS = 8;
+
+/** Today's local date as YYYY-MM-DD. */
+export const todayIso = (now = new Date()) =>
+  `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
 export const DEFAULT_PREFERENCES: WeekPreferences = {
-  cookingStyle: null,
   mealCategories: [],
   budget: '',
   householdSize: null,
@@ -51,7 +58,8 @@ export const DEFAULT_PREFERENCES: WeekPreferences = {
 export function createInitialState(): PlannerState {
   return {
     version: STATE_VERSION,
-    currentStep: 0,
+    currentStep: 'setup',
+    path: null,
     preferences: { ...DEFAULT_PREFERENCES, avoidIngredientIds: [] },
     ingredientStatuses: {},
     customIngredients: [],
@@ -62,13 +70,16 @@ export function createInitialState(): PlannerState {
     feedback: { rating: null, helpful: '', wish: '' },
     staples: [],
     reviewingPantry: false,
+    favorites: [],
+    mealHistory: [],
   };
 }
 
 /** True once the user has started planning, so the home page can offer "Continue". */
 export function hasPlannerProgress(state: PlannerState): boolean {
   return (
-    state.currentStep > 0 ||
+    state.currentStep !== 'setup' ||
+    state.path !== null ||
     Object.keys(state.ingredientStatuses).length > 0 ||
     state.selectedMealIds.length > 0 ||
     state.manualItems.length > 0 ||
@@ -77,7 +88,9 @@ export function hasPlannerProgress(state: PlannerState): boolean {
 }
 
 export type PlannerAction =
-  | { type: 'goToStep'; step: number }
+  | { type: 'goToStep'; step: StepId }
+  | { type: 'choosePath'; path: PlannerPath }
+  | { type: 'toggleFavorite'; mealId: string }
   | { type: 'updatePreferences'; patch: Partial<WeekPreferences> }
   | { type: 'setIngredientStatus'; ingredientId: string; status: IngredientStatus | null }
   | { type: 'addCustomIngredient'; ingredient: Ingredient; status?: IngredientStatus }
@@ -92,7 +105,7 @@ export type PlannerAction =
   | { type: 'clearChecked'; generatedIds: string[] }
   | { type: 'updateFeedback'; patch: Partial<FeedbackDraft> }
   | { type: 'toggleStaple'; ingredientId: string }
-  | { type: 'startNewWeek' }
+  | { type: 'startNewWeek'; today?: string }
   | { type: 'reset' };
 
 function withoutKey<T>(record: Record<string, T>, key: string): Record<string, T> {
@@ -103,11 +116,20 @@ function withoutKey<T>(record: Record<string, T>, key: string): Record<string, T
 
 export function plannerReducer(state: PlannerState, action: PlannerAction): PlannerState {
   switch (action.type) {
-    case 'goToStep': {
-      const currentStep = Math.min(Math.max(action.step, 0), STEPS.length - 1);
-      // The pantry check-in banner only belongs to the first visit to Step 2 of a new week.
-      return { ...state, currentStep, reviewingPantry: state.reviewingPantry && currentStep === 1 };
-    }
+    case 'goToStep':
+      // The pantry check-in note only belongs to the first visit to the kitchen in a new week.
+      return { ...state, currentStep: action.step, reviewingPantry: state.reviewingPantry && action.step === 'kitchen' };
+
+    case 'choosePath':
+      return { ...state, path: action.path };
+
+    case 'toggleFavorite':
+      return {
+        ...state,
+        favorites: state.favorites.includes(action.mealId)
+          ? state.favorites.filter((id) => id !== action.mealId)
+          : [...state.favorites, action.mealId],
+      };
 
     case 'updatePreferences': {
       const preferences = { ...state.preferences, ...action.patch };
@@ -232,9 +254,14 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
       const avoid = new Set(state.preferences.avoidIngredientIds);
       const ingredientStatuses: IngredientStatusMap = {};
       for (const id of state.staples) if (!avoid.has(id)) ingredientStatuses[id] = 'have';
+      // Remember this week's meals so the next suggestions can rotate.
+      const mealHistory = state.selectedMealIds.length
+        ? [{ date: action.today ?? todayIso(), mealIds: [...state.selectedMealIds] }, ...state.mealHistory].slice(0, HISTORY_WEEKS)
+        : state.mealHistory;
       return {
         ...state,
-        currentStep: 1,
+        currentStep: state.path === 'ideas' ? 'meals' : 'kitchen',
+        mealHistory,
         ingredientStatuses,
         selectedMealIds: [],
         mealExtras: {},
@@ -292,9 +319,6 @@ export function hydrateState(saved: unknown): PlannerState {
 
   const prefs = isRecord(saved.preferences) ? saved.preferences : {};
   const preferences: WeekPreferences = {
-    cookingStyle: ['quick', 'batch', 'mixed'].includes(prefs.cookingStyle as string)
-      ? (prefs.cookingStyle as WeekPreferences['cookingStyle'])
-      : null,
     mealCategories: Array.isArray(prefs.mealCategories)
       ? (prefs.mealCategories.filter((c) =>
           ['breakfast', 'lunch', 'dinner', 'snack'].includes(c as string),
@@ -364,14 +388,32 @@ export function hydrateState(saved: unknown): PlannerState {
   }
 
   const groceryOverrides = migrateKeys(savedOverrides);
+
+  // Steps used to be numbered; plans saved then used the ingredient list, i.e. the "pantry" path.
+  const currentStep: StepId =
+    typeof saved.currentStep === 'string' && (ALL_STEP_IDS as string[]).includes(saved.currentStep)
+      ? (saved.currentStep as StepId)
+      : typeof saved.currentStep === 'number'
+        ? (LEGACY_STEP_ORDER[Math.floor(saved.currentStep)] ?? 'setup')
+        : 'setup';
+  const path: PlannerPath | null =
+    saved.path === 'pantry' || saved.path === 'ideas'
+      ? saved.path
+      : typeof saved.currentStep === 'number' && saved.currentStep > 0
+        ? 'pantry'
+        : null;
+  const mealHistory: MealHistoryEntry[] = Array.isArray(saved.mealHistory)
+    ? saved.mealHistory
+        .filter((e): e is Record<string, unknown> => isRecord(e) && typeof e.date === 'string')
+        .map((e) => ({ date: e.date as string, mealIds: stringArray(e.mealIds) }))
+        .slice(0, HISTORY_WEEKS)
+    : [];
   const feedback = isRecord(saved.feedback) ? saved.feedback : {};
 
   return {
     version: STATE_VERSION,
-    currentStep:
-      typeof saved.currentStep === 'number' && saved.currentStep >= 0 && saved.currentStep < STEPS.length
-        ? Math.floor(saved.currentStep)
-        : 0,
+    currentStep,
+    path,
     preferences,
     ingredientStatuses,
     customIngredients,
@@ -388,5 +430,7 @@ export function hydrateState(saved: unknown): PlannerState {
     },
     staples: migrateIds(stringArray(saved.staples)),
     reviewingPantry: saved.reviewingPantry === true,
+    favorites: stringArray(saved.favorites),
+    mealHistory,
   };
 }

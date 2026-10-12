@@ -55,7 +55,7 @@ describe('matchMeal', () => {
 
 describe('rankMeals', () => {
   const base = { ingredients: INGREDIENTS, meals: MEALS };
-  const prefs = { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
+  const prefs = { mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
 
   it('puts meals needing fewer additional ingredients first', () => {
     const ranked = rankMeals({
@@ -97,7 +97,7 @@ describe('preparation time', () => {
       ingredients: INGREDIENTS,
       meals: [quick, slow],
       ingredientStatuses: {},
-      preferences: { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] },
+      preferences: { mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] },
     });
     // Same pantry fit, so alphabetical — the 90-minute meal is not pushed down.
     expect(ranked.map((r) => r.meal.id)).toEqual(['a-slow', 'a-quick']);
@@ -115,7 +115,7 @@ describe('pantry vs shopping list in ranking', () => {
     prepTimeMinutes: 20,
     instructions: [],
   });
-  const prefs = { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
+  const prefs = { mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
 
   it('ranks a meal mostly at home above one that is all on the shopping list', () => {
     const allOnList = meal('all-on-list', ['a', 'b', 'c', 'd', 'e']);
@@ -167,7 +167,7 @@ describe('avoided ingredients', () => {
       ingredients: INGREDIENTS,
       meals: MEALS,
       ingredientStatuses: {},
-      preferences: { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: ['lentils'] },
+      preferences: { mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: ['lentils'] },
     });
     expect(ranked.map((r) => r.meal.id)).not.toContain('lentil-vegetable-soup');
   });

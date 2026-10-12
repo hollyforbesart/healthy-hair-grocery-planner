@@ -5,23 +5,34 @@ import { AVOID_GROUPS } from '../data/avoidGroups';
 import { MEAL_CATEGORIES } from '../data/categories';
 import { findIngredientByName, ingredientName } from '../lib/ingredients';
 import { isAllMeals, toggleMealChoice, type MealChoice } from '../lib/mealSelection';
+import { useStepNav } from '../hooks/useStepNav';
 import { usePlanner } from '../state/PlannerContext';
-import type { CookingStyle } from '../types';
+import type { PlannerPath } from '../types';
 
-const STYLE_OPTIONS: { value: CookingStyle; label: string; hint: string }[] = [
-  { value: 'quick', label: 'Quick & simple', hint: 'Mostly fast meals with little prep' },
-  { value: 'batch', label: 'Batch cooking', hint: 'Cook once, eat a few times' },
-  { value: 'mixed', label: 'A bit of both', hint: 'Some quick meals, some bigger cooks' },
+const PATHS: { value: PlannerPath; title: string; text: string }[] = [
+  {
+    value: 'pantry',
+    title: 'Use what I already have',
+    text: 'Tell us what’s in your kitchen and we’ll suggest meals that use it.',
+  },
+  {
+    value: 'ideas',
+    title: 'Help me find meal ideas',
+    text: 'Browse meals, pick the ones you like, then tick off what you already have.',
+  },
 ];
 
-export function WeekStep() {
+export function SetupStep() {
   const { state, dispatch, allIngredients, lookup } = usePlanner();
   const prefs = state.preferences;
   const [avoidInput, setAvoidInput] = useState('');
   const [avoidMessage, setAvoidMessage] = useState('');
   const avoidSet = new Set(prefs.avoidIngredientIds);
   const update = (patch: Partial<typeof prefs>) => dispatch({ type: 'updatePreferences', patch });
-  const next = () => dispatch({ type: 'goToStep', step: 1 });
+  const { goNext } = useStepNav();
+  const next = () => {
+    if (state.path) goNext?.();
+  };
 
   const chooseMeal = (choice: MealChoice) => update({ mealCategories: toggleMealChoice(prefs.mealCategories, choice) });
 
@@ -51,30 +62,30 @@ export function WeekStep() {
 
   return (
     <section aria-labelledby="step-title">
-      <StepHeader step={1} title="Start with your week">
-        <p>A few quick questions help us suggest meals that fit your week. Every question is optional.</p>
+      <StepHeader title="How would you like to start?">
+        <p>You can switch any time. Both ways end with one grocery list.</p>
       </StepHeader>
 
       <form className="stack" onSubmit={(e) => { e.preventDefault(); next(); }}>
-        <fieldset className="card">
-          <legend>How do you like to cook this week?</legend>
-          <div className="choice-grid">
-            {STYLE_OPTIONS.map((option) => (
-              <label key={option.value} className="choice">
-                <input
-                  type="radio"
-                  name="cookingStyle"
-                  checked={prefs.cookingStyle === option.value}
-                  onChange={() => update({ cookingStyle: option.value })}
-                />
-                <span>
-                  <strong>{option.label}</strong>
-                  <span className="small muted block">{option.hint}</span>
-                </span>
-              </label>
-            ))}
-          </div>
+        <fieldset className="path-picker">
+          <legend className="visually-hidden">Choose how to start</legend>
+          {PATHS.map((option) => (
+            <label key={option.value} className={`path-card${state.path === option.value ? ' is-selected' : ''}`}>
+              <input
+                type="radio"
+                name="path"
+                checked={state.path === option.value}
+                onChange={() => dispatch({ type: 'choosePath', path: option.value })}
+              />
+              <span>
+                <strong className="path-card__title">{option.title}</strong>
+                <span className="path-card__text">{option.text}</span>
+              </span>
+            </label>
+          ))}
         </fieldset>
+
+        <h3 className="setup-subhead">A few optional details</h3>
 
         <fieldset className="card">
           <legend>Which meals are you planning for?</legend>
@@ -221,14 +232,12 @@ export function WeekStep() {
           </div>
         </div>
 
-        <StepFooter
-          onNext={next}
-          extra={
-            <button type="button" className="btn btn--ghost" onClick={next}>
-              Skip for now
-            </button>
-          }
-        />
+        {!state.path && (
+          <p className="small muted setup-hint" role="status">
+            Choose how you’d like to start to continue.
+          </p>
+        )}
+        <StepFooter onNext={state.path ? next : undefined} />
       </form>
     </section>
   );

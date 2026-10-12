@@ -1081,6 +1081,291 @@ textarea:focus-visible {
   line-height: 1.2;
 }
 
+/* ---------- Start step ---------- */
+.path-picker {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .path-picker {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.path-card {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 1.1rem 1.15rem;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+.path-card:hover {
+  border-color: var(--purple);
+}
+.path-card.is-selected {
+  border-color: var(--plum);
+  background: var(--lavender-soft);
+}
+.path-card input {
+  accent-color: var(--plum);
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+.path-card__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+.path-card__text {
+  display: block;
+  color: var(--plum-60);
+}
+.setup-subhead {
+  font-size: 1.15rem;
+  margin-top: 1.75rem !important;
+}
+.setup-hint {
+  margin: 1rem 0 0;
+}
+
+/* ---------- Kitchen step ---------- */
+.kitchen-hint {
+  margin: 0 0 0.75rem;
+}
+.kitchen-sections {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 720px) {
+  .kitchen-sections {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+.kitchen-section h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+.kitchen-added {
+  margin-top: 0.75rem;
+}
+.kitchen-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.1rem 0.15rem 0.1rem 0.1rem;
+  border-radius: 999px;
+  background: var(--plum);
+  color: var(--cream);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.kitchen-chip__name {
+  padding: 0 0.2rem;
+}
+.kitchen-chip__star,
+.kitchen-chip__remove {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.kitchen-chip__star:hover,
+.kitchen-chip__remove:hover {
+  background: rgba(250, 246, 240, 0.18);
+}
+.kitchen-chip__star.is-on {
+  color: var(--sand);
+}
+.kitchen-chip :focus-visible {
+  outline-color: var(--sand);
+}
+.kitchen-picks {
+  margin-top: 0.9rem;
+}
+.kitchen-picks__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--plum-60);
+}
+.kitchen-status {
+  min-height: 1.3em;
+  margin: 0.75rem 0 0;
+}
+
+/* Type-to-add picker */
+.picker {
+  position: relative;
+}
+.picker__list {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  background: var(--white);
+  border: 1.5px solid var(--purple);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  max-height: 18rem;
+  overflow-y: auto;
+}
+.picker__option {
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 40px;
+}
+.picker__option.is-active,
+.picker__option:hover {
+  background: var(--lavender-soft);
+}
+.picker__hint {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--plum-60);
+}
+
+/* ---------- Meal ideas ---------- */
+.path-switch {
+  margin: 0 0 0.75rem;
+}
+.meal-search {
+  margin-bottom: 0.75rem;
+}
+.show-more {
+  text-align: center;
+  margin-top: 1rem;
+}
+.meal-card__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+.fav-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin: -0.4rem -0.4rem 0 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--plum-60);
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+.fav-btn:hover {
+  background: var(--lavender-soft);
+}
+.fav-btn.is-on {
+  color: #a3326b;
+}
+.meal-card__why {
+  margin: -0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--plum-60);
+}
+
+/* ---------- Review step ---------- */
+.review-meals h3,
+.review-check h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+.review-meals__list {
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+}
+.review-meals__list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--lavender-soft);
+}
+.review-meals__list li > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.review-meals__name {
+  font-weight: 700;
+}
+.review-check {
+  margin-top: 1rem;
+}
+.review-group {
+  border: 0;
+  margin: 0.9rem 0 0;
+  padding: 0;
+}
+.review-group legend {
+  float: none;
+  width: auto;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--plum-60);
+  margin-bottom: 0.25rem;
+}
+.review-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.review-item {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--lavender-soft);
+  cursor: pointer;
+}
+.review-item input {
+  accent-color: var(--plum);
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+.review-item__name {
+  display: block;
+  font-weight: 700;
+}
+.review-item.is-have .review-item__name {
+  color: var(--plum-60);
+  text-decoration: line-through;
+}
+.review-item__for {
+  display: block;
+}
+
 /* ---------- Home page ---------- */
 .home {
   padding-top: 1.5rem;

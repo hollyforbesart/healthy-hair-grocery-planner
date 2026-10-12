@@ -8,18 +8,14 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 The site has two pages:
 
-- **`/` (home):** what the planner is, how to use it, how to install it on a phone, and privacy. Returning visitors get **Continue your plan** and **Start a new week**. This is the link to send buyers.
-- **`/planner`:** the five-step planner. It can be linked directly, and it's where the installed app opens.
+- **`/` (home):** what the planner is, how to use it, how to install it on a phone, and privacy. Returning visitors get **Continue your plan** and **Start a new week** (on the home page, or at the bottom of the grocery list):
+- **Kept:** preferences, the avoid list, own ingredients, staples and favorites.
+- **Remembered:** this week's meals go into the history used for rotation.
+- **Cleared:** meals, extras and the grocery list.
+- **Where it opens:** the kitchen, with a "check your kitchen" note, or meal ideas on the second path.
+- **Staples:** they start as already in the kitchen, so the user only removes the ones that ran out. Everything else is cleared to be checked again, since last week's food may have been used up.
 
-The planner's steps:
-
-1. **Start with your week:** cooking style, the meals you're planning, foods the household avoids, and an optional budget and number of people. You can skip every question.
-2. **Choose your ingredients:** foods are grouped into Proteins, Carbohydrates, Vegetables & Fruit, and Fats & Extras, sorted alphabetically, with search (aliases work, so "garbanzo beans" finds Chickpeas). Mark each one **Already have** or **Need to buy**, or add your own. Duplicates are blocked. Foods on the avoid list are greyed out. Tap ☆ to mark a **staple** (something always kept on hand). Staples appear in a "Your staples" group at the top.
-3. **Find meal ideas:** meals that use the most of what's already at home come first. Each card shows what you **Already have** and what you **Need to buy** (items already on your list are marked as such). Optional extras and swaps ("+ Feta", "+ Tofu instead of salmon") sit in a collapsed "Optional extras & swaps" section and add the item to the list when tapped. Preparation steps are kept in the meal data for a future recipes feature but aren't shown in Version 1.
-4. **Grocery list:** combines your "Need to buy" items, whatever your chosen meals need, and any extras you tapped. Duplicates are removed, anything marked "Already have" is left out, and the list is grouped by grocery-store section (Produce, Meat & Seafood, Dairy & Eggs…). You can add, edit, remove and check off items, then **Share**, **Copy** or **Print** the list. Instructions on the page explain how to save or send it.
-5. **Feedback:** an optional rating, "What made this planner helpful?" and "What do you wish this planner could also do?", sent by email through Web3Forms once an access key is configured (see below).
-
-**Start a new week** (home page, or the bottom of the grocery list) keeps preferences, the avoid list, own ingredients and staples. It clears meals, extras and the grocery list, then opens Step 2 with a "check your pantry" note. Staples start as **Already have**, so the user only switches the ones that ran out to **Need to buy**, which puts them on the list. Every other pantry item is cleared to be checked again, since last week's food may have been used up. **Start over** erases everything.
+**Start over** erases everything.
 
 ### Works offline and installs like an app
 

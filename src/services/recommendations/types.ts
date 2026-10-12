@@ -12,6 +12,12 @@ export interface RecommendationRequest {
   ingredients: Ingredient[];
   /** Candidate meal templates. */
   meals: MealTemplate[];
+  /** Meals the user hearted. */
+  favorites?: string[];
+  /** Meals chosen in the last couple of weeks (pushed down unless a favorite). */
+  recentMealIds?: string[];
+  /** Every meal chosen before (new-to-you meals win ties). */
+  previouslyChosenIds?: string[];
 }
 
 export interface MealRecommendation {
@@ -19,6 +25,9 @@ export interface MealRecommendation {
   match: MealMatch;
   /** Short, factual reasons shown on the card (no health claims). */
   reasons: string[];
+  isFavorite: boolean;
+  /** Chosen in the last couple of weeks. */
+  isRecent: boolean;
 }
 
 export interface RecommendationProvider {

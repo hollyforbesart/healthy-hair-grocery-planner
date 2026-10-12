@@ -12,6 +12,7 @@ interface MealCardProps {
   /** Extras (optional ingredients or swaps) the user tapped for this meal. */
   extras: string[];
   onToggle: () => void;
+  onToggleFavorite: () => void;
   onToggleExtra: (ingredientId: string) => void;
 }
 
@@ -32,9 +33,10 @@ export function MealCard({
   selected,
   extras,
   onToggle,
+  onToggleFavorite,
   onToggleExtra,
 }: MealCardProps) {
-  const { meal, match } = recommendation;
+  const { meal, match, reasons, isFavorite } = recommendation;
   const name = (id: string) => ingredientName(lookup, id);
   const headingId = `meal-${meal.id}`;
 
@@ -74,6 +76,17 @@ export function MealCard({
             {tags.length > 0 && <span> · {tags.join(', ')}</span>}
           </p>
         </div>
+        <div className="meal-card__side">
+        <button
+          type="button"
+          className={`fav-btn${isFavorite ? ' is-on' : ''}`}
+          aria-pressed={isFavorite}
+          aria-label={`Favorite: ${meal.name}`}
+          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          onClick={onToggleFavorite}
+        >
+          <span aria-hidden="true">{isFavorite ? '♥' : '♡'}</span>
+        </button>
         <span
           className={`availability ${allAtHome ? 'availability--full' : ''}`}
           aria-label={`${have.length} of ${total} ingredients at home`}
@@ -87,7 +100,10 @@ export function MealCard({
             {have.length}/{total} at home
           </span>
         </span>
+        </div>
       </header>
+
+      {reasons.length > 0 && <p className="meal-card__why">{reasons.join(' · ')}</p>}
 
       {meal.description && <p className="meal-card__desc">{meal.description}</p>}
 

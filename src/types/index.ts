@@ -63,10 +63,17 @@ export type IngredientStatus = 'have' | 'need';
 
 export type IngredientStatusMap = Record<string, IngredientStatus>;
 
-export type CookingStyle = 'quick' | 'batch' | 'mixed';
+/** How the user starts: from what's in their kitchen, or by browsing meals. */
+export type PlannerPath = 'pantry' | 'ideas';
+
+/** Meals chosen in an earlier week, used to avoid repeating suggestions. */
+export interface MealHistoryEntry {
+  /** Local date the week was closed, YYYY-MM-DD. */
+  date: string;
+  mealIds: string[];
+}
 
 export interface WeekPreferences {
-  cookingStyle: CookingStyle | null;
   mealCategories: MealCategory[];
   /** Free text so users can type "$80" or "about 100". */
   budget: string;
