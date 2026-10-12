@@ -7,20 +7,9 @@ import { findIngredientByName, ingredientName } from '../lib/ingredients';
 import { isAllMeals, toggleMealChoice, type MealChoice } from '../lib/mealSelection';
 import { useStepNav } from '../hooks/useStepNav';
 import { usePlanner } from '../state/PlannerContext';
-import type { PlannerPath } from '../types';
+import { Icon } from '../components/Icon';
+import { PATH_OPTIONS } from '../data/paths';
 
-const PATHS: { value: PlannerPath; title: string; text: string }[] = [
-  {
-    value: 'pantry',
-    title: 'Use what I already have',
-    text: 'Tell us what’s in your kitchen and we’ll suggest meals that use it.',
-  },
-  {
-    value: 'ideas',
-    title: 'Help me find meal ideas',
-    text: 'Browse meals, pick the ones you like, then tick off what you already have.',
-  },
-];
 
 export function SetupStep() {
   const { state, dispatch, allIngredients, lookup } = usePlanner();
@@ -63,33 +52,42 @@ export function SetupStep() {
   return (
     <section aria-labelledby="step-title">
       <StepHeader title="How would you like to start?">
-        <p>You can switch any time. Both ways end with one grocery list.</p>
+        <p>Pick one way to start. You can switch any time, and both end with one grocery list.</p>
       </StepHeader>
 
       <form className="stack" onSubmit={(e) => { e.preventDefault(); next(); }}>
         <fieldset className="path-picker">
           <legend className="visually-hidden">Choose how to start</legend>
-          {PATHS.map((option) => (
-            <label key={option.value} className={`path-card${state.path === option.value ? ' is-selected' : ''}`}>
-              <input
-                type="radio"
-                name="path"
-                checked={state.path === option.value}
-                onChange={() => dispatch({ type: 'choosePath', path: option.value })}
-              />
-              <span>
-                <strong className="path-card__title">{option.title}</strong>
-                <span className="path-card__text">{option.text}</span>
-              </span>
-            </label>
+          {PATH_OPTIONS.map((option, index) => (
+            <div key={option.value} className="home-paths__item">
+              {index > 0 && (
+                <span className="home-paths__or" aria-hidden="true">
+                  or
+                </span>
+              )}
+              <label className={`path-card${state.path === option.value ? ' is-selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="path"
+                  checked={state.path === option.value}
+                  onChange={() => dispatch({ type: 'choosePath', path: option.value })}
+                />
+                <span>
+                  <strong className="path-card__title">
+                    <Icon name={option.icon} size={24} className="path-card__icon" /> {option.title}
+                  </strong>
+                  <span className="path-card__text">{option.text}</span>
+                  <span className="path-card__best">{option.bestFor}</span>
+                </span>
+              </label>
+            </div>
           ))}
         </fieldset>
 
         <h3 className="setup-subhead">A few optional details</h3>
 
         <fieldset className="card">
-          <legend>Which meals are you planning for?</legend>
-          <p className="small muted">Select the meals you’d like ideas for.</p>
+          <legend>Which meals would you like ideas for?</legend>
           <div className="choice-grid choice-grid--meals">
             <label className="choice">
               <input type="checkbox" checked={isAllMeals(prefs.mealCategories)} onChange={() => chooseMeal('all')} />

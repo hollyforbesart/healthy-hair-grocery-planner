@@ -270,15 +270,14 @@ export function GroceryListStep() {
       <div className="card new-week no-print">
         <h3>Done shopping?</h3>
         <p className="small">
-          Next week, start fresh: your preferences and staples are kept, and you’ll check your pantry for anything that
-          ran out.
+          When you’re ready for next week, start fresh. Your staples, favorites and preferences are kept.
         </p>
         <button
           type="button"
           className="btn btn--secondary"
           onClick={() => window.confirm(NEW_WEEK_CONFIRM) && dispatch({ type: 'startNewWeek' })}
         >
-          Start a new week
+          Plan a new week
         </button>
       </div>
 

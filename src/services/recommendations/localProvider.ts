@@ -1,10 +1,6 @@
 import { compareMatches, matchMeal } from '../../lib/matching';
 import type { MealRecommendation, RecommendationProvider, RecommendationRequest } from './types';
 
-function plural(n: number, word: string): string {
-  return `${n} ${word}${n === 1 ? '' : 's'}`;
-}
-
 /**
  * Synchronous core, exported for tests. Order:
  * 1. Meals chosen in the last couple of weeks go after the rest (favorites
@@ -33,8 +29,7 @@ export function rankMeals({
       const isFavorite = favoriteSet.has(meal.id);
       const isRecent = recentSet.has(meal.id);
       const reasons: string[] = [];
-      if (match.required.length > 0 && match.haveCount === match.required.length) reasons.push('Everything is already at home');
-      else if (match.haveCount > 0) reasons.push(`Uses ${plural(match.haveCount, 'ingredient')} you already have`);
+      // How much is at home is shown on the card itself ("You have 3 of 4"), so it isn't repeated here.
       if (match.required.some((r) => r.avoided)) reasons.push('Includes a swap for foods you avoid');
       if (isFavorite) reasons.push('One of your favorites');
       else if (isRecent) reasons.push('You had this recently');

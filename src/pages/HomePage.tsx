@@ -1,39 +1,44 @@
 import { useEffect, useRef } from 'react';
+import { Icon } from '../components/Icon';
+import { PATH_OPTIONS } from '../data/paths';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { NEW_WEEK_CONFIRM } from '../lib/confirmations';
 import { hasPlannerProgress } from '../state/plannerReducer';
-import { STEP_LABELS } from '../state/steps';
 import { usePlanner } from '../state/PlannerContext';
+import type { PlannerPath } from '../types';
 
 interface HomePageProps {
   onOpenPlanner: () => void;
 }
 
-const HOW_IT_WORKS = [
-  {
-    title: 'Pick how to start',
-    text: 'Use what you already have in your kitchen, or browse meal ideas. You can switch any time.',
-  },
-  { title: 'Choose your meals', text: 'Search, filter by meal, and save favorites. Meals you’ve had recently move down so ideas stay fresh.' },
-  { title: 'Review', text: 'See your meals together and tick off the ingredients you already have.' },
-  { title: 'Shop with one list', text: 'Get one tidy list, grouped by store section, ready to share to your phone, copy or print.' },
-];
+const PATH_STEPS: Record<PlannerPath, string[]> = {
+  pantry: ['Add the foods you have', 'Get meal ideas that use them', 'Review and get your list'],
+  ideas: ['Browse and pick meals', 'Tick off what you already have', 'Get your list'],
+};
 
 /**
- * Landing page before the planner: what it is, how to use it, and how to
- * install it. Image slots can be added to the hero once brand graphics exist.
+ * Landing page before the planner: the two ways to start, the weekly
+ * routine, how to install it, and privacy. Image slots can be added to the
+ * hero once brand graphics exist.
  */
 export function HomePage({ onOpenPlanner }: HomePageProps) {
   const { state, dispatch } = usePlanner();
   const { canInstall, installed, install } = useInstallPrompt();
   const headingRef = useRef<HTMLHeadingElement>(null);
   const returning = hasPlannerProgress(state);
+  const mealCount = state.selectedMealIds.length;
 
   useEffect(() => {
     headingRef.current?.focus({ preventScroll: true });
   }, []);
 
-  const startNewWeek = () => {
+  const startWith = (path: PlannerPath) => {
+    dispatch({ type: 'choosePath', path });
+    dispatch({ type: 'goToStep', step: 'setup' });
+    onOpenPlanner();
+  };
+
+  const planNewWeek = () => {
     if (window.confirm(NEW_WEEK_CONFIRM)) {
       dispatch({ type: 'startNewWeek' });
       onOpenPlanner();
@@ -42,99 +47,165 @@ export function HomePage({ onOpenPlanner }: HomePageProps) {
 
   return (
     <div className="home">
-      <section className="home-hero" aria-labelledby="home-title">
-        <h2 id="home-title" ref={headingRef} tabIndex={-1}>
-          Plan your groceries around what’s already in your kitchen.
-        </h2>
-        <p className="home-hero__lead">
-          Pick meal ideas that use the food you have, then get one simple shopping list for the week.
-        </p>
-        <div className="button-row">
-          <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
-            {returning ? `Continue your plan (${STEP_LABELS[state.currentStep]})` : 'Start planning'} →
-          </button>
-          {returning && (
-            <button type="button" className="btn btn--secondary" onClick={startNewWeek}>
-              Start a new week
-            </button>
-          )}
-        </div>
-      </section>
+      {returning ? (
+        <section className="home-hero" aria-labelledby="home-title">
+          <h2 id="home-title" ref={headingRef} tabIndex={-1}>
+            Welcome back
+          </h2>
+          <p className="home-hero__lead">
+            {mealCount > 0
+              ? `You have a plan in progress with ${mealCount} meal${mealCount === 1 ? '' : 's'}.`
+              : 'You have a plan in progress.'}
+          </p>
+          <div className="home-choices">
+            <div>
+              <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
+                Continue where you left off →
+              </button>
+            </div>
+            <div>
+              <button type="button" className="btn btn--secondary" onClick={planNewWeek}>
+                Plan a new week
+              </button>
+              <p className="small muted">Clears this week’s meals and list. Keeps your staples, favorites and preferences.</p>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="home-hero" aria-labelledby="home-title">
+          <h2 id="home-title" ref={headingRef} tabIndex={-1}>
+            Plan your meals and get one simple grocery list.
+          </h2>
+          <p className="home-hero__lead">Choose how you’d like to start. You can switch any time.</p>
+          <div className="home-paths">
+            {PATH_OPTIONS.map((option, index) => (
+              <div key={option.value} className="home-paths__item">
+                {index > 0 && (
+                  <span className="home-paths__or" aria-hidden="true">
+                    or
+                  </span>
+                )}
+                <button type="button" className="path-option" onClick={() => startWith(option.value)}>
+                  <Icon name={option.icon} size={32} className="path-option__icon" />
+                  <span className="path-option__title">{option.title}</span>
+                  <span className="path-option__text">{option.text}</span>
+                  <span className="path-option__best">{option.bestFor}</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="home-section" aria-labelledby="how-title">
-        <h2 id="how-title">How it works</h2>
-        <ol className="how-steps">
-          {HOW_IT_WORKS.map((step, i) => (
-            <li key={step.title} className="card">
-              <span className="how-steps__num" aria-hidden="true">
-                {i + 1}
-              </span>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </div>
-            </li>
+        <h2 id="how-title">Two ways to plan</h2>
+        <div className="how-paths">
+          {PATH_OPTIONS.map((option) => (
+            <div key={option.value} className="card how-path">
+              <h3>
+                <Icon name={option.icon} size={22} /> {option.title}
+              </h3>
+              <ol className="how-path__steps">
+                {PATH_STEPS[option.value].map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+            </div>
           ))}
-        </ol>
+        </div>
+        <p className="small muted how-paths__note">
+          Both end with one grocery list, grouped by store section and ready to share, copy or print.
+        </p>
         <div className="card home-tip">
           <h3>Each week</h3>
           <p>
-            Come back and tap <strong>Start a new week</strong>. Your preferences and staples are kept, your meals and
-            list are cleared, and you’ll check your pantry first — so anything you’ve used up goes back on the list.
+            Come back and tap <strong>Plan a new week</strong>. Your staples, favorites and preferences are kept, and
+            meals you’ve had recently move down so ideas stay fresh.
           </p>
         </div>
       </section>
 
       <section className="home-section" aria-labelledby="install-title">
         <h2 id="install-title">Keep it on your phone</h2>
+        <ul className="perks">
+          <li>
+            <Icon name="phone" size={22} /> Opens like an app
+          </li>
+          <li>
+            <Icon name="offline" size={22} /> Works with no signal
+          </li>
+          <li>
+            <Icon name="check" size={22} /> No account needed
+          </li>
+        </ul>
         {installed ? (
-          <p>You’re using the installed app. It works offline, so your list is there even with no signal in the store.</p>
+          <p>You’re using the installed app — you’re all set.</p>
         ) : (
           <>
-            <p>
-              Add the planner to your home screen and it opens like an app. After your first visit it works offline,
-              so your list is there even with no signal in the store.
-            </p>
             {canInstall && (
               <div className="button-row">
-                <button type="button" className="btn btn--secondary" onClick={() => void install()}>
-                  Install the app
+                <button type="button" className="btn btn--primary" onClick={() => void install()}>
+                  <Icon name="install" size={20} /> Install the app
                 </button>
               </div>
             )}
             <div className="install-grid">
-              <div className="card">
+              <div className="card install-card">
                 <h3>iPhone or iPad</h3>
+                <p className="small muted">In Safari</p>
                 <ol>
-                  <li>Open this page in <strong>Safari</strong>.</li>
                   <li>
-                    Tap the <strong>Share</strong> button (the square with an arrow).
+                    <span className="install-icon">
+                      <Icon name="share" size={20} />
+                    </span>
+                    <span>
+                      Tap <strong>Share</strong>
+                    </span>
                   </li>
                   <li>
-                    Choose <strong>Add to Home Screen</strong>, then <strong>Add</strong>.
+                    <span className="install-icon">
+                      <Icon name="plusSquare" size={20} />
+                    </span>
+                    <span>
+                      Tap <strong>Add to Home Screen</strong>
+                    </span>
                   </li>
                 </ol>
               </div>
-              <div className="card">
+              <div className="card install-card">
                 <h3>Android</h3>
+                <p className="small muted">In Chrome</p>
                 <ol>
-                  <li>Open this page in <strong>Chrome</strong>.</li>
                   <li>
-                    Tap the <strong>⋮</strong> menu.
+                    <span className="install-icon">
+                      <Icon name="dots" size={20} />
+                    </span>
+                    <span>
+                      Tap the <strong>menu</strong>
+                    </span>
                   </li>
                   <li>
-                    Choose <strong>Install app</strong> or <strong>Add to Home screen</strong>.
+                    <span className="install-icon">
+                      <Icon name="install" size={20} />
+                    </span>
+                    <span>
+                      Tap <strong>Install app</strong>
+                    </span>
                   </li>
                 </ol>
               </div>
-              <div className="card">
+              <div className="card install-card">
                 <h3>Computer</h3>
+                <p className="small muted">In Chrome or Edge</p>
                 <ol>
                   <li>
-                    In <strong>Chrome</strong> or <strong>Edge</strong>, click the install icon at the right of the
-                    address bar.
+                    <span className="install-icon">
+                      <Icon name="install" size={20} />
+                    </span>
+                    <span>
+                      Click <strong>Install</strong> in the address bar
+                    </span>
                   </li>
-                  <li>Or simply bookmark this page.</li>
                 </ol>
               </div>
             </div>
@@ -145,17 +216,19 @@ export function HomePage({ onOpenPlanner }: HomePageProps) {
       <section className="home-section" aria-labelledby="privacy-title">
         <h2 id="privacy-title">Your plan stays on your device</h2>
         <p>
-          There’s no account to create. Your plan is saved in this browser on this device, so it won’t appear on your
-          other devices, and clearing your browser data erases it. Use <strong>Share list</strong> to send your list to
-          your phone or someone you shop with.
+          Your plan is saved in this browser on this device, so it won’t appear on your other devices, and clearing your
+          browser data erases it. Use <strong>Share list</strong> to send your list to your phone or someone you shop
+          with.
         </p>
       </section>
 
-      <div className="home-cta">
-        <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
-          {returning ? 'Continue your plan' : 'Start planning'} →
-        </button>
-      </div>
+      {returning && (
+        <div className="home-cta">
+          <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
+            Continue where you left off →
+          </button>
+        </div>
+      )}
     </div>
   );
 }

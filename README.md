@@ -8,7 +8,7 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 The site has two pages:
 
-- **`/` (home):** what the planner is, how to use it, how to install it on a phone, and privacy. Returning visitors get **Continue your plan** and **Start a new week** (on the home page, or at the bottom of the grocery list):
+- **`/` (home):** what the planner is, how to use it, how to install it on a phone, and privacy. Returning visitors get **Continue your plan** and **Plan a new week** (on the home page, or at the bottom of the grocery list):
 - **Kept:** preferences, the avoid list, own ingredients, staples and favorites.
 - **Remembered:** this week's meals go into the history used for rotation.
 - **Cleared:** meals, extras and the grocery list.

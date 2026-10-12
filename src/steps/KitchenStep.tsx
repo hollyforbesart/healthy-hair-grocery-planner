@@ -151,7 +151,7 @@ export function KitchenStep() {
       <StepFooter
         onBack={goBack}
         onNext={goNext}
-        nextLabel={total > 0 ? `Find meal ideas (${total} in your kitchen)` : 'Find meal ideas'}
+        nextLabel={total > 0 ? `See meal ideas using your ${total} food${total === 1 ? '' : 's'}` : 'See meal ideas'}
       />
     </section>
   );

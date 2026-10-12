@@ -87,18 +87,8 @@ export function MealCard({
         >
           <span aria-hidden="true">{isFavorite ? '♥' : '♡'}</span>
         </button>
-        <span
-          className={`availability ${allAtHome ? 'availability--full' : ''}`}
-          aria-label={`${have.length} of ${total} ingredients at home`}
-        >
-          <span className="availability__dots" aria-hidden="true">
-            {match.required.map((r, i) => (
-              <span key={i} className={r.status === 'have' || r.status === 'have-substitute' ? 'is-on' : ''} />
-            ))}
-          </span>
-          <span aria-hidden="true">
-            {have.length}/{total} at home
-          </span>
+        <span className={`have-badge${allAtHome ? ' is-full' : have.length > 0 ? ' is-some' : ''}`}>
+          {allAtHome ? `You have all ${total}` : have.length > 0 ? `You have ${have.length} of ${total}` : `${total} ingredients`}
         </span>
         </div>
       </header>
