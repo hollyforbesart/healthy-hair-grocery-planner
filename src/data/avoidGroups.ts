@@ -1,5 +1,5 @@
 /**
- * Quick-pick groups for "Anything you're avoiding?" in Step 1.
+ * Quick-pick groups for "Foods to leave out" on the meal ideas page.
  * Each group simply expands to catalog ingredient IDs — keep in sync when
  * the ingredient catalog changes. These are convenience shortcuts, not
  * allergy guarantees; the UI reminds people to check labels.

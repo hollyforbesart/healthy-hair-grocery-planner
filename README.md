@@ -8,32 +8,33 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 The site has these pages:
 
-- **`/` (home):** what the planner is, the two ways to start, how to install it on a phone, and privacy. Everyone sees the two ways to start; returning visitors also get a "Welcome back" bar with **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
+- **`/` (home):** what the planner is, the two ways to start, the weekly routine, the nutrient guide, privacy and how to install it on a phone. Everyone sees the two ways to start; returning visitors also get a "Welcome back" bar with **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
 - **`/planner`:** the planner itself. It can be linked directly.
 - **`/about`:** "Why these meals?" (Holly's note) plus what's included and what's not included yet.
 - **`/nutrients`:** *Food for Your Follicles*, the ten-nutrient guide. Its text is in `src/data/nutrients.ts` and its icons are in `public/nutrients/`. Keep the wording in sync with the guide.
 
 The footer links to all of these.
 
-The planner starts by asking how the user wants to begin. Both paths share the same meal library and grocery list, and the user can switch at any time:
+The two path cards on the home page open the planner straight at the first step of that path. (Someone who opens `/planner` directly before choosing gets the same two choices.) Both paths share the same meal library and grocery list, and the user can switch at any time:
 
-- **Start with what I have:** Start → Your kitchen → Meal ideas → Review → Grocery list → Feedback
-- **Browse meal ideas:** Start → Meal ideas → Review → Grocery list → Feedback
+- **Start with what I have:** Your kitchen → Meal ideas → Review → Grocery list
+- **Browse meal ideas:** Meal ideas → Review → Grocery list
 
-1. **Start:** pick a path, plus the optional details: which meal types, foods to avoid (quick-pick groups or specific ingredients), budget and number of people.
-2. **Your kitchen** (first path only): one section per food group (Proteins, Carbohydrates, Vegetables & Fruit, Fats & Extras).
-   - People tap common foods or type to get suggestions from the catalog. Other names work, so "garbanzo" finds Chickpeas.
+1. **Your kitchen** (first path only): one search box for every food, then everyday groups: Fruits & vegetables, Proteins, Dairy & eggs, Grains, bread & pasta, Pantry & extras (plus "Your own items").
+   - People tap common foods or search. Exact matches come first, and other names work, so "garbanzo" finds Chickpeas.
    - Adding something means "I have this". Anything not in the catalog can be added as the user's own item.
    - ☆ marks a staple, which is added automatically each new week.
-3. **Meal ideas:** search by meal or ingredient, filter by meal type or ♥ favorites, and load 20 at a time.
-   - Ranking is pantry fit: fewest ingredients not already at home. Meals chosen in the last 14 days move down unless they're favorites, and never-chosen meals win ties.
-   - Each card shows how many of its ingredients you have ("You have 3 of 4 ingredients"), plus **Already have** and **Need to buy**. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Optional extras are in a collapsed section and only go on the list when tapped.
-4. **Review:** the chosen meals (removable), then every ingredient they need, once each and grouped by store section. People tick off what they already have; anything left unticked goes on the list.
-5. **Grocery list:** grouped by store section. It shows what to buy, not how much. Items can be added, edited, removed and checked off, and the list can be shared, copied or printed.
-6. **Feedback:** an optional rating, "What made this planner helpful?" and "What do you wish this planner could also do?", sent through Web3Forms (see below).
+2. **Meal ideas:** search by meal or ingredient, pick meal types (remembered for next time) or ♥ favorites.
+   - With several meal types showing, ideas come in one section per type (Breakfast, Lunch, Dinner, Snack), four at a time with **See all**. A single type, a search or favorites shows one list, 20 at a time.
+   - **Foods to leave out** is a collapsible panel on this page (see Avoided foods below).
+   - Ranking is pantry fit: the smallest *share* of ingredients not already at home, so a 5-ingredient dinner with 1 to buy beats a 2-ingredient snack with 1 to buy. Meals chosen in the last 14 days move down unless they're favorites, never-chosen meals win ties, and otherwise the library's own order is kept. With nothing at home, meals appear in library order.
+   - Each card shows how many of its ingredients you have ("You have 3 of 4 ingredients"), plus **Already have** and **Need to buy**; when nothing is at home it shows a plain **Ingredients** list. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Optional extras are in a collapsed section and only go on the list when tapped.
+   - Once a meal is picked, a bar at the bottom shows "N selected · Review →".
+3. **Review:** the chosen meals (removable), then every ingredient they need, once each and grouped by store section. People tick off what they already have; anything left unticked goes on the list.
+4. **Grocery list** (the finish line): grouped by store section. It shows what to buy, not how much. Items can be added, edited, removed and checked off, and the list can be shared, copied or printed. A short tip explains adding the planner to the phone's home screen. Below the list is an optional feedback card (a rating, "What made this planner helpful?" and "What do you wish this planner could also do?"), sent through Web3Forms (see below).
 
 **Plan a new week** (on the home page, or at the bottom of the grocery list):
-- **Kept:** preferences, the avoid list, own ingredients, staples and favorites.
+- **Kept:** meal types, foods to leave out, own ingredients, staples and favorites.
 - **Remembered:** this week's meals go into the history used for rotation.
 - **Cleared:** meals, extras and the grocery list.
 - **Where it opens:** the kitchen, with a "check your kitchen" note, or meal ideas on the second path.
@@ -84,7 +85,8 @@ The content lives in three JSON files in `src/data/library/`. Edit those, not th
 - **`ingredients.json`:** the ingredient catalog. Each entry has these fields:
   - `id`: permanent, used by meals and saved plans. Never rename an existing `id`; change the `name` or add `aliases` instead.
   - `name`
-  - `category`: the food group for Step 2 (`proteins`, `carbohydrates`, `produce` or `fats-extras`).
+  - `category`: the nutrition food group (`proteins`, `carbohydrates`, `produce` or `fats-extras`).
+  - `kitchenGroup`: where it appears on the Your kitchen page (`produce`, `proteins`, `dairy-eggs`, `grains` or `pantry`). These are everyday shopper groups, so milk sits in Dairy & eggs and canned beans in Proteins, whatever their nutrition group.
   - `storeSection`: the grocery-list section.
   - `aliases`: optional other names people search for.
   
@@ -117,11 +119,11 @@ Each required ingredient lands in exactly one group:
 - **Already on shopping list:** it's marked "Need to buy".
 - **Need to buy:** anything else. This goes on the list when the meal is chosen.
 
-Ranking puts the meals with the fewest ingredients *not already at home* first. That counts Need to buy plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to fewer new items to buy, then more owned ingredients. Preparation time is not used: the library has no reviewed times, so none are shown, asked about or used for ranking.
+Ranking puts the meals with the smallest share of ingredients *not already at home* first. That counts Need to buy plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to a smaller share of new items to buy, then meals never chosen before, then library order. Preparation time is not used: the library has no reviewed times, so none are shown, asked about or used for ranking.
 
 **Optional ingredients** are never counted as missing. They only go on the list when the user taps their "+" chip on a meal card. Tapping an extra on a meal that isn't in the plan yet adds the meal too, and removing the meal removes its extras.
 
-**Avoided foods** (Step 1) are for things *nobody* in the household eats. A meal uses the first acceptable substitute and labels it ("Chicken breast (instead of salmon)"). If no substitute exists, the meal is hidden and the page says how many were hidden. When only *some* people avoid a food, users tap a swap chip on the meal ("+ Tofu instead of salmon") to buy an alternative just for them. Quick-pick groups (Fish & seafood, Dairy and so on) are defined in `src/data/avoidGroups.ts`. Keep them in sync with the ingredient catalog.
+**Avoided foods** ("Foods to leave out" on the meal ideas page) are for things *nobody* in the household eats. A meal uses the first acceptable substitute and labels it ("Chicken breast (instead of salmon)"). If no substitute exists, the meal is hidden and the page says how many were hidden. When only *some* people avoid a food, users tap a swap chip on the meal ("+ Tofu instead of salmon") to buy an alternative just for them. Quick-pick groups (Fish & seafood, Dairy and so on) are defined in `src/data/avoidGroups.ts`. Keep them in sync with the ingredient catalog.
 
 ### Adding an AI recommendation service later
 

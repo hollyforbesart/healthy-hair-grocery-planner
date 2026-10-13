@@ -21,6 +21,24 @@ describe('hydrateState', () => {
     expect(state.ingredientStatuses).toEqual({ eggs: 'have' });
     expect(state.selectedMealIds).toEqual(['berry-overnight-oats']);
   });
+
+  it('moves plans saved on the old Start and Feedback screens to the right step', () => {
+    expect(hydrateState({ version: 1, currentStep: 'setup', path: 'ideas' }).currentStep).toBe('meals');
+    expect(hydrateState({ version: 1, currentStep: 'setup', path: 'pantry' }).currentStep).toBe('kitchen');
+    expect(hydrateState({ version: 1, currentStep: 'feedback', path: 'ideas' }).currentStep).toBe('list');
+    expect(hydrateState({ version: 1, currentStep: 4 }).currentStep).toBe('list');
+    // The kitchen isn't part of the meal-ideas path.
+    expect(hydrateState({ version: 1, currentStep: 'kitchen', path: 'ideas' }).currentStep).toBe('meals');
+  });
+});
+
+describe('choosing a path', () => {
+  it('starts at the first step of the path, or stays on a step both paths share', () => {
+    const ideas = plannerReducer(createInitialState(), { type: 'choosePath', path: 'ideas' });
+    expect(ideas.currentStep).toBe('meals');
+    expect(plannerReducer(createInitialState(), { type: 'choosePath', path: 'pantry' }).currentStep).toBe('kitchen');
+    expect(plannerReducer(ideas, { type: 'choosePath', path: 'pantry' }).currentStep).toBe('meals');
+  });
 });
 
 describe('plannerReducer', () => {
@@ -47,8 +65,9 @@ describe('plannerReducer', () => {
   });
 
   it('loads saves from before avoid lists and extras existed', () => {
-    const state = hydrateState({ version: 1, preferences: { budget: '$50' } });
-    expect(state.preferences).toMatchObject({ budget: '$50', avoidIngredientIds: [] });
+    const state = hydrateState({ version: 1, preferences: { budget: '$50', householdSize: 2 } });
+    // Budget and household size were removed; old saves simply drop them.
+    expect(state.preferences).toEqual({ mealCategories: [], avoidIngredientIds: [] });
     expect(state.mealExtras).toEqual({});
   });
 
@@ -80,7 +99,7 @@ describe('plannerReducer', () => {
 
   it('starting a new week keeps preferences and staples, clears the rest of the plan', () => {
     let state = createInitialState();
-    state = plannerReducer(state, { type: 'updatePreferences', patch: { budget: '$80', avoidIngredientIds: ['salmon'] } });
+    state = plannerReducer(state, { type: 'updatePreferences', patch: { mealCategories: ['dinner'], avoidIngredientIds: ['salmon'] } });
     state = plannerReducer(state, { type: 'toggleStaple', ingredientId: 'olive-oil' });
     state = plannerReducer(state, { type: 'toggleStaple', ingredientId: 'eggs' });
     state = plannerReducer(state, { type: 'setIngredientStatus', ingredientId: 'eggs', status: 'need' }); // ran out
@@ -94,7 +113,7 @@ describe('plannerReducer', () => {
     expect(state.currentStep).toBe('kitchen');
     expect(state.mealHistory).toEqual([{ date: '2026-10-12', mealIds: ['chickpea-quinoa-bowl'] }]);
     expect(state.reviewingPantry).toBe(true);
-    expect(state.preferences).toMatchObject({ budget: '$80', avoidIngredientIds: ['salmon'] });
+    expect(state.preferences).toMatchObject({ mealCategories: ['dinner'], avoidIngredientIds: ['salmon'] });
     expect(state.staples).toEqual(['olive-oil', 'eggs']);
     // Staples start as "Already have" again; last week's other pantry items need re-checking.
     expect(state.ingredientStatuses).toEqual({ 'olive-oil': 'have', eggs: 'have' });

@@ -4,10 +4,12 @@ import { useStepNav } from '../hooks/useStepNav';
 interface StepHeaderProps {
   title: string;
   children?: ReactNode;
+  /** Hide the "Step N" line (e.g. before a path is chosen). */
+  hideNumber?: boolean;
 }
 
 /** Step title that receives focus when the step changes, for keyboard and screen-reader users. */
-export function StepHeader({ title, children }: StepHeaderProps) {
+export function StepHeader({ title, children, hideNumber = false }: StepHeaderProps) {
   const ref = useRef<HTMLHeadingElement>(null);
   const { number } = useStepNav();
   useEffect(() => {
@@ -15,7 +17,7 @@ export function StepHeader({ title, children }: StepHeaderProps) {
   }, []);
   return (
     <header className="step-header">
-      <p className="step-header__eyebrow">Step {number}</p>
+      {!hideNumber && <p className="step-header__eyebrow">Step {number}</p>}
       <h2 id="step-title" ref={ref} tabIndex={-1}>
         {title}
       </h2>

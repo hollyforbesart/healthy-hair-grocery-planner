@@ -3,30 +3,35 @@
     "id": "almond-butter",
     "name": "Almond butter",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds"
   },
   {
     "id": "almonds",
     "name": "Almonds",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds"
   },
   {
     "id": "apple",
     "name": "Apple",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "asparagus",
     "name": "Asparagus",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "avocado",
     "name": "Avocado",
     "category": "fats-extras",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "avocados"
@@ -36,12 +41,14 @@
     "id": "balsamic-glaze",
     "name": "Balsamic glaze",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "banana",
     "name": "Banana",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "bananas"
@@ -51,24 +58,28 @@
     "id": "basil-pesto",
     "name": "Basil pesto",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "bbq-sauce",
     "name": "BBQ sauce",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "beef-strips",
     "name": "Beef strips",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "bell-peppers",
     "name": "Bell peppers",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "sweet peppers",
@@ -80,12 +91,14 @@
     "id": "black-beans",
     "name": "Black beans",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred"
   },
   {
     "id": "black-eyed-peas",
     "name": "Black eyed peas",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred",
     "aliases": [
       "black-eyed peas"
@@ -95,6 +108,7 @@
     "id": "blueberries",
     "name": "Blueberries",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "blueberry"
@@ -104,42 +118,49 @@
     "id": "breadcrumbs",
     "name": "Breadcrumbs",
     "category": "fats-extras",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "broccoli",
     "name": "Broccoli",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "broth",
     "name": "Broth",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "canned-jarred"
   },
   {
     "id": "brussels-sprouts",
     "name": "Brussels sprouts",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "burger-buns",
     "name": "Burger buns",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "cabbage",
     "name": "Cabbage",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "canned-salmon",
     "name": "Canned salmon",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred",
     "aliases": [
       "tinned salmon"
@@ -149,12 +170,14 @@
     "id": "canned-tomatoes",
     "name": "Canned tomatoes",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "canned-jarred"
   },
   {
     "id": "canned-tuna",
     "name": "Canned tuna",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred",
     "aliases": [
       "tuna in a can",
@@ -165,12 +188,14 @@
     "id": "caribbean-green-seasoning",
     "name": "Caribbean green seasoning",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "carrots",
     "name": "Carrots",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "carrot"
@@ -180,24 +205,28 @@
     "id": "cashews",
     "name": "Cashews",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds"
   },
   {
     "id": "cauliflower",
     "name": "Cauliflower",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "cheddar-cheese",
     "name": "Cheddar cheese",
     "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs"
   },
   {
     "id": "cherry-tomatoes",
     "name": "Cherry tomatoes",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "grape tomatoes"
@@ -207,6 +236,7 @@
     "id": "chia-seeds",
     "name": "Chia seeds",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds",
     "aliases": [
       "chia"
@@ -216,6 +246,7 @@
     "id": "chicken-breast",
     "name": "Chicken breast",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood",
     "aliases": [
       "boneless chicken breast"
@@ -225,18 +256,21 @@
     "id": "chicken-legs",
     "name": "Chicken legs",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "chicken-thighs",
     "name": "Chicken thighs",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "chickpeas",
     "name": "Chickpeas",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred",
     "aliases": [
       "garbanzo beans",
@@ -247,84 +281,98 @@
     "id": "cinnamon",
     "name": "Cinnamon",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "cocoa-powder",
     "name": "Cocoa powder",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "baking-pantry"
   },
   {
     "id": "coconut-flakes",
     "name": "Coconut flakes",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "baking-pantry"
   },
   {
     "id": "coconut-milk",
     "name": "Coconut milk",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "canned-jarred"
   },
   {
     "id": "corn",
     "name": "Corn",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "corn-tortillas",
     "name": "Corn tortillas",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "cottage-cheese",
     "name": "Cottage cheese",
     "category": "proteins",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs"
   },
   {
     "id": "couscous",
     "name": "Couscous",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "cucumber",
     "name": "Cucumber",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "curry-powder",
     "name": "Curry powder",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "dark-chocolate",
     "name": "Dark chocolate",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "baking-pantry"
   },
   {
     "id": "dark-chocolate-chips",
     "name": "Dark chocolate chips",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "baking-pantry"
   },
   {
     "id": "edamame",
     "name": "Edamame",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "frozen"
   },
   {
     "id": "eggs",
     "name": "Eggs",
     "category": "proteins",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs",
     "aliases": [
       "egg"
@@ -334,6 +382,7 @@
     "id": "feta-cheese",
     "name": "Feta cheese",
     "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs",
     "aliases": [
       "feta"
@@ -343,36 +392,42 @@
     "id": "fresh-basil",
     "name": "Fresh basil",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "garlic",
     "name": "Garlic",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "ginger",
     "name": "Ginger",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "granola",
     "name": "Granola",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "grapes",
     "name": "Grapes",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "greek-yogurt",
     "name": "Greek yogurt",
     "category": "proteins",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs",
     "aliases": [
       "greek yoghurt",
@@ -384,12 +439,14 @@
     "id": "green-beans",
     "name": "Green beans",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "ground-beef",
     "name": "Ground beef",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood",
     "aliases": [
       "beef mince",
@@ -401,6 +458,7 @@
     "id": "ground-flaxseed",
     "name": "Ground flaxseed",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds",
     "aliases": [
       "ground linseed",
@@ -413,6 +471,7 @@
     "id": "ground-turkey",
     "name": "Ground turkey",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood",
     "aliases": [
       "turkey mince"
@@ -422,12 +481,14 @@
     "id": "honey",
     "name": "Honey",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "baking-pantry"
   },
   {
     "id": "hummus",
     "name": "Hummus",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "refrigerated-deli",
     "aliases": [
       "houmous"
@@ -437,36 +498,42 @@
     "id": "jerk-seasoning",
     "name": "Jerk seasoning",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "jumbo-pasta-shells",
     "name": "Jumbo pasta shells",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "kale",
     "name": "Kale",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "kidney-beans",
     "name": "Kidney beans",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred"
   },
   {
     "id": "kiwi",
     "name": "Kiwi",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "lemon",
     "name": "Lemon",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "lemons"
@@ -476,6 +543,7 @@
     "id": "lentils",
     "name": "Lentils",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred",
     "aliases": [
       "red lentils",
@@ -486,48 +554,56 @@
     "id": "lettuce",
     "name": "Lettuce",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "lime",
     "name": "Lime",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "macaroni",
     "name": "Macaroni",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "mandarin-oranges",
     "name": "Mandarin oranges",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "mango",
     "name": "Mango",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "maple-syrup",
     "name": "Maple syrup",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "baking-pantry"
   },
   {
     "id": "milk",
     "name": "Milk",
     "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs"
   },
   {
     "id": "mixed-berries",
     "name": "Mixed berries",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "frozen",
     "aliases": [
       "berries"
@@ -537,30 +613,35 @@
     "id": "mixed-greens",
     "name": "Mixed greens",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "mozzarella-cheese",
     "name": "Mozzarella cheese",
     "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs"
   },
   {
     "id": "mushrooms",
     "name": "Mushrooms",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "noodles",
     "name": "Noodles",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "oats",
     "name": "Rolled oats",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta",
     "aliases": [
       "old fashioned oats",
@@ -572,6 +653,7 @@
     "id": "olive-oil",
     "name": "Olive oil",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments",
     "aliases": [
       "extra virgin olive oil",
@@ -582,6 +664,7 @@
     "id": "onions",
     "name": "Onions",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "onion",
@@ -592,36 +675,42 @@
     "id": "orange",
     "name": "Orange",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "parmesan-cheese",
     "name": "Parmesan cheese",
     "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs"
   },
   {
     "id": "pasta",
     "name": "Pasta",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "peanut-butter",
     "name": "Peanut butter",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds"
   },
   {
     "id": "penne-pasta",
     "name": "Penne pasta",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "pickles",
     "name": "Pickles",
     "category": "produce",
+    "kitchenGroup": "pantry",
     "storeSection": "canned-jarred",
     "aliases": [
       "dill pickles"
@@ -631,18 +720,21 @@
     "id": "pineapple",
     "name": "Pineapple",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "pita-bread",
     "name": "Pita bread",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "potatoes",
     "name": "Potatoes",
     "category": "carbohydrates",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "potato"
@@ -652,6 +744,7 @@
     "id": "protein-powder",
     "name": "Protein powder",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "health-supplements",
     "aliases": [
       "protein supplement"
@@ -661,12 +754,14 @@
     "id": "protein-waffle-mix",
     "name": "Protein waffle mix",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "pumpkin-seeds",
     "name": "Pumpkin seeds",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds",
     "aliases": [
       "pepitas"
@@ -676,24 +771,28 @@
     "id": "quinoa",
     "name": "Quinoa",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "raisins",
     "name": "Raisins",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "baking-pantry"
   },
   {
     "id": "raspberries",
     "name": "Raspberries",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce"
   },
   {
     "id": "rice",
     "name": "Rice",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta",
     "aliases": [
       "white rice",
@@ -704,18 +803,21 @@
     "id": "rice-cakes",
     "name": "Rice cakes",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "baking-pantry"
   },
   {
     "id": "ricotta-cheese",
     "name": "Ricotta cheese",
     "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs"
   },
   {
     "id": "salmon",
     "name": "Salmon",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood",
     "aliases": [
       "salmon fillet"
@@ -725,30 +827,35 @@
     "id": "salsa",
     "name": "Salsa",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "sardines",
     "name": "Sardines",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred"
   },
   {
     "id": "sesame-seeds",
     "name": "Sesame seeds",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds"
   },
   {
     "id": "shredded-cheese",
     "name": "Shredded cheese",
     "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "dairy-eggs"
   },
   {
     "id": "shrimp",
     "name": "Shrimp",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood",
     "aliases": [
       "prawns"
@@ -758,18 +865,21 @@
     "id": "sliced-turkey-breast",
     "name": "Sliced turkey breast",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "smoked-salmon",
     "name": "Smoked salmon",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "refrigerated-deli"
   },
   {
     "id": "soy-sauce",
     "name": "Soy sauce",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments",
     "aliases": [
       "tamari"
@@ -779,6 +889,7 @@
     "id": "spinach",
     "name": "Spinach",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "baby spinach"
@@ -788,6 +899,7 @@
     "id": "strawberries",
     "name": "Strawberries",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "strawberry"
@@ -797,6 +909,7 @@
     "id": "sweet-potatoes",
     "name": "Sweet potatoes",
     "category": "carbohydrates",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "sweet potato",
@@ -807,12 +920,14 @@
     "id": "sweet-thai-chili-sauce",
     "name": "Sweet Thai chili sauce",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments"
   },
   {
     "id": "tahini",
     "name": "Tahini",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "oils-sauces-condiments",
     "aliases": [
       "sesame paste"
@@ -822,12 +937,14 @@
     "id": "tempeh",
     "name": "Tempeh",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "refrigerated-deli"
   },
   {
     "id": "tofu",
     "name": "Tofu",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "refrigerated-deli",
     "aliases": [
       "bean curd"
@@ -837,12 +954,14 @@
     "id": "tomato-sauce",
     "name": "Tomato sauce",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "canned-jarred"
   },
   {
     "id": "tomatoes",
     "name": "Tomatoes",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "tomato"
@@ -852,12 +971,14 @@
     "id": "trout",
     "name": "Trout",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "tzatziki",
     "name": "Tzatziki",
     "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
     "storeSection": "refrigerated-deli",
     "aliases": [
       "tzatziki sauce",
@@ -868,30 +989,35 @@
     "id": "walnuts",
     "name": "Walnuts",
     "category": "fats-extras",
+    "kitchenGroup": "pantry",
     "storeSection": "nuts-seeds"
   },
   {
     "id": "white-beans",
     "name": "White beans",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "canned-jarred"
   },
   {
     "id": "white-fish",
     "name": "White fish",
     "category": "proteins",
+    "kitchenGroup": "proteins",
     "storeSection": "meat-seafood"
   },
   {
     "id": "whole-grain-crackers",
     "name": "Whole grain crackers",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta"
   },
   {
     "id": "whole-grain-wraps",
     "name": "Whole wheat tortillas",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta",
     "aliases": [
       "whole-wheat wraps",
@@ -903,6 +1029,7 @@
     "id": "whole-wheat-bread",
     "name": "Whole wheat bread",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta",
     "aliases": [
       "bread",
@@ -914,6 +1041,7 @@
     "id": "whole-wheat-pasta",
     "name": "Whole wheat pasta",
     "category": "carbohydrates",
+    "kitchenGroup": "grains",
     "storeSection": "grains-bread-pasta",
     "aliases": [
       "wholemeal pasta"
@@ -923,6 +1051,7 @@
     "id": "zucchini",
     "name": "Zucchini",
     "category": "produce",
+    "kitchenGroup": "produce",
     "storeSection": "produce",
     "aliases": [
       "courgette"

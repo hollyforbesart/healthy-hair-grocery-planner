@@ -7,27 +7,26 @@ import { AboutPage } from './pages/AboutPage';
 import { HomePage } from './pages/HomePage';
 import { NutrientsPage } from './pages/NutrientsPage';
 import { usePlanner } from './state/PlannerContext';
-import { stepsForPath, type StepId } from './state/steps';
-import { FeedbackStep } from './steps/FeedbackStep';
+import { firstStep, stepsForPath, type StepId } from './state/steps';
 import { GroceryListStep } from './steps/GroceryListStep';
 import { KitchenStep } from './steps/KitchenStep';
 import { MealsStep } from './steps/MealsStep';
 import { ReviewStep } from './steps/ReviewStep';
-import { SetupStep } from './steps/SetupStep';
+import { PathChooser } from './components/PathChooser';
 
 const STEP_COMPONENTS: Record<StepId, () => JSX.Element> = {
-  setup: SetupStep,
   kitchen: KitchenStep,
   meals: MealsStep,
   review: ReviewStep,
   list: GroceryListStep,
-  feedback: FeedbackStep,
 };
 
 export function App() {
   const { state, dispatch } = usePlanner();
   const [route, navigate] = useRoute();
-  const Step = STEP_COMPONENTS[state.currentStep] ?? SetupStep;
+  const steps = stepsForPath(state.path);
+  const currentStep = steps.includes(state.currentStep) ? state.currentStep : firstStep(state.path);
+  const Step = STEP_COMPONENTS[currentStep];
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -92,10 +91,10 @@ export function App() {
           </main>
         ) : (
           <>
-            <StepNav steps={stepsForPath(state.path)} current={state.currentStep} onSelect={goTo} />
+            {state.path && <StepNav steps={steps} current={currentStep} onSelect={goTo} />}
             <main id="main" className="main">
               {/* key remounts the step so its heading receives focus */}
-              <Step key={state.currentStep} />
+              {state.path ? <Step key={currentStep} /> : <PathChooser />}
             </main>
           </>
         )}

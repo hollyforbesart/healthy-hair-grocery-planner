@@ -1,12 +1,18 @@
-import { compareMatches, matchMeal } from '../../lib/matching';
+import { matchMeal, type MealMatch } from '../../lib/matching';
 import type { MealRecommendation, RecommendationProvider, RecommendationRequest } from './types';
+
+/** Share of a meal's ingredients not at home (to buy, or already on the list). */
+export const shareNotAtHome = (m: MealMatch) => (m.missingCount + m.onListCount) / Math.max(m.required.length, 1);
 
 /**
  * Synchronous core, exported for tests. Order:
  * 1. Meals chosen in the last couple of weeks go after the rest (favorites
  *    are exempt), so suggestions rotate.
- * 2. Pantry fit (see compareMatches) — fewest ingredients not at home.
- * 3. Meals the user has never chosen win ties.
+ * 2. Pantry fit: the smallest share of ingredients not at home, so a
+ *    5-ingredient meal with 1 to buy beats a 2-ingredient snack with 1 to buy.
+ * 3. Smallest share of new things to buy (items already on the list don't count).
+ * 4. Meals the user has never chosen.
+ * 5. Library order, as curated.
  * Preparation time is not used. Meals that need an avoided ingredient with
  * no acceptable swap are left out.
  */
@@ -24,7 +30,7 @@ export function rankMeals({
   const chosenBefore = new Set(previouslyChosenIds);
 
   return meals
-    .map((meal) => {
+    .map((meal, index) => {
       const match = matchMeal(meal, ingredientStatuses, avoid);
       const isFavorite = favoriteSet.has(meal.id);
       const isRecent = recentSet.has(meal.id);
@@ -34,7 +40,7 @@ export function rankMeals({
       if (isFavorite) reasons.push('One of your favorites');
       else if (isRecent) reasons.push('You had this recently');
       else if (chosenBefore.size > 0 && !chosenBefore.has(meal.id)) reasons.push('New to you');
-      return { meal, match, reasons, isFavorite, isRecent, name: meal.name };
+      return { meal, match, reasons, isFavorite, isRecent, index };
     })
     .filter((r) => !r.match.blocked)
     .sort((a, b) => {
@@ -42,10 +48,10 @@ export function rankMeals({
       const newToYou = (r: typeof a) => Number(!chosenBefore.has(r.meal.id));
       return (
         demoted(a) - demoted(b) ||
-        a.match.missingCount + a.match.onListCount - (b.match.missingCount + b.match.onListCount) ||
-        a.match.missingCount - b.match.missingCount ||
+        shareNotAtHome(a.match) - shareNotAtHome(b.match) ||
+        a.match.missingCount / Math.max(a.match.required.length, 1) - b.match.missingCount / Math.max(b.match.required.length, 1) ||
         newToYou(b) - newToYou(a) ||
-        compareMatches(a, b)
+        a.index - b.index
       );
     })
     .map(({ meal, match, reasons, isFavorite, isRecent }) => ({ meal, match, reasons, isFavorite, isRecent }));

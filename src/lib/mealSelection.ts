@@ -1,7 +1,7 @@
 import type { MealCategory } from '../types';
 
 /**
- * Meal-type selection for Step 1. An empty list means "All meals", which is
+ * Meal-type chips on the meal ideas page. An empty list means "All meals", which is
  * also how plans saved before this option existed are stored, so they keep
  * working unchanged.
  */

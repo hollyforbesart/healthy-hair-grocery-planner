@@ -1,7 +1,10 @@
 import { useMemo, useState } from 'react';
 import { GroceryItemRow } from '../components/GroceryItemRow';
+import { FeedbackCard } from '../components/FeedbackCard';
+import { Icon } from '../components/Icon';
 import { PlanReminder } from '../components/PlanReminder';
 import { StepFooter } from '../components/StepFooter';
+import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { useStepNav } from '../hooks/useStepNav';
 import { StepHeader } from '../components/StepHeader';
 import { OTHER_SECTION, STORE_SECTIONS } from '../data/categories';
@@ -17,7 +20,8 @@ import type { GroceryListItem, StoreSectionId } from '../types';
 
 export function GroceryListStep() {
   const { state, dispatch, lookup, allIngredients, selectedMeals } = usePlanner();
-  const { goBack, goNext, go } = useStepNav();
+  const { goBack, go } = useStepNav();
+  const { canInstall, installed, install } = useInstallPrompt();
   const [newName, setNewName] = useState('');
   const [newSection, setNewSection] = useState<StoreSectionId>(OTHER_SECTION);
   const [status, setStatus] = useState<{ kind: 'info' | 'error'; text: string } | null>(null);
@@ -65,7 +69,7 @@ export function GroceryListStep() {
     if (ingredient && state.ingredientStatuses[ingredient.id] === 'have') {
       setAddStatus({
         kind: 'info',
-        text: `You marked “${ingredient.name}” as Already have. Change it in Step 2 if you’re running low.`,
+        text: `You marked “${ingredient.name}” as Already have. Untick it on Review if you’re running low.`,
       });
       return;
     }
@@ -87,11 +91,7 @@ export function GroceryListStep() {
     setNewName('');
   };
 
-  const listNotes = {
-    meals: selectedMeals.map((m) => m.name),
-    budget: state.preferences.budget,
-    householdSize: state.preferences.householdSize,
-  };
+  const listNotes = { meals: selectedMeals.map((m) => m.name) };
 
   const copy = async () => {
     const ok = await copyText(groceryListToText(groups, listNotes));
@@ -149,6 +149,28 @@ export function GroceryListStep() {
       <p className={`small no-print list-status ${status?.kind === 'error' ? 'error' : ''}`} role="status" aria-live="polite">
         {status?.text}
       </p>
+
+      {items.length > 0 && !installed && (
+        <div className="phone-tip no-print">
+          <Icon name="phone" size={20} />
+          <p className="small">
+            <strong>Shopping from your phone?</strong>{' '}
+            {canInstall ? (
+              <>
+                <button type="button" className="link-btn" onClick={() => void install()}>
+                  Install the planner
+                </button>{' '}
+                so your list opens like an app, even with no signal.
+              </>
+            ) : (
+              <>
+                Add the planner to your home screen so your list opens like an app, even with no signal. iPhone: Share →
+                Add to Home Screen. Android: menu → Install app.
+              </>
+            )}
+          </p>
+        </div>
+      )}
 
       {items.length > 0 && (
         <details className="save-help card no-print">
@@ -278,11 +300,9 @@ export function GroceryListStep() {
         </button>
       </div>
 
-      <StepFooter
-        onBack={goBack}
-        onNext={goNext}
-        nextLabel="Share feedback"
-      />
+      <FeedbackCard />
+
+      <StepFooter onBack={goBack} />
     </section>
   );
 }

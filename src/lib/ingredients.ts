@@ -36,19 +36,28 @@ export function searchIngredients(query: string, ingredients: Ingredient[]): Sea
   const q = normalizeName(query);
   if (!q) return ingredients.map((ingredient) => ({ ingredient }));
   const qKey = matchKey(query);
-  const results: SearchResult[] = [];
+  // Best first: exact name or other name ("milk" → Milk), then names starting with
+  // the text, then words starting with it, then anywhere. Ties keep catalog order.
+  const score = (text: string) => {
+    const t = normalizeName(text);
+    if (t === q || matchKey(text) === qKey) return 0;
+    if (t.startsWith(q)) return 1;
+    if (t.split(' ').some((word) => word.startsWith(q))) return 2;
+    return 3;
+  };
+  const results: (SearchResult & { score: number })[] = [];
   for (const ingredient of ingredients) {
     const name = normalizeName(ingredient.name);
     if (name.includes(q) || matchKey(ingredient.name).includes(qKey)) {
-      results.push({ ingredient });
+      results.push({ ingredient, score: score(ingredient.name) });
       continue;
     }
     const alias = (ingredient.aliases ?? []).find(
       (a) => normalizeName(a).includes(q) || matchKey(a).includes(qKey),
     );
-    if (alias) results.push({ ingredient, matchedAlias: alias });
+    if (alias) results.push({ ingredient, matchedAlias: alias, score: score(alias) });
   }
-  return results;
+  return results.sort((a, b) => a.score - b.score).map(({ score: _score, ...result }) => result);
 }
 
 export function sortByName<T extends { name: string }>(items: T[]): T[] {
@@ -82,6 +91,6 @@ export function createCustomIngredient(
   const displayName = name.charAt(0).toUpperCase() + name.slice(1);
   return {
     ok: true,
-    ingredient: { id, name: displayName, category, storeSection: defaultStoreSection(category), custom: true },
+    ingredient: { id, name: displayName, category, kitchenGroup: 'own', storeSection: defaultStoreSection(category), custom: true },
   };
 }

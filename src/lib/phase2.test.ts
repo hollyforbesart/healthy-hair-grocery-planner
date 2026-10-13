@@ -11,7 +11,7 @@ import { buildReviewList } from './review';
 
 const lookup = createLookup(INGREDIENTS);
 const meal = (id: string) => MEALS.find((m) => m.id === id)!;
-const prefs: WeekPreferences = { mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
+const prefs: WeekPreferences = { mealCategories: [], avoidIngredientIds: [] };
 
 describe('meal history', () => {
   const history = [
@@ -111,22 +111,23 @@ describe('review list', () => {
 });
 
 describe('quick picks', () => {
-  it('offers the most-used ingredients in each food group', () => {
+  it('offers the most-used ingredients in each kitchen group', () => {
     const picks = quickPicksByGroup(MEALS, INGREDIENTS);
-    expect(picks.carbohydrates[0].id).toBe('rice');
+    expect(picks.grains[0].id).toBe('rice');
+    expect(picks['dairy-eggs'].map((i) => i.id)).toContain('milk');
     expect(picks.produce.map((i) => i.id)).toContain('spinach');
     for (const list of Object.values(picks)) expect(list.length).toBeLessThanOrEqual(8);
   });
 });
 
 describe('copied / shared list text', () => {
-  it('starts with the week’s meals, budget and household when given', async () => {
+  it('starts with the week’s meals when given', async () => {
     const { groceryListToText } = await import('./format');
-    const text = groceryListToText([], { meals: ['Apple + Peanut Butter'], budget: '$80', householdSize: 3 });
-    expect(text.split('\n').slice(0, 4)).toEqual(['Grocery List', 'Meals: Apple + Peanut Butter', 'Budget: $80', 'Shopping for 3']);
+    const text = groceryListToText([], { meals: ['Apple + Peanut Butter'] });
+    expect(text.split('\n').slice(0, 2)).toEqual(['Grocery List', 'Meals: Apple + Peanut Butter']);
   });
-  it('leaves out reminders that are empty', async () => {
+  it('leaves out the meals line when no meals are picked', async () => {
     const { groceryListToText } = await import('./format');
-    expect(groceryListToText([], { meals: [], budget: ' ' }).split('\n')[1]).toBe('');
+    expect(groceryListToText([], { meals: [] }).split('\n')[1]).toBe('');
   });
 });

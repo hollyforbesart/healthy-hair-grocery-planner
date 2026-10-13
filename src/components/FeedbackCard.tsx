@@ -1,7 +1,4 @@
 import { useRef, useState } from 'react';
-import { StepFooter } from '../components/StepFooter';
-import { useStepNav } from '../hooks/useStepNav';
-import { StepHeader } from '../components/StepHeader';
 import { APP_VERSION, feedbackService } from '../services/feedback';
 import { usePlanner } from '../state/PlannerContext';
 
@@ -15,9 +12,9 @@ const RATINGS = [
 
 type SendState = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind: 'error'; message: string };
 
-export function FeedbackStep() {
+/** Optional feedback at the bottom of the grocery list, sent through Web3Forms. */
+export function FeedbackCard() {
   const { state, dispatch } = usePlanner();
-  const { goBack } = useStepNav();
   const { rating, helpful, wish } = state.feedback;
   const [send, setSend] = useState<SendState>({ kind: 'idle' });
   const honeypotRef = useRef<HTMLInputElement>(null);
@@ -44,10 +41,9 @@ export function FeedbackStep() {
   };
 
   return (
-    <section aria-labelledby="step-title">
-      <StepHeader title="Share your feedback">
-        <p>Optional — tell us how the planner worked for you.</p>
-      </StepHeader>
+    <section className="card feedback-card no-print" aria-labelledby="feedback-title">
+      <h3 id="feedback-title">How did the planner work for you?</h3>
+      <p className="small muted">Optional. Your answers help shape what comes next.</p>
 
       {send.kind === 'sent' ? (
         <div className="notice" role="status">
@@ -61,7 +57,7 @@ export function FeedbackStep() {
             void submit();
           }}
         >
-          <fieldset className="card">
+          <fieldset>
             <legend>How helpful was this planner?</legend>
             <div className="rating">
               {RATINGS.map((r) => (
@@ -85,7 +81,7 @@ export function FeedbackStep() {
             )}
           </fieldset>
 
-          <div className="card field">
+          <div className="field">
             <label htmlFor="helpful">What made this planner helpful?</label>
             <textarea
               id="helpful"
@@ -96,7 +92,7 @@ export function FeedbackStep() {
             />
           </div>
 
-          <div className="card field">
+          <div className="field">
             <label htmlFor="wish">What do you wish this planner could also do?</label>
             <textarea
               id="wish"
@@ -133,8 +129,6 @@ export function FeedbackStep() {
           )}
         </form>
       )}
-
-      <StepFooter onBack={goBack} />
     </section>
   );
 }

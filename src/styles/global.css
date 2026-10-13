@@ -1101,69 +1101,6 @@ textarea:focus-visible {
   line-height: 1.2;
 }
 
-/* ---------- Start step ---------- */
-.path-picker {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.25rem;
-}
-@media (min-width: 640px) {
-  .path-picker {
-    grid-template-columns: 1fr auto 1fr;
-    gap: 0.75rem;
-  }
-  .path-picker .home-paths__item {
-    display: contents;
-  }
-}
-.path-picker .path-card {
-  height: 100%;
-}
-.path-card {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  padding: 1.1rem 1.15rem;
-  background: var(--white);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-}
-.path-card:hover {
-  border-color: var(--purple);
-}
-.path-card.is-selected {
-  border-color: var(--plum);
-  background: var(--lavender-soft);
-}
-.path-card input {
-  accent-color: var(--plum);
-  width: 1.2rem;
-  height: 1.2rem;
-  margin-top: 0.2rem;
-  flex-shrink: 0;
-}
-.path-card__title {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  margin-bottom: 0.25rem;
-}
-.path-card__text {
-  display: block;
-  color: var(--plum-60);
-}
-.setup-subhead {
-  font-size: 1.15rem;
-  margin-top: 1.75rem !important;
-}
-.setup-hint {
-  margin: 1rem 0 0;
-}
-
 /* ---------- Kitchen step ---------- */
 .kitchen-hint {
   margin: 0 0 0.75rem;
@@ -1177,6 +1114,18 @@ textarea:focus-visible {
     grid-template-columns: 1fr 1fr;
     align-items: start;
   }
+}
+.kitchen-search {
+  margin-bottom: 0.25rem;
+}
+.kitchen-search .kitchen-hint {
+  margin: 0.6rem 0 0;
+}
+.kitchen-section__hint {
+  margin: -0.35rem 0 0.5rem;
+}
+.kitchen-picks {
+  margin-top: 0.75rem;
 }
 .kitchen-section h3 {
   font-size: 1.15rem;
@@ -1773,34 +1722,6 @@ textarea:focus-visible {
 .home-choices p {
   margin: 0;
 }
-.how-paths {
-  display: grid;
-  gap: 0.75rem;
-}
-@media (min-width: 720px) {
-  .how-paths {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-.how-path h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-.how-path h3 svg {
-  color: var(--plum);
-  flex-shrink: 0;
-}
-.how-path__steps {
-  margin: 0.4rem 0 0;
-  padding-left: 1.3rem;
-}
-.how-path__steps li + li {
-  margin-top: 0.25rem;
-}
-.how-paths__note {
-  margin: 0.6rem 0 0;
-}
 .perks {
   list-style: none;
   margin: 0 0 0.9rem;
@@ -1853,8 +1774,12 @@ textarea:focus-visible {
 .btn svg {
   flex-shrink: 0;
 }
+.home-tip h2 {
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+}
 .home-tip {
-  margin-top: 0.75rem;
+  margin-top: 1.5rem;
   background: var(--sand-soft);
   border-color: var(--sand);
 }
@@ -1948,4 +1873,109 @@ textarea:focus-visible {
   .grocery-item__check {
     margin-top: 0.2rem !important;
   }
+}
+
+/* Grocery list: install tip and feedback card */
+.phone-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--lavender-soft);
+}
+.phone-tip svg {
+  color: var(--plum);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.phone-tip p {
+  margin: 0;
+}
+.feedback-card {
+  margin-top: 1.5rem;
+}
+.feedback-card fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+.feedback-card .field {
+  margin-bottom: 1rem;
+}
+
+/* Meal ideas: foods to leave out, sections by meal type, review bar */
+.avoid-panel {
+  margin-bottom: 0.75rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+.avoid-panel > summary {
+  list-style: none;
+  cursor: pointer;
+  min-height: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+}
+.avoid-panel > summary::-webkit-details-marker {
+  display: none;
+}
+.avoid-panel > summary::after {
+  content: '▾';
+  margin-left: auto;
+  color: var(--plum);
+  transition: transform 0.15s;
+}
+.avoid-panel[open] > summary::after {
+  transform: rotate(180deg);
+}
+.avoid-panel__title {
+  font-weight: 700;
+}
+.avoid-panel__summary {
+  color: var(--plum-60);
+  font-size: 0.9rem;
+}
+.avoid-panel[open] > summary {
+  margin-bottom: 0.6rem;
+}
+.avoid-foods > p:first-child {
+  margin-top: 0;
+}
+.meal-section + .meal-section {
+  margin-top: 1.75rem;
+}
+.meal-section__title {
+  font-size: 1.25rem;
+  margin: 0.5rem 0 0.75rem;
+}
+.meal-section__title .muted {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.has-review-bar {
+  padding-bottom: 4.5rem;
+}
+.review-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 16px rgba(46, 26, 71, 0.08);
+  padding: 0.6rem 0 calc(0.6rem + env(safe-area-inset-bottom));
+}
+.review-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.review-bar__count {
+  font-weight: 700;
 }

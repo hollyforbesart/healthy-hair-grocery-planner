@@ -111,30 +111,48 @@ export function MealCard({
 
       {meal.description && <p className="meal-card__desc">{meal.description}</p>}
 
-      <dl className="meal-card__lists">
-        <div>
-          <dt>Already have</dt>
-          <dd>{have.length > 0 ? have.map(describe).join(', ') : <span className="muted">None yet</span>}</dd>
-        </div>
-        <div className="need">
-          <dt>Need to buy</dt>
-          <dd>
-            {needToBuy.length === 0 && onList.length === 0 ? (
-              <span className="muted">Nothing — you have it all</span>
-            ) : (
-              <>
-                {needToBuy.map(describe).join(', ')}
-                {onList.length > 0 && (
-                  <span className="meal-card__on-list">
-                    {needToBuy.length > 0 && <br />}
-                    {onList.map(describe).join(', ')} <span className="muted">(already on your list)</span>
-                  </span>
-                )}
-              </>
-            )}
-          </dd>
-        </div>
-      </dl>
+      {have.length === 0 ? (
+        // Nothing at home yet: a plain list reads better than "Already have: none".
+        <dl className="meal-card__lists">
+          <div>
+            <dt>Ingredients</dt>
+            <dd>
+              {[...needToBuy, ...onList].map(describe).join(', ')}
+              {onList.length > 0 && (
+                <span className="meal-card__on-list">
+                  <br />
+                  <span className="muted">Already on your list: {onList.map(describe).join(', ')}</span>
+                </span>
+              )}
+            </dd>
+          </div>
+        </dl>
+      ) : (
+        <dl className="meal-card__lists">
+          <div>
+            <dt>Already have</dt>
+            <dd>{have.length > 0 ? have.map(describe).join(', ') : <span className="muted">None yet</span>}</dd>
+          </div>
+          <div className="need">
+            <dt>Need to buy</dt>
+            <dd>
+              {needToBuy.length === 0 && onList.length === 0 ? (
+                <span className="muted">Nothing — you have it all</span>
+              ) : (
+                <>
+                  {needToBuy.map(describe).join(', ')}
+                  {onList.length > 0 && (
+                    <span className="meal-card__on-list">
+                      {needToBuy.length > 0 && <br />}
+                      {onList.map(describe).join(', ')} <span className="muted">(already on your list)</span>
+                    </span>
+                  )}
+                </>
+              )}
+            </dd>
+          </div>
+        </dl>
+      )}
 
       {meal.preparationNote && (
         <details className="meal-card__note">

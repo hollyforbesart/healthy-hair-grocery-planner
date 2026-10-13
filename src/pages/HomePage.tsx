@@ -7,6 +7,7 @@ import type { Route } from '../hooks/useRoute';
 import { NEW_WEEK_CONFIRM } from '../lib/confirmations';
 import { hasPlannerProgress } from '../state/plannerReducer';
 import { usePlanner } from '../state/PlannerContext';
+import { firstStep } from '../state/steps';
 import type { PlannerPath } from '../types';
 
 interface HomePageProps {
@@ -14,14 +15,9 @@ interface HomePageProps {
   navigate: (route: Route) => void;
 }
 
-const PATH_STEPS: Record<PlannerPath, string[]> = {
-  pantry: ['Add the foods you have', 'Get meal ideas that use them', 'Review and get your list'],
-  ideas: ['Browse and pick meals', 'Tick off what you already have', 'Get your list'],
-};
-
 /**
  * Landing page before the planner: the two ways to start, the weekly
- * routine, how to install it, and privacy. Image slots can be added to the
+ * routine, the nutrient guide, privacy and how to install it. Image slots can be added to the
  * hero once brand graphics exist.
  */
 export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
@@ -37,7 +33,7 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
 
   const startWith = (path: PlannerPath) => {
     dispatch({ type: 'choosePath', path });
-    dispatch({ type: 'goToStep', step: 'setup' });
+    dispatch({ type: 'goToStep', step: firstStep(path) });
     onOpenPlanner();
   };
 
@@ -102,39 +98,19 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
           ))}
         </div>
         <p className="home-hero__included small">
-          Meal ideas with ingredient lists and a grocery list — not full recipes or amounts (yet).{' '}
+          Meal ideas with ingredient lists and a grocery list — recipes coming soon.{' '}
           <RouteLink to="about" navigate={navigate}>
             Why these meals?
           </RouteLink>
         </p>
       </section>
 
-      <section className="home-section" aria-labelledby="how-title">
-        <h2 id="how-title">Two ways to plan</h2>
-        <div className="how-paths">
-          {PATH_OPTIONS.map((option) => (
-            <div key={option.value} className="card how-path">
-              <h3>
-                <Icon name={option.icon} size={22} /> {option.title}
-              </h3>
-              <ol className="how-path__steps">
-                {PATH_STEPS[option.value].map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ol>
-            </div>
-          ))}
-        </div>
-        <p className="small muted how-paths__note">
-          Both end with one grocery list, grouped by store section and ready to share, copy or print.
+      <section className="card home-tip" aria-labelledby="week-title">
+        <h2 id="week-title">Each week</h2>
+        <p>
+          Come back and tap <strong>Plan a new week</strong>. Your staples, favorites and preferences are kept, and
+          meals you’ve had recently move down so ideas stay fresh.
         </p>
-        <div className="card home-tip">
-          <h3>Each week</h3>
-          <p>
-            Come back and tap <strong>Plan a new week</strong>. Your staples, favorites and preferences are kept, and
-            meals you’ve had recently move down so ideas stay fresh.
-          </p>
-        </div>
       </section>
 
       <section className="card home-learn" aria-labelledby="learn-title">
@@ -149,6 +125,15 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
             Explore the guide →
           </RouteLink>
         </div>
+      </section>
+
+      <section className="home-section" aria-labelledby="privacy-title">
+        <h2 id="privacy-title">Your plan stays on your device</h2>
+        <p>
+          Your plan is saved in this browser on this device, so it won’t appear on your other devices, and clearing your
+          browser data erases it. Use <strong>Share list</strong> to send your list to your phone or someone you shop
+          with.
+        </p>
       </section>
 
       <section className="home-section" aria-labelledby="install-title">
@@ -237,15 +222,6 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
             </div>
           </>
         )}
-      </section>
-
-      <section className="home-section" aria-labelledby="privacy-title">
-        <h2 id="privacy-title">Your plan stays on your device</h2>
-        <p>
-          Your plan is saved in this browser on this device, so it won’t appear on your other devices, and clearing your
-          browser data erases it. Use <strong>Share list</strong> to send your list to your phone or someone you shop
-          with.
-        </p>
       </section>
 
       {returning && (

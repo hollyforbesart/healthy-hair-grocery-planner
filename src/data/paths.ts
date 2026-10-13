@@ -1,7 +1,7 @@
 import type { IconName } from '../components/Icon';
 import type { PlannerPath } from '../types';
 
-/** The two ways to start, worded once for the home page and the Start step. */
+/** The two ways to start, worded once for the home page and the planner. */
 export const PATH_OPTIONS: { value: PlannerPath; icon: IconName; title: string; text: string; bestFor: string }[] = [
   {
     value: 'pantry',

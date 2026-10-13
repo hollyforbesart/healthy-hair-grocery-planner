@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { matchKey } from '../lib/text';
 import { AVOID_GROUPS } from './avoidGroups';
-import { INGREDIENT_CATEGORIES, MEAL_CATEGORIES, STORE_SECTIONS, STORE_SECTION_IDS } from './categories';
+import { INGREDIENT_CATEGORIES, KITCHEN_GROUP_IDS, MEAL_CATEGORIES, STORE_SECTIONS, STORE_SECTION_IDS } from './categories';
 import { INGREDIENTS } from './ingredients';
 import { LEGACY_INGREDIENT_IDS } from './legacyIds';
 import { MEALS } from './meals';
@@ -24,6 +24,7 @@ describe('ingredient catalog', () => {
       expect(i.name.trim(), i.id).not.toBe('');
       expect(foodGroups.has(i.category), `${i.id} category "${i.category}"`).toBe(true);
       expect(STORE_SECTION_IDS.has(i.storeSection), `${i.id} storeSection "${i.storeSection}"`).toBe(true);
+      expect(i.kitchenGroup && i.kitchenGroup !== 'own' && KITCHEN_GROUP_IDS.has(i.kitchenGroup), `${i.id} kitchenGroup "${i.kitchenGroup}"`).toBe(true);
     }
   });
 

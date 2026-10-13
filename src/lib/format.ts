@@ -2,17 +2,11 @@ import type { GroceryGroup } from './groceryList';
 
 export interface ListNotes {
   meals?: string[];
-  budget?: string;
-  householdSize?: number | null;
 }
 
-/** Short reminder lines shown above the list (meals, budget, household). */
-export function listNoteLines({ meals = [], budget, householdSize }: ListNotes = {}): string[] {
-  return [
-    meals.length > 0 ? `Meals: ${meals.join(', ')}` : '',
-    budget?.trim() ? `Budget: ${budget.trim()}` : '',
-    householdSize ? `Shopping for ${householdSize}` : '',
-  ].filter(Boolean);
+/** Short reminder line shown above the list: this week's meals. */
+export function listNoteLines({ meals = [] }: ListNotes = {}): string[] {
+  return meals.length > 0 ? [`Meals: ${meals.join(', ')}`] : [];
 }
 
 /** Plain-text version of the list for copying into notes or messages. */
