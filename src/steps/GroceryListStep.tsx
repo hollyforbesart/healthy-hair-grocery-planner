@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { GroceryItemRow } from '../components/GroceryItemRow';
+import { PlanReminder } from '../components/PlanReminder';
 import { StepFooter } from '../components/StepFooter';
 import { useStepNav } from '../hooks/useStepNav';
 import { StepHeader } from '../components/StepHeader';
@@ -86,8 +87,14 @@ export function GroceryListStep() {
     setNewName('');
   };
 
+  const listNotes = {
+    meals: selectedMeals.map((m) => m.name),
+    budget: state.preferences.budget,
+    householdSize: state.preferences.householdSize,
+  };
+
   const copy = async () => {
-    const ok = await copyText(groceryListToText(groups));
+    const ok = await copyText(groceryListToText(groups, listNotes));
     setStatus(
       ok
         ? { kind: 'info', text: 'List copied. Paste it into Notes, a text message or an email.' }
@@ -96,11 +103,11 @@ export function GroceryListStep() {
   };
 
   const share = async () => {
-    const outcome = await shareText('Grocery list', groceryListToText(groups));
+    const outcome = await shareText('Grocery list', groceryListToText(groups, listNotes));
     if (outcome === 'shared') setStatus({ kind: 'info', text: 'List shared.' });
     else if (outcome === 'unsupported' || outcome === 'failed') {
       // Desktop browsers often have no share sheet: copy instead and say so.
-      const ok = await copyText(groceryListToText(groups));
+      const ok = await copyText(groceryListToText(groups, listNotes));
       setStatus(
         ok
           ? { kind: 'info', text: 'Sharing isn’t available in this browser, so we copied the list instead. Paste it wherever you like.' }
@@ -109,7 +116,6 @@ export function GroceryListStep() {
     }
   };
 
-  const { budget, householdSize } = state.preferences;
 
   return (
     <section aria-labelledby="step-title">
@@ -120,16 +126,7 @@ export function GroceryListStep() {
         </p>
       </StepHeader>
 
-      {(budget || householdSize) && (
-        <p className="plan-summary small">
-          {budget && <span>Budget: {budget}</span>}
-          {householdSize && (
-            <span>
-              Shopping for: {householdSize} {householdSize === 1 ? 'person' : 'people'}
-            </span>
-          )}
-        </p>
-      )}
+      <PlanReminder />
 
       <div className="list-toolbar no-print">
         <p className="small muted">

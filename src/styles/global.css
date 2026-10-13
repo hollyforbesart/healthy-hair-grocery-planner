@@ -762,9 +762,32 @@ textarea:focus-visible {
 }
 .meal-card__header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
   gap: 0.75rem;
+}
+.meal-card__title {
+  flex: 1;
+  min-width: 0;
+}
+.meal-thumb {
+  flex-shrink: 0;
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--lavender-soft);
+}
+.meal-thumb--placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--purple);
+  background: linear-gradient(135deg, var(--lavender-soft), var(--sand-soft));
+}
+@media (max-width: 380px) {
+  .meal-thumb {
+    width: 72px;
+    height: 72px;
+  }
 }
 .meal-card h3 {
   font-size: 1.25rem;
@@ -780,6 +803,8 @@ textarea:focus-visible {
   color: var(--plum-60);
 }
 .have-badge {
+  display: inline-block;
+  margin-top: 0.4rem;
   padding: 0.25rem 0.6rem;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -1368,6 +1393,33 @@ textarea:focus-visible {
   display: block;
 }
 
+.plan-reminder {
+  margin-bottom: 1rem;
+}
+.plan-reminder h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+}
+.plan-reminder__meals {
+  margin: 0 0 0.75rem;
+  padding-left: 1.2rem;
+  font-weight: 600;
+}
+.plan-reminder__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.plan-reminder__fields .field {
+  flex: none;
+}
+.plan-reminder__meals li + li {
+  margin-top: 0.2rem;
+}
+.print-only {
+  display: none;
+}
+
 /* ---------- Home page ---------- */
 .home {
   padding-top: 1.5rem;
@@ -1613,6 +1665,12 @@ textarea:focus-visible {
 
 /* ---------- Print: just the grocery list ---------- */
 @media print {
+  .print-only {
+    display: block;
+  }
+  .plan-reminder {
+    margin-bottom: 0.75rem;
+  }
   body {
     background: #fff;
     color: #000;

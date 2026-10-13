@@ -67,6 +67,13 @@ describe('meal search', () => {
     expect(mealMatchesQuery(oats, 'chia', lookup)).toBe(true); // optional ingredient
     expect(mealMatchesQuery(oats, 'salmon', lookup)).toBe(false);
     expect(mealMatchesQuery(meal('roasted-chickpeas-bell-pepper-strips'), 'garbanzo', lookup)).toBe(true);
+    expect(mealMatchesQuery(meal('roasted-chickpeas-bell-pepper-strips'), 'chick', lookup)).toBe(true);
+  });
+  it('matches the start of words, so "apple" does not find pineapple meals', () => {
+    expect(mealMatchesQuery(meal('tropical-yogurt-bowl'), 'apple', lookup)).toBe(false);
+    expect(mealMatchesQuery(meal('tropical-yogurt-bowl'), 'pineapple', lookup)).toBe(true);
+    expect(mealMatchesQuery(meal('apple-peanut-butter'), 'apple', lookup)).toBe(true);
+    expect(mealMatchesQuery(meal('apple-peanut-butter'), 'peanut butter', lookup)).toBe(true);
   });
   it('finds many meals for a common ingredient across the library', () => {
     expect(MEALS.filter((x) => mealMatchesQuery(x, 'spinach', lookup)).length).toBeGreaterThan(10);
@@ -109,5 +116,17 @@ describe('quick picks', () => {
     expect(picks.carbohydrates[0].id).toBe('rice');
     expect(picks.produce.map((i) => i.id)).toContain('spinach');
     for (const list of Object.values(picks)) expect(list.length).toBeLessThanOrEqual(8);
+  });
+});
+
+describe('copied / shared list text', () => {
+  it('starts with the week’s meals, budget and household when given', async () => {
+    const { groceryListToText } = await import('./format');
+    const text = groceryListToText([], { meals: ['Apple + Peanut Butter'], budget: '$80', householdSize: 3 });
+    expect(text.split('\n').slice(0, 4)).toEqual(['Grocery List', 'Meals: Apple + Peanut Butter', 'Budget: $80', 'Shopping for 3']);
+  });
+  it('leaves out reminders that are empty', async () => {
+    const { groceryListToText } = await import('./format');
+    expect(groceryListToText([], { meals: [], budget: ' ' }).split('\n')[1]).toBe('');
   });
 });

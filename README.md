@@ -97,6 +97,14 @@ The content lives in three JSON files in `src/data/library/`. Edit those, not th
 
 `npm test` checks the whole library: every ingredient ID resolves, there are no duplicate IDs, every category and section is valid, and no name or alias points at two ingredients. A failing test names the meal or ingredient to fix. `content/mane-meals-v1/` keeps the original content package as delivered. `docs/LIBRARY_IMPORT_REPORT.md` records how it was reconciled.
 
+### Meal photos
+
+Photos are optional, one per meal. Meals without a photo show a soft branded placeholder, so photos can be added gradually.
+
+- **Adding photos:** run `python3 scripts/process_meal_photos.py path/to/photo.jpg=meal-id ...` (needs Python with Pillow). It crops each photo to a centred square, resizes it to 480×480, and saves it as `public/meal-photos/<meal-id>.webp` (roughly 35–60 KB). It also rebuilds `src/data/library/meal-photos.json`. Square or portrait source photos work best.
+- **Display:** cards show photos as 88 px squares that load as people scroll. The offline worker keeps the photos people have seen.
+- **Tests:** they check that every listed photo exists and belongs to a real meal.
+
 ### Matching rules
 
 Each required ingredient lands in exactly one group:

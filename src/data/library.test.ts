@@ -130,3 +130,13 @@ describe('avoidGroupsFor', () => {
     expect(avoidGroupsFor('basil-pesto', ['basil-pesto'])).toEqual([]);
   });
 });
+
+describe('meal photos', () => {
+  it('only lists photos for meals that exist', async () => {
+    const { default: photoIds } = await import('./library/meal-photos.json');
+    for (const id of photoIds) expect(MEALS.some((m) => m.id === id), id).toBe(true);
+    const files = Object.keys(import.meta.glob('../../public/meal-photos/*.webp')).map((f) => f.split('/').pop());
+    for (const id of photoIds) expect(files, `missing photo file for ${id}`).toContain(`${id}.webp`);
+    expect(files.length, 'every photo file should be listed in meal-photos.json').toBe(photoIds.length);
+  });
+});

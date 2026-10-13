@@ -194,42 +194,6 @@ export function SetupStep() {
           <p className="small muted">For allergies, always check product labels. This planner can’t guarantee ingredients are allergen-free.</p>
         </fieldset>
 
-        <div className="card field-row">
-          <div className="field">
-            <label htmlFor="budget">
-              Grocery budget <span className="muted">(optional)</span>
-            </label>
-            <input
-              id="budget"
-              type="text"
-              inputMode="decimal"
-              autoComplete="off"
-              placeholder="e.g. $100"
-              value={prefs.budget}
-              maxLength={40}
-              onChange={(e) => update({ budget: e.target.value })}
-            />
-          </div>
-          <div className="field">
-            <label htmlFor="household">
-              How many people are you shopping for? <span className="muted">(optional)</span>
-            </label>
-            <input
-              id="household"
-              type="number"
-              inputMode="numeric"
-              min={1}
-              max={20}
-              placeholder="e.g. 2"
-              value={prefs.householdSize ?? ''}
-              onChange={(e) => {
-                const n = Number.parseInt(e.target.value, 10);
-                update({ householdSize: Number.isFinite(n) && n > 0 ? Math.min(n, 20) : null });
-              }}
-            />
-          </div>
-        </div>
-
         {!state.path && (
           <p className="small muted setup-hint" role="status">
             Choose how you’d like to start to continue.

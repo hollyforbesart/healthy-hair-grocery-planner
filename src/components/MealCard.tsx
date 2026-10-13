@@ -1,4 +1,6 @@
 import { MEAL_CATEGORY_LABELS } from '../data/categories';
+import { mealPhotoUrl } from '../data/mealPhotos';
+import { Icon } from './Icon';
 import { ingredientName, type IngredientLookup } from '../lib/ingredients';
 import { effectiveId } from '../lib/matching';
 import type { MealRecommendation } from '../services/recommendations';
@@ -37,6 +39,7 @@ export function MealCard({
   onToggleExtra,
 }: MealCardProps) {
   const { meal, match, reasons, isFavorite } = recommendation;
+  const photo = mealPhotoUrl(meal.id);
   const name = (id: string) => ingredientName(lookup, id);
   const headingId = `meal-${meal.id}`;
 
@@ -69,12 +72,22 @@ export function MealCard({
   return (
     <article className={`meal-card${selected ? ' is-selected' : ''}`} aria-labelledby={headingId}>
       <header className="meal-card__header">
+        {photo ? (
+          <img className="meal-thumb" src={photo} alt="" width={88} height={88} loading="lazy" decoding="async" />
+        ) : (
+          <span className="meal-thumb meal-thumb--placeholder" aria-hidden="true">
+            <Icon name="bowl" size={30} />
+          </span>
+        )}
         <div className="meal-card__title">
           <h3 id={headingId}>{meal.name}</h3>
           <p className="meal-card__meta">
             {MEAL_CATEGORY_LABELS[meal.category]}
             {tags.length > 0 && <span> · {tags.join(', ')}</span>}
           </p>
+          <span className={`have-badge${allAtHome ? ' is-full' : have.length > 0 ? ' is-some' : ''}`}>
+            {allAtHome ? `You have all ${total}` : have.length > 0 ? `You have ${have.length} of ${total}` : `${total} ingredients`}
+          </span>
         </div>
         <div className="meal-card__side">
         <button
@@ -87,9 +100,6 @@ export function MealCard({
         >
           <span aria-hidden="true">{isFavorite ? '♥' : '♡'}</span>
         </button>
-        <span className={`have-badge${allAtHome ? ' is-full' : have.length > 0 ? ' is-some' : ''}`}>
-          {allAtHome ? `You have all ${total}` : have.length > 0 ? `You have ${have.length} of ${total}` : `${total} ingredients`}
-        </span>
         </div>
       </header>
 
