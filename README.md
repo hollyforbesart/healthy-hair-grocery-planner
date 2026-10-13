@@ -6,10 +6,14 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 ## How it works
 
-The site has two pages:
+The site has these pages:
 
 - **`/` (home):** what the planner is, the two ways to start, how to install it on a phone, and privacy. Everyone sees the two ways to start; returning visitors also get a "Welcome back" bar with **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
 - **`/planner`:** the planner itself. It can be linked directly.
+- **`/about`:** "Why these meals?" (Holly's note) plus what's included and what's not included yet.
+- **`/nutrients`:** *Food for Your Follicles*, the ten-nutrient guide. Its text is in `src/data/nutrients.ts` and its icons are in `public/nutrients/`. Keep the wording in sync with the guide.
+
+The footer links to all of these.
 
 The planner starts by asking how the user wants to begin. Both paths share the same meal library and grocery list, and the user can switch at any time:
 

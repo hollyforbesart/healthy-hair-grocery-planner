@@ -1,11 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
 
-/** The app's two pages. Anything other than /planner shows the home page. */
-export type Route = 'home' | 'planner';
+/** The app's pages. Any unknown path shows the home page. */
+export type Route = 'home' | 'planner' | 'about' | 'nutrients';
 
-export const ROUTE_PATHS: Record<Route, string> = { home: '/', planner: '/planner' };
+export const ROUTE_PATHS: Record<Route, string> = {
+  home: '/',
+  planner: '/planner',
+  about: '/about',
+  nutrients: '/nutrients',
+};
 
-const routeFromPath = (path: string): Route => (path.replace(/\/+$/, '') === '/planner' ? 'planner' : 'home');
+const routeFromPath = (path: string): Route => {
+  const clean = path.replace(/\/+$/, '') || '/';
+  const match = (Object.keys(ROUTE_PATHS) as Route[]).find((r) => ROUTE_PATHS[r] === clean);
+  return match ?? 'home';
+};
 
 /**
  * Minimal path-based routing (no library). Cloudflare Pages serves index.html

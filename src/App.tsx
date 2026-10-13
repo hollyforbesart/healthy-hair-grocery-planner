@@ -2,7 +2,10 @@ import { useEffect } from 'react';
 import { StepNav } from './components/StepNav';
 import { useRoute } from './hooks/useRoute';
 import { START_OVER_CONFIRM } from './lib/confirmations';
+import { RouteLink } from './components/RouteLink';
+import { AboutPage } from './pages/AboutPage';
 import { HomePage } from './pages/HomePage';
+import { NutrientsPage } from './pages/NutrientsPage';
 import { usePlanner } from './state/PlannerContext';
 import { stepsForPath, type StepId } from './state/steps';
 import { FeedbackStep } from './steps/FeedbackStep';
@@ -77,7 +80,15 @@ export function App() {
       <div className="container">
         {route === 'home' ? (
           <main id="main" className="main">
-            <HomePage onOpenPlanner={() => navigate('planner')} />
+            <HomePage onOpenPlanner={() => navigate('planner')} navigate={navigate} />
+          </main>
+        ) : route === 'nutrients' ? (
+          <main id="main" className="main">
+            <NutrientsPage onOpenPlanner={() => navigate('planner')} />
+          </main>
+        ) : route === 'about' ? (
+          <main id="main" className="main">
+            <AboutPage onOpenPlanner={() => navigate('planner')} />
           </main>
         ) : (
           <>
@@ -92,6 +103,17 @@ export function App() {
 
       <footer className="site-footer no-print">
         <div className="container">
+          <nav className="footer-links" aria-label="More information">
+            <RouteLink to="home" navigate={navigate}>
+              Home
+            </RouteLink>
+            <RouteLink to="about" navigate={navigate}>
+              About these meals
+            </RouteLink>
+            <RouteLink to="nutrients" navigate={navigate}>
+              Food for Your Follicles
+            </RouteLink>
+          </nav>
           <p className="small">
             Meal ideas are general suggestions for planning your groceries and are not medical or nutritional advice.
             Your progress is saved in this browser only.

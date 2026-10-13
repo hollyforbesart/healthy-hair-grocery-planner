@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import { Icon } from '../components/Icon';
 import { PATH_OPTIONS } from '../data/paths';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
+import { RouteLink } from '../components/RouteLink';
+import type { Route } from '../hooks/useRoute';
 import { NEW_WEEK_CONFIRM } from '../lib/confirmations';
 import { hasPlannerProgress } from '../state/plannerReducer';
 import { usePlanner } from '../state/PlannerContext';
@@ -9,6 +11,7 @@ import type { PlannerPath } from '../types';
 
 interface HomePageProps {
   onOpenPlanner: () => void;
+  navigate: (route: Route) => void;
 }
 
 const PATH_STEPS: Record<PlannerPath, string[]> = {
@@ -21,7 +24,7 @@ const PATH_STEPS: Record<PlannerPath, string[]> = {
  * routine, how to install it, and privacy. Image slots can be added to the
  * hero once brand graphics exist.
  */
-export function HomePage({ onOpenPlanner }: HomePageProps) {
+export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
   const { state, dispatch } = usePlanner();
   const { canInstall, installed, install } = useInstallPrompt();
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -73,9 +76,14 @@ export function HomePage({ onOpenPlanner }: HomePageProps) {
 
       <section className="home-hero" aria-labelledby="home-title">
         <h2 id="home-title" ref={returning ? undefined : headingRef} tabIndex={-1}>
-          Plan your meals and get one simple grocery list.
+          Take the guesswork out of eating for hair health.
         </h2>
-        <p className="home-hero__lead">Choose how you’d like to start. You can switch any time.</p>
+        <p className="home-hero__lead">
+          Explore 100 dietitian-curated meal and snack ideas designed around balanced nutrition and foods that provide
+          key nutrients involved in normal hair health. Choose what sounds good, use what you already have, and build
+          your grocery list in minutes.
+        </p>
+        <p className="home-hero__choose">Choose how you’d like to start. You can switch any time.</p>
         <div className="home-paths">
           {PATH_OPTIONS.map((option, index) => (
             <div key={option.value} className="home-paths__item">
@@ -93,6 +101,12 @@ export function HomePage({ onOpenPlanner }: HomePageProps) {
             </div>
           ))}
         </div>
+        <p className="home-hero__included small">
+          Meal ideas with ingredient lists and a grocery list — not full recipes or amounts (yet).{' '}
+          <RouteLink to="about" navigate={navigate}>
+            Why these meals?
+          </RouteLink>
+        </p>
       </section>
 
       <section className="home-section" aria-labelledby="how-title">
@@ -120,6 +134,20 @@ export function HomePage({ onOpenPlanner }: HomePageProps) {
             Come back and tap <strong>Plan a new week</strong>. Your staples, favorites and preferences are kept, and
             meals you’ve had recently move down so ideas stay fresh.
           </p>
+        </div>
+      </section>
+
+      <section className="card home-learn" aria-labelledby="learn-title">
+        <img src="/nutrients/protein.webp" alt="" width={64} height={64} loading="lazy" />
+        <div>
+          <h2 id="learn-title">Want to understand the nutrients behind the meals?</h2>
+          <p>
+            Explore <strong>Food for Your Follicles</strong>, your guide to ten nutrients involved in normal hair health
+            and the everyday foods that provide them.
+          </p>
+          <RouteLink to="nutrients" navigate={navigate} className="btn btn--secondary">
+            Explore the guide →
+          </RouteLink>
         </div>
       </section>
 

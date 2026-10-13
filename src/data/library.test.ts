@@ -140,3 +140,15 @@ describe('meal photos', () => {
     expect(files.length, 'every photo file should be listed in meal-photos.json').toBe(photoIds.length);
   });
 });
+
+describe('Food for Your Follicles', () => {
+  it('has the ten nutrients, each with an icon and a "find it in" section', async () => {
+    const { NUTRIENTS } = await import('./nutrients');
+    expect(NUTRIENTS).toHaveLength(10);
+    const icons = Object.keys(import.meta.glob('../../public/nutrients/*.webp')).map((f) => f.split('/').pop());
+    for (const n of NUTRIENTS) {
+      expect(icons, `icon for ${n.id}`).toContain(`${n.id}.webp`);
+      expect(n.sections.some((s) => s.highlight), `${n.id} find-in section`).toBe(true);
+    }
+  });
+});

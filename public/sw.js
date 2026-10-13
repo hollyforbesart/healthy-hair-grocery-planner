@@ -10,7 +10,7 @@
  * - Only same-origin GET requests are handled; feedback POSTs to Web3Forms
  *   go straight to the network.
  */
-const CACHE = 'hhgp-v2';
+const CACHE = 'hhgp-v3';
 const SHELL = ['/', '/manifest.webmanifest', '/favicon.svg', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 async function cacheShell() {
@@ -58,7 +58,7 @@ self.addEventListener('fetch', (event) => {
       (cached) =>
         cached ||
         fetch(request).then((response) => {
-          if (response.ok && (url.pathname.startsWith('/assets/') || url.pathname.startsWith('/meal-photos/'))) {
+          if (response.ok && ['/assets/', '/meal-photos/', '/nutrients/'].some((dir) => url.pathname.startsWith(dir))) {
             const copy = response.clone();
             caches.open(CACHE).then((cache) => cache.put(request, copy));
           }
