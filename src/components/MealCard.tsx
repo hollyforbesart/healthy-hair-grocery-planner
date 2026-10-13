@@ -86,7 +86,11 @@ export function MealCard({
             {tags.length > 0 && <span> · {tags.join(', ')}</span>}
           </p>
           <span className={`have-badge${allAtHome ? ' is-full' : have.length > 0 ? ' is-some' : ''}`}>
-            {allAtHome ? `You have all ${total}` : have.length > 0 ? `You have ${have.length} of ${total}` : `${total} ingredients`}
+            {allAtHome
+              ? `You have all ${total} ingredients`
+              : have.length > 0
+                ? `You have ${have.length} of ${total} ingredients`
+                : `${total} ingredient${total === 1 ? '' : 's'}`}
           </span>
         </div>
         <div className="meal-card__side">

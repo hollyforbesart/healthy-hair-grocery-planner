@@ -23,7 +23,7 @@ The planner starts by asking how the user wants to begin. Both paths share the s
    - ☆ marks a staple, which is added automatically each new week.
 3. **Meal ideas:** search by meal or ingredient, filter by meal type or ♥ favorites, and load 20 at a time.
    - Ranking is pantry fit: fewest ingredients not already at home. Meals chosen in the last 14 days move down unless they're favorites, and never-chosen meals win ties.
-   - Each card shows how many of its ingredients you have ("You have 3 of 4"), plus **Already have** and **Need to buy**. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Optional extras are in a collapsed section and only go on the list when tapped.
+   - Each card shows how many of its ingredients you have ("You have 3 of 4 ingredients"), plus **Already have** and **Need to buy**. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Optional extras are in a collapsed section and only go on the list when tapped.
 4. **Review:** the chosen meals (removable), then every ingredient they need, once each and grouped by store section. People tick off what they already have; anything left unticked goes on the list.
 5. **Grocery list:** grouped by store section. It shows what to buy, not how much. Items can be added, edited, removed and checked off, and the list can be shared, copied or printed.
 6. **Feedback:** an optional rating, "What made this planner helpful?" and "What do you wish this planner could also do?", sent through Web3Forms (see below).
