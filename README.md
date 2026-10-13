@@ -8,8 +8,8 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 The site has two pages:
 
-- **`/` (home):** what the planner is, the two ways to start, how to install it on a phone, and privacy. New visitors pick one of the two ways to start. Returning visitors get **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
-- **`/planner`:** the planner itself. It can be linked directly, and it's where the installed app opens.
+- **`/` (home):** what the planner is, the two ways to start, how to install it on a phone, and privacy. Everyone sees the two ways to start; returning visitors also get a "Welcome back" bar with **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
+- **`/planner`:** the planner itself. It can be linked directly.
 
 The planner starts by asking how the user wants to begin. Both paths share the same meal library and grocery list, and the user can switch at any time:
 
@@ -39,7 +39,7 @@ The planner starts by asking how the user wants to begin. Both paths share the s
 
 ### Works offline and installs like an app
 
-The site is a Progressive Web App. `public/manifest.webmanifest` holds the name, colours and icons; the installed app opens at `/planner`. `public/sw.js` is the service worker: it caches the page and its files on the first visit, so the planner opens with no connection, which is handy in a store with poor signal. Pages are fetched fresh when online. Install instructions for iPhone, Android and computers are on the home page.
+The site is a Progressive Web App. `public/manifest.webmanifest` holds the name, colours and icons; the installed app opens on the home page. `public/sw.js` is the service worker: it caches the page and its files on the first visit, so the planner opens with no connection, which is handy in a store with poor signal. Pages are fetched fresh when online. Install instructions for iPhone, Android and computers are on the home page.
 
 The icons in `public/icons/` are placeholders made from the logo mark. To replace them, keep the same file names and sizes: `icon-192.png` (192×192), `icon-512.png` (512×512, with the important part inside the centre 80% so it also works as a "maskable" icon) and `apple-touch-icon.png` (180×180). If you change cached files in a way that must reach installed apps immediately, bump `CACHE` in `public/sw.js`.
 

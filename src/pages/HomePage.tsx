@@ -47,55 +47,53 @@ export function HomePage({ onOpenPlanner }: HomePageProps) {
 
   return (
     <div className="home">
-      {returning ? (
-        <section className="home-hero" aria-labelledby="home-title">
-          <h2 id="home-title" ref={headingRef} tabIndex={-1}>
-            Welcome back
-          </h2>
-          <p className="home-hero__lead">
-            {mealCount > 0
-              ? `You have a plan in progress with ${mealCount} meal${mealCount === 1 ? '' : 's'}.`
-              : 'You have a plan in progress.'}
-          </p>
-          <div className="home-choices">
-            <div>
-              <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
-                Continue where you left off →
-              </button>
-            </div>
-            <div>
-              <button type="button" className="btn btn--secondary" onClick={planNewWeek}>
-                Plan a new week
-              </button>
-              <p className="small muted">Clears this week’s meals and list. Keeps your staples, favorites and preferences.</p>
-            </div>
+      {returning && (
+        <section className="welcome-back" aria-labelledby="welcome-title">
+          <div>
+            <h2 id="welcome-title" ref={headingRef} tabIndex={-1}>
+              Welcome back
+            </h2>
+            <p>
+              {mealCount > 0
+                ? `You have a plan in progress with ${mealCount} meal${mealCount === 1 ? '' : 's'}.`
+                : 'You have a plan in progress.'}
+            </p>
           </div>
-        </section>
-      ) : (
-        <section className="home-hero" aria-labelledby="home-title">
-          <h2 id="home-title" ref={headingRef} tabIndex={-1}>
-            Plan your meals and get one simple grocery list.
-          </h2>
-          <p className="home-hero__lead">Choose how you’d like to start. You can switch any time.</p>
-          <div className="home-paths">
-            {PATH_OPTIONS.map((option, index) => (
-              <div key={option.value} className="home-paths__item">
-                {index > 0 && (
-                  <span className="home-paths__or" aria-hidden="true">
-                    or
-                  </span>
-                )}
-                <button type="button" className="path-option" onClick={() => startWith(option.value)}>
-                  <Icon name={option.icon} size={32} className="path-option__icon" />
-                  <span className="path-option__title">{option.title}</span>
-                  <span className="path-option__text">{option.text}</span>
-                  <span className="path-option__best">{option.bestFor}</span>
-                </button>
-              </div>
-            ))}
+          <div className="welcome-back__actions">
+            <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
+              Continue where you left off →
+            </button>
+            <button type="button" className="btn btn--secondary" onClick={planNewWeek}>
+              Plan a new week
+            </button>
+            <p className="small muted">“Plan a new week” clears this week’s meals and list, and keeps your staples, favorites and preferences.</p>
           </div>
         </section>
       )}
+
+      <section className="home-hero" aria-labelledby="home-title">
+        <h2 id="home-title" ref={returning ? undefined : headingRef} tabIndex={-1}>
+          Plan your meals and get one simple grocery list.
+        </h2>
+        <p className="home-hero__lead">Choose how you’d like to start. You can switch any time.</p>
+        <div className="home-paths">
+          {PATH_OPTIONS.map((option, index) => (
+            <div key={option.value} className="home-paths__item">
+              {index > 0 && (
+                <span className="home-paths__or" aria-hidden="true">
+                  or
+                </span>
+              )}
+              <button type="button" className="path-option" onClick={() => startWith(option.value)}>
+                <Icon name={option.icon} size={32} className="path-option__icon" />
+                <span className="path-option__title">{option.title}</span>
+                <span className="path-option__text">{option.text}</span>
+                <span className="path-option__best">{option.bestFor}</span>
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section className="home-section" aria-labelledby="how-title">
         <h2 id="how-title">Two ways to plan</h2>
