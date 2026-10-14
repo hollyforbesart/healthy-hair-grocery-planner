@@ -879,6 +879,27 @@ textarea:focus-visible {
   align-items: center;
   gap: 0.25rem;
 }
+.meal-card__note > summary,
+.meal-card__extras > summary {
+  list-style: none;
+}
+.meal-card__note > summary::-webkit-details-marker,
+.meal-card__extras > summary::-webkit-details-marker {
+  display: none;
+}
+/* flex hides the browser's arrow, so draw one (same as "Foods to leave out") */
+.meal-card__note > summary::after,
+.meal-card__extras > summary::after {
+  content: '▾';
+  margin-left: auto;
+  padding-left: 0.5rem;
+  color: var(--plum);
+  transition: transform 0.15s;
+}
+.meal-card__note[open] > summary::after,
+.meal-card__extras[open] > summary::after {
+  transform: rotate(180deg);
+}
 .meal-card__added {
   color: var(--plum-60);
   font-weight: 400;
