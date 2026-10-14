@@ -130,6 +130,7 @@ h2:focus {
 }
 .site-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -137,16 +138,40 @@ h2:focus {
   padding-bottom: 1rem;
 }
 .site-header__home {
+  /* Logo height; the other pieces keep the logo's proportions. */
+  --logo-h: 46px;
   color: inherit;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: calc(var(--logo-h) * 0.2);
+}
+@media (min-width: 640px) {
+  .site-header__home {
+    --logo-h: 62px;
+  }
 }
 .site-header__mark {
   flex-shrink: 0;
   width: auto;
-  height: 48px;
+  height: var(--logo-h);
+}
+.site-header__divider {
+  flex-shrink: 0;
+  width: 1.5px;
+  height: calc(var(--logo-h) * 0.95);
+  background: var(--cream);
+  opacity: 0.75;
+}
+.site-header h1.site-header__title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+.site-header__wordmark {
+  display: block;
+  width: auto;
+  height: calc(var(--logo-h) * 0.48);
 }
 .site-header__actions {
   display: flex;
@@ -163,17 +188,22 @@ h2:focus {
 .site-header :focus-visible {
   outline-color: var(--sand);
 }
-.site-header h1 {
-  font-size: clamp(1.25rem, 4vw, 1.75rem);
-}
 .site-header__product {
   display: block;
+  margin-top: calc(var(--logo-h) * 0.13);
   font-family: var(--font);
-  font-size: 0.85rem;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--lavender);
-  margin-top: 0.1rem;
+  letter-spacing: 0.095em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #c4aade;
+}
+@media (min-width: 640px) {
+  .site-header__product {
+    font-size: 11px;
+    letter-spacing: 0.165em;
+  }
 }
 .site-header .btn--ghost {
   color: var(--cream);

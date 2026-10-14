@@ -53,15 +53,18 @@ export function App() {
               navigate('home');
             }}
           >
-            <img
-              className="site-header__mark"
-              src="/brand/mane-meals-mark-light.png"
-              alt=""
-              width={50}
-              height={48}
-            />
-            <h1>
-              Mane Meals<span className="visually-hidden">:</span>{' '}
+            {/* The Mane Meals logo: mark | wordmark over the tagline (kept as text so it stays legible). */}
+            <img className="site-header__mark" src="/brand/mane-meals-mark-light.png" alt="" width={152} height={144} />
+            <span className="site-header__divider" aria-hidden="true" />
+            <h1 className="site-header__title">
+              <img
+                className="site-header__wordmark"
+                src="/brand/mane-meals-wordmark-light.png"
+                alt="Mane Meals"
+                width={464}
+                height={72}
+              />
+              <span className="visually-hidden">: </span>
               <span className="site-header__product">Meal &amp; Grocery Planner</span>
             </h1>
           </a>
