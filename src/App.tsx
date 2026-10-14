@@ -53,6 +53,13 @@ export function App() {
               navigate('home');
             }}
           >
+            <img
+              className="site-header__mark"
+              src="/brand/mane-meals-mark-light.png"
+              alt=""
+              width={50}
+              height={48}
+            />
             <h1>
               Mane Meals<span className="visually-hidden">:</span>{' '}
               <span className="site-header__product">Meal &amp; Grocery Planner</span>
