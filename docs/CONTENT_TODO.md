@@ -6,4 +6,4 @@ Things Holly is writing or supplying. The app already has a place for each one; 
 - **Time categories** (Quick, Moderate, More involved). Holly will provide these per meal.
 - **Meal photos.** Process with `python3 scripts/process_meal_photos.py photo.jpg=meal-id ...` — only the small `.webp` files go in the repo, never the originals.
 - **Product name** (currently "Healthy Hair Grocery Planner").
-- **Full recipes**, if and when they're committed to. The home page says "recipes coming soon".
+- **Full recipes**, if and when they're committed to. The home page makes no promise about them, so add a mention only once they're certain.
