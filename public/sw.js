@@ -10,8 +10,8 @@
  * - Only same-origin GET requests are handled; feedback POSTs to Web3Forms
  *   go straight to the network.
  */
-const CACHE = 'hhgp-v4';
-const SHELL = ['/', '/manifest.webmanifest', '/favicon.svg', '/icons/icon-192.png', '/icons/icon-512.png'];
+const CACHE = 'hhgp-v5';
+const SHELL = ['/', '/manifest.webmanifest', '/favicon.png', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 async function cacheShell() {
   const cache = await caches.open(CACHE);

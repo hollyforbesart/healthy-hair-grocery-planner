@@ -48,7 +48,14 @@ The two path cards on the home page open the planner straight at the first step 
 
 The site is a Progressive Web App. `public/manifest.webmanifest` holds the name, colours and icons; the installed app opens on the home page. `public/sw.js` is the service worker: it caches the page and its files on the first visit, so the planner opens with no connection, which is handy in a store with poor signal. Pages are fetched fresh when online. Install instructions for iPhone, Android and computers are on the home page.
 
-The icons in `public/icons/` are placeholders made from the logo mark. To replace them, keep the same file names and sizes: `icon-192.png` (192×192), `icon-512.png` (512×512, with the important part inside the centre 80% so it also works as a "maskable" icon) and `apple-touch-icon.png` (180×180). If you change cached files in a way that must reach installed apps immediately, bump `CACHE` in `public/sw.js`.
+The Mane Meals "M" mark is the app's logo. `public/brand/mane-meals-mark.png` is the master copy (transparent background), and `mane-meals-mark-light.png` is the cream-and-lavender version used on the dark header. The "Mane Meals" lettering is cut from the logo the same way (`mane-meals-wordmark.png` in plum, `mane-meals-wordmark-light.png` for the header). In the header, the tagline "Meal & Grocery Planner" is real text styled like the logo, because the logo's own tagline would be too small to read at header size. The icons are made from the master copy:
+
+- `public/icons/icon-192.png` and `icon-512.png`: the installed-app icon, on white.
+- `icon-maskable-512.png`: the same with more padding, so Android's round crop doesn't clip it.
+- `apple-touch-icon.png` (180×180): iPhone and iPad.
+- `public/favicon.png` (64×64): the browser tab.
+
+To replace them, keep the same file names and sizes. If you change cached files in a way that must reach installed apps immediately, bump `CACHE` in `public/sw.js`.
 
 ## Local development
 
