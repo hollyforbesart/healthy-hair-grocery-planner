@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: transparent; }
+  body { width: 520px; height: 860px; display: grid; place-items: center; font-family: 'Inter', sans-serif; }
+  body.cream { background: radial-gradient(ellipse at 50% 20%, #f1e4f8 0%, #faf6f0 70%); }
+  .phone { width: 360px; height: 754px; border-radius: 58px; background: #1c0f29; padding: 12px; position: relative;
+    box-shadow: 0 34px 64px rgba(46,26,71,.24), 0 8px 16px rgba(46,26,71,.14); }
+  .phone::after { content: ''; position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+    width: 100px; height: 28px; border-radius: 15px; background: #1c0f29; }
+  .screen { width: 100%; height: 100%; border-radius: 46px; overflow: hidden; background: #2e1a47; padding-top: 52px; position: relative; }
+  .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  /* Status bar sits on the plum header colour, so it's light. */
+  .status { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center;
+    justify-content: space-between; padding: 6px 32px 0 36px; font-size: 15px; font-weight: 600; color: #faf6f0; }
+  .icons { display: flex; gap: 5px; align-items: center; }
+  .bars { display: flex; gap: 2px; align-items: flex-end; }
+  .bars i { width: 3px; background: #faf6f0; border-radius: 1px; display: block; }
+  .batt { width: 23px; height: 11px; border: 1.5px solid #faf6f0; border-radius: 3px; padding: 1px; }
+  .batt i { display: block; height: 100%; width: 75%; background: #faf6f0; border-radius: 1px; }
+</style></head>
+<body>
+  <div class="phone"><div class="screen">
+    <div class="status"><span>9:41</span><span class="icons"><span class="bars"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span class="batt"><i></i></span></span></div>
+    <img src="s0-home.png" alt="">
+  </div></div>
+</body></html>
