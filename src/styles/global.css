@@ -136,19 +136,9 @@ h2:focus {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-.site-header__brand {
-  margin: 0;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--sand);
-}
 .site-header__home {
   color: inherit;
   text-decoration: none;
-  display: block;
-}
-.site-header__home .site-header__brand {
   display: block;
 }
 .site-header__actions {
@@ -186,6 +176,9 @@ h2:focus {
   background: rgba(250, 246, 240, 0.12);
 }
 
+.site-footer__copyright {
+  margin-bottom: 0;
+}
 .site-footer {
   margin-top: 3rem;
   padding: 1.5rem 0 2rem;
@@ -1852,9 +1845,6 @@ textarea:focus-visible {
   }
   .site-header {
     background: none;
-    color: #000;
-  }
-  .site-header__brand {
     color: #000;
   }
   .card,
