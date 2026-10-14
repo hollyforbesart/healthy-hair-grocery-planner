@@ -1880,7 +1880,7 @@ textarea:focus-visible {
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  margin: 0 0 1rem;
+  margin: 1rem 0;
   padding: 0.7rem 0.9rem;
   border-radius: var(--radius-sm);
   background: var(--lavender-soft);

@@ -115,7 +115,7 @@ export function MealsStep() {
         <p>
           {path === 'ideas'
             ? 'Browse or search, and add the meals you’d like to make. Next you’ll tick off what you already have.'
-            : 'Meals that use the most of what you have come first. Add the ones you’d like to make.'}
+            : 'Within each meal type, ideas that use more of what you have come first. Add the ones you’d like to make.'}
         </p>
       </StepHeader>
 

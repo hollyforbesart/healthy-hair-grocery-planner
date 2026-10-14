@@ -150,49 +150,6 @@ export function GroceryListStep() {
         {status?.text}
       </p>
 
-      {items.length > 0 && !installed && (
-        <div className="phone-tip no-print">
-          <Icon name="phone" size={20} />
-          <p className="small">
-            <strong>Shopping from your phone?</strong>{' '}
-            {canInstall ? (
-              <>
-                <button type="button" className="link-btn" onClick={() => void install()}>
-                  Install the planner
-                </button>{' '}
-                so your list opens like an app, even with no signal.
-              </>
-            ) : (
-              <>
-                Add the planner to your home screen so your list opens like an app, even with no signal. iPhone: Share →
-                Add to Home Screen. Android: menu → Install app.
-              </>
-            )}
-          </p>
-        </div>
-      )}
-
-      {items.length > 0 && (
-        <details className="save-help card no-print">
-          <summary>How to save or share your list</summary>
-          <ul>
-            <li>
-              <strong>On your phone:</strong> tap <em>Share list</em>, then choose Notes to keep it, or Messages, email or
-              WhatsApp to send it to someone you shop with.
-            </li>
-            <li>
-              <strong>On a computer:</strong> tap <em>Copy list</em> and paste it into an email or note, or tap{' '}
-              <em>Print list</em> and choose “Save as PDF”.
-            </li>
-            <li>
-              <strong>Coming back later:</strong> your plan is kept automatically in this browser on this device. It isn’t
-              saved online, so it won’t appear on other devices, and clearing your browser data will erase it. Share or
-              save a copy if you want to keep it.
-            </li>
-          </ul>
-        </details>
-      )}
-
       {items.length === 0 ? (
         <div className="empty card">
           <p>Your list is empty.</p>
@@ -285,6 +242,49 @@ export function GroceryListStep() {
           {addStatus?.text}
         </p>
       </form>
+
+      {items.length > 0 && !installed && (
+        <div className="phone-tip no-print">
+          <Icon name="phone" size={20} />
+          <p className="small">
+            <strong>Shopping from your phone?</strong>{' '}
+            {canInstall ? (
+              <>
+                <button type="button" className="link-btn" onClick={() => void install()}>
+                  Install the planner
+                </button>{' '}
+                so your list opens like an app, even with no signal.
+              </>
+            ) : (
+              <>
+                Add the planner to your home screen so your list opens like an app, even with no signal. iPhone: Share →
+                Add to Home Screen. Android: menu → Install app.
+              </>
+            )}
+          </p>
+        </div>
+      )}
+
+      {items.length > 0 && (
+        <details className="save-help card no-print">
+          <summary>How to save or share your list</summary>
+          <ul>
+            <li>
+              <strong>On your phone:</strong> tap <em>Share list</em>, then choose Notes to keep it, or Messages, email or
+              WhatsApp to send it to someone you shop with.
+            </li>
+            <li>
+              <strong>On a computer:</strong> tap <em>Copy list</em> and paste it into an email or note, or tap{' '}
+              <em>Print list</em> and choose “Save as PDF”.
+            </li>
+            <li>
+              <strong>Coming back later:</strong> your plan is kept automatically in this browser on this device. It isn’t
+              saved online, so it won’t appear on other devices, and clearing your browser data will erase it. Share or
+              save a copy if you want to keep it.
+            </li>
+          </ul>
+        </details>
+      )}
 
       <div className="card new-week no-print">
         <h3>Done shopping?</h3>

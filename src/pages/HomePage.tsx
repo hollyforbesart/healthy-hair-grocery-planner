@@ -98,7 +98,7 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
           ))}
         </div>
         <p className="home-hero__included small">
-          Meal ideas with ingredient lists and a grocery list — recipes coming soon.{' '}
+          Meal ideas with ingredient lists and a grocery list.{' '}
           <RouteLink to="about" navigate={navigate}>
             Why these meals?
           </RouteLink>
