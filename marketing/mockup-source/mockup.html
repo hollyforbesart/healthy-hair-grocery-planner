@@ -1,0 +1,60 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1600px; height: 1180px; font-family: 'Inter', sans-serif; color: #2e1a47;
+    background: radial-gradient(ellipse at 50% 0%, #f1e4f8 0%, #faf6f0 55%, #faf6f0 100%); }
+  .wrap { padding: 64px 80px 0; text-align: center; }
+  .logo { display: inline-flex; align-items: center; gap: 22px; }
+  .logo .mark { height: 96px; }
+  .logo .divider { width: 2px; height: 92px; background: #2e1a47; }
+  .logo .words { text-align: left; }
+  .logo .wordmark { height: 46px; display: block; }
+  .logo .tag { margin-top: 12px; font-size: 13.4px; font-weight: 600; letter-spacing: 0.215em; color: #7d5aa6; }
+  .lead { margin-top: 26px; font-size: 25px; font-weight: 500; color: #4a3366; }
+  .steps { display: flex; justify-content: center; align-items: flex-start; gap: 34px; margin-top: 48px; }
+  .step { width: 360px; display: flex; flex-direction: column; align-items: center; }
+  .phone { width: 340px; height: 712px; border-radius: 56px; background: #1c0f29; padding: 12px;
+    box-shadow: 0 30px 60px rgba(46,26,71,.22), 0 6px 14px rgba(46,26,71,.14); position: relative; }
+  .phone::after { content: ''; position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+    width: 96px; height: 26px; border-radius: 14px; background: #1c0f29; }
+  .screen { width: 100%; height: 100%; border-radius: 44px; overflow: hidden; background: #faf6f0; padding-top: 50px; position: relative; }
+  .status { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; align-items: center;
+    justify-content: space-between; padding: 6px 30px 0 34px; font-size: 14px; font-weight: 600; color: #2e1a47; }
+  .status .icons { display: flex; gap: 5px; align-items: center; }
+  .status .bars { display: flex; gap: 2px; align-items: flex-end; }
+  .status .bars i { width: 3px; background: #2e1a47; border-radius: 1px; display: block; }
+  .status .batt { width: 22px; height: 11px; border: 1.5px solid #2e1a47; border-radius: 3px; padding: 1px; }
+  .status .batt i { display: block; height: 100%; width: 75%; background: #2e1a47; border-radius: 1px; }
+  .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .cap { margin-top: 30px; display: flex; gap: 14px; align-items: flex-start; text-align: left; }
+  .num { flex: none; width: 44px; height: 44px; border-radius: 50%; background: #2e1a47; color: #faf6f0;
+    font-weight: 700; font-size: 22px; display: grid; place-items: center; }
+  .cap h2 { font-family: Georgia, serif; font-size: 25px; line-height: 1.15; font-weight: 700; }
+  .cap p { margin-top: 6px; font-size: 16.5px; line-height: 1.4; color: #5b4777; }
+  .arrow { align-self: center; margin-top: -150px; color: #9b7bbf; font-size: 46px; font-weight: 300; }
+</style></head>
+<body><div class="wrap">
+  <div class="logo">
+    <img class="mark" src="mane-meals-mark.png" alt="">
+    <span class="divider"></span>
+    <div class="words"><img class="wordmark" src="mane-meals-wordmark.png" alt="Mane Meals"><div class="tag">MEAL &amp; GROCERY PLANNER</div></div>
+  </div>
+  <p class="lead">Choose meal ideas, use what you have, and build your grocery list.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="icons"><span class="bars"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span class="batt"><i></i></span></span></div><img src="s1-kitchen.png"></div></div>
+      <div class="cap"><span class="num">1</span><div><h2>Add what’s in your kitchen</h2><p>Tap the foods you already have. Star your staples.</p></div></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="icons"><span class="bars"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span class="batt"><i></i></span></span></div><img src="s2-meals.png"></div></div>
+      <div class="cap"><span class="num">2</span><div><h2>Pick meal ideas</h2><p>See what you already have for each meal and choose what sounds good.</p></div></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="icons"><span class="bars"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span class="batt"><i></i></span></span></div><img src="s3-list.png"></div></div>
+      <div class="cap"><span class="num">3</span><div><h2>Get your grocery list</h2><p>Only what you need, sorted by store section and ready to share.</p></div></div>
+    </div>
+  </div>
+</div></body></html>

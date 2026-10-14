@@ -773,11 +773,13 @@ textarea:focus-visible {
 }
 .meal-grid {
   display: grid;
+  /* minmax(0, …) so one card's content can never widen the column past the screen */
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
 }
 @media (min-width: 720px) {
   .meal-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 .meal-card {
@@ -800,9 +802,14 @@ textarea:focus-visible {
   box-shadow: 0 0 0 2px var(--lavender), var(--shadow);
 }
 .meal-card__header {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
+}
+/* Only the meal name makes room for the heart; the badge below can use the full width. */
+.meal-card__title h3 {
+  padding-right: 2.1rem;
 }
 .meal-card__title {
   flex: 1;
@@ -844,13 +851,13 @@ textarea:focus-visible {
 .have-badge {
   display: inline-block;
   margin-top: 0.4rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
+  /* not a full pill, so it still looks right if it wraps on very narrow phones */
+  border-radius: 0.8rem;
   border: 1px solid var(--border);
   background: var(--cream);
   font-size: 0.8rem;
   font-weight: 700;
-  white-space: nowrap;
 }
 .have-badge.is-some {
   background: var(--lavender);
@@ -1294,11 +1301,13 @@ textarea:focus-visible {
   margin-top: 1rem;
 }
 .meal-card__side {
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.2rem;
-  flex-shrink: 0;
 }
 .fav-btn {
   display: inline-grid;
