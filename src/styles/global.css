@@ -169,6 +169,15 @@ h2:focus {
 .site-header h1 {
   font-size: clamp(1.25rem, 4vw, 1.75rem);
 }
+.site-header__product {
+  display: block;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--lavender);
+  margin-top: 0.1rem;
+}
 .site-header .btn--ghost {
   color: var(--cream);
   border-color: rgba(250, 246, 240, 0.5);

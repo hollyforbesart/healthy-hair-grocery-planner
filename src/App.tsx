@@ -54,7 +54,10 @@ export function App() {
             }}
           >
             <span className="site-header__brand">The Hair Loss Nutritionist</span>
-            <h1>Healthy Hair Grocery Planner</h1>
+            <h1>
+              Mane Meals<span className="visually-hidden">:</span>{' '}
+              <span className="site-header__product">Meal &amp; Grocery Planner</span>
+            </h1>
           </a>
           {route === 'planner' && (
             <div className="site-header__actions no-print">

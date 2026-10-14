@@ -1,6 +1,8 @@
-# Healthy Hair Grocery Planner
+# Mane Meals: Meal & Grocery Planner
 
-A responsive web app for **The Hair Loss Nutritionist**. It helps people plan groceries, find meal ideas that use ingredients they already have, and build one tidy shopping list.
+A responsive web app for **The Hair Loss Nutritionist**: choose meal ideas, use what you have, and build your grocery list.
+
+(The repository, package and browser-storage names still say `healthy-hair-grocery-planner`. They are internal, and renaming the storage key would erase saved plans, so they stay.)
 
 Version 1 is a static React + TypeScript + Vite app. It has no AI service, no accounts and no database. Planning progress is saved in the browser's `localStorage`.
 
@@ -140,7 +142,7 @@ To switch providers, implement that interface (for example, by calling a Cloudfl
 Feedback is emailed to you through [Web3Forms](https://web3forms.com), a free form-to-email service that works from static sites.
 
 1. Go to web3forms.com and create an access key with the email address that should receive feedback. No domain is needed for this.
-2. Name the form something you'll recognize in your inbox, such as **Healthy Hair Grocery Planner Feedback**. Each email arrives with the subject "New feedback: Healthy Hair Grocery Planner".
+2. Name the form something you'll recognize in your inbox, such as **Mane Meals Feedback**. Each email arrives with the subject "New feedback: Mane Meals".
 3. In Cloudflare Pages, open your project, then **Settings → Variables and Secrets**, and add `VITE_WEB3FORMS_ACCESS_KEY` with your key, for both Production and Preview.
 4. Redeploy. `VITE_` variables are built into the site, so a change only takes effect after a new deployment.
 
