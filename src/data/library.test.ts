@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { matchKey } from '../lib/text';
 import { AVOID_GROUPS } from './avoidGroups';
-import { INGREDIENT_CATEGORIES, MEAL_CATEGORIES, STORE_SECTIONS, STORE_SECTION_IDS } from './categories';
+import { INGREDIENT_CATEGORIES, KITCHEN_GROUP_IDS, MEAL_CATEGORIES, STORE_SECTIONS, STORE_SECTION_IDS } from './categories';
 import { INGREDIENTS } from './ingredients';
 import { LEGACY_INGREDIENT_IDS } from './legacyIds';
 import { MEALS } from './meals';
@@ -24,6 +24,7 @@ describe('ingredient catalog', () => {
       expect(i.name.trim(), i.id).not.toBe('');
       expect(foodGroups.has(i.category), `${i.id} category "${i.category}"`).toBe(true);
       expect(STORE_SECTION_IDS.has(i.storeSection), `${i.id} storeSection "${i.storeSection}"`).toBe(true);
+      expect(i.kitchenGroup && i.kitchenGroup !== 'own' && KITCHEN_GROUP_IDS.has(i.kitchenGroup), `${i.id} kitchenGroup "${i.kitchenGroup}"`).toBe(true);
     }
   });
 
@@ -128,5 +129,27 @@ describe('avoidGroupsFor', () => {
     expect(avoidGroupsFor('basil-pesto', [...dairy, ...nuts])).toEqual(['Dairy', 'Nuts & peanuts']);
     // Avoided on its own, not through a group.
     expect(avoidGroupsFor('basil-pesto', ['basil-pesto'])).toEqual([]);
+  });
+});
+
+describe('meal photos', () => {
+  it('only lists photos for meals that exist', async () => {
+    const { default: photoIds } = await import('./library/meal-photos.json');
+    for (const id of photoIds) expect(MEALS.some((m) => m.id === id), id).toBe(true);
+    const files = Object.keys(import.meta.glob('../../public/meal-photos/*.webp')).map((f) => f.split('/').pop());
+    for (const id of photoIds) expect(files, `missing photo file for ${id}`).toContain(`${id}.webp`);
+    expect(files.length, 'every photo file should be listed in meal-photos.json').toBe(photoIds.length);
+  });
+});
+
+describe('Food for Your Follicles', () => {
+  it('has the ten nutrients, each with an icon and a "find it in" section', async () => {
+    const { NUTRIENTS } = await import('./nutrients');
+    expect(NUTRIENTS).toHaveLength(10);
+    const icons = Object.keys(import.meta.glob('../../public/nutrients/*.webp')).map((f) => f.split('/').pop());
+    for (const n of NUTRIENTS) {
+      expect(icons, `icon for ${n.id}`).toContain(`${n.id}.webp`);
+      expect(n.sections.some((s) => s.highlight), `${n.id} find-in section`).toBe(true);
+    }
   });
 });

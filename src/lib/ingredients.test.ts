@@ -22,7 +22,7 @@ describe('createCustomIngredient', () => {
     const result = createCustomIngredient('  dragon   fruit ', 'produce', INGREDIENTS);
     expect(result).toEqual({
       ok: true,
-      ingredient: { id: 'custom-dragon-fruit', name: 'Dragon fruit', category: 'produce', storeSection: 'produce', custom: true },
+      ingredient: { id: 'custom-dragon-fruit', name: 'Dragon fruit', category: 'produce', kitchenGroup: 'own', storeSection: 'produce', custom: true },
     });
   });
 
@@ -40,5 +40,13 @@ describe('createCustomIngredient', () => {
 
   it('rejects empty names', () => {
     expect(createCustomIngredient('   ', 'produce', INGREDIENTS)).toEqual({ ok: false, reason: 'empty' });
+  });
+});
+
+describe('searchIngredients ranking', () => {
+  it('puts an exact match first, then names that start with the text', () => {
+    expect(searchIngredients('milk', INGREDIENTS)[0].ingredient.id).toBe('milk');
+    expect(searchIngredients('chick', INGREDIENTS).map((r) => r.ingredient.name)[0]).toMatch(/^Chick/);
+    expect(searchIngredients('garbanzo', INGREDIENTS)[0].ingredient.id).toBe('chickpeas');
   });
 });

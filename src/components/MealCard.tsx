@@ -1,4 +1,6 @@
 import { MEAL_CATEGORY_LABELS } from '../data/categories';
+import { mealPhotoUrl } from '../data/mealPhotos';
+import { Icon } from './Icon';
 import { ingredientName, type IngredientLookup } from '../lib/ingredients';
 import { effectiveId } from '../lib/matching';
 import type { MealRecommendation } from '../services/recommendations';
@@ -12,6 +14,7 @@ interface MealCardProps {
   /** Extras (optional ingredients or swaps) the user tapped for this meal. */
   extras: string[];
   onToggle: () => void;
+  onToggleFavorite: () => void;
   onToggleExtra: (ingredientId: string) => void;
 }
 
@@ -32,9 +35,11 @@ export function MealCard({
   selected,
   extras,
   onToggle,
+  onToggleFavorite,
   onToggleExtra,
 }: MealCardProps) {
-  const { meal, match } = recommendation;
+  const { meal, match, reasons, isFavorite } = recommendation;
+  const photo = mealPhotoUrl(meal.id);
   const name = (id: string) => ingredientName(lookup, id);
   const headingId = `meal-${meal.id}`;
 
@@ -67,54 +72,87 @@ export function MealCard({
   return (
     <article className={`meal-card${selected ? ' is-selected' : ''}`} aria-labelledby={headingId}>
       <header className="meal-card__header">
+        {photo ? (
+          <img className="meal-thumb" src={photo} alt="" width={88} height={88} loading="lazy" decoding="async" />
+        ) : (
+          <span className="meal-thumb meal-thumb--placeholder" aria-hidden="true">
+            <Icon name="bowl" size={30} />
+          </span>
+        )}
         <div className="meal-card__title">
           <h3 id={headingId}>{meal.name}</h3>
           <p className="meal-card__meta">
             {MEAL_CATEGORY_LABELS[meal.category]}
             {tags.length > 0 && <span> · {tags.join(', ')}</span>}
           </p>
+          <span className={`have-badge${allAtHome ? ' is-full' : have.length > 0 ? ' is-some' : ''}`}>
+            {allAtHome
+              ? `You have all ${total} ingredients`
+              : have.length > 0
+                ? `You have ${have.length} of ${total} ingredients`
+                : `${total} ingredient${total === 1 ? '' : 's'}`}
+          </span>
         </div>
-        <span
-          className={`availability ${allAtHome ? 'availability--full' : ''}`}
-          aria-label={`${have.length} of ${total} ingredients at home`}
+        <div className="meal-card__side">
+        <button
+          type="button"
+          className={`fav-btn${isFavorite ? ' is-on' : ''}`}
+          aria-pressed={isFavorite}
+          aria-label={`Favorite: ${meal.name}`}
+          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          onClick={onToggleFavorite}
         >
-          <span className="availability__dots" aria-hidden="true">
-            {match.required.map((r, i) => (
-              <span key={i} className={r.status === 'have' || r.status === 'have-substitute' ? 'is-on' : ''} />
-            ))}
-          </span>
-          <span aria-hidden="true">
-            {have.length}/{total} at home
-          </span>
-        </span>
+          <span aria-hidden="true">{isFavorite ? '♥' : '♡'}</span>
+        </button>
+        </div>
       </header>
+
+      {reasons.length > 0 && <p className="meal-card__why">{reasons.join(' · ')}</p>}
 
       {meal.description && <p className="meal-card__desc">{meal.description}</p>}
 
-      <dl className="meal-card__lists">
-        <div>
-          <dt>Already have</dt>
-          <dd>{have.length > 0 ? have.map(describe).join(', ') : <span className="muted">None yet</span>}</dd>
-        </div>
-        <div className="need">
-          <dt>Need to buy</dt>
-          <dd>
-            {needToBuy.length === 0 && onList.length === 0 ? (
-              <span className="muted">Nothing — you have it all</span>
-            ) : (
-              <>
-                {needToBuy.map(describe).join(', ')}
-                {onList.length > 0 && (
-                  <span className="meal-card__on-list">
-                    {needToBuy.length > 0 && <br />}
-                    {onList.map(describe).join(', ')} <span className="muted">(already on your list)</span>
-                  </span>
-                )}
-              </>
-            )}
-          </dd>
-        </div>
-      </dl>
+      {have.length === 0 ? (
+        // Nothing at home yet: a plain list reads better than "Already have: none".
+        <dl className="meal-card__lists">
+          <div>
+            <dt>Ingredients</dt>
+            <dd>
+              {[...needToBuy, ...onList].map(describe).join(', ')}
+              {onList.length > 0 && (
+                <span className="meal-card__on-list">
+                  <br />
+                  <span className="muted">Already on your list: {onList.map(describe).join(', ')}</span>
+                </span>
+              )}
+            </dd>
+          </div>
+        </dl>
+      ) : (
+        <dl className="meal-card__lists">
+          <div>
+            <dt>Already have</dt>
+            <dd>{have.length > 0 ? have.map(describe).join(', ') : <span className="muted">None yet</span>}</dd>
+          </div>
+          <div className="need">
+            <dt>Need to buy</dt>
+            <dd>
+              {needToBuy.length === 0 && onList.length === 0 ? (
+                <span className="muted">Nothing — you have it all</span>
+              ) : (
+                <>
+                  {needToBuy.map(describe).join(', ')}
+                  {onList.length > 0 && (
+                    <span className="meal-card__on-list">
+                      {needToBuy.length > 0 && <br />}
+                      {onList.map(describe).join(', ')} <span className="muted">(already on your list)</span>
+                    </span>
+                  )}
+                </>
+              )}
+            </dd>
+          </div>
+        </dl>
+      )}
 
       {meal.preparationNote && (
         <details className="meal-card__note">

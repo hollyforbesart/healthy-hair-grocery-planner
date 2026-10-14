@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { MealTemplate } from '../types';
 import { matchMeal } from './matching';
-import { rankMeals } from '../services/recommendations/localProvider';
+import { rankMeals, shareNotAtHome } from '../services/recommendations/localProvider';
 import { INGREDIENTS } from '../data/ingredients';
 import { FIXTURE_MEALS as MEALS } from '../test/fixtureMeals';
 
@@ -55,17 +55,27 @@ describe('matchMeal', () => {
 
 describe('rankMeals', () => {
   const base = { ingredients: INGREDIENTS, meals: MEALS };
-  const prefs = { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
+  const prefs = { mealCategories: [], avoidIngredientIds: [] };
 
-  it('puts meals needing fewer additional ingredients first', () => {
+  it('puts meals with the smallest share of ingredients to buy first', () => {
     const ranked = rankMeals({
       ...base,
       preferences: prefs,
       ingredientStatuses: { oats: 'have', 'greek-yogurt': 'have', berries: 'have' },
     });
     expect(ranked[0].meal.id).toBe('berry-overnight-oats');
-    const missing = ranked.map((r) => r.match.missingCount);
-    expect(missing).toEqual([...missing].sort((a, b) => a - b));
+    const shares = ranked.map((r) => shareNotAtHome(r.match));
+    expect(shares).toEqual([...shares].sort((a, b) => a - b));
+  });
+
+  it('ranks by share, not count, and keeps library order when nothing is at home', () => {
+    const m = (id: string, required: string[]): MealTemplate => ({ id, name: id, category: 'dinner', requiredIngredients: required, optionalIngredients: [] });
+    const snack = m('snack', ['a', 'b']); // 1 of 2 to buy
+    const dinner = m('dinner', ['a', 'c', 'd', 'e', 'f']); // 1 of 5 to buy
+    const ranked = rankMeals({ ingredients: [], meals: [snack, dinner], preferences: prefs, ingredientStatuses: { a: 'have', c: 'have', d: 'have', e: 'have' } });
+    expect(ranked.map((r) => r.meal.id)).toEqual(['dinner', 'snack']);
+    const fresh = rankMeals({ ...base, preferences: prefs, ingredientStatuses: {} });
+    expect(fresh.map((r) => r.meal.id)).toEqual(MEALS.map((meal) => meal.id));
   });
 
 });
@@ -97,10 +107,12 @@ describe('preparation time', () => {
       ingredients: INGREDIENTS,
       meals: [quick, slow],
       ingredientStatuses: {},
-      preferences: { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] },
+      preferences: { mealCategories: [], avoidIngredientIds: [] },
     });
-    // Same pantry fit, so alphabetical — the 90-minute meal is not pushed down.
-    expect(ranked.map((r) => r.meal.id)).toEqual(['a-slow', 'a-quick']);
+    // Same pantry fit, so library order — the 90-minute meal is not pushed down.
+    expect(ranked.map((r) => r.meal.id)).toEqual(['a-quick', 'a-slow']);
+    const reversed = rankMeals({ ingredients: INGREDIENTS, meals: [slow, quick], ingredientStatuses: {}, preferences: { mealCategories: [], avoidIngredientIds: [] } });
+    expect(reversed.map((r) => r.meal.id)).toEqual(['a-slow', 'a-quick']);
   });
 });
 
@@ -115,7 +127,7 @@ describe('pantry vs shopping list in ranking', () => {
     prepTimeMinutes: 20,
     instructions: [],
   });
-  const prefs = { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: [] };
+  const prefs = { mealCategories: [], avoidIngredientIds: [] };
 
   it('ranks a meal mostly at home above one that is all on the shopping list', () => {
     const allOnList = meal('all-on-list', ['a', 'b', 'c', 'd', 'e']);
@@ -167,7 +179,7 @@ describe('avoided ingredients', () => {
       ingredients: INGREDIENTS,
       meals: MEALS,
       ingredientStatuses: {},
-      preferences: { cookingStyle: null, mealCategories: [], budget: '', householdSize: null, avoidIngredientIds: ['lentils'] },
+      preferences: { mealCategories: [], avoidIngredientIds: ['lentils'] },
     });
     expect(ranked.map((r) => r.meal.id)).not.toContain('lentil-vegetable-soup');
   });

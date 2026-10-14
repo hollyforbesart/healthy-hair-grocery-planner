@@ -1,78 +1,220 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
+import { AvoidFoods } from '../components/AvoidFoods';
 import { MealCard } from '../components/MealCard';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
+import { AVOID_GROUPS } from '../data/avoidGroups';
 import { MEAL_CATEGORIES } from '../data/categories';
 import { useRecommendations } from '../hooks/useRecommendations';
-import { recommendationProvider, type RecommendationRequest } from '../services/recommendations';
+import { useStepNav } from '../hooks/useStepNav';
+import { ingredientName } from '../lib/ingredients';
+import { previouslyChosenMealIds, recentMealIds } from '../lib/mealHistory';
+import { mealMatchesQuery } from '../lib/mealSearch';
+import { toggleMealChoice, type MealChoice } from '../lib/mealSelection';
+import { recommendationProvider, type MealRecommendation, type RecommendationRequest } from '../services/recommendations';
+import { todayIso } from '../state/plannerReducer';
 import { usePlanner } from '../state/PlannerContext';
 import type { MealCategory } from '../types';
 
+/** Cards shown before "Show more" in a single list, so 100 meals don't load as one long page. */
+const PAGE_SIZE = 20;
+/** Cards shown per meal type before "See all". */
+const SECTION_SIZE = 4;
+
 export function MealsStep() {
   const { state, dispatch, allIngredients, meals, lookup } = usePlanner();
-  const { preferences, ingredientStatuses, selectedMealIds, mealExtras } = state;
-  const [filter, setFilter] = useState<MealCategory[]>(preferences.mealCategories);
+  const { goBack, goNext, go } = useStepNav();
+  const { preferences, ingredientStatuses, selectedMealIds, mealExtras, favorites, mealHistory, path } = state;
+  const categories = preferences.mealCategories;
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [query, setQuery] = useState('');
+  const [shown, setShown] = useState(PAGE_SIZE);
+  const [expanded, setExpanded] = useState<MealCategory[]>([]);
+  const [avoidOpen, setAvoidOpen] = useState(false);
+  const avoidRef = useRef<HTMLDetailsElement>(null);
 
   const request = useMemo<RecommendationRequest>(
-    () => ({ preferences, ingredientStatuses, ingredients: allIngredients, meals }),
-    [preferences, ingredientStatuses, allIngredients, meals],
+    () => ({
+      preferences,
+      ingredientStatuses,
+      ingredients: allIngredients,
+      meals,
+      favorites,
+      recentMealIds: [...recentMealIds(mealHistory, todayIso())],
+      previouslyChosenIds: [...previouslyChosenMealIds(mealHistory)],
+    }),
+    [preferences, ingredientStatuses, allIngredients, meals, favorites, mealHistory],
   );
   const result = useRecommendations(recommendationProvider, request);
 
-  const visible = result.data.filter((r) => filter.length === 0 || filter.includes(r.meal.category));
+  const matching = result.data.filter(
+    (r) =>
+      (categories.length === 0 || categories.includes(r.meal.category)) &&
+      (!favoritesOnly || r.isFavorite) &&
+      mealMatchesQuery(r.meal, query, lookup),
+  );
+  // Browsing several meal types: one short section each, so snacks don't crowd out dinners.
+  const sectioned = !query.trim() && !favoritesOnly && categories.length !== 1;
+  const sections = MEAL_CATEGORIES.filter((c) => categories.length === 0 || categories.includes(c.id))
+    .map((c) => ({ ...c, items: matching.filter((r) => r.meal.category === c.id) }))
+    .filter((s) => s.items.length > 0);
+  const visible = matching.slice(0, shown);
   const hasAnything = Object.values(ingredientStatuses).some((s) => s === 'have');
   const hiddenByAvoid = result.status === 'ready' ? meals.length - result.data.length : 0;
+  const resetPaging = () => {
+    setShown(PAGE_SIZE);
+    setExpanded([]);
+  };
 
-  const toggleFilter = (category: MealCategory) =>
-    setFilter((f) => (f.includes(category) ? f.filter((c) => c !== category) : [...f, category]));
+  const chooseCategory = (choice: MealChoice) => {
+    setFavoritesOnly(false);
+    dispatch({ type: 'updatePreferences', patch: { mealCategories: toggleMealChoice(categories, choice) } });
+    resetPaging();
+  };
+
+  // Summary for the "Foods to leave out" panel: ticked groups by name, then single foods.
+  const avoidIds = preferences.avoidIngredientIds;
+  const avoidSet = new Set(avoidIds);
+  const avoidGroups = AVOID_GROUPS.filter((g) => g.ingredientIds.every((id) => avoidSet.has(id)));
+  const inGroups = new Set(avoidGroups.flatMap((g) => g.ingredientIds));
+  const avoidLabels = [
+    ...avoidGroups.map((g) => g.label),
+    ...avoidIds.filter((id) => !inGroups.has(id)).map((id) => ingredientName(lookup, id)),
+  ];
+  const avoidSummary =
+    avoidLabels.length === 0
+      ? 'None'
+      : avoidLabels.length <= 3
+        ? avoidLabels.join(', ')
+        : `${avoidLabels.slice(0, 3).join(', ')} +${avoidLabels.length - 3} more`;
+
+  const openAvoid = () => {
+    setAvoidOpen(true);
+    avoidRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const card = (recommendation: MealRecommendation) => (
+    <MealCard
+      key={recommendation.meal.id}
+      recommendation={recommendation}
+      lookup={lookup}
+      statuses={ingredientStatuses}
+      selected={selectedMealIds.includes(recommendation.meal.id)}
+      extras={mealExtras[recommendation.meal.id] ?? []}
+      onToggle={() => dispatch({ type: 'toggleMeal', mealId: recommendation.meal.id })}
+      onToggleFavorite={() => dispatch({ type: 'toggleFavorite', mealId: recommendation.meal.id })}
+      onToggleExtra={(ingredientId) => dispatch({ type: 'toggleMealExtra', mealId: recommendation.meal.id, ingredientId })}
+    />
+  );
+
+  const selectedCount = selectedMealIds.length;
 
   return (
-    <section aria-labelledby="step-title">
-      <StepHeader step={3} title="Find meal ideas">
+    <section aria-labelledby="step-title" className={selectedCount > 0 ? 'has-review-bar' : undefined}>
+      <StepHeader title={path === 'ideas' ? 'Find meal ideas' : 'Meal ideas from your kitchen'}>
         <p>
-          Meals that use the most of what you already have at home come first. Choose any you’d like to make —
-          anything you need to buy goes on your grocery list.
+          {path === 'ideas'
+            ? 'Browse or search, and add the meals you’d like to make. Next you’ll tick off what you already have.'
+            : 'Meals that use the most of what you have come first. Add the ones you’d like to make.'}
         </p>
       </StepHeader>
 
-      {!hasAnything && (
-        <div className="notice" role="note">
-          <p>
-            You haven’t marked anything as <strong>Already have</strong> yet, so every ingredient counts as something
-            to buy.{' '}
-            <button type="button" className="link-btn" onClick={() => dispatch({ type: 'goToStep', step: 1 })}>
-              Mark what you have
-            </button>{' '}
-            for better suggestions.
-          </p>
-        </div>
-      )}
-
-      {hiddenByAvoid > 0 && (
-        <p className="small muted">
-          {hiddenByAvoid} meal{hiddenByAvoid === 1 ? ' is' : 's are'} hidden because {hiddenByAvoid === 1 ? 'it uses' : 'they use'} foods
-          you’re avoiding, with no swap available.{' '}
-          <button type="button" className="link-btn" onClick={() => dispatch({ type: 'goToStep', step: 0 })}>
-            Change what you avoid
+      {path === 'ideas' ? (
+        <p className="small path-switch">
+          Want ideas based on what’s in your kitchen?{' '}
+          <button
+            type="button"
+            className="link-btn"
+            onClick={() => {
+              dispatch({ type: 'choosePath', path: 'pantry' });
+              go('kitchen');
+            }}
+          >
+            Add your kitchen
           </button>
         </p>
+      ) : (
+        !hasAnything && (
+          <div className="notice" role="note">
+            <p>
+              You haven’t added anything from your kitchen yet, so every ingredient counts as something to buy.{' '}
+              <button type="button" className="link-btn" onClick={() => go('kitchen')}>
+                Add what you have
+              </button>
+            </p>
+          </div>
+        )
       )}
 
+      <div className="meal-search field">
+        <label htmlFor="meal-search">Search meals or ingredients</label>
+        <input
+          id="meal-search"
+          type="search"
+          placeholder="e.g. salmon, oats, curry"
+          autoComplete="off"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            resetPaging();
+          }}
+        />
+      </div>
+
       <div className="filter-bar" role="group" aria-label="Show meal types">
-        <button type="button" className="chip" aria-pressed={filter.length === 0} onClick={() => setFilter([])}>
+        <button type="button" className="chip" aria-pressed={categories.length === 0 && !favoritesOnly} onClick={() => chooseCategory('all')}>
           All meals
         </button>
         {MEAL_CATEGORIES.map((c) => (
-          <button key={c.id} type="button" className="chip" aria-pressed={filter.includes(c.id)} onClick={() => toggleFilter(c.id)}>
+          <button
+            key={c.id}
+            type="button"
+            className="chip"
+            aria-pressed={!favoritesOnly && categories.includes(c.id)}
+            onClick={() => chooseCategory(c.id)}
+          >
             {c.label}
           </button>
         ))}
+        <button
+          type="button"
+          className="chip"
+          aria-pressed={favoritesOnly}
+          onClick={() => {
+            setFavoritesOnly((f) => !f);
+            resetPaging();
+          }}
+        >
+          ♥ Favorites
+        </button>
       </div>
+
+      <details
+        ref={avoidRef}
+        className="card avoid-panel"
+        open={avoidOpen}
+        onToggle={(e) => setAvoidOpen(e.currentTarget.open)}
+      >
+        <summary>
+          <span className="avoid-panel__title">Foods to leave out</span>{' '}
+          <span className="avoid-panel__summary">{avoidSummary}</span>
+        </summary>
+        <AvoidFoods />
+      </details>
 
       <p className="small muted" aria-live="polite">
         {result.status === 'loading' && result.data.length === 0
           ? 'Finding meal ideas…'
-          : `${visible.length} meal idea${visible.length === 1 ? '' : 's'} · ${selectedMealIds.length} in your plan`}
+          : `${matching.length} meal idea${matching.length === 1 ? '' : 's'} · ${selectedCount} in your plan`}
+        {hiddenByAvoid > 0 && (
+          <>
+            {' · '}
+            {hiddenByAvoid} hidden because of foods you leave out{' '}
+            <button type="button" className="link-btn" onClick={openAvoid}>
+              Change
+            </button>
+          </>
+        )}
       </p>
 
       {result.status === 'error' && (
@@ -81,37 +223,87 @@ export function MealsStep() {
         </p>
       )}
 
-      {result.status !== 'loading' && visible.length === 0 && (
+      {result.status !== 'loading' && matching.length === 0 && (
         <div className="empty card">
-          <p>No meal ideas match these meal types yet.</p>
-          <button type="button" className="btn btn--secondary" onClick={() => setFilter([])}>
+          <p>
+            {favoritesOnly
+              ? 'No favorites yet. Tap ♡ on a meal to save it here.'
+              : query
+                ? `No meals match “${query}”.`
+                : 'No meal ideas match these meal types.'}
+          </p>
+          <button
+            type="button"
+            className="btn btn--secondary"
+            onClick={() => {
+              chooseCategory('all');
+              setQuery('');
+            }}
+          >
             Show all meals
           </button>
         </div>
       )}
 
-      <div className="meal-grid">
-        {visible.map((recommendation) => (
-          <MealCard
-            key={recommendation.meal.id}
-            recommendation={recommendation}
-            lookup={lookup}
-            statuses={ingredientStatuses}
-            selected={selectedMealIds.includes(recommendation.meal.id)}
-            extras={mealExtras[recommendation.meal.id] ?? []}
-            onToggle={() => dispatch({ type: 'toggleMeal', mealId: recommendation.meal.id })}
-            onToggleExtra={(ingredientId) =>
-              dispatch({ type: 'toggleMealExtra', mealId: recommendation.meal.id, ingredientId })
-            }
-          />
-        ))}
-      </div>
+      {sectioned ? (
+        sections.map((section) => {
+          const open = expanded.includes(section.id);
+          const items = open ? section.items : section.items.slice(0, SECTION_SIZE);
+          const label = section.label.toLowerCase();
+          return (
+            <section key={section.id} className="meal-section" aria-labelledby={`meals-${section.id}`}>
+              <h3 id={`meals-${section.id}`} className="meal-section__title">
+                {section.label} <span className="muted">· {section.items.length}</span>
+              </h3>
+              <div className="meal-grid">{items.map(card)}</div>
+              {section.items.length > SECTION_SIZE && (
+                <div className="show-more">
+                  <button
+                    type="button"
+                    className="btn btn--secondary"
+                    aria-expanded={open}
+                    onClick={() =>
+                      setExpanded((e) => (open ? e.filter((c) => c !== section.id) : [...e, section.id]))
+                    }
+                  >
+                    {open ? `Show fewer ${label} ideas` : `See all ${section.items.length} ${label} ideas`}
+                  </button>
+                </div>
+              )}
+            </section>
+          );
+        })
+      ) : (
+        <>
+          <div className="meal-grid">{visible.map(card)}</div>
+          {matching.length > visible.length && (
+            <div className="show-more">
+              <button type="button" className="btn btn--secondary" onClick={() => setShown((n) => n + PAGE_SIZE)}>
+                Show more meals ({matching.length - visible.length} more)
+              </button>
+            </div>
+          )}
+        </>
+      )}
 
       <StepFooter
-        onBack={() => dispatch({ type: 'goToStep', step: 1 })}
-        onNext={() => dispatch({ type: 'goToStep', step: 3 })}
-        nextLabel={selectedMealIds.length > 0 ? 'Build my grocery list' : 'Skip to grocery list'}
+        onBack={goBack}
+        onNext={goNext}
+        nextLabel={selectedCount > 0 ? `Review my ${selectedCount} meal${selectedCount === 1 ? '' : 's'}` : 'Review'}
       />
+
+      {selectedCount > 0 && goNext && (
+        <div className="review-bar no-print">
+          <div className="container review-bar__inner">
+            <span className="review-bar__count" aria-live="polite">
+              {selectedCount} selected
+            </span>
+            <button type="button" className="btn btn--primary" onClick={goNext}>
+              Review →
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

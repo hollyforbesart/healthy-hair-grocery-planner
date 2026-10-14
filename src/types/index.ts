@@ -1,7 +1,14 @@
 // Shared domain types. Data lives in src/data, logic in src/lib.
 
-/** Food group used to organise ingredient selection (Step 2). */
+/** Nutrition food group (proteins, carbohydrates, produce, fats & extras). */
 export type FoodGroupId = 'proteins' | 'carbohydrates' | 'produce' | 'fats-extras';
+
+/**
+ * Everyday kitchen groups used on the "Your kitchen" step — how shoppers think
+ * about food (milk is dairy, not "fats & extras"). "own" holds items people
+ * typed in themselves.
+ */
+export type KitchenGroupId = 'produce' | 'proteins' | 'dairy-eggs' | 'grains' | 'pantry' | 'own';
 
 /**
  * Grocery-store section used to organise the shopping list. IDs come from
@@ -18,6 +25,8 @@ export interface Ingredient {
   id: string;
   name: string;
   category: FoodGroupId;
+  /** Group on the "Your kitchen" step. Required for catalog items; "own" for custom ones. */
+  kitchenGroup?: KitchenGroupId;
   /** Where it's usually found in a store, for the grocery list. */
   storeSection: StoreSectionId;
   /** Other names people search for, e.g. "garbanzo beans" for chickpeas. */
@@ -58,19 +67,24 @@ export interface MealTemplate {
   dietaryTags?: DietaryTag[];
 }
 
-/** What the user told us about an ingredient in Step 2. */
+/** What the user told us about an ingredient: have it, or need to buy it. */
 export type IngredientStatus = 'have' | 'need';
 
 export type IngredientStatusMap = Record<string, IngredientStatus>;
 
-export type CookingStyle = 'quick' | 'batch' | 'mixed';
+/** How the user starts: from what's in their kitchen, or by browsing meals. */
+export type PlannerPath = 'pantry' | 'ideas';
+
+/** Meals chosen in an earlier week, used to avoid repeating suggestions. */
+export interface MealHistoryEntry {
+  /** Local date the week was closed, YYYY-MM-DD. */
+  date: string;
+  mealIds: string[];
+}
 
 export interface WeekPreferences {
-  cookingStyle: CookingStyle | null;
+  /** Meal types shown on the meal ideas page; empty means all. */
   mealCategories: MealCategory[];
-  /** Free text so users can type "$80" or "about 100". */
-  budget: string;
-  householdSize: number | null;
   /** Ingredients nobody in the household eats. Meals swap them out or are hidden. */
   avoidIngredientIds: string[];
 }
@@ -93,7 +107,7 @@ export interface ManualGroceryItem {
 }
 
 /**
- * Why an item is on the list: chosen in Step 2, needed by a selected meal,
+ * Why an item is on the list: marked Need to buy, needed by a selected meal,
  * an optional extra or swap the user tapped on a meal card, or typed in.
  */
 export type GrocerySource = 'chosen' | 'meal' | 'extra' | 'added';

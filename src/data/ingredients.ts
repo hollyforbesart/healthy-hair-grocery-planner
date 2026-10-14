@@ -9,7 +9,7 @@ import catalog from './library/ingredients.json';
  * - `id` is the permanent key used by meals and saved plans. Never rename
  *   one; change `name` or add `aliases` instead. If two records must be
  *   merged, add the old ID to src/data/legacyIds.ts.
- * - `category` is the food group for Step 2; `storeSection` is the grocery
+ * - `category` is the nutrition food group; `storeSection` is the grocery
  *   aisle (one of store-sections.json).
  * Tests check every field, ID and alias.
  */

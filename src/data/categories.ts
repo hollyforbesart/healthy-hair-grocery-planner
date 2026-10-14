@@ -1,7 +1,7 @@
-import type { FoodGroupId, MealCategory, StoreSectionId } from '../types';
+import type { FoodGroupId, Ingredient, KitchenGroupId, MealCategory, StoreSectionId } from '../types';
 import storeSections from './library/store-sections.json';
 
-/** Food groups for Step 2, in display order. */
+/** Nutrition food groups, in display order. */
 export const INGREDIENT_CATEGORIES: { id: FoodGroupId; label: string }[] = [
   { id: 'proteins', label: 'Proteins' },
   { id: 'carbohydrates', label: 'Carbohydrates' },
@@ -13,6 +13,21 @@ export const FOOD_GROUP_LABELS = Object.fromEntries(INGREDIENT_CATEGORIES.map((c
   FoodGroupId,
   string
 >;
+
+/** Groups on the "Your kitchen" step, in display order. */
+export const KITCHEN_GROUPS: { id: KitchenGroupId; label: string; hint?: string }[] = [
+  { id: 'produce', label: 'Fruits & vegetables' },
+  { id: 'proteins', label: 'Proteins', hint: 'Meat, fish, beans, lentils & tofu' },
+  { id: 'dairy-eggs', label: 'Dairy & eggs' },
+  { id: 'grains', label: 'Grains, bread & pasta' },
+  { id: 'pantry', label: 'Pantry & extras', hint: 'Nuts, seeds, oils, sauces, spices & canned goods' },
+  { id: 'own', label: 'Your own items' },
+];
+
+export const KITCHEN_GROUP_IDS = new Set<string>(KITCHEN_GROUPS.map((g) => g.id));
+
+export const kitchenGroupOf = (ingredient: Ingredient): KitchenGroupId =>
+  ingredient.kitchenGroup ?? (ingredient.custom ? 'own' : 'pantry');
 
 /** Grocery-list sections in store-walking order (edit store-sections.json to change). */
 export const STORE_SECTIONS: { id: StoreSectionId; label: string }[] = storeSections;

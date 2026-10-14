@@ -1,6 +1,11 @@
 import { useMemo, useState } from 'react';
 import { GroceryItemRow } from '../components/GroceryItemRow';
+import { FeedbackCard } from '../components/FeedbackCard';
+import { Icon } from '../components/Icon';
+import { PlanReminder } from '../components/PlanReminder';
 import { StepFooter } from '../components/StepFooter';
+import { useInstallPrompt } from '../hooks/useInstallPrompt';
+import { useStepNav } from '../hooks/useStepNav';
 import { StepHeader } from '../components/StepHeader';
 import { OTHER_SECTION, STORE_SECTIONS } from '../data/categories';
 import { copyText } from '../lib/clipboard';
@@ -15,6 +20,8 @@ import type { GroceryListItem, StoreSectionId } from '../types';
 
 export function GroceryListStep() {
   const { state, dispatch, lookup, allIngredients, selectedMeals } = usePlanner();
+  const { goBack, go } = useStepNav();
+  const { canInstall, installed, install } = useInstallPrompt();
   const [newName, setNewName] = useState('');
   const [newSection, setNewSection] = useState<StoreSectionId>(OTHER_SECTION);
   const [status, setStatus] = useState<{ kind: 'info' | 'error'; text: string } | null>(null);
@@ -62,7 +69,7 @@ export function GroceryListStep() {
     if (ingredient && state.ingredientStatuses[ingredient.id] === 'have') {
       setAddStatus({
         kind: 'info',
-        text: `You marked “${ingredient.name}” as Already have. Change it in Step 2 if you’re running low.`,
+        text: `You marked “${ingredient.name}” as Already have. Untick it on Review if you’re running low.`,
       });
       return;
     }
@@ -84,8 +91,10 @@ export function GroceryListStep() {
     setNewName('');
   };
 
+  const listNotes = { meals: selectedMeals.map((m) => m.name) };
+
   const copy = async () => {
-    const ok = await copyText(groceryListToText(groups));
+    const ok = await copyText(groceryListToText(groups, listNotes));
     setStatus(
       ok
         ? { kind: 'info', text: 'List copied. Paste it into Notes, a text message or an email.' }
@@ -94,11 +103,11 @@ export function GroceryListStep() {
   };
 
   const share = async () => {
-    const outcome = await shareText('Grocery list', groceryListToText(groups));
+    const outcome = await shareText('Grocery list', groceryListToText(groups, listNotes));
     if (outcome === 'shared') setStatus({ kind: 'info', text: 'List shared.' });
     else if (outcome === 'unsupported' || outcome === 'failed') {
       // Desktop browsers often have no share sheet: copy instead and say so.
-      const ok = await copyText(groceryListToText(groups));
+      const ok = await copyText(groceryListToText(groups, listNotes));
       setStatus(
         ok
           ? { kind: 'info', text: 'Sharing isn’t available in this browser, so we copied the list instead. Paste it wherever you like.' }
@@ -107,27 +116,17 @@ export function GroceryListStep() {
     }
   };
 
-  const { budget, householdSize } = state.preferences;
 
   return (
     <section aria-labelledby="step-title">
-      <StepHeader step={4} title="Your grocery list">
+      <StepHeader title="Your grocery list">
         <p className="no-print">
-          Everything you marked <strong>Need to buy</strong>, plus what your chosen meals are missing. Items you already
-          have are left off.
+          Everything your meals need that you don’t already have, plus anything you add. It shows what to buy, not how
+          much.
         </p>
       </StepHeader>
 
-      {(budget || householdSize) && (
-        <p className="plan-summary small">
-          {budget && <span>Budget: {budget}</span>}
-          {householdSize && (
-            <span>
-              Shopping for: {householdSize} {householdSize === 1 ? 'person' : 'people'}
-            </span>
-          )}
-        </p>
-      )}
+      <PlanReminder />
 
       <div className="list-toolbar no-print">
         <p className="small muted">
@@ -150,6 +149,28 @@ export function GroceryListStep() {
       <p className={`small no-print list-status ${status?.kind === 'error' ? 'error' : ''}`} role="status" aria-live="polite">
         {status?.text}
       </p>
+
+      {items.length > 0 && !installed && (
+        <div className="phone-tip no-print">
+          <Icon name="phone" size={20} />
+          <p className="small">
+            <strong>Shopping from your phone?</strong>{' '}
+            {canInstall ? (
+              <>
+                <button type="button" className="link-btn" onClick={() => void install()}>
+                  Install the planner
+                </button>{' '}
+                so your list opens like an app, even with no signal.
+              </>
+            ) : (
+              <>
+                Add the planner to your home screen so your list opens like an app, even with no signal. iPhone: Share →
+                Add to Home Screen. Android: menu → Install app.
+              </>
+            )}
+          </p>
+        </div>
+      )}
 
       {items.length > 0 && (
         <details className="save-help card no-print">
@@ -175,14 +196,9 @@ export function GroceryListStep() {
       {items.length === 0 ? (
         <div className="empty card">
           <p>Your list is empty.</p>
-          <p className="small muted">
-            Mark ingredients as <strong>Need to buy</strong> or choose meals, or add items below.
-          </p>
+          <p className="small muted">Pick some meals, or add items below.</p>
           <div className="button-row">
-            <button type="button" className="btn btn--secondary" onClick={() => dispatch({ type: 'goToStep', step: 1 })}>
-              Choose ingredients
-            </button>
-            <button type="button" className="btn btn--secondary" onClick={() => dispatch({ type: 'goToStep', step: 2 })}>
+            <button type="button" className="btn btn--secondary" onClick={() => go('meals')}>
               Find meal ideas
             </button>
           </div>
@@ -273,23 +289,20 @@ export function GroceryListStep() {
       <div className="card new-week no-print">
         <h3>Done shopping?</h3>
         <p className="small">
-          Next week, start fresh: your preferences and staples are kept, and you’ll check your pantry for anything that
-          ran out.
+          When you’re ready for next week, start fresh. Your staples, favorites and preferences are kept.
         </p>
         <button
           type="button"
           className="btn btn--secondary"
           onClick={() => window.confirm(NEW_WEEK_CONFIRM) && dispatch({ type: 'startNewWeek' })}
         >
-          Start a new week
+          Plan a new week
         </button>
       </div>
 
-      <StepFooter
-        onBack={() => dispatch({ type: 'goToStep', step: 2 })}
-        onNext={() => dispatch({ type: 'goToStep', step: 4 })}
-        nextLabel="Share feedback"
-      />
+      <FeedbackCard />
+
+      <StepFooter onBack={goBack} />
     </section>
   );
 }

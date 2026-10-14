@@ -4,11 +4,13 @@
  * - On install, caches the page and every asset it references, so the
  *   planner opens with no connection after the first visit.
  * - Pages: network first (always fresh when online), cached copy offline.
- * - Hashed /assets/ files: cache first (their names change when they do).
+ * - Hashed /assets/ files and /meal-photos/: cache first, saved as they're
+ *   first seen (photos load lazily, so only meals someone has scrolled to
+ *   are kept offline).
  * - Only same-origin GET requests are handled; feedback POSTs to Web3Forms
  *   go straight to the network.
  */
-const CACHE = 'hhgp-v1';
+const CACHE = 'hhgp-v3';
 const SHELL = ['/', '/manifest.webmanifest', '/favicon.svg', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 async function cacheShell() {
@@ -56,7 +58,7 @@ self.addEventListener('fetch', (event) => {
       (cached) =>
         cached ||
         fetch(request).then((response) => {
-          if (response.ok && url.pathname.startsWith('/assets/')) {
+          if (response.ok && ['/assets/', '/meal-photos/', '/nutrients/'].some((dir) => url.pathname.startsWith(dir))) {
             const copy = response.clone();
             caches.open(CACHE).then((cache) => cache.put(request, copy));
           }

@@ -154,23 +154,3 @@ export function extraKind(meal: MealTemplate, ingredientId: string): 'optional' 
   if (isAltFor(meal.requiredIngredients)) return 'swap';
   return null;
 }
-
-/**
- * Order, best first:
- * 1. Fewest ingredients not already at home (need to buy + already on list),
- *    so a meal cooked from the kitchen beats one that is all shopping.
- * 2. Fewest new items to buy, so items already planned for purchase break ties.
- * 3. Most ingredients already at home, then alphabetical for stability.
- */
-export function compareMatches(
-  a: { match: MealMatch; name: string },
-  b: { match: MealMatch; name: string },
-): number {
-  const notAtHome = (m: MealMatch) => m.missingCount + m.onListCount;
-  return (
-    notAtHome(a.match) - notAtHome(b.match) ||
-    a.match.missingCount - b.match.missingCount ||
-    b.match.haveCount - a.match.haveCount ||
-    a.name.localeCompare(b.name)
-  );
-}

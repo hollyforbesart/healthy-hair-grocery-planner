@@ -2,7 +2,7 @@
   "name": "Healthy Hair Grocery Planner",
   "short_name": "Grocery Planner",
   "description": "Plan your groceries around what's already in your kitchen and get one simple shopping list.",
-  "start_url": "/planner",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#FAF6F0",
