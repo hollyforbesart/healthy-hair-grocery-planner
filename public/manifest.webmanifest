@@ -1,7 +1,7 @@
 {
-  "name": "Healthy Hair Grocery Planner",
-  "short_name": "Grocery Planner",
-  "description": "Plan your groceries around what's already in your kitchen and get one simple shopping list.",
+  "name": "Mane Meals: Meal & Grocery Planner",
+  "short_name": "Mane Meals",
+  "description": "Choose meal ideas, use what you have, and build your grocery list.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

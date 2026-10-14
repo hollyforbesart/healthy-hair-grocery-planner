@@ -40,8 +40,8 @@ const NETWORK_ERROR = 'We couldn’t reach the feedback service. Please try agai
 export function toWeb3FormsBody(accessKey: string, payload: FeedbackPayload) {
   return {
     access_key: accessKey,
-    subject: 'New feedback: Healthy Hair Grocery Planner',
-    from_name: 'Healthy Hair Grocery Planner',
+    subject: 'New feedback: Mane Meals',
+    from_name: 'Mane Meals: Meal & Grocery Planner',
     'Helpfulness rating': payload.rating ? `${payload.rating}/5 (${RATING_LABELS[payload.rating]})` : 'Not answered',
     'What made this planner helpful?': payload.helpful || 'Not answered',
     'What do you wish this planner could also do?': payload.wish || 'Not answered',

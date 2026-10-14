@@ -53,8 +53,10 @@ export function App() {
               navigate('home');
             }}
           >
-            <span className="site-header__brand">The Hair Loss Nutritionist</span>
-            <h1>Healthy Hair Grocery Planner</h1>
+            <h1>
+              Mane Meals<span className="visually-hidden">:</span>{' '}
+              <span className="site-header__product">Meal &amp; Grocery Planner</span>
+            </h1>
           </a>
           {route === 'planner' && (
             <div className="site-header__actions no-print">
@@ -117,6 +119,7 @@ export function App() {
             Meal ideas are general suggestions for planning your groceries and are not medical or nutritional advice.
             Your progress is saved in this browser only.
           </p>
+          <p className="small site-footer__copyright">© 2026 The Hair Loss Nutritionist</p>
         </div>
       </footer>
     </>

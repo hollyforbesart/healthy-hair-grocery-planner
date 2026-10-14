@@ -1,5 +1,5 @@
 /*
- * Offline support for the Healthy Hair Grocery Planner.
+ * Offline support for Mane Meals: Meal & Grocery Planner.
  *
  * - On install, caches the page and every asset it references, so the
  *   planner opens with no connection after the first visit.
