@@ -1,4 +1,4 @@
-import { MEAL_CATEGORY_LABELS } from '../data/categories';
+import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES } from '../data/categories';
 import { mealPhotoUrl } from '../data/mealPhotos';
 import { Icon } from './Icon';
 import { ingredientName, type IngredientLookup } from '../lib/ingredients';
@@ -42,6 +42,7 @@ export function MealCard({
   const photo = mealPhotoUrl(meal.id);
   const name = (id: string) => ingredientName(lookup, id);
   const headingId = `meal-${meal.id}`;
+  const time = TIME_CATEGORIES.find((t) => t.id === meal.timeCategory);
 
   const describe = (r: { ingredientId: string; substituteId?: string }) =>
     r.substituteId ? `${name(r.substituteId)} (instead of ${name(r.ingredientId).toLowerCase()})` : name(r.ingredientId);
@@ -83,6 +84,13 @@ export function MealCard({
           <h3 id={headingId}>{meal.name}</h3>
           <p className="meal-card__meta">
             {MEAL_CATEGORY_LABELS[meal.category]}
+            {time && (
+              <span className="meal-time" title={time.hint}>
+                <Icon name="clock" size={15} />
+                <span className="visually-hidden">Time: </span>
+                {time.label}
+              </span>
+            )}
             {tags.length > 0 && <span> · {tags.join(', ')}</span>}
           </p>
           <span className={`have-badge${allAtHome ? ' is-full' : have.length > 0 ? ' is-some' : ''}`}>

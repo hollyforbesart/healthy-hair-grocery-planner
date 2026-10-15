@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { matchKey } from '../lib/text';
 import { AVOID_GROUPS } from './avoidGroups';
-import { INGREDIENT_CATEGORIES, KITCHEN_GROUP_IDS, MEAL_CATEGORIES, STORE_SECTIONS, STORE_SECTION_IDS } from './categories';
+import { INGREDIENT_CATEGORIES, KITCHEN_GROUP_IDS, MEAL_CATEGORIES, STORE_SECTIONS, STORE_SECTION_IDS, TIME_CATEGORY_IDS } from './categories';
 import { INGREDIENTS } from './ingredients';
 import { LEGACY_INGREDIENT_IDS } from './legacyIds';
 import { MEALS } from './meals';
@@ -55,6 +55,10 @@ describe('meal library', () => {
 
   it('uses only valid meal categories', () => {
     for (const m of MEALS) expect(mealCategories.has(m.category), `${m.id} category "${m.category}"`).toBe(true);
+  });
+
+  it('gives every meal a time category', () => {
+    for (const m of MEALS) expect(TIME_CATEGORY_IDS.has(m.timeCategory ?? ''), `${m.id} timeCategory "${m.timeCategory}"`).toBe(true);
   });
 
   it('only references ingredients that exist in the catalog', () => {

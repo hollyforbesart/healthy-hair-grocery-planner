@@ -3,6 +3,7 @@
     "id": "strawberry-overnight-oats",
     "name": "Strawberry Overnight Oats",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "oats",
       "strawberries",
@@ -19,6 +20,7 @@
     "id": "tropical-green-protein-smoothie",
     "name": "Tropical Green Protein Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "mango",
       "banana",
@@ -36,6 +38,7 @@
     "id": "spinach-egg-breakfast-burrito",
     "name": "Spinach + Egg Breakfast Burrito",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "eggs",
       "spinach",
@@ -52,6 +55,7 @@
     "id": "berry-crunch-yogurt-bowl",
     "name": "Berry Crunch Yogurt Bowl",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "greek-yogurt",
       "mixed-berries",
@@ -66,6 +70,7 @@
     "id": "tropical-yogurt-bowl",
     "name": "Tropical Yogurt Bowl",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "greek-yogurt",
       "mango",
@@ -81,6 +86,7 @@
     "id": "apple-cinnamon-oats-eggs",
     "name": "Apple Cinnamon Oats + Eggs",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "oats",
       "apple",
@@ -97,6 +103,7 @@
     "id": "chicken-crunch-wrap",
     "name": "Chicken Crunch Wrap",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "whole-grain-wraps",
@@ -113,6 +120,7 @@
     "id": "chickpea-egg-salad",
     "name": "Chickpea + Egg Salad",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chickpeas",
       "eggs",
@@ -131,6 +139,7 @@
     "id": "tuna-salad-sandwich-with-tomato-cucumber-feta-salad",
     "name": "Tuna Salad Sandwich with Tomato Cucumber + Feta Salad",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "canned-tuna",
       "whole-wheat-bread",
@@ -148,6 +157,7 @@
     "id": "chicken-quinoa-veggie-bowl",
     "name": "Chicken + Quinoa Veggie Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "quinoa",
@@ -163,6 +173,7 @@
     "id": "turkey-chili-rice-bowl",
     "name": "Turkey Chili Rice Bowl",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-turkey",
       "kidney-beans",
@@ -179,6 +190,7 @@
     "id": "beef-broccoli-with-noodles",
     "name": "Beef + Broccoli with Noodles",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "beef-strips",
       "broccoli",
@@ -194,6 +206,7 @@
     "id": "chicken-black-bean-quesadilla",
     "name": "Chicken + Black Bean Quesadilla",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "black-beans",
@@ -209,6 +222,7 @@
     "id": "spinach-cheese-tortilla-pizza",
     "name": "Spinach + Cheese Tortilla Pizza",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "whole-grain-wraps",
       "spinach",
@@ -224,6 +238,7 @@
     "id": "turkey-burger-sweet-potato-wedges",
     "name": "Turkey Burger + Sweet Potato Wedges",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-turkey",
       "burger-buns",
@@ -240,6 +255,7 @@
     "id": "sweet-thai-chili-salmon-with-rice-green-beans",
     "name": "Sweet Thai Chili Salmon with Rice + Green Beans",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "rice",
@@ -255,6 +271,7 @@
     "id": "chicken-veggie-stir-fry",
     "name": "Chicken Veggie Stir-Fry",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "rice",
@@ -271,6 +288,7 @@
     "id": "garlic-chicken-with-roasted-sweet-potatoes-cauliflower",
     "name": "Garlic Chicken with Roasted Sweet Potatoes + Cauliflower",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-breast",
       "sweet-potatoes",
@@ -286,6 +304,7 @@
     "id": "apple-peanut-butter",
     "name": "Apple + Peanut Butter",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "apple",
       "peanut-butter"
@@ -297,6 +316,7 @@
     "id": "walnut-cashew-pumpkin-seed-trail-mix",
     "name": "Walnut Cashew + Pumpkin Seed Trail Mix",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "walnuts",
       "cashews",
@@ -311,6 +331,7 @@
     "id": "hummus-vegetable-sticks",
     "name": "Hummus + Vegetable Sticks",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "hummus",
       "carrots",
@@ -324,6 +345,7 @@
     "id": "smoked-salmon-avocado-toast",
     "name": "Smoked Salmon + Avocado Toast",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "smoked-salmon",
       "avocado",
@@ -336,6 +358,7 @@
     "id": "sweet-potato-egg-breakfast-hash",
     "name": "Sweet Potato + Egg Breakfast Hash",
     "category": "breakfast",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "sweet-potatoes",
       "eggs",
@@ -351,6 +374,7 @@
     "id": "peanut-butter-banana-overnight-oats",
     "name": "Peanut Butter Banana Overnight Oats",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "oats",
       "banana",
@@ -366,6 +390,7 @@
     "id": "spinach-mushroom-feta-omelet",
     "name": "Spinach Mushroom + Feta Omelet",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "eggs",
       "spinach",
@@ -381,6 +406,7 @@
     "id": "cottage-cheese-berry-breakfast-bowl",
     "name": "Cottage Cheese + Berry Breakfast Bowl",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "cottage-cheese",
       "mixed-berries"
@@ -394,6 +420,7 @@
     "id": "breakfast-egg-black-bean-tacos",
     "name": "Breakfast Egg + Black Bean Tacos",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "eggs",
       "black-beans",
@@ -409,6 +436,7 @@
     "id": "chia-pudding-with-mango-pumpkin-seeds",
     "name": "Chia Pudding with Mango + Pumpkin Seeds",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "chia-seeds",
       "mango",
@@ -424,6 +452,7 @@
     "id": "avocado-egg-breakfast-sandwich",
     "name": "Avocado + Egg Breakfast Sandwich",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "avocado",
       "eggs",
@@ -438,6 +467,7 @@
     "id": "tofu-scramble-with-peppers-potatoes",
     "name": "Tofu Scramble with Peppers + Potatoes",
     "category": "breakfast",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "tofu",
       "bell-peppers",
@@ -452,6 +482,7 @@
     "id": "peanut-butter-strawberry-toast-with-yogurt",
     "name": "Peanut Butter + Strawberry Toast with Yogurt",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "peanut-butter",
       "strawberries",
@@ -465,6 +496,7 @@
     "id": "salmon-spinach-breakfast-wrap",
     "name": "Salmon + Spinach Breakfast Wrap",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "canned-salmon",
       "spinach",
@@ -479,6 +511,7 @@
     "id": "banana-oat-pancakes-with-greek-yogurt",
     "name": "Banana Oat Pancakes with Greek Yogurt",
     "category": "breakfast",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "banana",
       "oats",
@@ -498,6 +531,7 @@
     "id": "lentil-roasted-vegetable-grain-bowl",
     "name": "Lentil + Roasted Vegetable Grain Bowl",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "lentils",
       "quinoa",
@@ -513,6 +547,7 @@
     "id": "salmon-avocado-rice-bowl",
     "name": "Salmon + Avocado Rice Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "avocado",
@@ -528,6 +563,7 @@
     "id": "mediterranean-chickpea-pita",
     "name": "Mediterranean Chickpea Pita",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "chickpeas",
       "pita-bread",
@@ -543,6 +579,7 @@
     "id": "turkey-hummus-veggie-wrap",
     "name": "Turkey + Hummus Veggie Wrap",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "sliced-turkey-breast",
       "hummus",
@@ -558,6 +595,7 @@
     "id": "black-bean-corn-burrito-bowl",
     "name": "Black Bean + Corn Burrito Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "black-beans",
       "corn",
@@ -574,6 +612,7 @@
     "id": "sardine-tomato-toast",
     "name": "Sardine + Tomato Toast",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "sardines",
       "tomatoes",
@@ -588,6 +627,7 @@
     "id": "chicken-white-bean-soup",
     "name": "Chicken + White Bean Soup",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-breast",
       "white-beans",
@@ -604,6 +644,7 @@
     "id": "tofu-edamame-noodle-bowl",
     "name": "Tofu + Edamame Noodle Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "tofu",
       "edamame",
@@ -619,6 +660,7 @@
     "id": "greek-chicken-cucumber-pita",
     "name": "Greek Chicken + Cucumber Pita",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "cucumber",
@@ -634,6 +676,7 @@
     "id": "sweet-potato-black-bean-bowl",
     "name": "Sweet Potato + Black Bean Bowl",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "sweet-potatoes",
       "black-beans",
@@ -649,6 +692,7 @@
     "id": "shrimp-mango-rice-bowl",
     "name": "Shrimp + Mango Rice Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "shrimp",
       "mango",
@@ -664,6 +708,7 @@
     "id": "egg-avocado-salad-sandwich",
     "name": "Egg + Avocado Salad Sandwich",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "eggs",
       "avocado",
@@ -679,6 +724,7 @@
     "id": "lentil-spinach-soup-with-whole-grain-toast",
     "name": "Lentil + Spinach Soup with Whole-Grain Toast",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "lentils",
       "spinach",
@@ -695,6 +741,7 @@
     "id": "tuna-white-bean-salad",
     "name": "Tuna + White Bean Salad",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "canned-tuna",
       "white-beans",
@@ -710,6 +757,7 @@
     "id": "chicken-pesto-pasta-salad",
     "name": "Chicken Pesto Pasta Salad",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "pasta",
@@ -725,6 +773,7 @@
     "id": "roasted-vegetable-feta-couscous-bowl",
     "name": "Roasted Vegetable + Feta Couscous Bowl",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "couscous",
       "zucchini",
@@ -740,6 +789,7 @@
     "id": "lemon-garlic-salmon-quinoa-asparagus",
     "name": "Lemon Garlic Salmon + Quinoa + Asparagus",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "quinoa",
@@ -756,6 +806,7 @@
     "id": "beef-black-bean-stuffed-peppers",
     "name": "Beef + Black Bean Stuffed Peppers",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-beef",
       "black-beans",
@@ -771,6 +822,7 @@
     "id": "turkey-spinach-meatballs-with-pasta",
     "name": "Turkey + Spinach Meatballs with Pasta",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-turkey",
       "spinach",
@@ -787,6 +839,7 @@
     "id": "coconut-chickpea-spinach-curry-with-rice",
     "name": "Coconut Chickpea + Spinach Curry with Rice",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chickpeas",
       "spinach",
@@ -803,6 +856,7 @@
     "id": "sheet-pan-chicken-brussels-sprouts-potatoes",
     "name": "Sheet-Pan Chicken + Brussels Sprouts + Potatoes",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-thighs",
       "brussels-sprouts",
@@ -817,6 +871,7 @@
     "id": "garlic-shrimp-vegetable-pasta",
     "name": "Garlic Shrimp + Vegetable Pasta",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "shrimp",
       "pasta",
@@ -833,6 +888,7 @@
     "id": "baked-tofu-peanut-noodles",
     "name": "Baked Tofu + Peanut Noodles",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "tofu",
       "noodles",
@@ -850,6 +906,7 @@
     "id": "lentil-bolognese-with-whole-wheat-pasta",
     "name": "Lentil Bolognese with Whole-Wheat Pasta",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "lentils",
       "whole-wheat-pasta",
@@ -865,6 +922,7 @@
     "id": "fish-tacos-with-cabbage-slaw",
     "name": "Fish Tacos with Cabbage Slaw",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "white-fish",
       "corn-tortillas",
@@ -880,6 +938,7 @@
     "id": "beef-vegetable-stir-fry-with-rice",
     "name": "Beef + Vegetable Stir-Fry with Rice",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "beef-strips",
       "rice",
@@ -896,6 +955,7 @@
     "id": "black-eyed-pea-sweet-potato-stew",
     "name": "Black-Eyed Pea + Sweet Potato Stew",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "black-eyed-peas",
       "sweet-potatoes",
@@ -911,6 +971,7 @@
     "id": "turkey-kidney-bean-chili",
     "name": "Turkey + Kidney Bean Chili",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-turkey",
       "kidney-beans",
@@ -926,6 +987,7 @@
     "id": "baked-trout-roasted-carrots-rice",
     "name": "Baked Trout + Roasted Carrots + Rice",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "trout",
       "carrots",
@@ -940,6 +1002,7 @@
     "id": "chicken-fajita-bowls",
     "name": "Chicken Fajita Bowls",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "rice",
@@ -955,6 +1018,7 @@
     "id": "spinach-ricotta-stuffed-shells",
     "name": "Spinach + Ricotta Stuffed Shells",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "jumbo-pasta-shells",
       "ricotta-cheese",
@@ -970,6 +1034,7 @@
     "id": "ginger-salmon-broccoli-noodle-bowl",
     "name": "Ginger Salmon + Broccoli Noodle Bowl",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "broccoli",
@@ -986,6 +1051,7 @@
     "id": "greek-yogurt-kiwi-chia-seeds",
     "name": "Greek Yogurt + Kiwi + Chia Seeds",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "greek-yogurt",
       "kiwi",
@@ -1000,6 +1066,7 @@
     "id": "boiled-eggs-orange-slices",
     "name": "Boiled Eggs + Orange Slices",
     "category": "snack",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "eggs",
       "orange"
@@ -1011,6 +1078,7 @@
     "id": "roasted-chickpeas-bell-pepper-strips",
     "name": "Roasted Chickpeas + Bell Pepper Strips",
     "category": "snack",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chickpeas",
       "bell-peppers"
@@ -1025,6 +1093,7 @@
     "id": "cottage-cheese-pineapple",
     "name": "Cottage Cheese + Pineapple",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "cottage-cheese",
       "pineapple"
@@ -1036,6 +1105,7 @@
     "id": "whole-grain-crackers-tuna",
     "name": "Whole-Grain Crackers + Tuna",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "whole-grain-crackers",
       "canned-tuna"
@@ -1049,6 +1119,7 @@
     "id": "edamame-mandarin-orange",
     "name": "Edamame + Mandarin Orange",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "edamame",
       "mandarin-oranges"
@@ -1060,6 +1131,7 @@
     "id": "banana-almond-butter",
     "name": "Banana + Almond Butter",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "banana",
       "almond-butter"
@@ -1071,6 +1143,7 @@
     "id": "cheese-whole-grain-crackers-grapes",
     "name": "Cheese + Whole-Grain Crackers + Grapes",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "cheddar-cheese",
       "whole-grain-crackers",
@@ -1083,6 +1156,7 @@
     "id": "strawberries-pumpkin-seeds-dark-chocolate",
     "name": "Strawberries + Pumpkin Seeds + Dark Chocolate",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "strawberries",
       "pumpkin-seeds",
@@ -1095,6 +1169,7 @@
     "id": "strawberry-banana-protein-smoothie",
     "name": "Strawberry Banana Protein Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "greek-yogurt",
       "strawberries",
@@ -1111,6 +1186,7 @@
     "id": "blueberry-almond-butter-smoothie",
     "name": "Blueberry Almond Butter Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "blueberries",
       "almond-butter",
@@ -1125,6 +1201,7 @@
     "id": "mango-pineapple-protein-smoothie",
     "name": "Mango Pineapple Protein Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "mango",
       "pineapple",
@@ -1141,6 +1218,7 @@
     "id": "chocolate-peanut-butter-banana-smoothie",
     "name": "Chocolate Peanut Butter Banana Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "banana",
       "peanut-butter",
@@ -1157,6 +1235,7 @@
     "id": "kiwi-avocado-green-smoothie",
     "name": "Kiwi Avocado Green Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "kiwi",
       "avocado",
@@ -1171,6 +1250,7 @@
     "id": "bbq-chicken-rice-bowl",
     "name": "BBQ Chicken Rice Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "rice",
@@ -1186,6 +1266,7 @@
     "id": "bbq-chicken-with-roasted-sweet-potatoes-broccoli",
     "name": "BBQ Chicken with Roasted Sweet Potatoes + Broccoli",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-thighs",
       "bbq-sauce",
@@ -1199,6 +1280,7 @@
     "id": "ground-turkey-taco-bowl",
     "name": "Ground Turkey Taco Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "ground-turkey",
       "rice",
@@ -1214,6 +1296,7 @@
     "id": "ground-turkey-spinach-skillet-with-rice",
     "name": "Ground Turkey + Spinach Skillet with Rice",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "ground-turkey",
       "spinach",
@@ -1228,6 +1311,7 @@
     "id": "pesto-chicken-pasta",
     "name": "Pesto Chicken Pasta",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "pasta",
@@ -1242,6 +1326,7 @@
     "id": "pesto-chicken-quinoa-bowl",
     "name": "Pesto Chicken + Quinoa Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "quinoa",
@@ -1256,6 +1341,7 @@
     "id": "mac-cheese-with-chicken-broccoli",
     "name": "Mac + Cheese with Chicken + Broccoli",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "macaroni",
       "cheddar-cheese",
@@ -1270,6 +1356,7 @@
     "id": "jerk-chicken-pasta",
     "name": "Jerk Chicken Pasta",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "jerk-seasoning",
@@ -1286,6 +1373,7 @@
     "id": "sweet-thai-chili-tofu-bowl",
     "name": "Sweet Thai Chili Tofu Bowl",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "tofu",
       "rice",
@@ -1300,6 +1388,7 @@
     "id": "mac-cheese-with-black-beans-roasted-cauliflower",
     "name": "Mac + Cheese with Black Beans + Roasted Cauliflower",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "macaroni",
       "cheddar-cheese",
@@ -1314,6 +1403,7 @@
     "id": "honey-garlic-salmon-bites-bowl",
     "name": "Honey Garlic Salmon Bites Bowl",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "rice",
@@ -1330,6 +1420,7 @@
     "id": "salmon-cakes-with-roasted-potatoes-side-salad",
     "name": "Salmon Cakes with Roasted Potatoes + Side Salad",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "canned-salmon",
       "eggs",
@@ -1345,6 +1436,7 @@
     "id": "chocolate-raspberry-chia-pudding",
     "name": "Chocolate Raspberry Chia Pudding",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "chia-seeds",
       "milk",
@@ -1359,6 +1451,7 @@
     "id": "protein-waffles-with-berries-greek-yogurt",
     "name": "Protein Waffles with Berries + Greek Yogurt",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "protein-waffle-mix",
       "greek-yogurt",
@@ -1374,6 +1467,7 @@
     "id": "caribbean-stew-chicken-legs-with-rice-cabbage",
     "name": "Caribbean Stew Chicken Legs with Rice + Cabbage",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-legs",
       "rice",
@@ -1391,6 +1485,7 @@
     "id": "roasted-vegetable-chickpea-tray-bake",
     "name": "Roasted Vegetable + Chickpea Tray Bake",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chickpeas",
       "zucchini",
@@ -1408,6 +1503,7 @@
     "id": "white-bean-spinach-tomato-skillet",
     "name": "White Bean + Spinach Tomato Skillet",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "white-beans",
       "spinach",
@@ -1425,6 +1521,7 @@
     "id": "strawberry-almond-butter-rice-cakes",
     "name": "Strawberry + Almond Butter Rice Cakes",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "rice-cakes",
       "almond-butter",
@@ -1439,6 +1536,7 @@
     "id": "apple-nachos-with-peanut-butter-pumpkin-seeds",
     "name": "Apple Nachos with Peanut Butter + Pumpkin Seeds",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "apple",
       "peanut-butter",
@@ -1453,6 +1551,7 @@
     "id": "mini-caprese-skewers",
     "name": "Mini Caprese Skewers",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "cherry-tomatoes",
       "mozzarella-cheese",
@@ -1467,6 +1566,7 @@
     "id": "turkey-cheese-roll-ups-with-grapes",
     "name": "Turkey + Cheese Roll-Ups with Grapes",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "sliced-turkey-breast",
       "cheddar-cheese",

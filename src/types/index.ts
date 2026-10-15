@@ -44,18 +44,23 @@ export interface IngredientSubstitution {
 }
 
 /** An editable meal template. References ingredients by ID only. */
+/** Rough time to make a meal, including cooking: ≤15 min, 16–30 min, or over 30 min. */
+export type TimeCategory = 'quick' | 'moderate' | 'more-involved';
+
 export interface MealTemplate {
   id: string;
   name: string;
   category: MealCategory;
+  /** Estimated by realistic home prep; see docs/TIME_CATEGORIES.md. */
+  timeCategory?: TimeCategory;
   description?: string;
   requiredIngredients: string[];
   optionalIngredients: string[];
   /** Reviewed swaps only. The v1 library has none. */
   substitutions?: IngredientSubstitution[];
   /**
-   * Approximate time in minutes. The v1 library has none, so times are not
-   * shown, filtered on or used for ranking. Never estimate one.
+   * Exact time in minutes, only once tested and reviewed. The library has
+   * none; timeCategory is the rough guide shown to people.
    */
   prepTimeMinutes?: number;
   /** Brief preparation steps (kept for a future recipes feature; not shown). */

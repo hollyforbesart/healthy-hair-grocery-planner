@@ -1,4 +1,4 @@
-import type { FoodGroupId, Ingredient, KitchenGroupId, MealCategory, StoreSectionId } from '../types';
+import type { FoodGroupId, Ingredient, KitchenGroupId, MealCategory, StoreSectionId, TimeCategory } from '../types';
 import storeSections from './library/store-sections.json';
 
 /** Nutrition food groups, in display order. */
@@ -46,6 +46,15 @@ export const MEAL_CATEGORIES: { id: MealCategory; label: string }[] = [
   { id: 'dinner', label: 'Dinner' },
   { id: 'snack', label: 'Snack' },
 ];
+
+/** Time categories shown on meal cards and used by the time filter. */
+export const TIME_CATEGORIES: { id: TimeCategory; label: string; hint: string }[] = [
+  { id: 'quick', label: 'Quick', hint: 'About 15 minutes or less' },
+  { id: 'moderate', label: 'Moderate', hint: 'About 16–30 minutes' },
+  { id: 'more-involved', label: 'More involved', hint: 'Usually over 30 minutes' },
+];
+
+export const TIME_CATEGORY_IDS = new Set<string>(TIME_CATEGORIES.map((t) => t.id));
 
 export const MEAL_CATEGORY_LABELS: Record<MealCategory, string> = Object.fromEntries(
   MEAL_CATEGORIES.map((c) => [c.id, c.label]),

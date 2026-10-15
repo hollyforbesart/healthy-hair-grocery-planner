@@ -2,7 +2,7 @@
  * Small inline line icons (no icon library). They inherit the text colour
  * and are decorative: pair each with visible text.
  */
-export type IconName = 'basket' | 'bowl' | 'share' | 'plusSquare' | 'dots' | 'install' | 'phone' | 'offline' | 'check';
+export type IconName = 'basket' | 'bowl' | 'share' | 'plusSquare' | 'dots' | 'install' | 'phone' | 'offline' | 'check' | 'clock';
 
 const PATHS: Record<IconName, JSX.Element> = {
   basket: (
@@ -60,6 +60,12 @@ const PATHS: Record<IconName, JSX.Element> = {
     </>
   ),
   check: <path d="m5 12.5 4.5 4.5L19 7" />,
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </>
+  ),
 };
 
 export function Icon({ name, size = 24, className }: { name: IconName; size?: number; className?: string }) {

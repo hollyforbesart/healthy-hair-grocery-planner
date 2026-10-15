@@ -843,6 +843,30 @@ textarea:focus-visible {
   font-size: 0.875rem;
   color: var(--plum-60);
 }
+.meal-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--border);
+  white-space: nowrap;
+}
+.meal-time svg {
+  flex-shrink: 0;
+}
+.filter-bar--time {
+  align-items: center;
+}
+.filter-bar {
+  scroll-margin-top: 0.75rem;
+}
+.filter-bar__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--plum-60);
+  margin-right: 0.15rem;
+}
 .meal-card__desc {
   margin: -0.4rem 0 0;
   font-size: 0.9rem;

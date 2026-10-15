@@ -27,8 +27,9 @@ The two path cards on the home page open the planner straight at the first step 
    - Adding something means "I have this". Anything not in the catalog can be added as the user's own item.
    - ☆ marks a staple, which is added automatically each new week.
 2. **Meal ideas:** search by meal or ingredient, pick meal types (remembered for next time) or ♥ favorites.
-   - With several meal types showing, ideas come in one section per type (Breakfast, Lunch, Dinner, Snack), four at a time with **See all**. A single type, a search or favorites shows one list, 20 at a time.
+   - With several meal types showing, ideas come in one section per type (Breakfast, Lunch, Dinner, Snack), four each. **See all** switches to just that type (the same as tapping its chip), shown 20 at a time; **All meals** brings the sections back. A single type, a search or favorites shows one list.
    - **Foods to leave out** is a collapsible panel on this page (see Avoided foods below).
+   - Each card shows a time category with a clock icon: **Quick** (about 15 minutes or less), **Moderate** (16–30) or **More involved** (over 30). A **Time** filter (Any / Quick / Moderate / More involved) narrows the ideas. Times aren't asked about up front or used for ranking.
    - Ranking is pantry fit: the smallest *share* of ingredients not already at home, so a 5-ingredient dinner with 1 to buy beats a 2-ingredient snack with 1 to buy. Meals chosen in the last 14 days move down unless they're favorites, never-chosen meals win ties, and otherwise the library's own order is kept. With nothing at home, meals appear in library order.
    - Each card shows how many of its ingredients you have ("You have 3 of 4 ingredients"), plus **Already have** and **Need to buy**; when nothing is at home it shows a plain **Ingredients** list. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Optional extras are in a collapsed section and only go on the list when tapped.
    - Once a meal is picked, a bar at the bottom shows "N selected · Review →".
@@ -103,11 +104,12 @@ The content lives in three JSON files in `src/data/library/`. Edit those, not th
 - **`meals.json`:** the meal library. Each meal has these fields:
   - `id`, `name`
   - `category`: `breakfast`, `lunch`, `dinner` or `snack`.
+  - `timeCategory`: `quick`, `moderate` or `more-involved`. How each was estimated, and the ones flagged for review, are in [`docs/TIME_CATEGORIES.md`](docs/TIME_CATEGORIES.md).
   - `requiredIngredients` and `optionalIngredients`, as ingredient IDs.
   - `source`: internal only, never shown.
   - `preparationNote`: optional.
   
-  Optional fields for later, once reviewed: `prepTimeMinutes`, `instructions`, `substitutions` and `dietaryTags`. Never invent these, and don't add nutritional values or health claims.
+  Optional fields for later, once reviewed: `prepTimeMinutes` (exact minutes), `instructions`, `substitutions` and `dietaryTags`. Never invent these, and don't add nutritional values or health claims.
 - **`store-sections.json`:** the grocery-list sections, in the order a shopper walks the store. `other` must stay.
 
 `npm test` checks the whole library: every ingredient ID resolves, there are no duplicate IDs, every category and section is valid, and no name or alias points at two ingredients. A failing test names the meal or ingredient to fix. `content/mane-meals-v1/` keeps the original content package as delivered. `docs/LIBRARY_IMPORT_REPORT.md` records how it was reconciled.
@@ -128,7 +130,7 @@ Each required ingredient lands in exactly one group:
 - **Already on shopping list:** it's marked "Need to buy".
 - **Need to buy:** anything else. This goes on the list when the meal is chosen.
 
-Ranking puts the meals with the smallest share of ingredients *not already at home* first. That counts Need to buy plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to a smaller share of new items to buy, then meals never chosen before, then library order. Preparation time is not used: the library has no reviewed times, so none are shown, asked about or used for ranking.
+Ranking puts the meals with the smallest share of ingredients *not already at home* first. That counts Need to buy plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to a smaller share of new items to buy, then meals never chosen before, then library order. Time categories are shown and filterable but never used for ranking, and there are no exact minute counts.
 
 **Optional ingredients** are never counted as missing. They only go on the list when the user taps their "+" chip on a meal card. Tapping an extra on a meal that isn't in the plan yet adds the meal too, and removing the meal removes its extras.
 

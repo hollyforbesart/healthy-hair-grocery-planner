@@ -1,10 +1,11 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { AvoidFoods } from '../components/AvoidFoods';
 import { MealCard } from '../components/MealCard';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
 import { AVOID_GROUPS } from '../data/avoidGroups';
-import { MEAL_CATEGORIES } from '../data/categories';
+import { Icon } from '../components/Icon';
+import { MEAL_CATEGORIES, TIME_CATEGORIES } from '../data/categories';
 import { useRecommendations } from '../hooks/useRecommendations';
 import { useStepNav } from '../hooks/useStepNav';
 import { ingredientName } from '../lib/ingredients';
@@ -14,11 +15,11 @@ import { toggleMealChoice, type MealChoice } from '../lib/mealSelection';
 import { recommendationProvider, type MealRecommendation, type RecommendationRequest } from '../services/recommendations';
 import { todayIso } from '../state/plannerReducer';
 import { usePlanner } from '../state/PlannerContext';
-import type { MealCategory } from '../types';
+import type { MealCategory, TimeCategory } from '../types';
 
 /** Cards shown before "Show more" in a single list, so 100 meals don't load as one long page. */
 const PAGE_SIZE = 20;
-/** Cards shown per meal type before "See all". */
+/** Cards shown per meal type before "See all" (which switches to just that type). */
 const SECTION_SIZE = 4;
 
 export function MealsStep() {
@@ -29,9 +30,11 @@ export function MealsStep() {
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [query, setQuery] = useState('');
   const [shown, setShown] = useState(PAGE_SIZE);
-  const [expanded, setExpanded] = useState<MealCategory[]>([]);
+  const [time, setTime] = useState<TimeCategory | null>(null);
   const [avoidOpen, setAvoidOpen] = useState(false);
   const avoidRef = useRef<HTMLDetailsElement>(null);
+  const filterBarRef = useRef<HTMLDivElement>(null);
+  const scrollToFilters = useRef(false);
 
   const request = useMemo<RecommendationRequest>(
     () => ({
@@ -51,6 +54,7 @@ export function MealsStep() {
     (r) =>
       (categories.length === 0 || categories.includes(r.meal.category)) &&
       (!favoritesOnly || r.isFavorite) &&
+      (!time || r.meal.timeCategory === time) &&
       mealMatchesQuery(r.meal, query, lookup),
   );
   // Browsing several meal types: one short section each, so snacks don't crowd out dinners.
@@ -61,14 +65,30 @@ export function MealsStep() {
   const visible = matching.slice(0, shown);
   const hasAnything = Object.values(ingredientStatuses).some((s) => s === 'have');
   const hiddenByAvoid = result.status === 'ready' ? meals.length - result.data.length : 0;
-  const resetPaging = () => {
-    setShown(PAGE_SIZE);
-    setExpanded([]);
-  };
+  const resetPaging = () => setShown(PAGE_SIZE);
 
   const chooseCategory = (choice: MealChoice) => {
     setFavoritesOnly(false);
     dispatch({ type: 'updatePreferences', patch: { mealCategories: toggleMealChoice(categories, choice) } });
+    resetPaging();
+  };
+
+  // "See all" shows just that meal type, the same as tapping its chip.
+  const seeAll = (category: MealCategory) => {
+    setFavoritesOnly(false);
+    dispatch({ type: 'updatePreferences', patch: { mealCategories: [category] } });
+    resetPaging();
+    scrollToFilters.current = true;
+  };
+  // Scroll once the shorter list has rendered, so the page doesn't jump past the chips.
+  useEffect(() => {
+    if (!scrollToFilters.current) return;
+    scrollToFilters.current = false;
+    filterBarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [categories]);
+
+  const chooseTime = (choice: TimeCategory | null) => {
+    setTime((current) => (current === choice ? null : choice));
     resetPaging();
   };
 
@@ -161,7 +181,7 @@ export function MealsStep() {
         />
       </div>
 
-      <div className="filter-bar" role="group" aria-label="Show meal types">
+      <div ref={filterBarRef} className="filter-bar" role="group" aria-label="Show meal types">
         <button type="button" className="chip" aria-pressed={categories.length === 0 && !favoritesOnly} onClick={() => chooseCategory('all')}>
           All meals
         </button>
@@ -187,6 +207,27 @@ export function MealsStep() {
         >
           ♥ Favorites
         </button>
+      </div>
+
+      <div className="filter-bar filter-bar--time" role="group" aria-label="Time to make">
+        <span className="filter-bar__label" aria-hidden="true">
+          <Icon name="clock" size={15} /> Time:
+        </span>
+        <button type="button" className="chip chip--small" aria-pressed={time === null} onClick={() => chooseTime(null)}>
+          Any
+        </button>
+        {TIME_CATEGORIES.map((t) => (
+          <button
+            key={t.id}
+            type="button"
+            className="chip chip--small"
+            aria-pressed={time === t.id}
+            title={t.hint}
+            onClick={() => chooseTime(t.id)}
+          >
+            {t.label}
+          </button>
+        ))}
       </div>
 
       <details
@@ -230,7 +271,9 @@ export function MealsStep() {
               ? 'No favorites yet. Tap ♡ on a meal to save it here.'
               : query
                 ? `No meals match “${query}”.`
-                : 'No meal ideas match these meal types.'}
+                : time
+                  ? 'No meal ideas match this time and these meal types.'
+                  : 'No meal ideas match these meal types.'}
           </p>
           <button
             type="button"
@@ -238,6 +281,7 @@ export function MealsStep() {
             onClick={() => {
               chooseCategory('all');
               setQuery('');
+              setTime(null);
             }}
           >
             Show all meals
@@ -247,26 +291,17 @@ export function MealsStep() {
 
       {sectioned ? (
         sections.map((section) => {
-          const open = expanded.includes(section.id);
-          const items = open ? section.items : section.items.slice(0, SECTION_SIZE);
           const label = section.label.toLowerCase();
           return (
             <section key={section.id} className="meal-section" aria-labelledby={`meals-${section.id}`}>
               <h3 id={`meals-${section.id}`} className="meal-section__title">
                 {section.label} <span className="muted">· {section.items.length}</span>
               </h3>
-              <div className="meal-grid">{items.map(card)}</div>
+              <div className="meal-grid">{section.items.slice(0, SECTION_SIZE).map(card)}</div>
               {section.items.length > SECTION_SIZE && (
                 <div className="show-more">
-                  <button
-                    type="button"
-                    className="btn btn--secondary"
-                    aria-expanded={open}
-                    onClick={() =>
-                      setExpanded((e) => (open ? e.filter((c) => c !== section.id) : [...e, section.id]))
-                    }
-                  >
-                    {open ? `Show fewer ${label} ideas` : `See all ${section.items.length} ${label} ideas`}
+                  <button type="button" className="btn btn--secondary" onClick={() => seeAll(section.id)}>
+                    See all {section.items.length} {label} ideas
                   </button>
                 </div>
               )}
