@@ -15,3 +15,4 @@ The app already has a place for each one; nothing here should be invented.
 - **Kit access + saved plans.** Sign-in by emailed code, checked against Kit purchases, with each person's plan saved to Cloudflare's free storage (KV). This also protects plans on iPhone, where Safari clears a site's saved data after 7 days without a visit unless it's on the home screen. Waiting on a Kit test purchase.
 - **Custom address** on a manemeals subdomain.
 - **Test on a real iPhone and Android phone,** installed to the home screen, and have a couple of people plan a real week.
+- **Terms page:** add your support email (`SUPPORT_EMAIL` in `src/pages/TermsPage.tsx`), put "Digital product with instant access. All sales are final." on the Kit product/checkout page, and have the wording checked. Update the "Your information" section when accounts arrive.

@@ -1476,6 +1476,10 @@ textarea:focus-visible {
   font-size: clamp(1.6rem, 5vw, 2.1rem);
   margin-bottom: 0.9rem;
 }
+.prose-page h3 {
+  font-size: 1.15rem;
+  margin: 1.5rem 0 0.4rem;
+}
 .prose-page p {
   margin: 0 0 0.9rem;
   font-size: 1.05rem;

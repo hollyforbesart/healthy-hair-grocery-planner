@@ -4,6 +4,7 @@ import { useRoute } from './hooks/useRoute';
 import { START_OVER_CONFIRM } from './lib/confirmations';
 import { RouteLink } from './components/RouteLink';
 import { AboutPage } from './pages/AboutPage';
+import { TermsPage } from './pages/TermsPage';
 import { HomePage } from './pages/HomePage';
 import { NutrientsPage } from './pages/NutrientsPage';
 import { usePlanner } from './state/PlannerContext';
@@ -98,6 +99,10 @@ export function App() {
           <main id="main" className="main">
             <AboutPage onOpenPlanner={() => navigate('planner')} />
           </main>
+        ) : route === 'terms' ? (
+          <main id="main" className="main">
+            <TermsPage />
+          </main>
         ) : (
           <>
             {state.path && <StepNav steps={steps} current={currentStep} onSelect={goTo} />}
@@ -120,6 +125,9 @@ export function App() {
             </RouteLink>
             <RouteLink to="nutrients" navigate={navigate}>
               Food for Your Follicles
+            </RouteLink>
+            <RouteLink to="terms" navigate={navigate}>
+              Terms
             </RouteLink>
           </nav>
           <p className="small">
