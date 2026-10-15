@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
  * Where buyers can reach Holly about a purchase. Leave empty to point people
  * to their purchase confirmation email instead.
  */
-export const SUPPORT_EMAIL = '';
+export const SUPPORT_EMAIL = 'hello@thehairlossnutritionist.com';
 
 /** Short terms: purchases and refunds, health disclaimer, and privacy. Linked from the footer. */
 export function TermsPage() {
@@ -39,7 +39,6 @@ export function TermsPage() {
         If you were charged more than once, or you can’t access your purchase because of a technical problem on our
         end, {contact} within 14 days and we’ll fix it or refund you.
       </p>
-      <p>Nothing in this policy limits any rights you have under applicable consumer law.</p>
 
       <h3>Not medical advice</h3>
       <p>
