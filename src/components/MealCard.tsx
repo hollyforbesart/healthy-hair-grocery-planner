@@ -85,10 +85,16 @@ export function MealCard({
           <p className="meal-card__meta">
             {MEAL_CATEGORY_LABELS[meal.category]}
             {time && (
-              <span className="meal-time" title={time.hint}>
+              <span className={`meal-time meal-time--${time.id}`} title={time.hint}>
                 <Icon name="clock" size={15} />
                 <span className="visually-hidden">Time: </span>
                 {time.label}
+              </span>
+            )}
+            {meal.makeAhead && (
+              <span className="meal-time meal-time--ahead" title="Needs a few hours or overnight to soak or set">
+                <Icon name="moon" size={14} />
+                Make ahead
               </span>
             )}
             {tags.length > 0 && <span> · {tags.join(', ')}</span>}

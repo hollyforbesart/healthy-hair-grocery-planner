@@ -855,6 +855,27 @@ textarea:focus-visible {
 .meal-time svg {
   flex-shrink: 0;
 }
+/* Clock colours by time (also on the Time filter chips, so they double as a key). */
+.meal-time--quick svg { color: #2f7d4f; }
+.meal-time--moderate svg { color: #b06a00; }
+.meal-time--more-involved svg { color: #a8326a; }
+.meal-time--ahead svg { color: #5b4b9a; }
+/* "Make ahead" gets its own line under the type and time, so it never wraps oddly. */
+.meal-time.meal-time--ahead {
+  display: flex;
+  width: fit-content;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  border: 0;
+}
+.chip-clock {
+  display: inline-flex;
+  margin-right: 0.25rem;
+  vertical-align: -2px;
+}
+.chip[aria-pressed='true'] .chip-clock svg {
+  color: currentColor;
+}
 .filter-bar--time {
   align-items: center;
 }

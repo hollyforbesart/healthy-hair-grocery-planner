@@ -53,6 +53,8 @@ export interface MealTemplate {
   category: MealCategory;
   /** Estimated by realistic home prep; see docs/TIME_CATEGORIES.md. */
   timeCategory?: TimeCategory;
+  /** Needs a few hours or overnight to soak or set (overnight oats, chia pudding). */
+  makeAhead?: boolean;
   description?: string;
   requiredIngredients: string[];
   optionalIngredients: string[];

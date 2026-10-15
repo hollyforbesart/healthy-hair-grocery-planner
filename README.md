@@ -29,7 +29,7 @@ The two path cards on the home page open the planner straight at the first step 
 2. **Meal ideas:** search by meal or ingredient, pick meal types (remembered for next time) or ♥ favorites.
    - With several meal types showing, ideas come in one section per type (Breakfast, Lunch, Dinner, Snack), four each. **See all** switches to just that type (the same as tapping its chip), shown 20 at a time; **All meals** brings the sections back. A single type, a search or favorites shows one list.
    - **Foods to leave out** is a collapsible panel on this page (see Avoided foods below).
-   - Each card shows a time category with a clock icon: **Quick** (about 15 minutes or less), **Moderate** (16–30) or **More involved** (over 30). A **Time** filter (Any / Quick / Moderate / More involved) narrows the ideas. Times aren't asked about up front or used for ranking.
+   - Each card shows a time category with a coloured clock: green **Quick** (about 15 minutes or less), amber **Moderate** (16–30) or berry **More involved** (over 30). Make-ahead meals (overnight oats, chia pudding) also show **☾ Make ahead**. A **Time** filter (Any / Quick / Moderate / More involved) narrows the ideas. Times aren't asked about up front or used for ranking.
    - Ranking is pantry fit: the smallest *share* of ingredients not already at home, so a 5-ingredient dinner with 1 to buy beats a 2-ingredient snack with 1 to buy. Meals chosen in the last 14 days move down unless they're favorites, never-chosen meals win ties, and otherwise the library's own order is kept. With nothing at home, meals appear in library order.
    - Each card shows how many of its ingredients you have ("You have 3 of 4 ingredients"), plus **Already have** and **Need to buy**; when nothing is at home it shows a plain **Ingredients** list. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Optional extras are in a collapsed section and only go on the list when tapped.
    - Once a meal is picked, a bar at the bottom shows "N selected · Review →".
@@ -104,7 +104,7 @@ The content lives in three JSON files in `src/data/library/`. Edit those, not th
 - **`meals.json`:** the meal library. Each meal has these fields:
   - `id`, `name`
   - `category`: `breakfast`, `lunch`, `dinner` or `snack`.
-  - `timeCategory`: `quick`, `moderate` or `more-involved`. How each was estimated, and the ones flagged for review, are in [`docs/TIME_CATEGORIES.md`](docs/TIME_CATEGORIES.md).
+  - `timeCategory`: `quick`, `moderate` or `more-involved`. Optional `makeAhead: true` for meals that need a few hours or overnight to soak or set. How each was estimated, and the ones flagged for review, are in [`docs/TIME_CATEGORIES.md`](docs/TIME_CATEGORIES.md).
   - `requiredIngredients` and `optionalIngredients`, as ingredient IDs.
   - `source`: internal only, never shown.
   - `preparationNote`: optional.

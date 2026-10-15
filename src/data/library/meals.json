@@ -4,6 +4,7 @@
     "name": "Strawberry Overnight Oats",
     "category": "breakfast",
     "timeCategory": "quick",
+    "makeAhead": true,
     "requiredIngredients": [
       "oats",
       "strawberries",
@@ -375,6 +376,7 @@
     "name": "Peanut Butter Banana Overnight Oats",
     "category": "breakfast",
     "timeCategory": "quick",
+    "makeAhead": true,
     "requiredIngredients": [
       "oats",
       "banana",
@@ -437,6 +439,7 @@
     "name": "Chia Pudding with Mango + Pumpkin Seeds",
     "category": "breakfast",
     "timeCategory": "quick",
+    "makeAhead": true,
     "requiredIngredients": [
       "chia-seeds",
       "mango",
@@ -724,7 +727,7 @@
     "id": "lentil-spinach-soup-with-whole-grain-toast",
     "name": "Lentil + Spinach Soup with Whole-Grain Toast",
     "category": "lunch",
-    "timeCategory": "moderate",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "lentils",
       "spinach",
@@ -1341,7 +1344,7 @@
     "id": "mac-cheese-with-chicken-broccoli",
     "name": "Mac + Cheese with Chicken + Broccoli",
     "category": "dinner",
-    "timeCategory": "moderate",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "macaroni",
       "cheddar-cheese",
@@ -1356,7 +1359,7 @@
     "id": "jerk-chicken-pasta",
     "name": "Jerk Chicken Pasta",
     "category": "dinner",
-    "timeCategory": "moderate",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-breast",
       "jerk-seasoning",
@@ -1437,6 +1440,7 @@
     "name": "Chocolate Raspberry Chia Pudding",
     "category": "breakfast",
     "timeCategory": "quick",
+    "makeAhead": true,
     "requiredIngredients": [
       "chia-seeds",
       "milk",
@@ -1451,7 +1455,7 @@
     "id": "protein-waffles-with-berries-greek-yogurt",
     "name": "Protein Waffles with Berries + Greek Yogurt",
     "category": "breakfast",
-    "timeCategory": "quick",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "protein-waffle-mix",
       "greek-yogurt",

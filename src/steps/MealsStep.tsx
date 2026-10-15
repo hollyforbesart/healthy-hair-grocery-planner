@@ -225,6 +225,9 @@ export function MealsStep() {
             title={t.hint}
             onClick={() => chooseTime(t.id)}
           >
+            <span className={`chip-clock meal-time--${t.id}`} aria-hidden="true">
+              <Icon name="clock" size={14} />
+            </span>
             {t.label}
           </button>
         ))}

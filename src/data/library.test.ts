@@ -61,6 +61,17 @@ describe('meal library', () => {
     for (const m of MEALS) expect(TIME_CATEGORY_IDS.has(m.timeCategory ?? ''), `${m.id} timeCategory "${m.timeCategory}"`).toBe(true);
   });
 
+  it('rates make-ahead meals by hands-on time (quick), since the soaking is overnight', () => {
+    const ahead = MEALS.filter((m) => m.makeAhead);
+    expect(ahead.map((m) => m.id).sort()).toEqual([
+      'chia-pudding-with-mango-pumpkin-seeds',
+      'chocolate-raspberry-chia-pudding',
+      'peanut-butter-banana-overnight-oats',
+      'strawberry-overnight-oats',
+    ]);
+    for (const m of ahead) expect(m.timeCategory, m.id).toBe('quick');
+  });
+
   it('only references ingredients that exist in the catalog', () => {
     for (const m of MEALS) {
       for (const id of [...m.requiredIngredients, ...m.optionalIngredients]) {
