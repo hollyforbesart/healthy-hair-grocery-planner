@@ -8,7 +8,7 @@ export function PathChooser() {
   const { dispatch } = usePlanner();
   return (
     <section aria-labelledby="step-title">
-      <StepHeader title="How would you like to start?" hideNumber>
+      <StepHeader title="How would you like to start?">
         <p>You can switch any time, and both end with one grocery list.</p>
       </StepHeader>
       <div className="home-paths">

@@ -43,7 +43,7 @@ The two path cards on the home page open the planner straight at the first step 
 - **Where it opens:** the kitchen, with a "check your kitchen" note, or meal ideas on the second path.
 - **Staples:** they start as already in the kitchen, so the user only removes the ones that ran out. Everything else is cleared to be checked again, since last week's food may have been used up.
 
-**Start over** erases everything.
+**Start over** (at the bottom of planner pages, with a confirmation) erases everything.
 
 ### Works offline and installs like an app
 

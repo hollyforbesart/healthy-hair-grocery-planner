@@ -78,11 +78,8 @@ export function App() {
                   navigate('home');
                 }}
               >
-                How to use
+                Home
               </a>
-              <button type="button" className="btn btn--ghost btn--small" onClick={startOver}>
-                Start over
-              </button>
             </div>
           )}
         </div>
@@ -129,6 +126,14 @@ export function App() {
             Meal ideas are general suggestions for planning your groceries and are not medical or nutritional advice.
             Your progress is saved in this browser only.
           </p>
+          {route === 'planner' && (
+            <p className="small site-footer__start-over">
+              <button type="button" className="link-btn" onClick={startOver}>
+                Start over
+              </button>{' '}
+              <span className="muted">— clears your kitchen, meals, list, staples and favorites on this device.</span>
+            </p>
+          )}
           <p className="small site-footer__copyright">© 2026 The Hair Loss Nutritionist</p>
         </div>
       </footer>

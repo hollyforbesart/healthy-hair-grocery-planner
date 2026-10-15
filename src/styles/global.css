@@ -213,6 +213,9 @@ h2:focus {
   background: rgba(250, 246, 240, 0.12);
 }
 
+.site-footer__start-over .link-btn {
+  font-weight: 600;
+}
 .site-footer__copyright {
   margin-bottom: 0;
 }
@@ -311,14 +314,6 @@ h2:focus {
 /* ---------- Step header & footer ---------- */
 .step-header {
   margin: 1.25rem 0 1rem;
-}
-.step-header__eyebrow {
-  margin: 0 0 0.25rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--plum-60);
 }
 .step-header h2 {
   font-size: clamp(1.5rem, 5vw, 2rem);
@@ -1276,8 +1271,13 @@ textarea:focus-visible {
 .kitchen-chip__remove:hover {
   background: rgba(250, 246, 240, 0.18);
 }
+.kitchen-chip__star {
+  opacity: 0.55;
+}
 .kitchen-chip__star.is-on {
-  color: var(--sand);
+  opacity: 1;
+  color: #f2c14e;
+  font-size: 1.05rem;
 }
 .kitchen-chip :focus-visible {
   outline-color: var(--sand);
@@ -1952,9 +1952,6 @@ textarea:focus-visible {
   }
   .no-print,
   .skip-link,
-  .step-header__eyebrow {
-    display: none !important;
-  }
   .site-header {
     background: none;
     color: #000;
