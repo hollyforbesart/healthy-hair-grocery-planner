@@ -57,6 +57,14 @@ export function MealCard({
   const tags = (meal.dietaryTags ?? []).map((t) => TAG_LABELS[t] ?? t);
   const hasExtras = match.optional.length > 0 || match.swapOptions.length > 0;
   const addedCount = extras.length;
+  // One row for everything optional: "Optional ingredients & Prep notes", or whichever parts this meal has.
+  const moreParts = [
+    match.optional.length > 0 && 'Optional ingredients',
+    match.swapOptions.length > 0 && 'Swaps',
+    meal.preparationNote && 'Prep notes',
+  ].filter((part): part is string => Boolean(part));
+  const moreLabel =
+    moreParts.length > 1 ? `${moreParts.slice(0, -1).join(', ')} & ${moreParts[moreParts.length - 1]}` : moreParts[0];
 
   /** A tappable "+ item" chip, or a plain note when the user already has / plans to buy it. */
   const extraChip = (id: string, label: string) => {
@@ -168,23 +176,16 @@ export function MealCard({
         </dl>
       )}
 
-      {meal.preparationNote && (
-        <details className="meal-card__note">
-          <summary>Preparation note</summary>
-          <p>{meal.preparationNote}</p>
-        </details>
-      )}
-
-      {hasExtras && (
+      {(hasExtras || meal.preparationNote) && (
         <details className="meal-card__extras">
           <summary>
-            {match.swapOptions.length > 0 ? 'Optional extras & swaps' : 'Optional extras'}
+            {moreLabel}
             {addedCount > 0 && <span className="meal-card__added"> · {addedCount} added</span>}
           </summary>
           <div className="meal-card__extras-body">
             {match.optional.length > 0 && (
               <div>
-                <p className="meal-card__extras-title">Optional extras</p>
+                <p className="meal-card__extras-title">Optional ingredients</p>
                 <ul className="chip-list">
                   {match.optional.map((o) => {
                     const id = effectiveId(o);
@@ -207,9 +208,17 @@ export function MealCard({
                 </ul>
               </div>
             )}
-            <p className="small muted">
-              Tap an item to add it to your grocery list{selected ? '.' : ' (this also adds the meal to your plan).'}
-            </p>
+            {hasExtras && (
+              <p className="small muted">
+                Tap an item to add it to your grocery list{selected ? '.' : ' (this also adds the meal to your plan).'}
+              </p>
+            )}
+            {meal.preparationNote && (
+              <div className="meal-card__prep">
+                <p className="meal-card__extras-title">Prep notes</p>
+                <p>{meal.preparationNote}</p>
+              </div>
+            )}
           </div>
         </details>
       )}
