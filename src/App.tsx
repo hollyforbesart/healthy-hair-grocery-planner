@@ -4,7 +4,7 @@ import { useRoute } from './hooks/useRoute';
 import { START_OVER_CONFIRM } from './lib/confirmations';
 import { RouteLink } from './components/RouteLink';
 import { AboutPage } from './pages/AboutPage';
-import { TermsPage } from './pages/TermsPage';
+import { PRIVACY_POLICY_URL, TermsPage } from './pages/TermsPage';
 import { HomePage } from './pages/HomePage';
 import { NutrientsPage } from './pages/NutrientsPage';
 import { usePlanner } from './state/PlannerContext';
@@ -129,6 +129,7 @@ export function App() {
             <RouteLink to="terms" navigate={navigate}>
               Terms
             </RouteLink>
+            <a href={PRIVACY_POLICY_URL}>Privacy</a>
           </nav>
           <p className="small">
             Meal ideas are general suggestions for planning your groceries and are not medical or nutritional advice.

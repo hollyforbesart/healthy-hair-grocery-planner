@@ -3,6 +3,9 @@ import { useEffect, useRef } from 'react';
 /** Where buyers can reach Holly about a purchase, access or the product. */
 export const SUPPORT_EMAIL = 'hello@thehairlossnutritionist.com';
 
+/** Holly's Privacy Policy on her main website. */
+export const PRIVACY_POLICY_URL = 'https://thehairlossnutritionist.com/privacy-policy/';
+
 /** Shown as "Last updated: …". Set to the date the terms are published; hidden while empty. */
 export const TERMS_LAST_UPDATED = '';
 
@@ -105,7 +108,10 @@ export function TermsPage() {
       </p>
 
       <h3>Saved plans and privacy</h3>
-      <p>The planner’s handling of saved plans and personal information is explained in our Privacy Policy.</p>
+      <p>
+        The planner’s handling of saved plans and personal information is explained in our{' '}
+        <a href={PRIVACY_POLICY_URL}>Privacy Policy</a>.
+      </p>
       <p>
         Where plans are stored only in your browser, clearing browser data, changing browsers, or changing devices may
         make those plans unavailable. Save or export grocery lists you want to keep.
