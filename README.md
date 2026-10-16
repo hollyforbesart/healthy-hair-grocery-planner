@@ -13,7 +13,7 @@ The site has these pages:
 - **`/` (home):** what the planner is, the two ways to start, the weekly routine, the nutrient guide, privacy and how to install it on a phone. Everyone sees the two ways to start; returning visitors also get a "Welcome back" bar with **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
 - **`/planner`:** the planner itself. It can be linked directly.
 - **`/about`:** "Why these meals?" (Holly's note) plus what's included and what's not included yet.
-- **`/terms`:** purchases (digital products, all sales final, with exceptions for duplicate charges or access problems), not medical advice, and privacy. The contact address is `SUPPORT_EMAIL` in `src/pages/TermsPage.tsx`.
+- **`/terms`:** Terms of Purchase and Use (Holly's wording). The contact address is `SUPPORT_EMAIL` and the "Last updated" date is `TERMS_LAST_UPDATED`, both in `src/pages/TermsPage.tsx`.
 - **`/nutrients`:** *Food for Your Follicles*, the ten-nutrient guide. Its text is in `src/data/nutrients.ts` and its icons are in `public/nutrients/`. Keep the wording in sync with the guide.
 
 The footer links to all of these.
