@@ -223,14 +223,26 @@ export function MealCard({
         </details>
       )}
 
-      <button
-        type="button"
-        className={`btn ${selected ? 'btn--selected' : 'btn--secondary'} meal-card__select`}
-        aria-pressed={selected}
-        onClick={onToggle}
-      >
-        {selected ? '✓ In my plan' : 'Add to my plan'}
-      </button>
+      <div className="meal-card__actions">
+        <button
+          type="button"
+          className={`btn ${selected ? 'btn--selected' : 'btn--secondary'} meal-card__select`}
+          aria-pressed={selected}
+          onClick={onToggle}
+        >
+          {selected ? '✓ In my plan' : 'Add to my plan'}
+        </button>
+        {/* A web search, not an endorsed recipe; ingredients in outside recipes may differ from the list. */}
+        <a
+          className="meal-card__recipe"
+          href={`https://www.google.com/search?q=${encodeURIComponent(`${meal.name} recipe`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Find a recipe <span aria-hidden="true">↗</span>
+          <span className="visually-hidden"> for {meal.name} (opens a web search in a new tab)</span>
+        </a>
+      </div>
     </article>
   );
 }

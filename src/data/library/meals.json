@@ -33,7 +33,8 @@
       "chia-seeds",
       "protein-powder"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Blend the mango, banana, spinach, yogurt, and milk until smooth."
   },
   {
     "id": "spinach-egg-breakfast-burrito",
@@ -50,7 +51,8 @@
     "optionalIngredients": [
       "salsa"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Scramble the eggs with spinach until set, then tuck into a warm tortilla with tomatoes and cheese."
   },
   {
     "id": "berry-crunch-yogurt-bowl",
@@ -98,7 +100,8 @@
     "optionalIngredients": [
       "walnuts"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cook the oats in milk with chopped apple and cinnamon. Cook the eggs until set and serve alongside."
   },
   {
     "id": "chicken-crunch-wrap",
@@ -115,7 +118,8 @@
     "optionalIngredients": [
       "shredded-cheese"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cut the chicken into small pieces and cook in a nonstick pan until cooked through. Spread yogurt on a tortilla, add the chicken, lettuce, and tomatoes, then fold into a wrap."
   },
   {
     "id": "chickpea-egg-salad",
@@ -152,7 +156,8 @@
       "greek-yogurt",
       "lemon"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Drain the tuna and put it between slices of bread, mixing in yogurt if you like. Serve with chopped tomatoes, cucumber, and feta on the side."
   },
   {
     "id": "chicken-quinoa-veggie-bowl",
@@ -168,7 +173,8 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cook the quinoa while you cook small pieces of chicken in a nonstick pan until cooked through. Steam the broccoli and peppers until tender, then serve together in a bowl."
   },
   {
     "id": "turkey-chili-rice-bowl",
@@ -201,7 +207,8 @@
     "optionalIngredients": [
       "garlic"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Boil the noodles while you cook thin beef strips in a nonstick pan. Add broccoli and soy sauce, cover until the broccoli is tender and beef is cooked through, then toss with the noodles."
   },
   {
     "id": "chicken-black-bean-quesadilla",
@@ -233,7 +240,8 @@
     "optionalIngredients": [
       "bell-peppers"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Spread tomato sauce on a tortilla and top with spinach and mozzarella. Bake until the cheese melts and the edges are crisp."
   },
   {
     "id": "turkey-burger-sweet-potato-wedges",
@@ -250,7 +258,8 @@
     "optionalIngredients": [
       "pickles"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cut the sweet potato into wedges and roast on a lined tray until tender. Shape the turkey into patties, cook through in a nonstick pan, and serve in buns with lettuce and tomatoes."
   },
   {
     "id": "sweet-thai-chili-salmon-with-rice-green-beans",
@@ -299,7 +308,8 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Roast chopped sweet potatoes and cauliflower on a lined tray with garlic, adding olive oil if you like. Bake the chicken alongside until cooked through and serve when the vegetables are tender."
   },
   {
     "id": "apple-peanut-butter",
@@ -353,7 +363,8 @@
       "whole-wheat-bread"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Toast the bread, spread with mashed avocado, and top with smoked salmon."
   },
   {
     "id": "sweet-potato-egg-breakfast-hash",
@@ -369,7 +380,8 @@
     "optionalIngredients": [
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Dice the sweet potato small and microwave until just tender. Cook with chopped peppers and onions in a nonstick pan, then add eggs and cook until set."
   },
   {
     "id": "peanut-butter-banana-overnight-oats",
@@ -402,7 +414,8 @@
     "optionalIngredients": [
       "whole-wheat-bread"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the mushrooms and spinach in a nonstick pan, then pour in beaten eggs. Add feta and fold once the eggs are set."
   },
   {
     "id": "cottage-cheese-berry-breakfast-bowl",
@@ -464,7 +477,8 @@
     "optionalIngredients": [
       "tomatoes"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the egg until set, then place on toasted bread with mashed avocado."
   },
   {
     "id": "tofu-scramble-with-peppers-potatoes",
@@ -479,7 +493,8 @@
     "optionalIngredients": [
       "onions"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Dice the potatoes small and microwave until just tender. Cook them with chopped peppers and crumbled tofu in a nonstick pan until the peppers soften and the tofu is hot."
   },
   {
     "id": "peanut-butter-strawberry-toast-with-yogurt",
@@ -493,7 +508,8 @@
       "greek-yogurt"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Spread peanut butter on toast and top with sliced strawberries. Serve the yogurt on the side."
   },
   {
     "id": "salmon-spinach-breakfast-wrap",
@@ -508,7 +524,8 @@
     "optionalIngredients": [
       "eggs"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Drain the canned salmon, then tuck into a tortilla with spinach and roll up. Add a cooked egg if you like."
   },
   {
     "id": "banana-oat-pancakes-with-greek-yogurt",
@@ -657,7 +674,8 @@
     "optionalIngredients": [
       "soy-sauce"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the noodles and cook the edamame as directed on the package, removing any pods. Steam diced tofu and sliced carrots until hot and tender, then combine with the noodles and edamame beans, adding soy sauce if you like."
   },
   {
     "id": "greek-chicken-cucumber-pita",
@@ -721,7 +739,8 @@
     "optionalIngredients": [
       "lemon"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the eggs until firm, then cool, peel, and chop. Mash with avocado and put between slices of bread with lettuce."
   },
   {
     "id": "lentil-spinach-soup-with-whole-grain-toast",
@@ -803,7 +822,8 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the quinoa while you bake the salmon with garlic and lemon until cooked through. Steam the asparagus and serve everything together, adding olive oil if you like."
   },
   {
     "id": "beef-black-bean-stuffed-peppers",
@@ -868,7 +888,8 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Put chicken thighs, chopped potatoes, and halved Brussels sprouts on a lined tray, adding olive oil if you like. Roast until the chicken is cooked through and the vegetables are tender."
   },
   {
     "id": "garlic-shrimp-vegetable-pasta",
@@ -885,7 +906,8 @@
       "olive-oil",
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the pasta while you cook shrimp, zucchini, and garlic in a nonstick pan until the shrimp are cooked through. Toss with the pasta, adding olive oil or spinach if you like."
   },
   {
     "id": "baked-tofu-peanut-noodles",
@@ -903,7 +925,8 @@
       "lime",
       "bell-peppers"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Bake tofu cubes on a lined tray until firm while the noodles boil. Stir peanut butter and soy sauce with some noodle cooking water, then toss with the tofu, noodles, and shredded carrots."
   },
   {
     "id": "lentil-bolognese-with-whole-wheat-pasta",
@@ -935,7 +958,8 @@
     "optionalIngredients": [
       "lime"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Bake the fish until cooked through while you mix shredded cabbage with yogurt, adding lime if you like. Fill warm tortillas with the fish and slaw."
   },
   {
     "id": "beef-vegetable-stir-fry-with-rice",
@@ -1031,7 +1055,8 @@
     "optionalIngredients": [
       "mozzarella-cheese"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the shells until just tender while you cook and drain the spinach, then mix the spinach with ricotta. Fill the shells, place in tomato sauce, and bake until hot, adding mozzarella if you like."
   },
   {
     "id": "ginger-salmon-broccoli-noodle-bowl",
@@ -1048,7 +1073,8 @@
     "optionalIngredients": [
       "sesame-seeds"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the noodles and steam the broccoli while you bake the salmon with ginger and soy sauce until cooked through. Serve together, adding sesame seeds if you like."
   },
   {
     "id": "greek-yogurt-kiwi-chia-seeds",
@@ -1075,7 +1101,8 @@
       "orange"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the eggs until firm, then cool and peel. Serve with orange slices."
   },
   {
     "id": "roasted-chickpeas-bell-pepper-strips",
@@ -1128,7 +1155,8 @@
       "mandarin-oranges"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the edamame as directed on the package, then serve with mandarin orange pieces. If the edamame comes in pods, eat the beans and leave the pods."
   },
   {
     "id": "banana-almond-butter",
@@ -1183,7 +1211,8 @@
     "optionalIngredients": [
       "protein-powder"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the yogurt, strawberries, banana, milk, and chia seeds until smooth. Add protein powder if you like."
   },
   {
     "id": "blueberry-almond-butter-smoothie",
@@ -1198,7 +1227,8 @@
       "ground-flaxseed"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the blueberries, almond butter, yogurt, milk, and ground flaxseed until smooth."
   },
   {
     "id": "mango-pineapple-protein-smoothie",
@@ -1215,7 +1245,8 @@
     "optionalIngredients": [
       "protein-powder"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the mango, pineapple, yogurt, milk, and chia seeds until smooth. Add protein powder if you like."
   },
   {
     "id": "chocolate-peanut-butter-banana-smoothie",
@@ -1232,7 +1263,8 @@
     "optionalIngredients": [
       "protein-powder"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the banana, peanut butter, cocoa powder, milk, and yogurt until smooth. Add protein powder if you like."
   },
   {
     "id": "kiwi-avocado-green-smoothie",
@@ -1247,7 +1279,8 @@
       "milk"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the kiwi, avocado, spinach, yogurt, and milk until smooth."
   },
   {
     "id": "bbq-chicken-rice-bowl",
@@ -1277,7 +1310,8 @@
       "broccoli"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast chopped sweet potato on a lined tray and bake the chicken thighs with BBQ sauce until cooked through. Add broccoli to roast until tender and serve together."
   },
   {
     "id": "ground-turkey-taco-bowl",
@@ -1323,7 +1357,8 @@
       "spinach"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the pasta while you cook small pieces of chicken in a nonstick pan until cooked through. Toss with pesto, halved cherry tomatoes, and spinach until the leaves soften."
   },
   {
     "id": "pesto-chicken-quinoa-bowl",
@@ -1338,7 +1373,8 @@
       "tomatoes"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the quinoa while you cook small pieces of chicken in a nonstick pan until cooked through. Add chopped zucchini and tomatoes, cook until tender, then stir in pesto and serve over quinoa."
   },
   {
     "id": "mac-cheese-with-chicken-broccoli",
@@ -1433,7 +1469,8 @@
       "lemon"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast chopped potatoes on a lined tray while you mix drained canned salmon with egg and breadcrumbs and shape into small patties. Bake the patties until cooked through and serve with the tender potatoes and mixed greens, adding lemon over the greens."
   },
   {
     "id": "chocolate-raspberry-chia-pudding",
@@ -1549,7 +1586,8 @@
     "optionalIngredients": [
       "dark-chocolate-chips"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Slice the apple, spread the slices on a plate, then drizzle with peanut butter and scatter pumpkin seeds over the top. Add chocolate chips if you like."
   },
   {
     "id": "mini-caprese-skewers",
@@ -1564,7 +1602,8 @@
     "optionalIngredients": [
       "balsamic-glaze"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Thread cherry tomatoes, bite-size mozzarella pieces, and basil onto small skewers. Add balsamic glaze if you like."
   },
   {
     "id": "turkey-cheese-roll-ups-with-grapes",

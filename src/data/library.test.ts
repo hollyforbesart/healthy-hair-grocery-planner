@@ -99,9 +99,13 @@ describe('meal library', () => {
     }
   });
 
-  it('keeps the two reviewed preparation notes', () => {
-    const withNotes = MEALS.filter((m) => m.preparationNote).map((m) => m.id);
-    expect(withNotes).toEqual(['banana-oat-pancakes-with-greek-yogurt', 'roasted-chickpeas-bell-pepper-strips']);
+  it('keeps preparation notes to a short cue, not a recipe', () => {
+    const withNotes = MEALS.filter((m) => m.preparationNote);
+    expect(withNotes.length).toBeGreaterThan(0);
+    for (const m of withNotes) {
+      expect(m.preparationNote!.trim(), m.id).not.toBe('');
+      expect(m.preparationNote!.length, `${m.id} prep note is too long`).toBeLessThanOrEqual(400);
+    }
   });
 });
 

@@ -968,6 +968,22 @@ textarea:focus-visible {
   margin: 0;
   font-size: 0.95rem;
 }
+.meal-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+.meal-card__recipe {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--plum-60);
+  padding: 0.4rem 0;
+}
+.meal-card__recipe:hover {
+  color: var(--plum);
+}
 .meal-card__added {
   color: var(--plum-60);
   font-weight: 400;
@@ -988,9 +1004,9 @@ textarea:focus-visible {
   letter-spacing: 0.06em;
   color: var(--plum-60);
 }
-.meal-card__select {
+.meal-card__actions {
+  /* keeps the button row at the bottom when cards in a row differ in height */
   margin-top: auto;
-  align-self: flex-start;
 }
 
 /* ---------- Step 4: grocery list ---------- */
