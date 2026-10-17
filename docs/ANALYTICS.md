@@ -24,7 +24,7 @@ Cloudflare's menus move around a little, but these are the pieces:
 3. **Connect it to the planner.** Go to **Workers & Pages → healthy-hair-grocery-planner → Settings → Bindings**, add a **D1 database** binding named exactly `DB`, and choose `mane-meals-analytics`. Do this for **Production**, and for **Preview** too if you want preview data.
 4. **Add the dashboard key.** In **Settings → Variables and Secrets**, add a **Secret** named `STATS_KEY`. Make the value a long random password (32+ characters, from a password manager) and keep it somewhere safe. This key is what lets a dashboard read your numbers.
 5. **Redeploy.** Under **Deployments**, retry the latest production deployment, or just wait for the next update to go live.
-6. **Check it.** Visit `https://<your site>/api/stats?key=<your key>`. You should see JSON with zeros, which fill in as people use the planner.
+6. **Check it.** Visit `https://manemeals.thehairlossnutritionist.com/api/stats?key=<your key>`. You should see JSON with zeros, which fill in as people use the planner.
 
 Until steps 1–4 are done, the planner works normally and simply doesn't record anything.
 

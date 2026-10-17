@@ -175,3 +175,35 @@ describe('Cloudflare functions', () => {
     expect(body).toMatchObject({ env: 'live', days: 7, headline: { mealsAdded: 0 } });
   });
 });
+
+describe('old address forwarding', () => {
+  const run = async (href: string) => {
+    const { onRequest } = await import('../../functions/_middleware');
+    return onRequest({ request: new Request(href), env: {}, next: async () => new Response('page') });
+  };
+
+  it('forwards the old pages.dev address to the planner, keeping the page', async () => {
+    const res = await run('https://healthy-hair-grocery-planner.pages.dev/terms?x=1');
+    expect(res.status).toBe(301);
+    expect(res.headers.get('Location')).toBe('https://manemeals.thehairlossnutritionist.com/terms?x=1');
+  });
+
+  it('leaves the real address, previews and analytics calls alone', async () => {
+    for (const href of [
+      'https://manemeals.thehairlossnutritionist.com/planner',
+      'https://claude-vigilant-cannon-2gayf.healthy-hair-grocery-planner.pages.dev/',
+      'https://healthy-hair-grocery-planner.pages.dev/api/event',
+    ]) {
+      expect((await run(href)).status, href).toBe(200);
+    }
+  });
+});
+
+describe('Cloudflare function routes', () => {
+  it('cover every page address (for forwarding) and the API', async () => {
+    const { ROUTE_PATHS } = await import('../hooks/useRoute');
+    const routes = (await import('../../public/_routes.json')).default;
+    for (const path of Object.values(ROUTE_PATHS)) expect(routes.include, path).toContain(path);
+    expect(routes.include).toContain('/api/*');
+  });
+});

@@ -187,9 +187,13 @@ npx wrangler pages deploy dist --project-name healthy-hair-grocery-planner
 
 `public/_headers` adds basic security headers and long-term caching for hashed assets.
 
-### Using a custom subdomain
+### Address
 
-The site works on its free `*.pages.dev` address right away. To use your own subdomain (for example `planner.yourdomain.com`), open the Pages project, go to **Custom domains → Set up a custom domain**, and enter the subdomain. If your domain's DNS is on Cloudflare, the record is added for you. If not, Cloudflare shows a CNAME record to add at your DNS provider. Nothing in the code needs to change.
+The planner's public address is **https://manemeals.thehairlossnutritionist.com**, a subdomain of Holly's site, connected under the Pages project's **Custom domains** with a CNAME record at the domain's DNS provider.
+
+`functions/_middleware.ts` forwards the old `healthy-hair-grocery-planner.pages.dev` address there (301, same page). Branch preview links and `/api` calls are left alone. Saved plans belong to the exact address they were made on, so there is one address for everyone. `public/_routes.json` limits Cloudflare functions to page addresses and `/api/*`, so images and scripts are served directly. If you add a page, add its path there too (a test checks this).
+
+Holly also owns manemeals.com, which isn't in use yet.
 
 ## Privacy
 
