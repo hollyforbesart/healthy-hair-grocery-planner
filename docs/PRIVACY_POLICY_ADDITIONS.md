@@ -1,6 +1,6 @@
 # Privacy Policy: additions for Mane Meals and purchases
 
-Draft wording to add to https://thehairlossnutritionist.com/privacy-policy/ before Mane Meals launches. It matches the existing policy's style and numbering. Text in [brackets] is for Holly to confirm or fill in. Have it reviewed if you can.
+Draft wording to add to https://thehairlossnutritionist.com/privacy-policy/ before Mane Meals launches. Updated October 17, 2026, after the planner's usage analytics was switched on, so it matches what's actually running. It matches the existing policy's style and numbering. Text in [brackets] is for Holly to confirm or fill in. Have it reviewed if you can.
 
 ---
 
@@ -31,6 +31,7 @@ Add these bullets:
 > - Process purchases and provide access to digital products you have purchased;
 > - Respond to purchase, access, and support requests;
 > - Review planner feedback to improve Mane Meals;
+> - Understand, in aggregate, how the Mane Meals planner is used, so we can improve it;
 
 ## 4. Add to "5. Third-Party Service Providers"
 
@@ -38,7 +39,7 @@ Add these bullets:
 > Kit may be used to sell and deliver digital products, process purchases and payments through its payment processor, send purchase confirmations and product-related emails, and manage subscriber information. Information processed through Kit may include your name, email address, purchase details, and subscriber status.
 >
 > **Cloudflare**
-> Cloudflare hosts the Mane Meals planner and may process technical information, such as IP address, browser and device information, and request details, as necessary to deliver, secure, and operate the planner.
+> Cloudflare hosts the Mane Meals planner and may process technical information, such as IP address, browser and device information, and request details, as necessary to deliver, secure, and operate the planner. Cloudflare also stores the planner's anonymous usage statistics, described under Cookies and Analytics.
 >
 > **Web3Forms**
 > Web3Forms may be used to deliver feedback submitted through the Mane Meals planner to our email inbox. Information processed may include your rating, the answers you provide, and technical information needed to send the message.
@@ -47,9 +48,9 @@ Add these bullets:
 
 > The Mane Meals planner does not use advertising or tracking cookies. It uses your browser's local storage only to save your plan on your device, as described above.
 
-**Planner usage statistics** (add when analytics is switched on; see docs/ANALYTICS.md):
+**Planner usage statistics** (active since October 17, 2026):
 
-> To understand how the Mane Meals planner is used and improve it, the planner records anonymous usage events, such as pages and steps opened, meals and foods added, filters and searches used, and whether a grocery list was shared, copied, or printed. These events are stored with Cloudflare. They do not include your name, email address, IP address, a cookie or other identifier, your saved plan, or anything you type into your grocery list or feedback. Search terms you type in the meal search may be recorded in shortened form, so please don't type personal information there. If your browser sends a "Do Not Track" or "Global Privacy Control" signal, the planner does not record usage events.
+> To understand how the Mane Meals planner is used and improve it, the planner records anonymous usage events, such as pages and steps opened, meals and foods added, filters and searches used, and whether a grocery list was shared, copied, or printed. Each event is stored with Cloudflare along with the date and time and a general device type (phone, computer, or installed app). These events do not include your name, email address, IP address, a cookie or other identifier, your saved plan, or anything you type into your grocery list or feedback. Search terms you type in the meal search may be recorded in shortened form, so please don't type personal information there. If your browser sends a "Do Not Track" or "Global Privacy Control" signal, the planner does not record usage events.
 
 If you turn on Cloudflare Web Analytics later, also add:
 
@@ -57,7 +58,7 @@ If you turn on Cloudflare Web Analytics later, also add:
 
 ## 6. Add to "8. Data Retention"
 
-> Purchase records are kept as long as needed to provide access to your purchase, provide support, and maintain business, tax, and accounting records. Information saved in the Mane Meals planner remains in your browser until you clear it or use the planner's "Start over" option.
+> Purchase records are kept as long as needed to provide access to your purchase, provide support, and maintain business, tax, and accounting records. Information saved in the Mane Meals planner remains in your browser until you clear it or use the planner's "Start over" option. Anonymous usage statistics are kept to understand trends over time; because they are not linked to any person, they cannot be looked up or deleted for an individual.
 
 ## 7. Contact email
 
