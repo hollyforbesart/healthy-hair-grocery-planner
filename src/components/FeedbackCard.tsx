@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { APP_VERSION, feedbackService } from '../services/feedback';
+import { track } from '../lib/analytics';
 import { usePlanner } from '../state/PlannerContext';
 
 const RATINGS = [
@@ -20,6 +21,8 @@ export function FeedbackCard() {
   const honeypotRef = useRef<HTMLInputElement>(null);
   const canSend = feedbackService.isConfigured;
   const hasContent = rating !== null || helpful.trim().length > 0 || wish.trim().length > 0;
+  // Start with just the rating; the questions open once someone picks a number.
+  const showQuestions = hasContent;
 
   const submit = async () => {
     if (!canSend || !hasContent) return;
@@ -34,6 +37,7 @@ export function FeedbackCard() {
     });
     if (result.ok) {
       setSend({ kind: 'sent' });
+      track('feedback_sent', rating ?? undefined);
       dispatch({ type: 'updateFeedback', patch: { rating: null, helpful: '', wish: '' } });
     } else {
       setSend({ kind: 'error', message: result.error });
@@ -81,45 +85,48 @@ export function FeedbackCard() {
             )}
           </fieldset>
 
-          <div className="field">
-            <label htmlFor="helpful">What made this planner helpful?</label>
-            <textarea
-              id="helpful"
-              rows={4}
-              maxLength={2000}
-              value={helpful}
-              onChange={(e) => dispatch({ type: 'updateFeedback', patch: { helpful: e.target.value } })}
-            />
-          </div>
+          {showQuestions && (
+            <>
+              <div className="field">
+                <label htmlFor="helpful">What made this planner helpful?</label>
+                <textarea
+                  id="helpful"
+                  rows={4}
+                  maxLength={2000}
+                  value={helpful}
+                  onChange={(e) => dispatch({ type: 'updateFeedback', patch: { helpful: e.target.value } })}
+                />
+              </div>
 
-          <div className="field">
-            <label htmlFor="wish">What do you wish this planner could also do?</label>
-            <textarea
-              id="wish"
-              rows={5}
-              maxLength={2000}
-              value={wish}
-              onChange={(e) => dispatch({ type: 'updateFeedback', patch: { wish: e.target.value } })}
-            />
-          </div>
+              <div className="field">
+                <label htmlFor="wish">What do you wish this planner could also do?</label>
+                <textarea
+                  id="wish"
+                  rows={5}
+                  maxLength={2000}
+                  value={wish}
+                  onChange={(e) => dispatch({ type: 'updateFeedback', patch: { wish: e.target.value } })}
+                />
+              </div>
 
-          {/* Spam trap: hidden from people, sometimes filled in by bots. */}
-          <input ref={honeypotRef} type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: 'none' }} />
+              {/* Spam trap: hidden from people, sometimes filled in by bots. */}
+              <input ref={honeypotRef} type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: 'none' }} />
 
-          {canSend ? (
-            <div className="button-row">
-              <button type="submit" className="btn btn--primary" disabled={!hasContent || send.kind === 'sending'}>
-                {send.kind === 'sending' ? 'Sending…' : 'Send feedback'}
-              </button>
-              {!hasContent && <p className="small muted">Choose a rating or answer a question to send.</p>}
-            </div>
-          ) : (
-            <div className="notice" role="note">
-              <p>
-                <strong>Feedback sending isn’t connected yet.</strong> Your answers are saved on this device only and
-                have not been sent to anyone.
-              </p>
-            </div>
+              {canSend ? (
+                <div className="button-row">
+                  <button type="submit" className="btn btn--primary" disabled={!hasContent || send.kind === 'sending'}>
+                    {send.kind === 'sending' ? 'Sending…' : 'Send feedback'}
+                  </button>
+                </div>
+              ) : (
+                <div className="notice" role="note">
+                  <p>
+                    <strong>Feedback sending isn’t connected yet.</strong> Your answers are saved on this device only and
+                    have not been sent to anyone.
+                  </p>
+                </div>
+              )}
+            </>
           )}
 
           {send.kind === 'error' && (

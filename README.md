@@ -13,6 +13,7 @@ The site has these pages:
 - **`/` (home):** what the planner is, the two ways to start, the weekly routine, the nutrient guide, privacy and how to install it on a phone. Everyone sees the two ways to start; returning visitors also get a "Welcome back" bar with **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
 - **`/planner`:** the planner itself. It can be linked directly.
 - **`/about`:** "Why these meals?" (Holly's note) plus what's included and what's not included yet.
+- **`/terms`:** Terms of Purchase and Use (Holly's wording). The contact address is `SUPPORT_EMAIL` and the "Last updated" date is `TERMS_LAST_UPDATED`, both in `src/pages/TermsPage.tsx`.
 - **`/nutrients`:** *Food for Your Follicles*, the ten-nutrient guide. Its text is in `src/data/nutrients.ts` and its icons are in `public/nutrients/`. Keep the wording in sync with the guide.
 
 The footer links to all of these.
@@ -27,10 +28,11 @@ The two path cards on the home page open the planner straight at the first step 
    - Adding something means "I have this". Anything not in the catalog can be added as the user's own item.
    - ☆ marks a staple, which is added automatically each new week.
 2. **Meal ideas:** search by meal or ingredient, pick meal types (remembered for next time) or ♥ favorites.
-   - With several meal types showing, ideas come in one section per type (Breakfast, Lunch, Dinner, Snack), four at a time with **See all**. A single type, a search or favorites shows one list, 20 at a time.
+   - With several meal types showing, ideas come in one section per type (Breakfast, Lunch, Dinner, Snack), four each. **See all** switches to just that type (the same as tapping its chip), shown 20 at a time; **All meals** brings the sections back. A single type, a search or favorites shows one list.
    - **Foods to leave out** is a collapsible panel on this page (see Avoided foods below).
+   - Each card shows a time category with a coloured clock: green **Quick** (about 15 minutes or less), amber **Moderate** (16–30) or berry **More involved** (over 30). Make-ahead meals (overnight oats, chia pudding) also show **☾ Make ahead**. A **Time** filter (Any / Quick / Moderate / More involved) narrows the ideas. Times aren't asked about up front or used for ranking.
    - Ranking is pantry fit: the smallest *share* of ingredients not already at home, so a 5-ingredient dinner with 1 to buy beats a 2-ingredient snack with 1 to buy. Meals chosen in the last 14 days move down unless they're favorites, never-chosen meals win ties, and otherwise the library's own order is kept. With nothing at home, meals appear in library order.
-   - Each card shows how many of its ingredients you have ("You have 3 of 4 ingredients"), plus **Already have** and **Need to buy**; when nothing is at home it shows a plain **Ingredients** list. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Optional extras are in a collapsed section and only go on the list when tapped.
+   - Each card shows how many of its ingredients you have ("You have 3 of 4 ingredients"), plus **Already have** and **Need to buy**; when nothing is at home it shows a plain **Ingredients** list. A short line says why it's suggested when that adds something ("One of your favorites", "You had this recently", "New to you"). Each card links to "Find a recipe ↗" (a web search for the meal). Optional ingredients, any swaps and prep notes (with automatic tips for canned beans and white rice) share one collapsed row ("Optional ingredients & Prep notes"); optional ingredients only go on the list when tapped.
    - Once a meal is picked, a bar at the bottom shows "N selected · Review →".
 3. **Review:** the chosen meals (removable), then every ingredient they need, once each and grouped by store section. People tick off what they already have; anything left unticked goes on the list.
 4. **Grocery list** (the finish line): grouped by store section. It shows what to buy, not how much. Items can be added, edited, removed and checked off, and the list can be shared, copied or printed. A short tip explains adding the planner to the phone's home screen. Below the list is an optional feedback card (a rating, "What made this planner helpful?" and "What do you wish this planner could also do?"), sent through Web3Forms (see below).
@@ -42,7 +44,7 @@ The two path cards on the home page open the planner straight at the first step 
 - **Where it opens:** the kitchen, with a "check your kitchen" note, or meal ideas on the second path.
 - **Staples:** they start as already in the kitchen, so the user only removes the ones that ran out. Everything else is cleared to be checked again, since last week's food may have been used up.
 
-**Start over** erases everything.
+**Start over** (at the bottom of planner pages, with a confirmation) erases everything.
 
 ### Works offline and installs like an app
 
@@ -56,6 +58,10 @@ The Mane Meals "M" mark is the app's logo. `public/brand/mane-meals-mark.png` is
 - `public/favicon.png` (64×64): the browser tab.
 
 To replace them, keep the same file names and sizes. If you change cached files in a way that must reach installed apps immediately, bump `CACHE` in `public/sw.js`.
+
+### Usage analytics
+
+Anonymous usage events (meals added, lists shared, searches and so on; no personal data) are stored in a Cloudflare D1 database by the functions in `functions/api/`, and summarized at `/api/stats` for a dashboard. Nothing is recorded until the one-time Cloudflare setup in [`docs/ANALYTICS.md`](docs/ANALYTICS.md) is done.
 
 ## Local development
 
@@ -103,11 +109,12 @@ The content lives in three JSON files in `src/data/library/`. Edit those, not th
 - **`meals.json`:** the meal library. Each meal has these fields:
   - `id`, `name`
   - `category`: `breakfast`, `lunch`, `dinner` or `snack`.
+  - `timeCategory`: `quick`, `moderate` or `more-involved`. Optional `makeAhead: true` for meals that need a few hours or overnight to soak or set. How each was estimated, and the ones flagged for review, are in [`docs/TIME_CATEGORIES.md`](docs/TIME_CATEGORIES.md).
   - `requiredIngredients` and `optionalIngredients`, as ingredient IDs.
   - `source`: internal only, never shown.
   - `preparationNote`: optional.
   
-  Optional fields for later, once reviewed: `prepTimeMinutes`, `instructions`, `substitutions` and `dietaryTags`. Never invent these, and don't add nutritional values or health claims.
+  Optional fields for later, once reviewed: `prepTimeMinutes` (exact minutes), `instructions`, `substitutions` and `dietaryTags`. Never invent these, and don't add nutritional values or health claims.
 - **`store-sections.json`:** the grocery-list sections, in the order a shopper walks the store. `other` must stay.
 
 `npm test` checks the whole library: every ingredient ID resolves, there are no duplicate IDs, every category and section is valid, and no name or alias points at two ingredients. A failing test names the meal or ingredient to fix. `content/mane-meals-v1/` keeps the original content package as delivered. `docs/LIBRARY_IMPORT_REPORT.md` records how it was reconciled.
@@ -128,7 +135,7 @@ Each required ingredient lands in exactly one group:
 - **Already on shopping list:** it's marked "Need to buy".
 - **Need to buy:** anything else. This goes on the list when the meal is chosen.
 
-Ranking puts the meals with the smallest share of ingredients *not already at home* first. That counts Need to buy plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to a smaller share of new items to buy, then meals never chosen before, then library order. Preparation time is not used: the library has no reviewed times, so none are shown, asked about or used for ranking.
+Ranking puts the meals with the smallest share of ingredients *not already at home* first. That counts Need to buy plus Already on shopping list, so a meal that's all shopping never outranks one cooked mostly from the kitchen. Ties go to a smaller share of new items to buy, then meals never chosen before, then library order. Time categories are shown and filterable but never used for ranking, and there are no exact minute counts.
 
 **Optional ingredients** are never counted as missing. They only go on the list when the user taps their "+" chip on a meal card. Tapping an extra on a meal that isn't in the plan yet adds the meal too, and removing the meal removes its extras.
 
@@ -186,4 +193,4 @@ The site works on its free `*.pages.dev` address right away. To use your own sub
 
 ## Privacy
 
-Planning data stays in the visitor's own browser (`localStorage` key `healthy-hair-grocery-planner:v1`) and is never uploaded. **Start over** clears all of it. The only data that leaves the browser is feedback, and only when the visitor presses **Send feedback**.
+Planning data stays in the visitor's own browser (`localStorage` key `healthy-hair-grocery-planner:v1`) and is never uploaded. **Start over** clears all of it. Plan contents never leave the browser. What does: feedback, only when the visitor presses **Send feedback**, and, once analytics is set up, anonymous usage events with no personal data (see [`docs/ANALYTICS.md`](docs/ANALYTICS.md)).

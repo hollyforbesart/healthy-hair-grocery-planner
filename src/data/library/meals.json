@@ -3,6 +3,8 @@
     "id": "strawberry-overnight-oats",
     "name": "Strawberry Overnight Oats",
     "category": "breakfast",
+    "timeCategory": "quick",
+    "makeAhead": true,
     "requiredIngredients": [
       "oats",
       "strawberries",
@@ -13,12 +15,14 @@
       "chia-seeds",
       "honey"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Mix the oats, milk, and yogurt, then cover and chill overnight. Add the strawberries before eating."
   },
   {
     "id": "tropical-green-protein-smoothie",
     "name": "Tropical Green Protein Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "mango",
       "banana",
@@ -30,12 +34,14 @@
       "chia-seeds",
       "protein-powder"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Blend the mango, banana, spinach, yogurt, and milk until smooth."
   },
   {
     "id": "spinach-egg-breakfast-burrito",
     "name": "Spinach + Egg Breakfast Burrito",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "eggs",
       "spinach",
@@ -46,12 +52,14 @@
     "optionalIngredients": [
       "salsa"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Scramble the eggs with spinach until set, then tuck into a warm tortilla with tomatoes and cheese."
   },
   {
     "id": "berry-crunch-yogurt-bowl",
     "name": "Berry Crunch Yogurt Bowl",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "greek-yogurt",
       "mixed-berries",
@@ -66,6 +74,7 @@
     "id": "tropical-yogurt-bowl",
     "name": "Tropical Yogurt Bowl",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "greek-yogurt",
       "mango",
@@ -81,6 +90,7 @@
     "id": "apple-cinnamon-oats-eggs",
     "name": "Apple Cinnamon Oats + Eggs",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "oats",
       "apple",
@@ -91,12 +101,14 @@
     "optionalIngredients": [
       "walnuts"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cook the oats in milk with chopped apple and cinnamon. Cook the eggs until set and serve alongside."
   },
   {
     "id": "chicken-crunch-wrap",
     "name": "Chicken Crunch Wrap",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "whole-grain-wraps",
@@ -107,12 +119,14 @@
     "optionalIngredients": [
       "shredded-cheese"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cut the chicken into small pieces and cook in a nonstick pan until cooked through. Spread yogurt on a tortilla, add the chicken, lettuce, and tomatoes, then fold into a wrap."
   },
   {
     "id": "chickpea-egg-salad",
     "name": "Chickpea + Egg Salad",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chickpeas",
       "eggs",
@@ -125,12 +139,14 @@
       "lemon",
       "whole-grain-crackers"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Boil the eggs until firm, then cool, peel, and chop. Toss with drained canned chickpeas, spinach, cucumber, and tomatoes."
   },
   {
     "id": "tuna-salad-sandwich-with-tomato-cucumber-feta-salad",
     "name": "Tuna Salad Sandwich with Tomato Cucumber + Feta Salad",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "canned-tuna",
       "whole-wheat-bread",
@@ -142,12 +158,14 @@
       "greek-yogurt",
       "lemon"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Drain the tuna and put it between slices of bread, mixing in yogurt if you like. Serve with chopped tomatoes, cucumber, and feta on the side."
   },
   {
     "id": "chicken-quinoa-veggie-bowl",
     "name": "Chicken + Quinoa Veggie Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "quinoa",
@@ -157,12 +175,14 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cook the quinoa while you cook small pieces of chicken in a nonstick pan until cooked through. Steam the broccoli and peppers until tender, then serve together in a bowl."
   },
   {
     "id": "turkey-chili-rice-bowl",
     "name": "Turkey Chili Rice Bowl",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-turkey",
       "kidney-beans",
@@ -171,14 +191,17 @@
       "onions"
     ],
     "optionalIngredients": [
-      "shredded-cheese"
+      "shredded-cheese",
+      "chili-powder"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Start the rice, then brown the turkey and onions in a nonstick pan. Add canned tomatoes and drained canned kidney beans, with chili powder if you like, then simmer until the turkey is cooked through and serve over rice."
   },
   {
     "id": "beef-broccoli-with-noodles",
     "name": "Beef + Broccoli with Noodles",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "beef-strips",
       "broccoli",
@@ -188,12 +211,14 @@
     "optionalIngredients": [
       "garlic"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Boil the noodles while you cook thin beef strips in a nonstick pan. Add broccoli and soy sauce, cover until the broccoli is tender and beef is cooked through, then toss with the noodles."
   },
   {
     "id": "chicken-black-bean-quesadilla",
     "name": "Chicken + Black Bean Quesadilla",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "black-beans",
@@ -203,12 +228,14 @@
     "optionalIngredients": [
       "salsa"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cook small pieces of chicken in a nonstick pan until cooked through, then warm with drained canned black beans. Fill a tortilla with the chicken, beans, and cheese, fold, and toast until the cheese melts."
   },
   {
     "id": "spinach-cheese-tortilla-pizza",
     "name": "Spinach + Cheese Tortilla Pizza",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "whole-grain-wraps",
       "spinach",
@@ -218,12 +245,14 @@
     "optionalIngredients": [
       "bell-peppers"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Spread tomato sauce on a tortilla and top with spinach and mozzarella. Bake until the cheese melts and the edges are crisp."
   },
   {
     "id": "turkey-burger-sweet-potato-wedges",
     "name": "Turkey Burger + Sweet Potato Wedges",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-turkey",
       "burger-buns",
@@ -234,12 +263,14 @@
     "optionalIngredients": [
       "pickles"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cut the sweet potato into wedges and roast on a lined tray until tender. Shape the turkey into patties, cook through in a nonstick pan, and serve in buns with lettuce and tomatoes."
   },
   {
     "id": "sweet-thai-chili-salmon-with-rice-green-beans",
     "name": "Sweet Thai Chili Salmon with Rice + Green Beans",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "rice",
@@ -249,12 +280,14 @@
     "optionalIngredients": [
       "sesame-seeds"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Start the rice, then brush salmon with sweet Thai chili sauce and bake until cooked through. Steam the green beans and serve alongside the salmon and rice."
   },
   {
     "id": "chicken-veggie-stir-fry",
     "name": "Chicken Veggie Stir-Fry",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "rice",
@@ -265,12 +298,14 @@
     "optionalIngredients": [
       "garlic"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Start the rice, then cook thin chicken strips in a nonstick pan until cooked through. Add broccoli, peppers, and soy sauce, cook until the vegetables are tender, and serve over rice."
   },
   {
     "id": "garlic-chicken-with-roasted-sweet-potatoes-cauliflower",
     "name": "Garlic Chicken with Roasted Sweet Potatoes + Cauliflower",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-breast",
       "sweet-potatoes",
@@ -280,12 +315,14 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Roast chopped sweet potatoes and cauliflower on a lined tray with garlic, adding olive oil if you like. Bake the chicken alongside until cooked through and serve when the vegetables are tender."
   },
   {
     "id": "apple-peanut-butter",
     "name": "Apple + Peanut Butter",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "apple",
       "peanut-butter"
@@ -297,6 +334,7 @@
     "id": "walnut-cashew-pumpkin-seed-trail-mix",
     "name": "Walnut Cashew + Pumpkin Seed Trail Mix",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "walnuts",
       "cashews",
@@ -311,6 +349,7 @@
     "id": "hummus-vegetable-sticks",
     "name": "Hummus + Vegetable Sticks",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "hummus",
       "carrots",
@@ -324,18 +363,21 @@
     "id": "smoked-salmon-avocado-toast",
     "name": "Smoked Salmon + Avocado Toast",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "smoked-salmon",
       "avocado",
       "whole-wheat-bread"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Toast the bread, spread with mashed avocado, and top with smoked salmon."
   },
   {
     "id": "sweet-potato-egg-breakfast-hash",
     "name": "Sweet Potato + Egg Breakfast Hash",
     "category": "breakfast",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "sweet-potatoes",
       "eggs",
@@ -345,12 +387,15 @@
     "optionalIngredients": [
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Dice the sweet potato small and microwave until just tender. Cook with chopped peppers and onions in a nonstick pan, then add eggs and cook until set."
   },
   {
     "id": "peanut-butter-banana-overnight-oats",
     "name": "Peanut Butter Banana Overnight Oats",
     "category": "breakfast",
+    "timeCategory": "quick",
+    "makeAhead": true,
     "requiredIngredients": [
       "oats",
       "banana",
@@ -360,12 +405,14 @@
     "optionalIngredients": [
       "ground-flaxseed"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Stir the oats, milk, and peanut butter together, then cover and chill overnight. Top with sliced banana before eating."
   },
   {
     "id": "spinach-mushroom-feta-omelet",
     "name": "Spinach Mushroom + Feta Omelet",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "eggs",
       "spinach",
@@ -375,12 +422,14 @@
     "optionalIngredients": [
       "whole-wheat-bread"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the mushrooms and spinach in a nonstick pan, then pour in beaten eggs. Add feta and fold once the eggs are set."
   },
   {
     "id": "cottage-cheese-berry-breakfast-bowl",
     "name": "Cottage Cheese + Berry Breakfast Bowl",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "cottage-cheese",
       "mixed-berries"
@@ -394,6 +443,7 @@
     "id": "breakfast-egg-black-bean-tacos",
     "name": "Breakfast Egg + Black Bean Tacos",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "eggs",
       "black-beans",
@@ -403,12 +453,15 @@
     "optionalIngredients": [
       "avocado"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Scramble the eggs until set and warm the drained canned black beans. Fill warm corn tortillas with the eggs, beans, and chopped tomatoes."
   },
   {
     "id": "chia-pudding-with-mango-pumpkin-seeds",
     "name": "Chia Pudding with Mango + Pumpkin Seeds",
     "category": "breakfast",
+    "timeCategory": "quick",
+    "makeAhead": true,
     "requiredIngredients": [
       "chia-seeds",
       "mango",
@@ -418,12 +471,14 @@
     "optionalIngredients": [
       "greek-yogurt"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Stir chia seeds into milk, stir again once they start to thicken, then cover and chill until set. Top with mango and pumpkin seeds."
   },
   {
     "id": "avocado-egg-breakfast-sandwich",
     "name": "Avocado + Egg Breakfast Sandwich",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "avocado",
       "eggs",
@@ -432,12 +487,14 @@
     "optionalIngredients": [
       "tomatoes"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the egg until set, then place on toasted bread with mashed avocado."
   },
   {
     "id": "tofu-scramble-with-peppers-potatoes",
     "name": "Tofu Scramble with Peppers + Potatoes",
     "category": "breakfast",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "tofu",
       "bell-peppers",
@@ -446,12 +503,14 @@
     "optionalIngredients": [
       "onions"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Dice the potatoes small and microwave until just tender. Cook them with chopped peppers and crumbled tofu in a nonstick pan until the peppers soften and the tofu is hot."
   },
   {
     "id": "peanut-butter-strawberry-toast-with-yogurt",
     "name": "Peanut Butter + Strawberry Toast with Yogurt",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "peanut-butter",
       "strawberries",
@@ -459,12 +518,14 @@
       "greek-yogurt"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Spread peanut butter on toast and top with sliced strawberries. Serve the yogurt on the side."
   },
   {
     "id": "salmon-spinach-breakfast-wrap",
     "name": "Salmon + Spinach Breakfast Wrap",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "canned-salmon",
       "spinach",
@@ -473,12 +534,14 @@
     "optionalIngredients": [
       "eggs"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Drain the canned salmon, then tuck into a tortilla with spinach and roll up. Add a cooked egg if you like."
   },
   {
     "id": "banana-oat-pancakes-with-greek-yogurt",
     "name": "Banana Oat Pancakes with Greek Yogurt",
     "category": "breakfast",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "banana",
       "oats",
@@ -492,12 +555,13 @@
       "peanut-butter"
     ],
     "source": "Planner expansion",
-    "preparationNote": "Blend banana, eggs, and rolled oats into a batter. Cook small pancakes in a lightly oiled skillet and serve with Greek yogurt."
+    "preparationNote": "Blend banana, eggs, and rolled oats into a batter. Cook small pancakes in a nonstick pan until set on both sides and serve with Greek yogurt."
   },
   {
     "id": "lentil-roasted-vegetable-grain-bowl",
     "name": "Lentil + Roasted Vegetable Grain Bowl",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "lentils",
       "quinoa",
@@ -507,12 +571,14 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast chopped zucchini and peppers on a lined tray while the quinoa cooks. Warm drained canned lentils and combine everything in a bowl, adding olive oil if you like."
   },
   {
     "id": "salmon-avocado-rice-bowl",
     "name": "Salmon + Avocado Rice Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "avocado",
@@ -522,12 +588,14 @@
     "optionalIngredients": [
       "soy-sauce"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then bake the salmon until cooked through. Serve with the rice, sliced avocado, and cucumber."
   },
   {
     "id": "mediterranean-chickpea-pita",
     "name": "Mediterranean Chickpea Pita",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "chickpeas",
       "pita-bread",
@@ -537,12 +605,14 @@
     "optionalIngredients": [
       "feta-cheese"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Drain canned chickpeas and lightly mash them. Fill a pita with the chickpeas, chopped cucumber, and tomatoes, adding feta if you like."
   },
   {
     "id": "turkey-hummus-veggie-wrap",
     "name": "Turkey + Hummus Veggie Wrap",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "sliced-turkey-breast",
       "hummus",
@@ -552,12 +622,14 @@
     "optionalIngredients": [
       "bell-peppers"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Spread hummus on a tortilla, layer with ready-to-eat sliced turkey and spinach, then roll up."
   },
   {
     "id": "black-bean-corn-burrito-bowl",
     "name": "Black Bean + Corn Burrito Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "black-beans",
       "corn",
@@ -568,12 +640,14 @@
     "optionalIngredients": [
       "avocado"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the rice and steam the corn until tender, then warm drained canned black beans. Serve in a bowl with chopped tomatoes and warm tortillas on the side."
   },
   {
     "id": "sardine-tomato-toast",
     "name": "Sardine + Tomato Toast",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "sardines",
       "tomatoes",
@@ -582,12 +656,14 @@
     "optionalIngredients": [
       "lemon"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Toast the bread and top with drained canned sardines and sliced tomatoes. Add lemon if you like."
   },
   {
     "id": "chicken-white-bean-soup",
     "name": "Chicken + White Bean Soup",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-breast",
       "white-beans",
@@ -598,12 +674,14 @@
     "optionalIngredients": [
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Simmer chopped carrots and onions in broth, then add small pieces of chicken and cook through. Stir in drained canned white beans and heat until hot, adding spinach if you like."
   },
   {
     "id": "tofu-edamame-noodle-bowl",
     "name": "Tofu + Edamame Noodle Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "tofu",
       "edamame",
@@ -613,12 +691,14 @@
     "optionalIngredients": [
       "soy-sauce"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the noodles and cook the edamame as directed on the package, removing any pods. Steam diced tofu and sliced carrots until hot and tender, then combine with the noodles and edamame beans, adding soy sauce if you like."
   },
   {
     "id": "greek-chicken-cucumber-pita",
     "name": "Greek Chicken + Cucumber Pita",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "cucumber",
@@ -626,14 +706,17 @@
       "greek-yogurt"
     ],
     "optionalIngredients": [
-      "lemon"
+      "lemon",
+      "dried-oregano"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cut the chicken into small pieces, season with dried oregano if you like, and cook in a nonstick pan until cooked through. Fill a pita with the chicken, chopped cucumber, and yogurt, adding lemon if you like."
   },
   {
     "id": "sweet-potato-black-bean-bowl",
     "name": "Sweet Potato + Black Bean Bowl",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "sweet-potatoes",
       "black-beans",
@@ -643,12 +726,14 @@
     "optionalIngredients": [
       "salsa"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice and roast chopped sweet potato on a lined tray until tender. Warm drained canned black beans with spinach until the leaves soften, then serve over rice with the sweet potato."
   },
   {
     "id": "shrimp-mango-rice-bowl",
     "name": "Shrimp + Mango Rice Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "shrimp",
       "mango",
@@ -658,12 +743,14 @@
     "optionalIngredients": [
       "lime"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then cook shrimp and chopped peppers in a nonstick pan until the shrimp are cooked through. Serve over rice with chopped mango, adding lime if you like."
   },
   {
     "id": "egg-avocado-salad-sandwich",
     "name": "Egg + Avocado Salad Sandwich",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "eggs",
       "avocado",
@@ -673,12 +760,14 @@
     "optionalIngredients": [
       "lemon"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the eggs until firm, then cool, peel, and chop. Mash with avocado and put between slices of bread with lettuce."
   },
   {
     "id": "lentil-spinach-soup-with-whole-grain-toast",
     "name": "Lentil + Spinach Soup with Whole-Grain Toast",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "lentils",
       "spinach",
@@ -689,12 +778,14 @@
     "optionalIngredients": [
       "onions"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Simmer lentils and chopped carrots in broth until the lentils are tender. Stir in spinach until wilted and serve with toast."
   },
   {
     "id": "tuna-white-bean-salad",
     "name": "Tuna + White Bean Salad",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "canned-tuna",
       "white-beans",
@@ -704,12 +795,14 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Drain the canned tuna and canned white beans, then toss with chopped tomatoes and spinach. Add olive oil if you like."
   },
   {
     "id": "chicken-pesto-pasta-salad",
     "name": "Chicken Pesto Pasta Salad",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "pasta",
@@ -719,12 +812,14 @@
     "optionalIngredients": [
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the pasta while you cook small pieces of chicken in a nonstick pan until cooked through. Toss with pesto and halved cherry tomatoes, adding spinach if you like. Serve warm, or chill if you prefer."
   },
   {
     "id": "roasted-vegetable-feta-couscous-bowl",
     "name": "Roasted Vegetable + Feta Couscous Bowl",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "couscous",
       "zucchini",
@@ -734,12 +829,14 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast chopped zucchini and peppers on a lined tray until tender, adding olive oil if you like. Prepare the couscous as directed on the package, then toss with the vegetables and feta."
   },
   {
     "id": "lemon-garlic-salmon-quinoa-asparagus",
     "name": "Lemon Garlic Salmon + Quinoa + Asparagus",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "quinoa",
@@ -750,12 +847,14 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the quinoa while you bake the salmon with garlic and lemon until cooked through. Steam the asparagus and serve everything together, adding olive oil if you like."
   },
   {
     "id": "beef-black-bean-stuffed-peppers",
     "name": "Beef + Black Bean Stuffed Peppers",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-beef",
       "black-beans",
@@ -765,12 +864,14 @@
     "optionalIngredients": [
       "shredded-cheese"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the rice while you brown the beef in a nonstick pan until cooked through, then mix with drained canned black beans. Fill halved peppers, add cheese if you like, and bake until the peppers are tender."
   },
   {
     "id": "turkey-spinach-meatballs-with-pasta",
     "name": "Turkey + Spinach Meatballs with Pasta",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-turkey",
       "spinach",
@@ -781,12 +882,14 @@
     "optionalIngredients": [
       "breadcrumbs"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Mix ground turkey with finely chopped spinach and egg, adding breadcrumbs if you like, then shape into small meatballs. Bake until cooked through while the pasta boils, then serve with warmed tomato sauce."
   },
   {
     "id": "coconut-chickpea-spinach-curry-with-rice",
     "name": "Coconut Chickpea + Spinach Curry with Rice",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chickpeas",
       "spinach",
@@ -797,12 +900,14 @@
     "optionalIngredients": [
       "onions"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then simmer drained canned chickpeas in coconut milk with curry powder. Stir in spinach until wilted and serve over rice."
   },
   {
     "id": "sheet-pan-chicken-brussels-sprouts-potatoes",
     "name": "Sheet-Pan Chicken + Brussels Sprouts + Potatoes",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-thighs",
       "brussels-sprouts",
@@ -811,12 +916,14 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Put chicken thighs, chopped potatoes, and halved Brussels sprouts on a lined tray, adding olive oil if you like. Roast until the chicken is cooked through and the vegetables are tender."
   },
   {
     "id": "garlic-shrimp-vegetable-pasta",
     "name": "Garlic Shrimp + Vegetable Pasta",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "shrimp",
       "pasta",
@@ -827,12 +934,14 @@
       "olive-oil",
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the pasta while you cook shrimp, zucchini, and garlic in a nonstick pan until the shrimp are cooked through. Toss with the pasta, adding olive oil or spinach if you like."
   },
   {
     "id": "baked-tofu-peanut-noodles",
     "name": "Baked Tofu + Peanut Noodles",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "tofu",
       "noodles",
@@ -844,12 +953,14 @@
       "lime",
       "bell-peppers"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Bake tofu cubes on a lined tray until firm while the noodles boil. Stir peanut butter and soy sauce with some noodle cooking water, then toss with the tofu, noodles, and shredded carrots."
   },
   {
     "id": "lentil-bolognese-with-whole-wheat-pasta",
     "name": "Lentil Bolognese with Whole-Wheat Pasta",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "lentils",
       "whole-wheat-pasta",
@@ -859,12 +970,14 @@
     "optionalIngredients": [
       "garlic"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the lentils until tender, then simmer with tomato sauce and chopped onions until the onions soften. Boil the pasta while the sauce simmers, then serve together."
   },
   {
     "id": "fish-tacos-with-cabbage-slaw",
     "name": "Fish Tacos with Cabbage Slaw",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "white-fish",
       "corn-tortillas",
@@ -874,12 +987,14 @@
     "optionalIngredients": [
       "lime"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Bake the fish until cooked through while you mix shredded cabbage with yogurt, adding lime if you like. Fill warm tortillas with the fish and slaw."
   },
   {
     "id": "beef-vegetable-stir-fry-with-rice",
     "name": "Beef + Vegetable Stir-Fry with Rice",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "beef-strips",
       "rice",
@@ -890,12 +1005,14 @@
     "optionalIngredients": [
       "garlic"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then cook thin beef strips in a nonstick pan. Add broccoli, peppers, and soy sauce, cook until the vegetables are tender and beef is cooked through, and serve over rice."
   },
   {
     "id": "black-eyed-pea-sweet-potato-stew",
     "name": "Black-Eyed Pea + Sweet Potato Stew",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "black-eyed-peas",
       "sweet-potatoes",
@@ -905,12 +1022,14 @@
     "optionalIngredients": [
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Simmer chopped sweet potato and onions in canned tomatoes until tender, adding a splash of water if needed. Stir in drained canned black eyed peas and heat through, adding spinach if you like."
   },
   {
     "id": "turkey-kidney-bean-chili",
     "name": "Turkey + Kidney Bean Chili",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "ground-turkey",
       "kidney-beans",
@@ -918,14 +1037,17 @@
       "onions"
     ],
     "optionalIngredients": [
-      "bell-peppers"
+      "bell-peppers",
+      "chili-powder"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Brown the turkey and chopped onions in a nonstick pan. Add canned tomatoes and drained canned kidney beans, with chili powder if you like, then simmer until the turkey is cooked through and the sauce thickens."
   },
   {
     "id": "baked-trout-roasted-carrots-rice",
     "name": "Baked Trout + Roasted Carrots + Rice",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "trout",
       "carrots",
@@ -934,12 +1056,14 @@
     "optionalIngredients": [
       "lemon"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice and roast sliced carrots on a lined tray. Bake the trout until cooked through and serve with the rice and tender carrots, adding lemon if you like."
   },
   {
     "id": "chicken-fajita-bowls",
     "name": "Chicken Fajita Bowls",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "rice",
@@ -949,12 +1073,14 @@
     "optionalIngredients": [
       "avocado"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then cook thin chicken strips in a nonstick pan until cooked through. Add sliced peppers and onions, cook until tender, and serve over rice with avocado if you like."
   },
   {
     "id": "spinach-ricotta-stuffed-shells",
     "name": "Spinach + Ricotta Stuffed Shells",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "jumbo-pasta-shells",
       "ricotta-cheese",
@@ -964,12 +1090,14 @@
     "optionalIngredients": [
       "mozzarella-cheese"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the shells until just tender while you cook and drain the spinach, then mix the spinach with ricotta. Fill the shells, place in tomato sauce, and bake until hot, adding mozzarella if you like."
   },
   {
     "id": "ginger-salmon-broccoli-noodle-bowl",
     "name": "Ginger Salmon + Broccoli Noodle Bowl",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "broccoli",
@@ -980,12 +1108,14 @@
     "optionalIngredients": [
       "sesame-seeds"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the noodles and steam the broccoli while you bake the salmon with ginger and soy sauce until cooked through. Serve together, adding sesame seeds if you like."
   },
   {
     "id": "greek-yogurt-kiwi-chia-seeds",
     "name": "Greek Yogurt + Kiwi + Chia Seeds",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "greek-yogurt",
       "kiwi",
@@ -1000,17 +1130,20 @@
     "id": "boiled-eggs-orange-slices",
     "name": "Boiled Eggs + Orange Slices",
     "category": "snack",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "eggs",
       "orange"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the eggs until firm, then cool and peel. Serve with orange slices."
   },
   {
     "id": "roasted-chickpeas-bell-pepper-strips",
     "name": "Roasted Chickpeas + Bell Pepper Strips",
     "category": "snack",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chickpeas",
       "bell-peppers"
@@ -1019,12 +1152,13 @@
       "olive-oil"
     ],
     "source": "Planner expansion",
-    "preparationNote": "Drain, rinse, and thoroughly dry canned chickpeas. Toss with a little olive oil; season with garlic powder, smoked paprika, salt, and black pepper. Roast at 400°F (200°C) for 25–35 minutes, shaking the pan halfway through, until golden and crisp. Serve with raw bell pepper strips."
+    "preparationNote": "Drain, rinse, and dry canned chickpeas well, then spread on a lined tray, adding olive oil if you like. Roast until crisp, stirring partway through, and serve with raw bell pepper strips."
   },
   {
     "id": "cottage-cheese-pineapple",
     "name": "Cottage Cheese + Pineapple",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "cottage-cheese",
       "pineapple"
@@ -1036,6 +1170,7 @@
     "id": "whole-grain-crackers-tuna",
     "name": "Whole-Grain Crackers + Tuna",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "whole-grain-crackers",
       "canned-tuna"
@@ -1049,17 +1184,20 @@
     "id": "edamame-mandarin-orange",
     "name": "Edamame + Mandarin Orange",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "edamame",
       "mandarin-oranges"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the edamame as directed on the package, then serve with mandarin orange pieces. If the edamame comes in pods, eat the beans and leave the pods."
   },
   {
     "id": "banana-almond-butter",
     "name": "Banana + Almond Butter",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "banana",
       "almond-butter"
@@ -1071,6 +1209,7 @@
     "id": "cheese-whole-grain-crackers-grapes",
     "name": "Cheese + Whole-Grain Crackers + Grapes",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "cheddar-cheese",
       "whole-grain-crackers",
@@ -1083,6 +1222,7 @@
     "id": "strawberries-pumpkin-seeds-dark-chocolate",
     "name": "Strawberries + Pumpkin Seeds + Dark Chocolate",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "strawberries",
       "pumpkin-seeds",
@@ -1095,6 +1235,7 @@
     "id": "strawberry-banana-protein-smoothie",
     "name": "Strawberry Banana Protein Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "greek-yogurt",
       "strawberries",
@@ -1105,12 +1246,14 @@
     "optionalIngredients": [
       "protein-powder"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the yogurt, strawberries, banana, milk, and chia seeds until smooth. Add protein powder if you like."
   },
   {
     "id": "blueberry-almond-butter-smoothie",
     "name": "Blueberry Almond Butter Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "blueberries",
       "almond-butter",
@@ -1119,12 +1262,14 @@
       "ground-flaxseed"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the blueberries, almond butter, yogurt, milk, and ground flaxseed until smooth."
   },
   {
     "id": "mango-pineapple-protein-smoothie",
     "name": "Mango Pineapple Protein Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "mango",
       "pineapple",
@@ -1135,12 +1280,14 @@
     "optionalIngredients": [
       "protein-powder"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the mango, pineapple, yogurt, milk, and chia seeds until smooth. Add protein powder if you like."
   },
   {
     "id": "chocolate-peanut-butter-banana-smoothie",
     "name": "Chocolate Peanut Butter Banana Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "banana",
       "peanut-butter",
@@ -1151,12 +1298,14 @@
     "optionalIngredients": [
       "protein-powder"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the banana, peanut butter, cocoa powder, milk, and yogurt until smooth. Add protein powder if you like."
   },
   {
     "id": "kiwi-avocado-green-smoothie",
     "name": "Kiwi Avocado Green Smoothie",
     "category": "breakfast",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "kiwi",
       "avocado",
@@ -1165,12 +1314,14 @@
       "milk"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Blend the kiwi, avocado, spinach, yogurt, and milk until smooth."
   },
   {
     "id": "bbq-chicken-rice-bowl",
     "name": "BBQ Chicken Rice Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "rice",
@@ -1180,12 +1331,14 @@
       "bbq-sauce"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice and steam the corn while you cook small pieces of chicken in a nonstick pan until cooked through. Stir BBQ sauce into the chicken and serve over rice with the corn, sliced cabbage, and peppers."
   },
   {
     "id": "bbq-chicken-with-roasted-sweet-potatoes-broccoli",
     "name": "BBQ Chicken with Roasted Sweet Potatoes + Broccoli",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-thighs",
       "bbq-sauce",
@@ -1193,12 +1346,14 @@
       "broccoli"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast chopped sweet potato on a lined tray and bake the chicken thighs with BBQ sauce until cooked through. Add broccoli to roast until tender and serve together."
   },
   {
     "id": "ground-turkey-taco-bowl",
     "name": "Ground Turkey Taco Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "ground-turkey",
       "rice",
@@ -1207,13 +1362,17 @@
       "tomatoes",
       "avocado"
     ],
-    "optionalIngredients": [],
-    "source": "Planner expansion"
+    "optionalIngredients": [
+      "taco-seasoning"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then brown the turkey in a nonstick pan until cooked through, adding taco seasoning if you like, and warm drained canned black beans. Serve with the rice, lettuce, tomatoes, and avocado."
   },
   {
     "id": "ground-turkey-spinach-skillet-with-rice",
     "name": "Ground Turkey + Spinach Skillet with Rice",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "ground-turkey",
       "spinach",
@@ -1222,12 +1381,14 @@
       "rice"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then brown the turkey and chopped onions in a nonstick pan until the turkey is cooked through. Stir in chopped tomatoes and spinach, cook until softened, and serve over rice."
   },
   {
     "id": "pesto-chicken-pasta",
     "name": "Pesto Chicken Pasta",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "pasta",
@@ -1236,12 +1397,14 @@
       "spinach"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the pasta while you cook small pieces of chicken in a nonstick pan until cooked through. Toss with pesto, halved cherry tomatoes, and spinach until the leaves soften."
   },
   {
     "id": "pesto-chicken-quinoa-bowl",
     "name": "Pesto Chicken + Quinoa Bowl",
     "category": "lunch",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "chicken-breast",
       "quinoa",
@@ -1250,12 +1413,14 @@
       "tomatoes"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the quinoa while you cook small pieces of chicken in a nonstick pan until cooked through. Add chopped zucchini and tomatoes, cook until tender, then stir in pesto and serve over quinoa."
   },
   {
     "id": "mac-cheese-with-chicken-broccoli",
     "name": "Mac + Cheese with Chicken + Broccoli",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "macaroni",
       "cheddar-cheese",
@@ -1264,12 +1429,14 @@
       "broccoli"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the macaroni and steam the broccoli while you cook small pieces of chicken in a nonstick pan until cooked through. Gently warm milk with grated cheddar until melted, then stir in the pasta, chicken, and broccoli."
   },
   {
     "id": "jerk-chicken-pasta",
     "name": "Jerk Chicken Pasta",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-breast",
       "jerk-seasoning",
@@ -1280,12 +1447,14 @@
       "parmesan-cheese"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the pasta while you cook small chicken pieces with jerk seasoning in a nonstick pan until cooked through, then add sliced peppers and onions and cook until soft. Lower the heat, stir in milk and Parmesan, and toss with the pasta."
   },
   {
     "id": "sweet-thai-chili-tofu-bowl",
     "name": "Sweet Thai Chili Tofu Bowl",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "tofu",
       "rice",
@@ -1294,12 +1463,14 @@
       "sweet-thai-chili-sauce"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then cook tofu cubes in a nonstick pan until hot. Add broccoli, peppers, and sweet Thai chili sauce, cover until the vegetables are tender, and serve over rice."
   },
   {
     "id": "mac-cheese-with-black-beans-roasted-cauliflower",
     "name": "Mac + Cheese with Black Beans + Roasted Cauliflower",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "macaroni",
       "cheddar-cheese",
@@ -1308,12 +1479,14 @@
       "cauliflower"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast cauliflower on a lined tray while the macaroni boils, then warm drained canned black beans. Gently warm milk with grated cheddar until melted, then combine with the pasta, beans, and cauliflower."
   },
   {
     "id": "honey-garlic-salmon-bites-bowl",
     "name": "Honey Garlic Salmon Bites Bowl",
     "category": "dinner",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "salmon",
       "rice",
@@ -1324,12 +1497,14 @@
       "soy-sauce"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then mix honey, garlic, and soy sauce. Cook salmon cubes in a nonstick pan until cooked through, toss with the sauce until hot, and serve over rice with cucumber and avocado."
   },
   {
     "id": "salmon-cakes-with-roasted-potatoes-side-salad",
     "name": "Salmon Cakes with Roasted Potatoes + Side Salad",
     "category": "lunch",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "canned-salmon",
       "eggs",
@@ -1339,12 +1514,15 @@
       "lemon"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast chopped potatoes on a lined tray while you mix drained canned salmon with egg and breadcrumbs and shape into small patties. Bake the patties until cooked through and serve with the tender potatoes and mixed greens, adding lemon over the greens."
   },
   {
     "id": "chocolate-raspberry-chia-pudding",
     "name": "Chocolate Raspberry Chia Pudding",
     "category": "breakfast",
+    "timeCategory": "quick",
+    "makeAhead": true,
     "requiredIngredients": [
       "chia-seeds",
       "milk",
@@ -1353,12 +1531,14 @@
       "greek-yogurt"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Mix chia seeds, milk, cocoa powder, and yogurt, then cover and chill until thick, stirring again as it starts to set. Top with raspberries before eating."
   },
   {
     "id": "protein-waffles-with-berries-greek-yogurt",
     "name": "Protein Waffles with Berries + Greek Yogurt",
     "category": "breakfast",
+    "timeCategory": "moderate",
     "requiredIngredients": [
       "protein-waffle-mix",
       "greek-yogurt",
@@ -1368,12 +1548,14 @@
     "optionalIngredients": [
       "almond-butter"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Prepare the waffle mix as directed on the package and cook in a waffle maker. Top with yogurt, strawberries, and blueberries, adding almond butter if you like."
   },
   {
     "id": "caribbean-stew-chicken-legs-with-rice-cabbage",
     "name": "Caribbean Stew Chicken Legs with Rice + Cabbage",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chicken-legs",
       "rice",
@@ -1385,12 +1567,14 @@
     "optionalIngredients": [
       "caribbean-green-seasoning"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Brown the chicken legs in a nonstick pot, then add chopped onions, tomatoes, and carrots, using green seasoning if you like. Cover and simmer, adding a splash of water if needed, until the chicken is cooked through, and serve with freshly cooked rice and steamed cabbage."
   },
   {
     "id": "roasted-vegetable-chickpea-tray-bake",
     "name": "Roasted Vegetable + Chickpea Tray Bake",
     "category": "dinner",
+    "timeCategory": "more-involved",
     "requiredIngredients": [
       "chickpeas",
       "zucchini",
@@ -1402,12 +1586,14 @@
     "optionalIngredients": [
       "tzatziki"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Drain canned chickpeas and toss with chopped zucchini, peppers, cauliflower, and olive oil, then roast until the vegetables are tender. Drizzle with tahini and add tzatziki if you like."
   },
   {
     "id": "white-bean-spinach-tomato-skillet",
     "name": "White Bean + Spinach Tomato Skillet",
     "category": "lunch",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "white-beans",
       "spinach",
@@ -1419,12 +1605,14 @@
     "optionalIngredients": [
       "feta-cheese"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook chopped tomatoes and garlic in olive oil until softened, then add drained canned white beans and spinach and heat through. Serve with toast, adding feta if you like."
   },
   {
     "id": "strawberry-almond-butter-rice-cakes",
     "name": "Strawberry + Almond Butter Rice Cakes",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "rice-cakes",
       "almond-butter",
@@ -1439,6 +1627,7 @@
     "id": "apple-nachos-with-peanut-butter-pumpkin-seeds",
     "name": "Apple Nachos with Peanut Butter + Pumpkin Seeds",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "apple",
       "peanut-butter",
@@ -1447,12 +1636,14 @@
     "optionalIngredients": [
       "dark-chocolate-chips"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Slice the apple, spread the slices on a plate, then drizzle with peanut butter and scatter pumpkin seeds over the top. Add chocolate chips if you like."
   },
   {
     "id": "mini-caprese-skewers",
     "name": "Mini Caprese Skewers",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "cherry-tomatoes",
       "mozzarella-cheese",
@@ -1461,12 +1652,14 @@
     "optionalIngredients": [
       "balsamic-glaze"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Thread cherry tomatoes, bite-size mozzarella pieces, and basil onto small skewers. Add balsamic glaze if you like."
   },
   {
     "id": "turkey-cheese-roll-ups-with-grapes",
     "name": "Turkey + Cheese Roll-Ups with Grapes",
     "category": "snack",
+    "timeCategory": "quick",
     "requiredIngredients": [
       "sliced-turkey-breast",
       "cheddar-cheese",
@@ -1474,6 +1667,7 @@
       "whole-grain-crackers"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roll ready-to-eat turkey slices around pieces of cheddar and serve with grapes and crackers."
   }
 ]

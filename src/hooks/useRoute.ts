@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 
 /** The app's pages. Any unknown path shows the home page. */
-export type Route = 'home' | 'planner' | 'about' | 'nutrients';
+export type Route = 'home' | 'planner' | 'about' | 'nutrients' | 'terms';
 
 export const ROUTE_PATHS: Record<Route, string> = {
   home: '/',
   planner: '/planner',
   about: '/about',
   nutrients: '/nutrients',
+  terms: '/terms',
 };
 
 const routeFromPath = (path: string): Route => {

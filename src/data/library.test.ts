@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { matchKey } from '../lib/text';
 import { AVOID_GROUPS } from './avoidGroups';
-import { INGREDIENT_CATEGORIES, KITCHEN_GROUP_IDS, MEAL_CATEGORIES, STORE_SECTIONS, STORE_SECTION_IDS } from './categories';
+import { INGREDIENT_CATEGORIES, KITCHEN_GROUP_IDS, MEAL_CATEGORIES, STORE_SECTIONS, STORE_SECTION_IDS, TIME_CATEGORY_IDS } from './categories';
 import { INGREDIENTS } from './ingredients';
 import { LEGACY_INGREDIENT_IDS } from './legacyIds';
 import { MEALS } from './meals';
@@ -57,6 +57,21 @@ describe('meal library', () => {
     for (const m of MEALS) expect(mealCategories.has(m.category), `${m.id} category "${m.category}"`).toBe(true);
   });
 
+  it('gives every meal a time category', () => {
+    for (const m of MEALS) expect(TIME_CATEGORY_IDS.has(m.timeCategory ?? ''), `${m.id} timeCategory "${m.timeCategory}"`).toBe(true);
+  });
+
+  it('rates make-ahead meals by hands-on time (quick), since the soaking is overnight', () => {
+    const ahead = MEALS.filter((m) => m.makeAhead);
+    expect(ahead.map((m) => m.id).sort()).toEqual([
+      'chia-pudding-with-mango-pumpkin-seeds',
+      'chocolate-raspberry-chia-pudding',
+      'peanut-butter-banana-overnight-oats',
+      'strawberry-overnight-oats',
+    ]);
+    for (const m of ahead) expect(m.timeCategory, m.id).toBe('quick');
+  });
+
   it('only references ingredients that exist in the catalog', () => {
     for (const m of MEALS) {
       for (const id of [...m.requiredIngredients, ...m.optionalIngredients]) {
@@ -84,9 +99,13 @@ describe('meal library', () => {
     }
   });
 
-  it('keeps the two reviewed preparation notes', () => {
-    const withNotes = MEALS.filter((m) => m.preparationNote).map((m) => m.id);
-    expect(withNotes).toEqual(['banana-oat-pancakes-with-greek-yogurt', 'roasted-chickpeas-bell-pepper-strips']);
+  it('keeps preparation notes to a short cue, not a recipe', () => {
+    const withNotes = MEALS.filter((m) => m.preparationNote);
+    expect(withNotes.length).toBeGreaterThan(0);
+    for (const m of withNotes) {
+      expect(m.preparationNote!.trim(), m.id).not.toBe('');
+      expect(m.preparationNote!.length, `${m.id} prep note is too long`).toBeLessThanOrEqual(400);
+    }
   });
 });
 
@@ -151,5 +170,16 @@ describe('Food for Your Follicles', () => {
       expect(icons, `icon for ${n.id}`).toContain(`${n.id}.webp`);
       expect(n.sections.some((s) => s.highlight), `${n.id} find-in section`).toBe(true);
     }
+  });
+});
+
+describe('timing tips', () => {
+  it('only name ingredients in the catalog, and show for canned beans and rice', async () => {
+    const { TIMING_TIPS, timingTipsFor } = await import('./timingTips');
+    for (const tip of TIMING_TIPS) for (const id of tip.ingredientIds) expect(ingredientIds.has(id), id).toBe(true);
+    const fajita = MEALS.find((m) => m.id === 'chicken-fajita-bowls')!;
+    expect(timingTipsFor(fajita)).toEqual([expect.stringContaining('white rice')]);
+    const tacos = MEALS.find((m) => m.id === 'breakfast-egg-black-bean-tacos')!;
+    expect(timingTipsFor(tacos)).toEqual([expect.stringContaining('canned beans')]);
   });
 });

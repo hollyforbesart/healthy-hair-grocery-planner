@@ -7,3 +7,7 @@ dist
 *.tsbuildinfo
 .DS_Store
 .wrangler
+
+# Cloudflare local development
+.wrangler/
+.dev.vars

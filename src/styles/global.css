@@ -213,6 +213,9 @@ h2:focus {
   background: rgba(250, 246, 240, 0.12);
 }
 
+.site-footer__start-over .link-btn {
+  font-weight: 600;
+}
 .site-footer__copyright {
   margin-bottom: 0;
 }
@@ -311,14 +314,6 @@ h2:focus {
 /* ---------- Step header & footer ---------- */
 .step-header {
   margin: 1.25rem 0 1rem;
-}
-.step-header__eyebrow {
-  margin: 0 0 0.25rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--plum-60);
 }
 .step-header h2 {
   font-size: clamp(1.5rem, 5vw, 2rem);
@@ -843,6 +838,51 @@ textarea:focus-visible {
   font-size: 0.875rem;
   color: var(--plum-60);
 }
+.meal-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--border);
+  white-space: nowrap;
+}
+.meal-time svg {
+  flex-shrink: 0;
+}
+/* Clock colours by time (also on the Time filter chips, so they double as a key). */
+.meal-time--quick svg { color: #2f7d4f; }
+.meal-time--moderate svg { color: #b06a00; }
+.meal-time--more-involved svg { color: #a8326a; }
+.meal-time--ahead svg { color: #5b4b9a; }
+/* "Make ahead" gets its own line under the type and time, so it never wraps oddly. */
+.meal-time.meal-time--ahead {
+  display: flex;
+  width: fit-content;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  border: 0;
+}
+.chip-clock {
+  display: inline-flex;
+  margin-right: 0.25rem;
+  vertical-align: -2px;
+}
+.chip[aria-pressed='true'] .chip-clock svg {
+  color: currentColor;
+}
+.filter-bar--time {
+  align-items: center;
+}
+.filter-bar {
+  scroll-margin-top: 0.75rem;
+}
+.filter-bar__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--plum-60);
+  margin-right: 0.15rem;
+}
 .meal-card__desc {
   margin: -0.4rem 0 0;
   font-size: 0.9rem;
@@ -894,22 +934,6 @@ textarea:focus-visible {
 .meal-card__on-list {
   font-weight: 400;
 }
-.meal-card__note {
-  border-top: 1px solid var(--lavender);
-  padding-top: 0.6rem;
-}
-.meal-card__note summary {
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  min-height: 36px;
-  display: flex;
-  align-items: center;
-}
-.meal-card__note p {
-  margin: 0.35rem 0 0;
-  font-size: 0.95rem;
-}
 .meal-card__extras {
   border-top: 1px solid var(--lavender);
   padding-top: 0.6rem;
@@ -923,16 +947,13 @@ textarea:focus-visible {
   align-items: center;
   gap: 0.25rem;
 }
-.meal-card__note > summary,
 .meal-card__extras > summary {
   list-style: none;
 }
-.meal-card__note > summary::-webkit-details-marker,
 .meal-card__extras > summary::-webkit-details-marker {
   display: none;
 }
 /* flex hides the browser's arrow, so draw one (same as "Foods to leave out") */
-.meal-card__note > summary::after,
 .meal-card__extras > summary::after {
   content: '▾';
   margin-left: auto;
@@ -940,9 +961,33 @@ textarea:focus-visible {
   color: var(--plum);
   transition: transform 0.15s;
 }
-.meal-card__note[open] > summary::after,
 .meal-card__extras[open] > summary::after {
   transform: rotate(180deg);
+}
+.meal-card__prep p:not(.meal-card__extras-title) {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.meal-card__prep .meal-card__tip {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--plum-60);
+}
+.meal-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+.meal-card__recipe {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--plum-60);
+  padding: 0.4rem 0;
+}
+.meal-card__recipe:hover {
+  color: var(--plum);
 }
 .meal-card__added {
   color: var(--plum-60);
@@ -964,9 +1009,9 @@ textarea:focus-visible {
   letter-spacing: 0.06em;
   color: var(--plum-60);
 }
-.meal-card__select {
+.meal-card__actions {
+  /* keeps the button row at the bottom when cards in a row differ in height */
   margin-top: auto;
-  align-self: flex-start;
 }
 
 /* ---------- Step 4: grocery list ---------- */
@@ -1231,8 +1276,13 @@ textarea:focus-visible {
 .kitchen-chip__remove:hover {
   background: rgba(250, 246, 240, 0.18);
 }
+.kitchen-chip__star {
+  opacity: 0.55;
+}
 .kitchen-chip__star.is-on {
-  color: var(--sand);
+  opacity: 1;
+  color: #f2c14e;
+  font-size: 1.05rem;
 }
 .kitchen-chip :focus-visible {
   outline-color: var(--sand);
@@ -1446,6 +1496,10 @@ textarea:focus-visible {
 .prose-page h2 {
   font-size: clamp(1.6rem, 5vw, 2.1rem);
   margin-bottom: 0.9rem;
+}
+.prose-page h3 {
+  font-size: 1.15rem;
+  margin: 1.5rem 0 0.4rem;
 }
 .prose-page p {
   margin: 0 0 0.9rem;
@@ -1907,9 +1961,6 @@ textarea:focus-visible {
   }
   .no-print,
   .skip-link,
-  .step-header__eyebrow {
-    display: none !important;
-  }
   .site-header {
     background: none;
     color: #000;

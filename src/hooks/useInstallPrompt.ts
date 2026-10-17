@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { track } from '../lib/analytics';
 
 /** Chrome/Edge/Android event; not in the standard DOM typings. */
 interface BeforeInstallPromptEvent extends Event {
@@ -25,6 +26,7 @@ export function useInstallPrompt() {
       setPromptEvent(e as BeforeInstallPromptEvent);
     };
     const onInstalled = () => {
+      track('app_installed');
       setInstalled(true);
       setPromptEvent(null);
     };

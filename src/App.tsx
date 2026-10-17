@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { StepNav } from './components/StepNav';
 import { useRoute } from './hooks/useRoute';
+import { track } from './lib/analytics';
 import { START_OVER_CONFIRM } from './lib/confirmations';
 import { RouteLink } from './components/RouteLink';
 import { AboutPage } from './pages/AboutPage';
+import { PRIVACY_POLICY_URL, TermsPage } from './pages/TermsPage';
 import { HomePage } from './pages/HomePage';
 import { NutrientsPage } from './pages/NutrientsPage';
 import { usePlanner } from './state/PlannerContext';
@@ -31,6 +33,10 @@ export function App() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [state.currentStep]);
+
+  useEffect(() => {
+    track('page_view', route);
+  }, [route]);
 
   const goTo = (step: StepId) => dispatch({ type: 'goToStep', step });
 
@@ -78,11 +84,8 @@ export function App() {
                   navigate('home');
                 }}
               >
-                How to use
+                Home
               </a>
-              <button type="button" className="btn btn--ghost btn--small" onClick={startOver}>
-                Start over
-              </button>
             </div>
           )}
         </div>
@@ -100,6 +103,10 @@ export function App() {
         ) : route === 'about' ? (
           <main id="main" className="main">
             <AboutPage onOpenPlanner={() => navigate('planner')} />
+          </main>
+        ) : route === 'terms' ? (
+          <main id="main" className="main">
+            <TermsPage />
           </main>
         ) : (
           <>
@@ -124,11 +131,23 @@ export function App() {
             <RouteLink to="nutrients" navigate={navigate}>
               Food for Your Follicles
             </RouteLink>
+            <RouteLink to="terms" navigate={navigate}>
+              Terms
+            </RouteLink>
+            <a href={PRIVACY_POLICY_URL}>Privacy</a>
           </nav>
           <p className="small">
             Meal ideas are general suggestions for planning your groceries and are not medical or nutritional advice.
             Your progress is saved in this browser only.
           </p>
+          {route === 'planner' && (
+            <p className="small site-footer__start-over">
+              <button type="button" className="link-btn" onClick={startOver}>
+                Start over
+              </button>{' '}
+              <span className="muted">— clears your kitchen, meals, list, staples and favorites on this device.</span>
+            </p>
+          )}
           <p className="small site-footer__copyright">© 2026 The Hair Loss Nutritionist</p>
         </div>
       </footer>
