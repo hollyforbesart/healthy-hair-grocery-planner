@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { APP_VERSION, feedbackService } from '../services/feedback';
+import { track } from '../lib/analytics';
 import { usePlanner } from '../state/PlannerContext';
 
 const RATINGS = [
@@ -36,6 +37,7 @@ export function FeedbackCard() {
     });
     if (result.ok) {
       setSend({ kind: 'sent' });
+      track('feedback_sent', rating ?? undefined);
       dispatch({ type: 'updateFeedback', patch: { rating: null, helpful: '', wish: '' } });
     } else {
       setSend({ kind: 'error', message: result.error });

@@ -11,7 +11,8 @@ The app already has a place for each one; nothing here should be invented.
 
 ## Before launch
 
-- **Cloudflare Web Analytics.** Free and cookie-free, so it doesn't change the privacy promise. Turn it on for the Pages project in the Cloudflare dashboard (Web Analytics); for Pages it needs no code change.
+- **Usage analytics.** The code is in (anonymous events plus a stats summary for a dashboard). Turn it on with the one-time Cloudflare setup in [`ANALYTICS.md`](ANALYTICS.md), and add the usage-statistics paragraph to the privacy policy first. Optional extra: Cloudflare Web Analytics (free, cookie-free) for visit counts and referrers.
+- **Dashboard on Claude.** Once the setup is done and the key exists, build a dashboard that reads `/api/stats`.
 - **Kit access + saved plans.** Sign-in by emailed code, checked against Kit purchases, with each person's plan saved to Cloudflare's free storage (KV). This also protects plans on iPhone, where Safari clears a site's saved data after 7 days without a visit unless it's on the home screen. Waiting on a Kit test purchase.
 - **Custom address** on a manemeals subdomain.
 - **Test on a real iPhone and Android phone,** installed to the home screen, and have a couple of people plan a real week.

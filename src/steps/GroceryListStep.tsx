@@ -1,10 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { GroceryItemRow } from '../components/GroceryItemRow';
 import { FeedbackCard } from '../components/FeedbackCard';
 import { Icon } from '../components/Icon';
 import { PlanReminder } from '../components/PlanReminder';
 import { StepFooter } from '../components/StepFooter';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
+import { track } from '../lib/analytics';
 import { useStepNav } from '../hooks/useStepNav';
 import { StepHeader } from '../components/StepHeader';
 import { OTHER_SECTION, STORE_SECTIONS } from '../data/categories';
@@ -93,7 +94,13 @@ export function GroceryListStep() {
 
   const listNotes = { meals: selectedMeals.map((m) => m.name) };
 
+  // One "list viewed" per visit to this step, with how many items it had.
+  useEffect(() => {
+    track('list_view', items.length);
+  }, []);
+
   const copy = async () => {
+    track('list_copy');
     const ok = await copyText(groceryListToText(groups, listNotes));
     setStatus(
       ok
@@ -103,6 +110,7 @@ export function GroceryListStep() {
   };
 
   const share = async () => {
+    track('list_share');
     const outcome = await shareText('Grocery list', groceryListToText(groups, listNotes));
     if (outcome === 'shared') setStatus({ kind: 'info', text: 'List shared.' });
     else if (outcome === 'unsupported' || outcome === 'failed') {
@@ -140,7 +148,7 @@ export function GroceryListStep() {
           <button type="button" className="btn btn--secondary" onClick={copy} disabled={items.length === 0}>
             Copy list
           </button>
-          <button type="button" className="btn btn--secondary" onClick={() => window.print()} disabled={items.length === 0}>
+          <button type="button" className="btn btn--secondary" onClick={() => { track('list_print'); window.print(); }} disabled={items.length === 0}>
             Print list
           </button>
         </div>
@@ -250,7 +258,7 @@ export function GroceryListStep() {
             <strong>Shopping from your phone?</strong>{' '}
             {canInstall ? (
               <>
-                <button type="button" className="link-btn" onClick={() => void install()}>
+                <button type="button" className="link-btn" onClick={() => { track('install_click'); void install(); }}>
                   Install the planner
                 </button>{' '}
                 so your list opens like an app, even with no signal.

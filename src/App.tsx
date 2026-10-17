@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { StepNav } from './components/StepNav';
 import { useRoute } from './hooks/useRoute';
+import { track } from './lib/analytics';
 import { START_OVER_CONFIRM } from './lib/confirmations';
 import { RouteLink } from './components/RouteLink';
 import { AboutPage } from './pages/AboutPage';
@@ -32,6 +33,10 @@ export function App() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [state.currentStep]);
+
+  useEffect(() => {
+    track('page_view', route);
+  }, [route]);
 
   const goTo = (step: StepId) => dispatch({ type: 'goToStep', step });
 

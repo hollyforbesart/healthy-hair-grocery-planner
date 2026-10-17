@@ -1,6 +1,7 @@
 import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES } from '../data/categories';
 import { mealPhotoUrl } from '../data/mealPhotos';
 import { timingTipsFor } from '../data/timingTips';
+import { track } from '../lib/analytics';
 import { Icon } from './Icon';
 import { ingredientName, type IngredientLookup } from '../lib/ingredients';
 import { effectiveId } from '../lib/matching';
@@ -246,6 +247,7 @@ export function MealCard({
           href={`https://www.google.com/search?q=${encodeURIComponent(`${meal.name} recipe`)}`}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track('recipe_link', meal.id)}
         >
           Find a recipe <span aria-hidden="true">↗</span>
           <span className="visually-hidden"> for {meal.name} (opens a web search in a new tab)</span>

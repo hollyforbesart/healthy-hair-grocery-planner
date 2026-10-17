@@ -5,6 +5,7 @@ import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { RouteLink } from '../components/RouteLink';
 import type { Route } from '../hooks/useRoute';
 import { NEW_WEEK_CONFIRM } from '../lib/confirmations';
+import { track } from '../lib/analytics';
 import { hasPlannerProgress } from '../state/plannerReducer';
 import { usePlanner } from '../state/PlannerContext';
 import { firstStep } from '../state/steps';
@@ -154,7 +155,7 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
           <>
             {canInstall && (
               <div className="button-row">
-                <button type="button" className="btn btn--primary" onClick={() => void install()}>
+                <button type="button" className="btn btn--primary" onClick={() => { track('install_click'); void install(); }}>
                   <Icon name="install" size={20} /> Install the app
                 </button>
               </div>

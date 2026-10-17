@@ -7,6 +7,7 @@ import { AVOID_GROUPS } from '../data/avoidGroups';
 import { Icon } from '../components/Icon';
 import { MEAL_CATEGORIES, TIME_CATEGORIES } from '../data/categories';
 import { useRecommendations } from '../hooks/useRecommendations';
+import { track } from '../lib/analytics';
 import { useStepNav } from '../hooks/useStepNav';
 import { ingredientName } from '../lib/ingredients';
 import { previouslyChosenMealIds, recentMealIds } from '../lib/mealHistory';
@@ -68,6 +69,7 @@ export function MealsStep() {
   const resetPaging = () => setShown(PAGE_SIZE);
 
   const chooseCategory = (choice: MealChoice) => {
+    track('meal_type_filter', choice);
     setFavoritesOnly(false);
     dispatch({ type: 'updatePreferences', patch: { mealCategories: toggleMealChoice(categories, choice) } });
     resetPaging();
@@ -75,6 +77,7 @@ export function MealsStep() {
 
   // "See all" shows just that meal type, the same as tapping its chip.
   const seeAll = (category: MealCategory) => {
+    track('see_all', category);
     setFavoritesOnly(false);
     dispatch({ type: 'updatePreferences', patch: { mealCategories: [category] } });
     resetPaging();
@@ -88,9 +91,18 @@ export function MealsStep() {
   }, [categories]);
 
   const chooseTime = (choice: TimeCategory | null) => {
+    track('time_filter', choice === null || choice === time ? 'any' : choice);
     setTime((current) => (current === choice ? null : choice));
     resetPaging();
   };
+
+  // Count what people search for once they pause typing (3+ letters), not every keystroke.
+  useEffect(() => {
+    const term = query.trim();
+    if (term.length < 3) return;
+    const timer = window.setTimeout(() => track('search', term), 1500);
+    return () => window.clearTimeout(timer);
+  }, [query]);
 
   // Summary for the "Foods to leave out" panel: ticked groups by name, then single foods.
   const avoidIds = preferences.avoidIngredientIds;
@@ -201,6 +213,7 @@ export function MealsStep() {
           className="chip"
           aria-pressed={favoritesOnly}
           onClick={() => {
+            if (!favoritesOnly) track('favorites_filter');
             setFavoritesOnly((f) => !f);
             resetPaging();
           }}

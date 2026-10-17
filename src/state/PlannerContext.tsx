@@ -1,6 +1,8 @@
-import { createContext, useContext, useEffect, useMemo, useReducer, type Dispatch, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, type Dispatch, type ReactNode } from 'react';
 import { INGREDIENTS } from '../data/ingredients';
 import { MEALS } from '../data/meals';
+import { track } from '../lib/analytics';
+import { eventsForAction } from '../lib/analyticsActions';
 import { createLookup, type IngredientLookup } from '../lib/ingredients';
 import { readJson, writeJson } from '../lib/storage';
 import type { Ingredient, MealTemplate } from '../types';
@@ -21,7 +23,18 @@ interface PlannerContextValue {
 const PlannerContext = createContext<PlannerContextValue | null>(null);
 
 export function PlannerProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(plannerReducer, undefined, () => hydrateState(readJson(STORAGE_KEY)));
+  const [state, rawDispatch] = useReducer(plannerReducer, undefined, () => hydrateState(readJson(STORAGE_KEY)));
+
+  // Every action goes through here, so anonymous usage events are worked out in one place.
+  // `latest` follows the reducer exactly, even when several actions are dispatched at once.
+  const latest = useRef(state);
+  const dispatch = useCallback<Dispatch<PlannerAction>>((action) => {
+    const prev = latest.current;
+    const next = plannerReducer(prev, action);
+    latest.current = next;
+    for (const event of eventsForAction(prev, next, action)) track(event.name, event.value);
+    rawDispatch(action);
+  }, []);
 
   useEffect(() => {
     writeJson(STORAGE_KEY, state);
@@ -38,7 +51,7 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
       // Silently drops saved IDs for meals no longer in the library.
       selectedMeals: MEALS.filter((m) => state.selectedMealIds.includes(m.id)),
     };
-  }, [state]);
+  }, [state, dispatch]);
 
   return <PlannerContext.Provider value={value}>{children}</PlannerContext.Provider>;
 }

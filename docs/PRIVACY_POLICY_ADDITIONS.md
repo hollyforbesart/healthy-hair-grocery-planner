@@ -47,6 +47,10 @@ Add these bullets:
 
 > The Mane Meals planner does not use advertising or tracking cookies. It uses your browser's local storage only to save your plan on your device, as described above.
 
+**Planner usage statistics** (add when analytics is switched on; see docs/ANALYTICS.md):
+
+> To understand how the Mane Meals planner is used and improve it, the planner records anonymous usage events, such as pages and steps opened, meals and foods added, filters and searches used, and whether a grocery list was shared, copied, or printed. These events are stored with Cloudflare. They do not include your name, email address, IP address, a cookie or other identifier, your saved plan, or anything you type into your grocery list or feedback. Search terms you type in the meal search may be recorded in shortened form, so please don't type personal information there. If your browser sends a "Do Not Track" or "Global Privacy Control" signal, the planner does not record usage events.
+
 If you turn on Cloudflare Web Analytics later, also add:
 
 > We may use Cloudflare Web Analytics to understand how the planner is used, such as the number of visits and pages viewed. Cloudflare Web Analytics does not use cookies and reports information in aggregate.

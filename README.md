@@ -59,6 +59,10 @@ The Mane Meals "M" mark is the app's logo. `public/brand/mane-meals-mark.png` is
 
 To replace them, keep the same file names and sizes. If you change cached files in a way that must reach installed apps immediately, bump `CACHE` in `public/sw.js`.
 
+### Usage analytics
+
+Anonymous usage events (meals added, lists shared, searches and so on; no personal data) are stored in a Cloudflare D1 database by the functions in `functions/api/`, and summarized at `/api/stats` for a dashboard. Nothing is recorded until the one-time Cloudflare setup in [`docs/ANALYTICS.md`](docs/ANALYTICS.md) is done.
+
 ## Local development
 
 You need Node.js 20.19+ (22 recommended; see `.nvmrc`).
@@ -189,4 +193,4 @@ The site works on its free `*.pages.dev` address right away. To use your own sub
 
 ## Privacy
 
-Planning data stays in the visitor's own browser (`localStorage` key `healthy-hair-grocery-planner:v1`) and is never uploaded. **Start over** clears all of it. The only data that leaves the browser is feedback, and only when the visitor presses **Send feedback**.
+Planning data stays in the visitor's own browser (`localStorage` key `healthy-hair-grocery-planner:v1`) and is never uploaded. **Start over** clears all of it. Plan contents never leave the browser. What does: feedback, only when the visitor presses **Send feedback**, and, once analytics is set up, anonymous usage events with no personal data (see [`docs/ANALYTICS.md`](docs/ANALYTICS.md)).
