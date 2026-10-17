@@ -16,4 +16,9 @@ The app already has a place for each one; nothing here should be invented.
 - **Kit access + saved plans.** Sign-in by emailed code, checked against Kit purchases, with each person's plan saved to Cloudflare's free storage (KV). This also protects plans on iPhone, where Safari clears a site's saved data after 7 days without a visit unless it's on the home screen. Waiting on a Kit test purchase.
 - **Custom address** on a manemeals subdomain.
 - **Test on a real iPhone and Android phone,** installed to the home screen, and have a couple of people plan a real week.
-- **Terms page:** set `TERMS_LAST_UPDATED` in `src/pages/TermsPage.tsx` to the publish date. The terms and footer link to the Privacy Policy on thehairlossnutritionist.com; update it to cover the planner and purchases (draft additions in docs/PRIVACY_POLICY_ADDITIONS.md). Put "Digital product with instant access. All sales are final." (or similar) on the Kit offer page.
+- **Terms page:** Terms published October 17, 2026 (update `TERMS_LAST_UPDATED` in `src/pages/TermsPage.tsx` whenever the wording changes). The terms and footer link to the Privacy Policy on thehairlossnutritionist.com; update it to cover the planner and purchases (draft additions in docs/PRIVACY_POLICY_ADDITIONS.md). Put "Digital product with instant access. All sales are final." (or similar) on the Kit offer page.
+
+## Ideas for future improvements
+
+- **Cooking with your appliances.** Holly wants to talk about appliances (air fryer, slow cooker, Instant Pot/pressure cooker, sheet pan, microwave, blender) and how to use them to make meal prep easier and faster. Discuss before building. Possible shapes: appliance tips on meals that suit them, an "I have an air fryer" style filter, or a short guide page.
+

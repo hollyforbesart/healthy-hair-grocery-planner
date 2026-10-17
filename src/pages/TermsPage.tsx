@@ -7,7 +7,7 @@ export const SUPPORT_EMAIL = 'hello@thehairlossnutritionist.com';
 export const PRIVACY_POLICY_URL = 'https://thehairlossnutritionist.com/privacy-policy/';
 
 /** Shown as "Last updated: …". Set to the date the terms are published; hidden while empty. */
-export const TERMS_LAST_UPDATED = '';
+export const TERMS_LAST_UPDATED = 'October 17, 2026';
 
 /** Terms of Purchase and Use, as written by Holly. Linked from the footer. */
 export function TermsPage() {
