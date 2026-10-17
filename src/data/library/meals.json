@@ -15,7 +15,8 @@
       "chia-seeds",
       "honey"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Mix the oats, milk, and yogurt, then cover and chill overnight. Add the strawberries before eating."
   },
   {
     "id": "tropical-green-protein-smoothie",
@@ -138,7 +139,8 @@
       "lemon",
       "whole-grain-crackers"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Boil the eggs until firm, then cool, peel, and chop. Toss with drained canned chickpeas, spinach, cucumber, and tomatoes."
   },
   {
     "id": "tuna-salad-sandwich-with-tomato-cucumber-feta-salad",
@@ -189,9 +191,11 @@
       "onions"
     ],
     "optionalIngredients": [
-      "shredded-cheese"
+      "shredded-cheese",
+      "chili-powder"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Start the rice, then brown the turkey and onions in a nonstick pan. Add canned tomatoes and drained canned kidney beans, with chili powder if you like, then simmer until the turkey is cooked through and serve over rice."
   },
   {
     "id": "beef-broccoli-with-noodles",
@@ -224,7 +228,8 @@
     "optionalIngredients": [
       "salsa"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Cook small pieces of chicken in a nonstick pan until cooked through, then warm with drained canned black beans. Fill a tortilla with the chicken, beans, and cheese, fold, and toast until the cheese melts."
   },
   {
     "id": "spinach-cheese-tortilla-pizza",
@@ -275,7 +280,8 @@
     "optionalIngredients": [
       "sesame-seeds"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Start the rice, then brush salmon with sweet Thai chili sauce and bake until cooked through. Steam the green beans and serve alongside the salmon and rice."
   },
   {
     "id": "chicken-veggie-stir-fry",
@@ -292,7 +298,8 @@
     "optionalIngredients": [
       "garlic"
     ],
-    "source": "Mane Meals: The Everyday Edition"
+    "source": "Mane Meals: The Everyday Edition",
+    "preparationNote": "Start the rice, then cook thin chicken strips in a nonstick pan until cooked through. Add broccoli, peppers, and soy sauce, cook until the vegetables are tender, and serve over rice."
   },
   {
     "id": "garlic-chicken-with-roasted-sweet-potatoes-cauliflower",
@@ -398,7 +405,8 @@
     "optionalIngredients": [
       "ground-flaxseed"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Stir the oats, milk, and peanut butter together, then cover and chill overnight. Top with sliced banana before eating."
   },
   {
     "id": "spinach-mushroom-feta-omelet",
@@ -445,7 +453,8 @@
     "optionalIngredients": [
       "avocado"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Scramble the eggs until set and warm the drained canned black beans. Fill warm corn tortillas with the eggs, beans, and chopped tomatoes."
   },
   {
     "id": "chia-pudding-with-mango-pumpkin-seeds",
@@ -462,7 +471,8 @@
     "optionalIngredients": [
       "greek-yogurt"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Stir chia seeds into milk, stir again once they start to thicken, then cover and chill until set. Top with mango and pumpkin seeds."
   },
   {
     "id": "avocado-egg-breakfast-sandwich",
@@ -545,7 +555,7 @@
       "peanut-butter"
     ],
     "source": "Planner expansion",
-    "preparationNote": "Blend banana, eggs, and rolled oats into a batter. Cook small pancakes in a lightly oiled skillet and serve with Greek yogurt."
+    "preparationNote": "Blend banana, eggs, and rolled oats into a batter. Cook small pancakes in a nonstick pan until set on both sides and serve with Greek yogurt."
   },
   {
     "id": "lentil-roasted-vegetable-grain-bowl",
@@ -561,7 +571,8 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast chopped zucchini and peppers on a lined tray while the quinoa cooks. Warm drained canned lentils and combine everything in a bowl, adding olive oil if you like."
   },
   {
     "id": "salmon-avocado-rice-bowl",
@@ -577,7 +588,8 @@
     "optionalIngredients": [
       "soy-sauce"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then bake the salmon until cooked through. Serve with the rice, sliced avocado, and cucumber."
   },
   {
     "id": "mediterranean-chickpea-pita",
@@ -593,7 +605,8 @@
     "optionalIngredients": [
       "feta-cheese"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Drain canned chickpeas and lightly mash them. Fill a pita with the chickpeas, chopped cucumber, and tomatoes, adding feta if you like."
   },
   {
     "id": "turkey-hummus-veggie-wrap",
@@ -609,7 +622,8 @@
     "optionalIngredients": [
       "bell-peppers"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Spread hummus on a tortilla, layer with ready-to-eat sliced turkey and spinach, then roll up."
   },
   {
     "id": "black-bean-corn-burrito-bowl",
@@ -626,7 +640,8 @@
     "optionalIngredients": [
       "avocado"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the rice and steam the corn until tender, then warm drained canned black beans. Serve in a bowl with chopped tomatoes and warm tortillas on the side."
   },
   {
     "id": "sardine-tomato-toast",
@@ -641,7 +656,8 @@
     "optionalIngredients": [
       "lemon"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Toast the bread and top with drained canned sardines and sliced tomatoes. Add lemon if you like."
   },
   {
     "id": "chicken-white-bean-soup",
@@ -658,7 +674,8 @@
     "optionalIngredients": [
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Simmer chopped carrots and onions in broth, then add small pieces of chicken and cook through. Stir in drained canned white beans and heat until hot, adding spinach if you like."
   },
   {
     "id": "tofu-edamame-noodle-bowl",
@@ -689,9 +706,11 @@
       "greek-yogurt"
     ],
     "optionalIngredients": [
-      "lemon"
+      "lemon",
+      "dried-oregano"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cut the chicken into small pieces, season with dried oregano if you like, and cook in a nonstick pan until cooked through. Fill a pita with the chicken, chopped cucumber, and yogurt, adding lemon if you like."
   },
   {
     "id": "sweet-potato-black-bean-bowl",
@@ -707,7 +726,8 @@
     "optionalIngredients": [
       "salsa"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice and roast chopped sweet potato on a lined tray until tender. Warm drained canned black beans with spinach until the leaves soften, then serve over rice with the sweet potato."
   },
   {
     "id": "shrimp-mango-rice-bowl",
@@ -723,7 +743,8 @@
     "optionalIngredients": [
       "lime"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then cook shrimp and chopped peppers in a nonstick pan until the shrimp are cooked through. Serve over rice with chopped mango, adding lime if you like."
   },
   {
     "id": "egg-avocado-salad-sandwich",
@@ -757,7 +778,8 @@
     "optionalIngredients": [
       "onions"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Simmer lentils and chopped carrots in broth until the lentils are tender. Stir in spinach until wilted and serve with toast."
   },
   {
     "id": "tuna-white-bean-salad",
@@ -773,7 +795,8 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Drain the canned tuna and canned white beans, then toss with chopped tomatoes and spinach. Add olive oil if you like."
   },
   {
     "id": "chicken-pesto-pasta-salad",
@@ -789,7 +812,8 @@
     "optionalIngredients": [
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the pasta while you cook small pieces of chicken in a nonstick pan until cooked through. Toss with pesto and halved cherry tomatoes, adding spinach if you like. Serve warm, or chill if you prefer."
   },
   {
     "id": "roasted-vegetable-feta-couscous-bowl",
@@ -805,7 +829,8 @@
     "optionalIngredients": [
       "olive-oil"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast chopped zucchini and peppers on a lined tray until tender, adding olive oil if you like. Prepare the couscous as directed on the package, then toss with the vegetables and feta."
   },
   {
     "id": "lemon-garlic-salmon-quinoa-asparagus",
@@ -839,7 +864,8 @@
     "optionalIngredients": [
       "shredded-cheese"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the rice while you brown the beef in a nonstick pan until cooked through, then mix with drained canned black beans. Fill halved peppers, add cheese if you like, and bake until the peppers are tender."
   },
   {
     "id": "turkey-spinach-meatballs-with-pasta",
@@ -856,7 +882,8 @@
     "optionalIngredients": [
       "breadcrumbs"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Mix ground turkey with finely chopped spinach and egg, adding breadcrumbs if you like, then shape into small meatballs. Bake until cooked through while the pasta boils, then serve with warmed tomato sauce."
   },
   {
     "id": "coconut-chickpea-spinach-curry-with-rice",
@@ -873,7 +900,8 @@
     "optionalIngredients": [
       "onions"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then simmer drained canned chickpeas in coconut milk with curry powder. Stir in spinach until wilted and serve over rice."
   },
   {
     "id": "sheet-pan-chicken-brussels-sprouts-potatoes",
@@ -942,7 +970,8 @@
     "optionalIngredients": [
       "garlic"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook the lentils until tender, then simmer with tomato sauce and chopped onions until the onions soften. Boil the pasta while the sauce simmers, then serve together."
   },
   {
     "id": "fish-tacos-with-cabbage-slaw",
@@ -976,7 +1005,8 @@
     "optionalIngredients": [
       "garlic"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then cook thin beef strips in a nonstick pan. Add broccoli, peppers, and soy sauce, cook until the vegetables are tender and beef is cooked through, and serve over rice."
   },
   {
     "id": "black-eyed-pea-sweet-potato-stew",
@@ -992,7 +1022,8 @@
     "optionalIngredients": [
       "spinach"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Simmer chopped sweet potato and onions in canned tomatoes until tender, adding a splash of water if needed. Stir in drained canned black eyed peas and heat through, adding spinach if you like."
   },
   {
     "id": "turkey-kidney-bean-chili",
@@ -1006,9 +1037,11 @@
       "onions"
     ],
     "optionalIngredients": [
-      "bell-peppers"
+      "bell-peppers",
+      "chili-powder"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Brown the turkey and chopped onions in a nonstick pan. Add canned tomatoes and drained canned kidney beans, with chili powder if you like, then simmer until the turkey is cooked through and the sauce thickens."
   },
   {
     "id": "baked-trout-roasted-carrots-rice",
@@ -1023,7 +1056,8 @@
     "optionalIngredients": [
       "lemon"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice and roast sliced carrots on a lined tray. Bake the trout until cooked through and serve with the rice and tender carrots, adding lemon if you like."
   },
   {
     "id": "chicken-fajita-bowls",
@@ -1039,7 +1073,8 @@
     "optionalIngredients": [
       "avocado"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then cook thin chicken strips in a nonstick pan until cooked through. Add sliced peppers and onions, cook until tender, and serve over rice with avocado if you like."
   },
   {
     "id": "spinach-ricotta-stuffed-shells",
@@ -1117,7 +1152,7 @@
       "olive-oil"
     ],
     "source": "Planner expansion",
-    "preparationNote": "Drain, rinse, and thoroughly dry canned chickpeas. Toss with a little olive oil; season with garlic powder, smoked paprika, salt, and black pepper. Roast at 400°F (200°C) for 25–35 minutes, shaking the pan halfway through, until golden and crisp. Serve with raw bell pepper strips."
+    "preparationNote": "Drain, rinse, and dry canned chickpeas well, then spread on a lined tray, adding olive oil if you like. Roast until crisp, stirring partway through, and serve with raw bell pepper strips."
   },
   {
     "id": "cottage-cheese-pineapple",
@@ -1296,7 +1331,8 @@
       "bbq-sauce"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice and steam the corn while you cook small pieces of chicken in a nonstick pan until cooked through. Stir BBQ sauce into the chicken and serve over rice with the corn, sliced cabbage, and peppers."
   },
   {
     "id": "bbq-chicken-with-roasted-sweet-potatoes-broccoli",
@@ -1326,8 +1362,11 @@
       "tomatoes",
       "avocado"
     ],
-    "optionalIngredients": [],
-    "source": "Planner expansion"
+    "optionalIngredients": [
+      "taco-seasoning"
+    ],
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then brown the turkey in a nonstick pan until cooked through, adding taco seasoning if you like, and warm drained canned black beans. Serve with the rice, lettuce, tomatoes, and avocado."
   },
   {
     "id": "ground-turkey-spinach-skillet-with-rice",
@@ -1342,7 +1381,8 @@
       "rice"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then brown the turkey and chopped onions in a nonstick pan until the turkey is cooked through. Stir in chopped tomatoes and spinach, cook until softened, and serve over rice."
   },
   {
     "id": "pesto-chicken-pasta",
@@ -1389,7 +1429,8 @@
       "broccoli"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the macaroni and steam the broccoli while you cook small pieces of chicken in a nonstick pan until cooked through. Gently warm milk with grated cheddar until melted, then stir in the pasta, chicken, and broccoli."
   },
   {
     "id": "jerk-chicken-pasta",
@@ -1406,7 +1447,8 @@
       "parmesan-cheese"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Boil the pasta while you cook small chicken pieces with jerk seasoning in a nonstick pan until cooked through, then add sliced peppers and onions and cook until soft. Lower the heat, stir in milk and Parmesan, and toss with the pasta."
   },
   {
     "id": "sweet-thai-chili-tofu-bowl",
@@ -1421,7 +1463,8 @@
       "sweet-thai-chili-sauce"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then cook tofu cubes in a nonstick pan until hot. Add broccoli, peppers, and sweet Thai chili sauce, cover until the vegetables are tender, and serve over rice."
   },
   {
     "id": "mac-cheese-with-black-beans-roasted-cauliflower",
@@ -1436,7 +1479,8 @@
       "cauliflower"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roast cauliflower on a lined tray while the macaroni boils, then warm drained canned black beans. Gently warm milk with grated cheddar until melted, then combine with the pasta, beans, and cauliflower."
   },
   {
     "id": "honey-garlic-salmon-bites-bowl",
@@ -1453,7 +1497,8 @@
       "soy-sauce"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Start the rice, then mix honey, garlic, and soy sauce. Cook salmon cubes in a nonstick pan until cooked through, toss with the sauce until hot, and serve over rice with cucumber and avocado."
   },
   {
     "id": "salmon-cakes-with-roasted-potatoes-side-salad",
@@ -1486,7 +1531,8 @@
       "greek-yogurt"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Mix chia seeds, milk, cocoa powder, and yogurt, then cover and chill until thick, stirring again as it starts to set. Top with raspberries before eating."
   },
   {
     "id": "protein-waffles-with-berries-greek-yogurt",
@@ -1502,7 +1548,8 @@
     "optionalIngredients": [
       "almond-butter"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Prepare the waffle mix as directed on the package and cook in a waffle maker. Top with yogurt, strawberries, and blueberries, adding almond butter if you like."
   },
   {
     "id": "caribbean-stew-chicken-legs-with-rice-cabbage",
@@ -1520,7 +1567,8 @@
     "optionalIngredients": [
       "caribbean-green-seasoning"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Brown the chicken legs in a nonstick pot, then add chopped onions, tomatoes, and carrots, using green seasoning if you like. Cover and simmer, adding a splash of water if needed, until the chicken is cooked through, and serve with freshly cooked rice and steamed cabbage."
   },
   {
     "id": "roasted-vegetable-chickpea-tray-bake",
@@ -1538,7 +1586,8 @@
     "optionalIngredients": [
       "tzatziki"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Drain canned chickpeas and toss with chopped zucchini, peppers, cauliflower, and olive oil, then roast until the vegetables are tender. Drizzle with tahini and add tzatziki if you like."
   },
   {
     "id": "white-bean-spinach-tomato-skillet",
@@ -1556,7 +1605,8 @@
     "optionalIngredients": [
       "feta-cheese"
     ],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Cook chopped tomatoes and garlic in olive oil until softened, then add drained canned white beans and spinach and heat through. Serve with toast, adding feta if you like."
   },
   {
     "id": "strawberry-almond-butter-rice-cakes",
@@ -1617,6 +1667,7 @@
       "whole-grain-crackers"
     ],
     "optionalIngredients": [],
-    "source": "Planner expansion"
+    "source": "Planner expansion",
+    "preparationNote": "Roll ready-to-eat turkey slices around pieces of cheddar and serve with grapes and crackers."
   }
 ]

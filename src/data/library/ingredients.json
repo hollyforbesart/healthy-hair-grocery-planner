@@ -1056,5 +1056,29 @@
     "aliases": [
       "courgette"
     ]
+  },
+  {
+    "id": "chili-powder",
+    "name": "Chili powder",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments"
+  },
+  {
+    "id": "taco-seasoning",
+    "name": "Taco seasoning",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments"
+  },
+  {
+    "id": "dried-oregano",
+    "name": "Dried oregano",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": [
+      "oregano"
+    ]
   }
 ]

@@ -172,3 +172,14 @@ describe('Food for Your Follicles', () => {
     }
   });
 });
+
+describe('timing tips', () => {
+  it('only name ingredients in the catalog, and show for canned beans and rice', async () => {
+    const { TIMING_TIPS, timingTipsFor } = await import('./timingTips');
+    for (const tip of TIMING_TIPS) for (const id of tip.ingredientIds) expect(ingredientIds.has(id), id).toBe(true);
+    const fajita = MEALS.find((m) => m.id === 'chicken-fajita-bowls')!;
+    expect(timingTipsFor(fajita)).toEqual([expect.stringContaining('white rice')]);
+    const tacos = MEALS.find((m) => m.id === 'breakfast-egg-black-bean-tacos')!;
+    expect(timingTipsFor(tacos)).toEqual([expect.stringContaining('canned beans')]);
+  });
+});

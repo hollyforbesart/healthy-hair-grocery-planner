@@ -1,5 +1,6 @@
 import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES } from '../data/categories';
 import { mealPhotoUrl } from '../data/mealPhotos';
+import { timingTipsFor } from '../data/timingTips';
 import { Icon } from './Icon';
 import { ingredientName, type IngredientLookup } from '../lib/ingredients';
 import { effectiveId } from '../lib/matching';
@@ -57,11 +58,13 @@ export function MealCard({
   const tags = (meal.dietaryTags ?? []).map((t) => TAG_LABELS[t] ?? t);
   const hasExtras = match.optional.length > 0 || match.swapOptions.length > 0;
   const addedCount = extras.length;
+  const timingTips = timingTipsFor(meal);
+  const hasPrep = Boolean(meal.preparationNote) || timingTips.length > 0;
   // One row for everything optional: "Optional ingredients & Prep notes", or whichever parts this meal has.
   const moreParts = [
     match.optional.length > 0 && 'Optional ingredients',
     match.swapOptions.length > 0 && 'Swaps',
-    meal.preparationNote && 'Prep notes',
+    hasPrep && 'Prep notes',
   ].filter((part): part is string => Boolean(part));
   const moreLabel =
     moreParts.length > 1 ? `${moreParts.slice(0, -1).join(', ')} & ${moreParts[moreParts.length - 1]}` : moreParts[0];
@@ -176,7 +179,7 @@ export function MealCard({
         </dl>
       )}
 
-      {(hasExtras || meal.preparationNote) && (
+      {(hasExtras || hasPrep) && (
         <details className="meal-card__extras">
           <summary>
             {moreLabel}
@@ -213,10 +216,15 @@ export function MealCard({
                 Tap an item to add it to your grocery list{selected ? '.' : ' (this also adds the meal to your plan).'}
               </p>
             )}
-            {meal.preparationNote && (
+            {hasPrep && (
               <div className="meal-card__prep">
                 <p className="meal-card__extras-title">Prep notes</p>
-                <p>{meal.preparationNote}</p>
+                {meal.preparationNote && <p>{meal.preparationNote}</p>}
+                {timingTips.map((tip) => (
+                  <p key={tip} className="meal-card__tip">
+                    {tip}
+                  </p>
+                ))}
               </div>
             )}
           </div>

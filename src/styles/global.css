@@ -964,9 +964,14 @@ textarea:focus-visible {
 .meal-card__extras[open] > summary::after {
   transform: rotate(180deg);
 }
-.meal-card__prep p:last-child {
+.meal-card__prep p:not(.meal-card__extras-title) {
   margin: 0;
   font-size: 0.95rem;
+}
+.meal-card__prep .meal-card__tip {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--plum-60);
 }
 .meal-card__actions {
   display: flex;

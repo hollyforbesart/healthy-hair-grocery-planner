@@ -13,7 +13,9 @@ Each meal has a `timeCategory` in `src/data/library/meals.json`:
 - Oven meals include preheating. Things that can cook at the same time (rice while the chicken cooks) overlap.
 - When a meal sits on the line between two categories, it goes in the longer one, so nobody is steered wrong.
 
-These are estimates for planning, not tested recipe times. **Waiting on Holly's suggestions to reconcile.**
+These are estimates for planning, not tested recipe times. **Reconciled with Holly's preparation-cues review (October 2026):** the review agreed on every meal except six policy calls, which stay as decided here: the four make-ahead meals are Quick with "☾ Make ahead" (the review counted the overnight wait), and Mac + Cheese with Chicken and Jerk Chicken Pasta stay More involved (the review said Moderate).
+
+Times assume **canned beans** and **white rice**. Cards with those ingredients show a short tip: dried beans need soaking and cooking first, and brown rice takes about 25–30 minutes longer (`src/data/timingTips.ts`).
 
 ## Make ahead
 
