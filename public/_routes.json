@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Run Cloudflare functions only for page addresses (old-address forwarding) and /api; images and scripts are served directly.",
-  "include": ["/", "/planner", "/about", "/nutrients", "/terms", "/api/*"],
-  "exclude": []
+  "description": "Cloudflare functions run for everything except the access page's own files and branding: they forward the old address and apply the access lock.",
+  "include": ["/*"],
+  "exclude": ["/public-assets/*", "/icons/*", "/brand/*", "/favicon.png"]
 }

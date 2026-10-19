@@ -23,12 +23,10 @@ await p.waitForTimeout(500);
 const cards = p.locator('.meal-section').first().locator('.meal-card');
 await cards.nth(0).getByRole('button', { name: 'Add to my plan' }).click();
 for (const name of ['Chicken Fajita Bowls', 'Lemon Garlic Salmon + Quinoa + Asparagus']) {
-  await p.locator('.meal-card', { has: p.getByRole('heading', { name, exact: true }) }).first().getByRole('button', { name: 'Add to my plan' }).click().catch(async () => {
-    await p.getByRole('button', { name: /See all \d+ dinner/ }).click();
-    await p.locator('.meal-card', { has: p.getByRole('heading', { name, exact: true }) }).first().getByRole('button', { name: 'Add to my plan' }).click();
-  });
+  await p.getByLabel('Search meals or ingredients').fill(name);
+  await p.locator('.meal-card', { has: p.getByRole('heading', { name, exact: true }) }).first().getByRole('button', { name: 'Add to my plan' }).click();
 }
-await p.getByRole('button', { name: /Show fewer dinner/ }).click().catch(() => {});
+await p.getByLabel('Search meals or ingredients').fill('');
 const top = await p.locator('.meal-section').first().evaluate((e) => e.getBoundingClientRect().top + window.scrollY);
 await p.evaluate((y) => window.scrollTo(0, y - 44), top);
 await p.waitForTimeout(600);

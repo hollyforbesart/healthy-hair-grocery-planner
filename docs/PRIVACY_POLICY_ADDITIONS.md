@@ -1,6 +1,6 @@
 # Privacy Policy: additions for Mane Meals and purchases
 
-Draft wording to add to https://thehairlossnutritionist.com/privacy-policy/ before Mane Meals launches. Updated October 17, 2026, after the planner's usage analytics was switched on, so it matches what's actually running. It matches the existing policy's style and numbering. Text in [brackets] is for Holly to confirm or fill in. Have it reviewed if you can.
+Draft wording to add to https://thehairlossnutritionist.com/privacy-policy/ before Mane Meals launches. Updated October 19, 2026, for usage analytics and email sign-in, so it matches what's running. It matches the existing policy's style and numbering. Text in [brackets] is for Holly to confirm or fill in. Have it reviewed if you can.
 
 ---
 
@@ -16,6 +16,10 @@ Replace the first paragraph with:
 
 > When you purchase a digital product, such as Mane Meals: Meal & Grocery Planner, we collect your name, email address, the product purchased, the purchase date and amount, and related order details. Payments are processed by our e-commerce provider and its payment processor. We do not receive or store your full payment card details.
 
+**Mane Meals Account Information**
+
+> To use the Mane Meals planner, you sign in with your email address. We store your email address, how and when your account was created, and the days on which you used the planner, so we can provide access, help you if you have trouble signing in, and understand how many people use the planner and whether they return. To sign in, we email you a one-time code. We do not use this information for advertising.
+
 **Mane Meals Planner Information**
 
 > The Mane Meals planner saves your plan, including foods you have on hand, staples, favorite meals, foods you choose to leave out, selected meals, grocery lists, and meal history, in your web browser's local storage on your own device. This information is not sent to us or stored on our servers.
@@ -28,7 +32,7 @@ Replace the first paragraph with:
 
 Add these bullets:
 
-> - Process purchases and provide access to digital products you have purchased;
+> - Process purchases and provide access to digital products you have purchased, including signing you in to the Mane Meals planner;
 > - Respond to purchase, access, and support requests;
 > - Review planner feedback to improve Mane Meals;
 > - Understand, in aggregate, how the Mane Meals planner is used, so we can improve it;
@@ -39,7 +43,10 @@ Add these bullets:
 > Kit may be used to sell and deliver digital products, process purchases and payments through its payment processor, send purchase confirmations and product-related emails, and manage subscriber information. Information processed through Kit may include your name, email address, purchase details, and subscriber status.
 >
 > **Cloudflare**
-> Cloudflare hosts the Mane Meals planner and may process technical information, such as IP address, browser and device information, and request details, as necessary to deliver, secure, and operate the planner. Cloudflare also stores the planner's anonymous usage statistics, described under Cookies and Analytics.
+> Cloudflare hosts the Mane Meals planner and may process technical information, such as IP address, browser and device information, and request details, as necessary to deliver, secure, and operate the planner. Cloudflare also stores Mane Meals account information and the planner's anonymous usage statistics, described under Cookies and Analytics.
+>
+> **Resend**
+> Resend sends the one-time sign-in codes for the Mane Meals planner. Information processed includes your email address and the content of the sign-in email.
 >
 > **Web3Forms**
 > Web3Forms may be used to deliver feedback submitted through the Mane Meals planner to our email inbox. Information processed may include your rating, the answers you provide, and technical information needed to send the message.
@@ -47,6 +54,8 @@ Add these bullets:
 ## 5. Add to "6. Cookies and Analytics"
 
 > The Mane Meals planner does not use advertising or tracking cookies. It uses your browser's local storage only to save your plan on your device, as described above.
+>
+> When you sign in, the planner sets one strictly necessary cookie that keeps you signed in on that browser for up to one year. It contains an account number and a security signature, not your name or email address, and is not used for advertising. If you clear it, you'll be asked to sign in again.
 
 **Planner usage statistics** (active since October 17, 2026):
 
@@ -58,7 +67,7 @@ If you turn on Cloudflare Web Analytics later, also add:
 
 ## 6. Add to "8. Data Retention"
 
-> Purchase records are kept as long as needed to provide access to your purchase, provide support, and maintain business, tax, and accounting records. Information saved in the Mane Meals planner remains in your browser until you clear it or use the planner's "Start over" option. Anonymous usage statistics are kept to understand trends over time; because they are not linked to any person, they cannot be looked up or deleted for an individual.
+> Purchase records are kept as long as needed to provide access to your purchase, provide support, and maintain business, tax, and accounting records. Information saved in the Mane Meals planner remains in your browser until you clear it or use the planner's "Start over" option. Account information is kept while you have access to Mane Meals; you can ask us to delete your account at any time by contacting us. Anonymous usage statistics are kept to understand trends over time; because they are not linked to any person, they cannot be looked up or deleted for an individual.
 
 ## 7. Contact email
 
@@ -68,6 +77,6 @@ Section 9 asks people to email thehairlossnutritionist@gmail.com, but the Terms 
 
 Update the Effective Date at the top when you publish the changes.
 
-## Later: when Mane Meals accounts are added
+## Later: if plans are saved to accounts
 
-When sign-in and saved plans arrive, this section will change: your email address and saved plan would be stored with Cloudflare so you can use the planner on more than one device, and sign-in codes would be sent by an email provider. Update the policy before that goes live.
+If plans are later saved to accounts (so they follow you between devices), add that the planner stores your saved plan with Cloudflare, and update the "Mane Meals Planner Information" paragraph, which currently says plans stay in your browser.

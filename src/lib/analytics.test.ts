@@ -127,6 +127,7 @@ function fakeDb() {
           return {};
         },
         all: async <T,>() => ({ results: [] as T[] }),
+        first: async <T,>() => null as T | null,
       };
       return stmt;
     },
@@ -200,10 +201,11 @@ describe('old address forwarding', () => {
 });
 
 describe('Cloudflare function routes', () => {
-  it('cover every page address (for forwarding) and the API', async () => {
-    const { ROUTE_PATHS } = await import('../hooks/useRoute');
+  it('run for everything except public files, so the access lock covers the planner', async () => {
     const routes = (await import('../../public/_routes.json')).default;
-    for (const path of Object.values(ROUTE_PATHS)) expect(routes.include, path).toContain(path);
-    expect(routes.include).toContain('/api/*');
+    expect(routes.include).toEqual(['/*']);
+    const { isPublicPath } = await import('./access');
+    for (const excluded of routes.exclude) expect(isPublicPath(excluded.replace('*', 'x.js')), excluded).toBe(true);
+    expect(routes.exclude.some((e: string) => e.startsWith('/assets') || e.startsWith('/meal-photos'))).toBe(false);
   });
 });

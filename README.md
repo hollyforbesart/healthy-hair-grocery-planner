@@ -191,9 +191,13 @@ npx wrangler pages deploy dist --project-name healthy-hair-grocery-planner
 
 The planner's public address is **https://manemeals.thehairlossnutritionist.com**, a subdomain of Holly's site, connected under the Pages project's **Custom domains** with a CNAME record at the domain's DNS provider.
 
-`functions/_middleware.ts` forwards the old `healthy-hair-grocery-planner.pages.dev` address there (301, same page). Branch preview links and `/api` calls are left alone. Saved plans belong to the exact address they were made on, so there is one address for everyone. `public/_routes.json` limits Cloudflare functions to page addresses and `/api/*`, so images and scripts are served directly. If you add a page, add its path there too (a test checks this).
+`functions/_middleware.ts` forwards the old `healthy-hair-grocery-planner.pages.dev` address there (301, same page). Branch preview links and `/api` calls are left alone. Saved plans belong to the exact address they were made on, so there is one address for everyone. `public/_routes.json` runs the functions for everything except the access page's own public files, so the access lock covers the planner's pages, scripts and photos.
 
 Holly also owns manemeals.com, which isn't in use yet.
+
+### Sign-in
+
+Only buyers can open the planner. They sign in with their email and a 6-digit code we email them (no passwords). New buyers land on `/welcome` from Kit, with the access code in the link, to set up their account; people on the guest list can sign in without buying. The check runs on Cloudflare (`functions/_middleware.ts`, `functions/api/auth/`), accounts live in the D1 database, emails go out through Resend, and the sign-in app is built separately (`access.html`, `src/access/`) so it contains none of the planner. It stays off until its secrets are set. Setup and day-to-day use: [`docs/ACCESS.md`](docs/ACCESS.md).
 
 ## Privacy
 

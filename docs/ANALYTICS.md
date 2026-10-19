@@ -32,12 +32,14 @@ Until steps 1–4 are done, the planner works normally and simply doesn't record
 
 `GET /api/stats?days=30&env=live` with the header `Authorization: Bearer <STATS_KEY>` (or `?key=<STATS_KEY>`). It returns:
 
-- `headline`: planner opens, homepage visits, meals added, lists viewed, lists shared/copied/printed, new weeks planned, recipe links opened, feedback sent, app installs.
+- `headline`: planner opens, homepage visits, meals added, lists viewed, lists shared/copied/printed, new weeks planned, recipe links opened, feedback sent, app installs, plus the sign-in pages: views of the sign-in and welcome pages, sign-ins, and "Get Mane Meals" clicks.
 - `funnel`: opened the planner → chose how to start → saw meal ideas → reviewed their plan → reached the grocery list → shared, copied or printed it.
 - `daily`: per-day page views, meals added, lists viewed, lists shared, new weeks.
 - `top`: the top 15 values for each ranked event, with meal and ingredient names filled in. Examples: most-added meals, favorites, optional ingredients, recipe links, kitchen foods, staples, searches, foods left out, filters used.
 - `devices`: app vs. mobile vs. desktop page views.
 - `totals`: a count for every event.
+
+- `accounts`: people, from the sign-in accounts (never emails): total accounts, new in this period, active today / last 7 days / last 30 days, how many used it on 2+ days in this period, how many came back a week or more after signing up, accounts by how they were created (access code, guest list, Kit), a daily series of active people and new accounts, and accounts per access code (to spot a code being shared).
 
 `days` can be 1–365. Use `env=preview` to see test traffic from preview links.
 
@@ -47,7 +49,7 @@ The responses allow cross-site reads, so a dashboard hosted elsewhere (for examp
 
 | Event | Value |
 |---|---|
-| `page_view` | value: home | planner | about | nutrients | terms |
+| `page_view` | value: home, planner, about, nutrients, terms, access (sign-in page), welcome |
 | `path_chosen` | value: pantry | ideas |
 | `step_view` | value: kitchen | meals | review | list |
 | `food_added` | value: ingredient ID (own items: "own") |
@@ -74,6 +76,8 @@ The responses allow cross-site reads, so a dashboard hosted elsewhere (for examp
 | `install_click` | — |
 | `app_installed` | — |
 | `feedback_sent` | value: rating 1–5, if given |
+| `signed_in` | value: new (account just created) or returning |
+| `purchase_link` | "Get Mane Meals" tapped on the sign-in page |
 
 ## Privacy policy
 
