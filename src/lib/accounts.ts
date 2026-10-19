@@ -160,10 +160,11 @@ export async function accountStats(db: D1Database, env: string, from: string, to
   const activeSince = (day: string) =>
     one('SELECT COUNT(DISTINCT d.user_id) AS n FROM user_days d JOIN users u ON u.id = d.user_id WHERE u.env = ? AND d.day >= ?', env, day);
 
-  const [total, newInRange, activeToday, active7, active30, returning, eligibleAfterWeek, cameBackAfterWeek, bySource, daily, byCode] =
+  const [total, newInRange, activeInRange, activeToday, active7, active30, returning, eligibleAfterWeek, cameBackAfterWeek, bySource, daily, byCode] =
     await Promise.all([
       one('SELECT COUNT(*) AS n FROM users WHERE env = ?', env),
       one('SELECT COUNT(*) AS n FROM users WHERE env = ? AND created_day >= ?', env, from),
+      activeSince(from),
       activeSince(to),
       activeSince(daysBefore(6)),
       activeSince(daysBefore(29)),
@@ -196,6 +197,8 @@ export async function accountStats(db: D1Database, env: string, from: string, to
   return {
     total,
     newInRange,
+    /** Different people who used it at least once in this period. */
+    activeInRange,
     activeToday,
     activeLast7Days: active7,
     activeLast30Days: active30,

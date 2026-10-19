@@ -298,7 +298,7 @@ describe('who is using it', () => {
     }
     const today = new Date().toISOString().slice(0, 10);
     const stats = await accountStats(db, 'live', '2026-09-01', today);
-    expect(stats).toMatchObject({ total: 2, bySource: { code: 1, guest: 1 }, activeToday: 1, returningInRange: 1 });
+    expect(stats).toMatchObject({ total: 2, bySource: { code: 1, guest: 1 }, activeInRange: 2, activeToday: 1, returningInRange: 1 });
     expect(stats.cameBackAfterFirstWeek).toEqual({ accounts: 1, cameBack: 1 });
     expect(stats.byAccessCode).toHaveLength(1);
     expect(JSON.stringify(stats)).not.toContain('@');

@@ -11,9 +11,9 @@ The app already has a place for each one; nothing here should be invented.
 
 ## Before launch
 
-- **Usage analytics.** The code is in (anonymous events plus a stats summary for a dashboard). Turn it on with the one-time Cloudflare setup in [`ANALYTICS.md`](ANALYTICS.md), and add the usage-statistics paragraph to the privacy policy first. Optional extra: Cloudflare Web Analytics (free, cookie-free) for visit counts and referrers.
-- **Dashboard on Claude.** Once the setup is done and the key exists, build a dashboard that reads `/api/stats`.
-- **Sign-in.** Built: email + 6-digit code, accounts in D1, emails via Resend (domain verified, key added). To finish: add `SESSION_SECRET`, `ACCESS_CODES` and `GUEST_EMAILS` in Cloudflare, set the Kit Go-to URL to `/welcome#<code>`, update the receipt email, and do a test purchase ([`ACCESS.md`](ACCESS.md)). Check whether Kit tags buyers (if so, email-only sign-up is one setting away).
+- **Usage analytics: live** (set up October 2026; privacy policy updated). Optional extra: Cloudflare Web Analytics (free, cookie-free) for visit counts and referrers.
+- **Stats dashboard: done.** At `/stats` (see [`ANALYTICS.md`](ANALYTICS.md)).
+- **Sign-in: live and tested** (October 19, 2026). Email + 6-digit code, accounts in D1, emails via Resend, Kit product at $29 sending buyers to `/welcome#<code>`. A $0 test purchase worked end to end. Kit (free plan) doesn't tag buyers, so the access code stays as the proof of purchase ([`ACCESS.md`](ACCESS.md)). Still to do: the Mane Meals sales page (WordPress page with a Kit Product block, like the grocery guide), then point `PURCHASE_URL` in `src/access/AccessApp.tsx` at it.
 - **Saved plans across devices.** Now that there are accounts, plans could be saved to the account instead of only the browser. This also protects plans on iPhone, where Safari clears a site's saved data after 7 days without a visit unless it's on the home screen.
 - **Custom address: done.** The planner lives at https://manemeals.thehairlossnutritionist.com (set up October 17, 2026). The old healthy-hair-grocery-planner.pages.dev address forwards there.
 - **Test on a real iPhone and Android phone,** installed to the home screen, and have a couple of people plan a real week.
