@@ -61,7 +61,7 @@ To replace them, keep the same file names and sizes. If you change cached files 
 
 ### Usage analytics
 
-Anonymous usage events (meals added, lists shared, searches and so on; no personal data) are stored in a Cloudflare D1 database by the functions in `functions/api/`, and summarized at `/api/stats` for a dashboard. Nothing is recorded until the one-time Cloudflare setup in [`docs/ANALYTICS.md`](docs/ANALYTICS.md) is done.
+Anonymous usage events (meals added, lists shared, searches and so on; no personal data) are stored in a Cloudflare D1 database by the functions in `functions/api/`, and summarized at `/api/stats`. The dashboard is at `/stats` (sign in, then enter the `STATS_KEY`). Nothing is recorded until the one-time Cloudflare setup in [`docs/ANALYTICS.md`](docs/ANALYTICS.md) is done.
 
 ## Local development
 

@@ -10,7 +10,7 @@
  * - Only same-origin GET requests are handled; feedback POSTs to Web3Forms
  *   go straight to the network.
  */
-const CACHE = 'hhgp-v5';
+const CACHE = 'hhgp-v6';
 const SHELL = ['/', '/manifest.webmanifest', '/favicon.png', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 async function cacheShell() {
@@ -45,7 +45,10 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          if (response.ok) caches.open(CACHE).then((cache) => cache.put('/', response.clone()));
+          // Only the planner itself is kept for offline use: not the sign-in page
+          // (sent with no-store) or the stats dashboard.
+          const keep = response.ok && url.pathname !== '/stats' && !(response.headers.get('Cache-Control') ?? '').includes('no-store');
+          if (keep) caches.open(CACHE).then((cache) => cache.put('/', response.clone()));
           return response;
         })
         .catch(() => caches.match('/')),

@@ -28,6 +28,17 @@ Cloudflare's menus move around a little, but these are the pieces:
 
 Until steps 1–4 are done, the planner works normally and simply doesn't record anything.
 
+## The dashboard
+
+Open **https://manemeals.thehairlossnutritionist.com/stats**, sign in like you do for the planner (your email is on the guest list), and enter your `STATS_KEY` once; that device remembers it. It shows:
+
+- **People:** how many used Mane Meals in the period, active today / this week / this month, new accounts, how many used it on 2+ days, and how many came back after their first week, plus a daily chart.
+- **What they do:** planner opens, meals added, grocery lists viewed and shared, new weeks, recipe taps, installs, feedback, a daily chart of meals added, and how far people get from opening the planner to a grocery list.
+- **Favorites and searches:** most-added and favorited meals, searches, kitchen foods, optional ingredients, recipe taps, foods left out and filters used.
+- **Devices and sign-ups:** phone vs computer vs installed app, sign-in page activity, how accounts were created, and accounts per access code (to spot sharing).
+
+Pick 7 days, 30 days, 90 days or a year, and "Test previews" to see activity on preview links. The dashboard's code (`stats.html`, `src/stats/`) contains no planner content and needs both sign-in and the key.
+
 ## Reading the numbers
 
 `GET /api/stats?days=30&env=live` with the header `Authorization: Bearer <STATS_KEY>` (or `?key=<STATS_KEY>`). It returns:

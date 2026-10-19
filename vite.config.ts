@@ -2,7 +2,8 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 /**
- * Two pages: the planner (index.html) and the public access page (access.html).
+ * Three pages: the planner (index.html), the public sign-in page (access.html)
+ * and the usage dashboard (stats.html, which holds no planner data).
  * Anything that contains the planner's data or code goes in /assets, which the
  * access lock protects; the access page's own files go in /public-assets.
  */
@@ -13,7 +14,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      input: { index: 'index.html', access: 'access.html' },
+      input: { index: 'index.html', access: 'access.html', stats: 'stats.html' },
       output: {
         entryFileNames: (chunk) => (isPlannerChunk(chunk) ? 'assets/[name]-[hash].js' : 'public-assets/[name]-[hash].js'),
         chunkFileNames: (chunk) => (isPlannerChunk(chunk) ? 'assets/[name]-[hash].js' : 'public-assets/[name]-[hash].js'),
