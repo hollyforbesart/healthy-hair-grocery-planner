@@ -2096,3 +2096,73 @@ textarea:focus-visible {
 .review-bar__count {
   font-weight: 700;
 }
+
+/* ---------- Access page (public) ---------- */
+.access {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding: 1rem 0 2rem;
+}
+@media (min-width: 820px) {
+  .access {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 3rem;
+  }
+}
+.access__intro h2 {
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  margin-bottom: 0.5rem;
+}
+.access__lead {
+  font-size: 1.1rem;
+  color: var(--plum-60);
+  margin: 0 0 1.5rem;
+  max-width: 34rem;
+}
+.access__form {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 28rem;
+}
+.access__form label {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.access__form p {
+  margin: 0;
+}
+.access__form input {
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 0.9rem;
+}
+.access__form .btn {
+  justify-self: start;
+}
+.access__form [role='status']:empty {
+  display: none;
+}
+.access__buy {
+  margin-top: 1.75rem;
+  max-width: 28rem;
+}
+.access__buy p {
+  margin: 0 0 0.5rem;
+}
+.access__phone {
+  display: block;
+  width: min(260px, 70%);
+  height: auto;
+  margin: 0 auto;
+}
+@media (min-width: 820px) {
+  .access__phone {
+    width: 100%;
+  }
+}
+.access a:not(.btn) {
+  color: var(--plum);
+  font-weight: 600;
+}

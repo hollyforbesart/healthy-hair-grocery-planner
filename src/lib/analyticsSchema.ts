@@ -8,7 +8,7 @@
 /** Every event the planner can send. `value` is an ID or a short label, never free text from a person (except search terms). */
 export const EVENT_NAMES = [
   // Pages and steps
-  'page_view', // value: home | planner | about | nutrients | terms
+  'page_view', // value: home | planner | about | nutrients | terms | access
   'path_chosen', // value: pantry | ideas
   'step_view', // value: kitchen | meals | review | list
   // Kitchen
@@ -39,6 +39,9 @@ export const EVENT_NAMES = [
   'install_click',
   'app_installed',
   'feedback_sent', // value: rating 1–5, if given
+  // Access page
+  'access_granted', // someone entered a valid access code
+  'purchase_link', // "Get Mane Meals" tapped on the access page
 ] as const;
 
 export type EventName = (typeof EVENT_NAMES)[number];

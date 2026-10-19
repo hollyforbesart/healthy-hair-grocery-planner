@@ -108,6 +108,9 @@ export function buildStats(
       recipeLinksOpened: count(totals, 'recipe_link'),
       feedbackSent: count(totals, 'feedback_sent'),
       appInstalls: count(totals, 'app_installed'),
+      accessPageViews: page('access'),
+      accessCodesEntered: count(totals, 'access_granted'),
+      getManeMealsClicks: count(totals, 'purchase_link'),
     },
     funnel: [
       { step: 'Opened the planner', count: page('planner') },

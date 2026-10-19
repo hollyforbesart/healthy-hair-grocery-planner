@@ -47,6 +47,8 @@ Add these bullets:
 ## 5. Add to "6. Cookies and Analytics"
 
 > The Mane Meals planner does not use advertising or tracking cookies. It uses your browser's local storage only to save your plan on your device, as described above.
+>
+> When you enter your access code, the planner sets one strictly necessary cookie that remembers that this browser has access, so you don't need to enter the code each time. It lasts up to one year, contains no personal information (not your name, email address or the code itself), and is not used for analytics or advertising. If you clear it, you'll be asked for your access code again.
 
 **Planner usage statistics** (active since October 17, 2026):
 

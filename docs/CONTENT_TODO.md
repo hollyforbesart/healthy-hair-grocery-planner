@@ -13,6 +13,7 @@ The app already has a place for each one; nothing here should be invented.
 
 - **Usage analytics.** The code is in (anonymous events plus a stats summary for a dashboard). Turn it on with the one-time Cloudflare setup in [`ANALYTICS.md`](ANALYTICS.md), and add the usage-statistics paragraph to the privacy policy first. Optional extra: Cloudflare Web Analytics (free, cookie-free) for visit counts and referrers.
 - **Dashboard on Claude.** Once the setup is done and the key exists, build a dashboard that reads `/api/stats`.
+- **Access lock.** Built: buyers enter an access code once per device. Turn it on by adding the `ACCESS_CODES` and `SESSION_SECRET` secrets in Cloudflare ([`ACCESS.md`](ACCESS.md)), put the code in the Kit purchase email, and set `PURCHASE_URL` in `src/access/AccessApp.tsx` to the Kit product page.
 - **Kit access + saved plans.** Sign-in by emailed code, checked against Kit purchases, with each person's plan saved to Cloudflare's free storage (KV). This also protects plans on iPhone, where Safari clears a site's saved data after 7 days without a visit unless it's on the home screen. Waiting on a Kit test purchase.
 - **Custom address: done.** The planner lives at https://manemeals.thehairlossnutritionist.com (set up October 17, 2026). The old healthy-hair-grocery-planner.pages.dev address forwards there.
 - **Test on a real iPhone and Android phone,** installed to the home screen, and have a couple of people plan a real week.
