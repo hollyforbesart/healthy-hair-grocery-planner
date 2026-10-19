@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { StepNav } from './components/StepNav';
+import { useAccount } from './hooks/useAccount';
 import { useRoute } from './hooks/useRoute';
 import { track } from './lib/analytics';
 import { START_OVER_CONFIRM } from './lib/confirmations';
@@ -26,6 +27,7 @@ const STEP_COMPONENTS: Record<StepId, () => JSX.Element> = {
 export function App() {
   const { state, dispatch } = usePlanner();
   const [route, navigate] = useRoute();
+  const account = useAccount();
   const steps = stepsForPath(state.path);
   const currentStep = steps.includes(state.currentStep) ? state.currentStep : firstStep(state.path);
   const Step = STEP_COMPONENTS[currentStep];
@@ -146,6 +148,14 @@ export function App() {
                 Start over
               </button>{' '}
               <span className="muted">— clears your kitchen, meals, list, staples and favorites on this device.</span>
+            </p>
+          )}
+          {account.email && (
+            <p className="small site-footer__account">
+              Signed in as {account.email} ·{' '}
+              <button type="button" className="link-btn" onClick={() => void account.signOut()}>
+                Sign out
+              </button>
             </p>
           )}
           <p className="small site-footer__copyright">© 2026 The Hair Loss Nutritionist</p>

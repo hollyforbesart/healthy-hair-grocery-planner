@@ -108,8 +108,9 @@ export function buildStats(
       recipeLinksOpened: count(totals, 'recipe_link'),
       feedbackSent: count(totals, 'feedback_sent'),
       appInstalls: count(totals, 'app_installed'),
-      accessPageViews: page('access'),
-      accessCodesEntered: count(totals, 'access_granted'),
+      signInPageViews: page('access'),
+      welcomePageViews: page('welcome'),
+      signIns: count(totals, 'signed_in'),
       getManeMealsClicks: count(totals, 'purchase_link'),
     },
     funnel: [

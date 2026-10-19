@@ -2,12 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { track } from '../lib/analytics';
 import { PRIVACY_POLICY_URL, SUPPORT_EMAIL, TermsPage } from '../pages/TermsPage';
 
-/**
- * Where "Get Mane Meals" goes: the Kit product or sales page. Until it's set,
- * the button goes to Holly's website instead.
- */
-export const PURCHASE_URL = '';
-const FALLBACK_URL = 'https://thehairlossnutritionist.com';
+/** Where "Get Mane Meals" goes: the Kit product page. */
+export const PURCHASE_URL = 'https://roots.thehairlossnutritionist.com/products/mane-meals-planner';
 
 function Header() {
   return (
@@ -42,96 +38,254 @@ function Footer() {
   );
 }
 
-type Status = { kind: 'idle' } | { kind: 'checking' } | { kind: 'error'; text: string };
+type Status = { kind: 'idle' } | { kind: 'busy' } | { kind: 'error'; text: string; reason?: string };
+type Step = { kind: 'email' } | { kind: 'code'; email: string; newAccount: boolean };
 
-function AccessForm() {
+/** Where the planner sends someone after they sign in: the page they asked for, or the planner's home. */
+const destination = () => (['/access', '/welcome'].includes(window.location.pathname.replace(/\/+$/, '')) ? '/' : window.location.href);
+
+/** The access code from the welcome link (…/welcome#CODE), kept for this visit and taken out of the address bar. */
+function codeFromLink(): string {
+  const fromHash = decodeURIComponent(window.location.hash.replace(/^#/, '')).trim();
+  try {
+    if (fromHash) {
+      sessionStorage.setItem('mm_welcome_code', fromHash);
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    return fromHash || sessionStorage.getItem('mm_welcome_code') || '';
+  } catch {
+    return fromHash;
+  }
+}
+
+async function post(path: string, body: unknown): Promise<{ ok: boolean; status: number; data: Record<string, unknown> }> {
+  const res = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  return { ok: res.ok, status: res.status, data: (await res.json().catch(() => ({}))) as Record<string, unknown> };
+}
+
+const OFFLINE = 'You seem to be offline. Connect to the internet and try again.';
+
+function SignInForm({ welcome }: { welcome: boolean }) {
+  const linkCode = useRef(welcome ? codeFromLink() : '').current;
+  const [step, setStep] = useState<Step>({ kind: 'email' });
+  const [email, setEmail] = useState('');
+  const [accessCode, setAccessCode] = useState(linkCode);
+  const [showAccessCode, setShowAccessCode] = useState(welcome && !linkCode);
   const [code, setCode] = useState('');
   const [status, setStatus] = useState<Status>({ kind: 'idle' });
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [resent, setResent] = useState(false);
+  const fieldRef = useRef<HTMLInputElement>(null);
 
-  const submit = async () => {
-    if (!code.trim()) {
-      setStatus({ kind: 'error', text: 'Enter the access code from your purchase email.' });
-      inputRef.current?.focus();
-      return;
-    }
-    setStatus({ kind: 'checking' });
-    try {
-      const res = await fetch('/api/access', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-      });
-      if (res.ok) {
-        track('access_granted');
-        // Reload the page they asked for (or the planner's home), now with access.
-        window.location.replace(window.location.pathname === '/access' ? '/' : window.location.href);
-        return;
-      }
-      const body = (await res.json().catch(() => ({}))) as { error?: string };
-      setStatus({ kind: 'error', text: body.error ?? 'Something went wrong. Please try again.' });
-    } catch {
-      setStatus({ kind: 'error', text: 'You seem to be offline. Connect to the internet to enter your code.' });
-    }
-    inputRef.current?.focus();
+  useEffect(() => {
+    fieldRef.current?.focus();
+  }, [step.kind]);
+
+  const fail = (text: string, reason?: string) => {
+    setStatus({ kind: 'error', text, reason });
+    fieldRef.current?.focus();
   };
 
-  const purchaseUrl = PURCHASE_URL || FALLBACK_URL;
+  const sendCode = async (again = false) => {
+    if (!email.trim()) return fail('Enter your email address.');
+    setStatus({ kind: 'busy' });
+    try {
+      const { ok, data } = await post('/api/auth/start', { email, code: accessCode || undefined });
+      if (ok) {
+        setStatus({ kind: 'idle' });
+        setResent(again);
+        setCode('');
+        setStep({ kind: 'code', email: email.trim(), newAccount: Boolean(data.newAccount) });
+        return;
+      }
+      if (data.reason === 'no-account' || data.reason === 'code') setShowAccessCode(true);
+      fail(
+        data.reason === 'no-account'
+          ? welcome || accessCode
+            ? 'There’s no Mane Meals account for this email yet. Enter the access code from your purchase email to set one up.'
+            : 'We couldn’t find a Mane Meals account for this email. Check it’s the one you signed up with. Just bought Mane Meals? Add the access code from your purchase email.'
+          : data.reason === 'code'
+            ? 'That access code didn’t work. Check it against your purchase email.'
+            : String(data.error ?? 'Something went wrong. Please try again.'),
+        String(data.reason ?? ''),
+      );
+    } catch {
+      fail(OFFLINE);
+    }
+  };
+
+  const checkCode = async (signInEmail: string) => {
+    if (code.replace(/\D/g, '').length !== 6) return fail('Enter the 6-digit code from the email.');
+    setStatus({ kind: 'busy' });
+    try {
+      const { ok, data } = await post('/api/auth/verify', { email: signInEmail, code });
+      if (ok) {
+        track('signed_in', data.newAccount ? 'new' : 'returning');
+        try {
+          sessionStorage.removeItem('mm_welcome_code');
+        } catch {
+          // fine
+        }
+        window.location.replace(destination());
+        return;
+      }
+      fail(String(data.error ?? 'Something went wrong. Please try again.'), String(data.reason ?? ''));
+    } catch {
+      fail(OFFLINE);
+    }
+  };
+
+  const busy = status.kind === 'busy';
+  const statusLine = (
+    <p id="signin-status" className={`small ${status.kind === 'error' ? 'error' : ''}`} role="status" aria-live="polite">
+      {status.kind === 'error' ? status.text : ''}
+    </p>
+  );
+
+  if (step.kind === 'code') {
+    return (
+      <form
+        className="card access__form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          void checkCode(step.email);
+        }}
+      >
+        <label htmlFor="signin-code">Enter the code we emailed you</label>
+        <p className="small muted" id="signin-code-help">
+          {resent ? 'We sent a new code to ' : 'We sent a 6-digit code to '}
+          <strong>{step.email}</strong>. It can take a minute to arrive, so check your spam or promotions folder too.
+        </p>
+        <input
+          ref={fieldRef}
+          id="signin-code"
+          className="access__code"
+          type="text"
+          inputMode="numeric"
+          autoComplete="one-time-code"
+          maxLength={7}
+          aria-describedby="signin-code-help signin-status"
+          aria-invalid={status.kind === 'error'}
+          value={code}
+          onChange={(e) => {
+            setCode(e.target.value);
+            if (status.kind === 'error') setStatus({ kind: 'idle' });
+          }}
+        />
+        <button type="submit" className="btn btn--primary" disabled={busy}>
+          {busy ? 'Checking…' : step.newAccount ? 'Finish and open the planner →' : 'Open the planner →'}
+        </button>
+        {statusLine}
+        <p className="small access__alt">
+          <button type="button" className="link-btn" disabled={busy} onClick={() => void sendCode(true)}>
+            Send a new code
+          </button>
+          <span aria-hidden="true"> · </span>
+          <button
+            type="button"
+            className="link-btn"
+            onClick={() => {
+              setStep({ kind: 'email' });
+              setStatus({ kind: 'idle' });
+            }}
+          >
+            Use a different email
+          </button>
+        </p>
+      </form>
+    );
+  }
 
   return (
-    <div className="access">
-      <div className="access__intro">
-        <h2>Welcome to Mane Meals</h2>
-        <p className="access__lead">
-          Choose meal ideas, use what you have, and build your grocery list, with 100 dietitian-curated meals and snacks
-          for hair health.
-        </p>
-
-        <form
-          className="card access__form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            void submit();
-          }}
-        >
-          <label htmlFor="access-code">Access code</label>
-          <p className="small muted" id="access-code-help">
-            It’s in your purchase confirmation email. You only need to enter it once on each device.
+    <form
+      className="card access__form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        void sendCode();
+      }}
+    >
+      <label htmlFor="signin-email">{welcome ? 'Your email address' : 'Email address'}</label>
+      <p className="small muted" id="signin-email-help">
+        {welcome
+          ? 'Use the email you bought Mane Meals with. You’ll use it to sign in on any device.'
+          : 'We’ll email you a 6-digit code. No password needed.'}
+      </p>
+      <input
+        ref={fieldRef}
+        id="signin-email"
+        type="email"
+        autoComplete="email"
+        aria-describedby="signin-email-help signin-status"
+        aria-invalid={status.kind === 'error' && status.reason !== 'code'}
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value);
+          if (status.kind === 'error') setStatus({ kind: 'idle' });
+        }}
+      />
+      {showAccessCode && (
+        <>
+          <label htmlFor="signin-access-code">Access code</label>
+          <p className="small muted" id="signin-access-code-help">
+            It’s in your purchase email. You only need it once, to set up your account.
           </p>
           <input
-            ref={inputRef}
-            id="access-code"
+            id="signin-access-code"
+            className="access__code"
             type="text"
             autoComplete="off"
             autoCapitalize="characters"
             spellCheck={false}
-            aria-describedby="access-code-help access-code-status"
-            aria-invalid={status.kind === 'error'}
-            value={code}
+            aria-describedby="signin-access-code-help signin-status"
+            aria-invalid={status.kind === 'error' && status.reason === 'code'}
+            value={accessCode}
             onChange={(e) => {
-              setCode(e.target.value);
+              setAccessCode(e.target.value);
               if (status.kind === 'error') setStatus({ kind: 'idle' });
             }}
           />
-          <button type="submit" className="btn btn--primary" disabled={status.kind === 'checking'}>
-            {status.kind === 'checking' ? 'Checking…' : 'Open the planner →'}
+        </>
+      )}
+      <button type="submit" className="btn btn--primary" disabled={busy}>
+        {busy ? 'Sending…' : 'Email me a code →'}
+      </button>
+      {statusLine}
+      {!showAccessCode && !welcome && (
+        <p className="small access__alt">
+          <button type="button" className="link-btn" onClick={() => setShowAccessCode(true)}>
+            New here? I have an access code
           </button>
-          <p id="access-code-status" className={`small ${status.kind === 'error' ? 'error' : ''}`} role="status" aria-live="polite">
-            {status.kind === 'error' ? status.text : ''}
-          </p>
-          <p className="small muted">
-            Can’t find your code? Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
-          </p>
-        </form>
+        </p>
+      )}
+      <p className="small muted">
+        Need help? Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
+      </p>
+    </form>
+  );
+}
 
-        <div className="access__buy">
-          <p>
-            <strong>Don’t have Mane Meals yet?</strong>
-          </p>
-          <a className="btn btn--secondary" href={purchaseUrl} onClick={() => track('purchase_link')}>
-            {PURCHASE_URL ? 'Get Mane Meals →' : 'Learn more →'}
-          </a>
-        </div>
+function AccessPage({ welcome }: { welcome: boolean }) {
+  return (
+    <div className="access">
+      <div className="access__intro">
+        <h2>{welcome ? 'Thanks for getting Mane Meals!' : 'Welcome to Mane Meals'}</h2>
+        <p className="access__lead">
+          {welcome
+            ? 'Let’s set up your account. It takes a minute, and then you can open the planner on your phone, tablet or computer.'
+            : 'Choose meal ideas, use what you have, and build your grocery list, with 100 dietitian-curated meals and snacks for hair health.'}
+        </p>
+
+        <SignInForm welcome={welcome} />
+
+        {!welcome && (
+          <div className="access__buy">
+            <p>
+              <strong>Don’t have Mane Meals yet?</strong>
+            </p>
+            <a className="btn btn--secondary" href={PURCHASE_URL} onClick={() => track('purchase_link')}>
+              Get Mane Meals →
+            </a>
+          </div>
+        )}
       </div>
       <img className="access__phone" src="/brand/mane-meals-phone.webp" alt="" width={480} height={823} />
     </div>
@@ -139,10 +293,12 @@ function AccessForm() {
 }
 
 export function AccessApp() {
-  const isTerms = window.location.pathname.replace(/\/+$/, '') === '/terms';
+  const page = window.location.pathname.replace(/\/+$/, '');
+  const isTerms = page === '/terms';
+  const welcome = page === '/welcome';
   useEffect(() => {
-    track('page_view', isTerms ? 'terms' : 'access');
-  }, [isTerms]);
+    track('page_view', isTerms ? 'terms' : welcome ? 'welcome' : 'access');
+  }, [isTerms, welcome]);
 
   return (
     <>
@@ -160,7 +316,7 @@ export function AccessApp() {
               </p>
             </>
           ) : (
-            <AccessForm />
+            <AccessPage welcome={welcome} />
           )}
         </main>
       </div>

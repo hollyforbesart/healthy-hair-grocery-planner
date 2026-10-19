@@ -1,4 +1,5 @@
 import { RANKED_EVENTS, buildStats, type CountRow, type DailyRow, type DeviceRow, type ValueRow } from '../../src/lib/analyticsStats';
+import { accountStats } from '../../src/lib/accounts';
 import type { PagesContext } from '../../src/lib/cloudflareTypes';
 
 const CORS = {
@@ -55,7 +56,9 @@ export async function onRequestGet({ request, env }: PagesContext): Promise<Resp
     q<DeviceRow>(`SELECT device, COUNT(*) AS count FROM events ${where} AND name = 'page_view' GROUP BY device`),
   ]);
 
-  return json(
-    buildStats({ env: environment, days, from, to: to.toISOString().slice(0, 10) }, totals, daily, values, pages, steps, devices),
-  );
+  const toDay = to.toISOString().slice(0, 10);
+  return json({
+    ...buildStats({ env: environment, days, from, to: toDay }, totals, daily, values, pages, steps, devices),
+    accounts: await accountStats(env.DB, environment, from, toDay),
+  });
 }

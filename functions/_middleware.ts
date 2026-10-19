@@ -1,4 +1,5 @@
-import { ACCESS_COOKIE, isPublicPath, parseCodes, readCookie, verifyAccessToken } from '../src/lib/access';
+import { ensureAccountTables, findUserById } from '../src/lib/accounts';
+import { SESSION_COOKIE, isPublicPath, readCookie, readSessionToken, signInEnabled } from '../src/lib/access';
 import type { PagesContext } from '../src/lib/cloudflareTypes';
 
 /** The planner's public address. */
@@ -13,10 +14,10 @@ const isPageRequest = (request: Request, pathname: string) =>
 /**
  * Runs before every request:
  * 1. Forwards the old pages.dev address to the planner's own address.
- * 2. The access lock: once ACCESS_CODES and SESSION_SECRET are set, only browsers
- *    with a valid access cookie get the planner (pages, scripts, photos).
- *    Everyone else gets the access page, or a 401 for files. The access page,
- *    the Terms and branding stay public. /api has its own checks.
+ * 2. Sign-in: once it's switched on (see signInEnabled), only signed-in browsers
+ *    get the planner (pages, scripts, photos). Everyone else gets the sign-in
+ *    page, or a 401 for files. Sign-in, the welcome page, the Terms and branding
+ *    stay public. /api has its own checks.
  */
 export async function onRequest({ request, env, next }: PagesContext & { next: () => Promise<Response> }): Promise<Response> {
   const url = new URL(request.url);
@@ -26,24 +27,32 @@ export async function onRequest({ request, env, next }: PagesContext & { next: (
   }
   if (url.pathname.startsWith('/api/')) return next();
 
-  const codes = parseCodes(env.ACCESS_CODES);
-  if (codes.length === 0 || !env.SESSION_SECRET) return next(); // lock not switched on yet
+  if (!signInEnabled(env)) return next(); // sign-in not switched on yet
 
-  const hasAccess = await verifyAccessToken(readCookie(request.headers.get('Cookie'), ACCESS_COOKIE), env.SESSION_SECRET, codes);
   const page = url.pathname.replace(/\/+$/, '') || '/';
-
-  if (hasAccess) {
-    // Already in: the access page has nothing to do, so go to the planner.
-    return page === '/access' ? Response.redirect(new URL('/', url).toString(), 302) : next();
+  const pageRequest = isPageRequest(request, url.pathname);
+  const session = await readSessionToken(readCookie(request.headers.get('Cookie'), SESSION_COOKIE), env.SESSION_SECRET!);
+  let signedIn = Boolean(session);
+  if (session && pageRequest) {
+    // Pages also check the account still exists and is on; files only check the signature, to keep them fast.
+    await ensureAccountTables(env.DB!);
+    const user = await findUserById(env.DB!, session.userId);
+    signedIn = Boolean(user && !user.disabled && user.session_version === session.version);
   }
-  if (isPublicPath(url.pathname) && page !== '/terms') return next();
-  if (isPageRequest(request, url.pathname) && env.ASSETS) {
-    // Show the access page at the address they asked for, so a reload after entering the code lands there.
+
+  if (signedIn) {
+    // Already in: the sign-in and welcome pages have nothing to do, so go to the planner.
+    return page === '/access' || page === '/welcome' ? Response.redirect(new URL('/', url).toString(), 302) : next();
+  }
+  if (pageRequest && env.ASSETS) {
+    // Every page (including /welcome and /terms) is the sign-in app, shown at the
+    // address they asked for, so they land there once signed in.
     const accessPage = await env.ASSETS.fetch(new Request(new URL('/access', url).toString(), { headers: request.headers }));
     return new Response(accessPage.body, {
       status: 200,
       headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
     });
   }
-  return new Response('Access needed', { status: 401, headers: { 'Cache-Control': 'no-store' } });
+  if (isPublicPath(url.pathname)) return next();
+  return new Response('Sign-in needed', { status: 401, headers: { 'Cache-Control': 'no-store' } });
 }

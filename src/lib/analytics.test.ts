@@ -127,6 +127,7 @@ function fakeDb() {
           return {};
         },
         all: async <T,>() => ({ results: [] as T[] }),
+        first: async <T,>() => null as T | null,
       };
       return stmt;
     },

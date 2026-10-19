@@ -2134,9 +2134,17 @@ textarea:focus-visible {
 }
 .access__form input {
   font-size: 1.15rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   padding: 0.75rem 0.9rem;
+}
+.access__form .access__code {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.access__form label:not(:first-child) {
+  margin-top: 0.5rem;
+}
+.access__alt .link-btn {
+  font-weight: 600;
 }
 .access__form .btn {
   justify-self: start;

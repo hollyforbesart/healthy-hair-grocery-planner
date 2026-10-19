@@ -195,9 +195,9 @@ The planner's public address is **https://manemeals.thehairlossnutritionist.com*
 
 Holly also owns manemeals.com, which isn't in use yet.
 
-### Access lock
+### Sign-in
 
-Only buyers can open the planner. Without access, every page shows a welcome page asking for the access code from the purchase email, with a link to buy. The check runs on Cloudflare (`functions/_middleware.ts`, `functions/api/access.ts`), and the access page is built separately (`access.html`, `src/access/`) so it contains none of the planner. It stays off until the `ACCESS_CODES` and `SESSION_SECRET` secrets are set. Setup and day-to-day use: [`docs/ACCESS.md`](docs/ACCESS.md).
+Only buyers can open the planner. They sign in with their email and a 6-digit code we email them (no passwords). New buyers land on `/welcome` from Kit, with the access code in the link, to set up their account; people on the guest list can sign in without buying. The check runs on Cloudflare (`functions/_middleware.ts`, `functions/api/auth/`), accounts live in the D1 database, emails go out through Resend, and the sign-in app is built separately (`access.html`, `src/access/`) so it contains none of the planner. It stays off until its secrets are set. Setup and day-to-day use: [`docs/ACCESS.md`](docs/ACCESS.md).
 
 ## Privacy
 
