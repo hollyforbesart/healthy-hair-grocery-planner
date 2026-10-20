@@ -34,8 +34,9 @@ export const EVENT_NAMES = [
   'list_print',
   'list_item_added', // no value: what people type stays private
   // My week
-  'week_slot_set', // value: meal | custom | a quick pick (eating-out, leftovers…); never what was typed
-  'week_filled', // value: number of meals placed by "Fill in"
+  'week_slot_set', // value: meal | leftovers | custom | a quick pick (eating-out…); never what was typed
+  'week_filled', // value: number of spots filled by "Fill in"
+  'week_repeat', // value: every-day | weekdays | leftovers
   'week_print',
   // Weekly use, installs and feedback
   'new_week',

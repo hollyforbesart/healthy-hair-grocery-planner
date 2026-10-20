@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Icon } from '../components/Icon';
 import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES } from '../data/categories';
 import { mealPhotoUrl } from '../data/mealPhotos';
@@ -11,13 +11,14 @@ import {
   addDays,
   cleanCustomText,
   daysBetween,
+  openSpots,
   planStart,
   shortDate,
   slotKey,
   slotLabel,
   sundayOf,
   tonightReminders,
-  unplacedMeals,
+  type FillPreferences,
   type WeekSlot,
 } from '../lib/weekPlan';
 import { usePlanner } from '../state/PlannerContext';
@@ -25,6 +26,7 @@ import { todayIso } from '../state/plannerReducer';
 import type { MealCategory, MealTemplate } from '../types';
 
 const WEEK_CLEAR_CONFIRM = 'Clear everything on this week’s plan? Your meals and grocery list stay as they are.';
+const lower = (c: MealCategory) => MEAL_CATEGORY_LABELS[c].toLowerCase();
 
 function MealTime({ meal }: { meal: MealTemplate }) {
   const time = TIME_CATEGORIES.find((t) => t.id === meal.timeCategory);
@@ -46,25 +48,9 @@ function MealTime({ meal }: { meal: MealTemplate }) {
   );
 }
 
-interface PickerProps {
-  dayName: string;
-  category: MealCategory;
-  current: WeekSlot | undefined;
-  placedOn: Map<string, string[]>;
-  onChoose: (slot: WeekSlot | null) => void;
-  onClose: () => void;
-  onFindMeals: () => void;
-}
-
-/** The sheet that opens when a slot is tapped: their meals, quick options, or their own words. */
-function SlotPicker({ dayName, category, current, placedOn, onChoose, onClose, onFindMeals }: PickerProps) {
-  const { selectedMeals } = usePlanner();
-  const [text, setText] = useState(current?.kind === 'custom' ? current.text : '');
+/** A panel that slides up from the bottom on phones (centered on bigger screens). */
+function Sheet({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const sameType = selectedMeals.filter((m) => m.category === category);
-  const otherTypes = selectedMeals.filter((m) => m.category !== category);
-  const label = MEAL_CATEGORY_LABELS[category];
-
   useEffect(() => {
     headingRef.current?.focus();
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
@@ -77,13 +63,105 @@ function SlotPicker({ dayName, category, current, placedOn, onChoose, onClose, o
     };
   }, [onClose]);
 
+  return (
+    <div className="week-sheet-backdrop" onClick={onClose}>
+      <div className="week-sheet" role="dialog" aria-modal="true" aria-labelledby="week-sheet-title" onClick={(e) => e.stopPropagation()}>
+        <div className="week-sheet__head">
+          <h3 id="week-sheet-title" tabIndex={-1} ref={headingRef}>
+            {title}
+          </h3>
+          <button type="button" className="week-sheet__close" onClick={onClose} aria-label="Close">
+            ×
+          </button>
+        </div>
+        <div className="week-sheet__body">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+interface PickerProps {
+  day: number;
+  category: MealCategory;
+  current: WeekSlot | undefined;
+  /** Yesterday's dinner, offered as leftovers. */
+  leftoversFrom: MealTemplate | undefined;
+  placedOn: Map<string, string[]>;
+  onChoose: (slot: WeekSlot | null) => void;
+  onRepeat: (days: number[], reason: 'every-day' | 'weekdays') => void;
+  onLeftovers: (day: number, category: MealCategory, mealId: string) => void;
+  onClose: () => void;
+  onFindMeals: (category: MealCategory) => void;
+}
+
+/** The sheet for one spot: their meals, leftovers, quick options or their own words; then "also add it to…". */
+function SlotPicker({ day, category, current, leftoversFrom, placedOn, onChoose, onRepeat, onLeftovers, onClose, onFindMeals }: PickerProps) {
+  const { selectedMeals } = usePlanner();
+  const [text, setText] = useState(current?.kind === 'custom' ? current.text : '');
+  const [added, setAdded] = useState<MealTemplate | null>(null);
+  const dayName = DAY_NAMES[day];
+  const sameType = selectedMeals.filter((m) => m.category === category);
+  const otherTypes = selectedMeals.filter((m) => m.category !== category);
+
+  if (added) {
+    // Step 2: repeat it, or save leftovers for tomorrow.
+    const options: { label: string; run: () => void }[] =
+      category === 'dinner'
+        ? day < 6
+          ? [
+              { label: 'Tomorrow’s lunch (leftovers)', run: () => onLeftovers(day + 1, 'lunch', added.id) },
+              { label: 'Tomorrow’s dinner (leftovers)', run: () => onLeftovers(day + 1, 'dinner', added.id) },
+            ]
+          : []
+        : [
+            { label: 'Every day this week', run: () => onRepeat([0, 1, 2, 3, 4, 5, 6], 'every-day') },
+            { label: 'Weekdays (Mon–Fri)', run: () => onRepeat([1, 2, 3, 4, 5], 'weekdays') },
+          ];
+    return (
+      <Sheet title={`${dayName} ${lower(category)}`} onClose={onClose}>
+        <p className="week-added" role="status">
+          <Icon name="check" size={18} />
+          <span>
+            Added <strong>{added.name}</strong> to {dayName} {lower(category)}.
+          </span>
+        </p>
+        {options.length > 0 && (
+          <>
+            <h4>Also add it to</h4>
+            <div className="week-repeat">
+              {options.map((o) => (
+                <button key={o.label} type="button" className="btn btn--secondary" onClick={o.run}>
+                  {o.label}
+                </button>
+              ))}
+            </div>
+            {category !== 'dinner' && <p className="small muted">Only empty spots are filled; anything you’ve already planned stays.</p>}
+          </>
+        )}
+        <p className="week-sheet__done">
+          <button type="button" className="btn btn--primary" onClick={onClose}>
+            Done
+          </button>
+        </p>
+      </Sheet>
+    );
+  }
+
   const mealButton = (meal: MealTemplate) => {
     const chosen = current?.kind === 'meal' && current.mealId === meal.id;
     const elsewhere = placedOn.get(meal.id);
     const photo = mealPhotoUrl(meal.id);
     return (
       <li key={meal.id}>
-        <button type="button" className={`week-pick${chosen ? ' is-chosen' : ''}`} aria-pressed={chosen} onClick={() => onChoose({ kind: 'meal', mealId: meal.id })}>
+        <button
+          type="button"
+          className={`week-pick${chosen ? ' is-chosen' : ''}`}
+          aria-pressed={chosen}
+          onClick={() => {
+            onChoose({ kind: 'meal', mealId: meal.id });
+            setAdded(meal);
+          }}
+        >
           {photo ? <img src={photo} alt="" width={48} height={48} loading="lazy" /> : <span className="week-pick__nophoto" aria-hidden="true" />}
           <span className="week-pick__text">
             <span className="week-pick__name">{meal.name}</span>
@@ -99,97 +177,184 @@ function SlotPicker({ dayName, category, current, placedOn, onChoose, onClose, o
 
   const saveText = () => {
     const clean = cleanCustomText(text);
-    if (clean) onChoose({ kind: 'custom', text: clean });
+    if (clean) {
+      onChoose({ kind: 'custom', text: clean });
+      onClose();
+    }
+  };
+  const chooseAndClose = (slot: WeekSlot) => {
+    onChoose(slot);
+    onClose();
   };
 
   return (
-    <div className="week-sheet-backdrop" onClick={onClose}>
-      <div className="week-sheet" role="dialog" aria-modal="true" aria-labelledby="week-sheet-title" onClick={(e) => e.stopPropagation()}>
-        <div className="week-sheet__head">
-          <h3 id="week-sheet-title" tabIndex={-1} ref={headingRef}>
-            {dayName} {label.toLowerCase()}
-          </h3>
-          <button type="button" className="week-sheet__close" onClick={onClose} aria-label="Close">
-            ×
+    <Sheet title={`${dayName} ${lower(category)}`} onClose={onClose}>
+      {leftoversFrom && (
+        <>
+          <h4>Leftovers</h4>
+          <button
+            type="button"
+            className={`week-pick week-pick--leftovers${current?.kind === 'leftovers' ? ' is-chosen' : ''}`}
+            onClick={() => chooseAndClose({ kind: 'leftovers', mealId: leftoversFrom.id })}
+          >
+            <span className="week-pick__text">
+              <span className="week-pick__name">Leftovers: {leftoversFrom.name}</span>
+              <span className="week-pick__meta">From {DAY_NAMES[day - 1]}’s dinner</span>
+            </span>
           </button>
-        </div>
+        </>
+      )}
 
-        <div className="week-sheet__body">
-          {selectedMeals.length === 0 ? (
-            <p className="small muted">
-              You haven’t picked any meal ideas yet.{' '}
-              <button type="button" className="link-btn" onClick={onFindMeals}>
-                Find meal ideas
-              </button>{' '}
-              or use the options below.
-            </p>
-          ) : (
+      {selectedMeals.length === 0 ? (
+        <p className="small muted">
+          You haven’t picked any meal ideas yet.{' '}
+          <button type="button" className="link-btn" onClick={() => onFindMeals(category)}>
+            Find meal ideas
+          </button>{' '}
+          or use the options below.
+        </p>
+      ) : (
+        <>
+          {sameType.length > 0 && (
             <>
-              {sameType.length > 0 && (
-                <>
-                  <h4>Your {label.toLowerCase()} picks</h4>
-                  <ul className="week-picks">{sameType.map(mealButton)}</ul>
-                </>
-              )}
-              {otherTypes.length > 0 && (
-                <>
-                  <h4>{sameType.length > 0 ? 'Your other picks' : 'Your picks'}</h4>
-                  <ul className="week-picks">{otherTypes.map(mealButton)}</ul>
-                </>
-              )}
+              <h4>Your {lower(category)} picks</h4>
+              <ul className="week-picks">{sameType.map(mealButton)}</ul>
             </>
           )}
+          {otherTypes.length > 0 && (
+            <>
+              <h4>{sameType.length > 0 ? 'Your other picks' : 'Your picks'}</h4>
+              <ul className="week-picks">{otherTypes.map(mealButton)}</ul>
+            </>
+          )}
+          <p className="small week-sheet__more">
+            <button type="button" className="link-btn" onClick={() => onFindMeals(category)}>
+              Find more {lower(category)} ideas
+            </button>
+          </p>
+        </>
+      )}
 
-          <h4>Quick options</h4>
-          <div className="chip-list">
-            {QUICK_PICKS.map((q) => {
-              const chosen = current?.kind === 'quick' && current.id === q.id;
-              return (
-                <button key={q.id} type="button" className="chip" aria-pressed={chosen} onClick={() => onChoose({ kind: 'quick', id: q.id })}>
-                  {q.label}
-                </button>
-              );
-            })}
-          </div>
+      <h4>Quick options</h4>
+      <div className="chip-list">
+        {QUICK_PICKS.map((q) => (
+          <button
+            key={q.id}
+            type="button"
+            className="chip"
+            aria-pressed={current?.kind === 'quick' && current.id === q.id}
+            onClick={() => chooseAndClose({ kind: 'quick', id: q.id })}
+          >
+            {q.label}
+          </button>
+        ))}
+      </div>
 
-          <h4>
-            <label htmlFor="week-own">Something else</label>
-          </h4>
-          <form
-            className="week-own"
-            onSubmit={(e) => {
-              e.preventDefault();
-              saveText();
+      <h4>
+        <label htmlFor="week-own">Something else</label>
+      </h4>
+      <form
+        className="week-own"
+        onSubmit={(e) => {
+          e.preventDefault();
+          saveText();
+        }}
+      >
+        <input
+          id="week-own"
+          type="text"
+          placeholder="e.g. Mom’s lasagna"
+          maxLength={MAX_CUSTOM_LENGTH}
+          autoComplete="off"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button type="submit" className="btn btn--secondary btn--small" disabled={!cleanCustomText(text)}>
+          Add
+        </button>
+      </form>
+
+      {current && (
+        <p className="week-sheet__remove">
+          <button
+            type="button"
+            className="link-btn"
+            onClick={() => {
+              onChoose(null);
+              onClose();
             }}
           >
-            <input
-              id="week-own"
-              type="text"
-              placeholder="e.g. Mom’s lasagna"
-              maxLength={MAX_CUSTOM_LENGTH}
-              autoComplete="off"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-            <button type="submit" className="btn btn--secondary btn--small" disabled={!cleanCustomText(text)}>
-              Add
-            </button>
-          </form>
-
-          {current && (
-            <p className="week-sheet__remove">
-              <button type="button" className="link-btn" onClick={() => onChoose(null)}>
-                Remove from {dayName}
-              </button>
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
+            Remove from {dayName}
+          </button>
+        </p>
+      )}
+    </Sheet>
   );
 }
 
-export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => void; onFindMeals: () => void }) {
+/** The "How do you like to eat?" questions before filling in the week. */
+function FillSheet({ initial, onFill, onClose }: { initial: FillPreferences; onFill: (p: FillPreferences) => void; onClose: () => void }) {
+  const [prefs, setPrefs] = useState(initial);
+  const set = (patch: Partial<FillPreferences>) => setPrefs((p) => ({ ...p, ...patch }));
+
+  const choice = <K extends 'breakfast' | 'lunch' | 'dinner' | 'snack'>(key: K, label: string, options: { value: FillPreferences[K]; label: string }[]) => (
+    <fieldset className="week-fill__q">
+      <legend>{label}</legend>
+      <div className="week-fill__options">
+        {options.map((o) => (
+          <label key={o.value} className={`week-fill__option${prefs[key] === o.value ? ' is-on' : ''}`}>
+            <input type="radio" name={`fill-${key}`} checked={prefs[key] === o.value} onChange={() => set({ [key]: o.value } as Partial<FillPreferences>)} />
+            {o.label}
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+
+  return (
+    <Sheet title="How do you like to eat?" onClose={onClose}>
+      <p className="small muted">We’ll fill your empty spots with the meals you picked. Anything you’ve already planned stays. We’ll remember your answers.</p>
+      {choice('breakfast', 'Breakfasts', [
+        { value: 'rotate', label: 'Repeat my picks all week' },
+        { value: 'once', label: 'Each one once' },
+      ])}
+      {choice('lunch', 'Lunches', [
+        { value: 'once', label: 'Each one once' },
+        { value: 'rotate', label: 'Repeat my picks all week (meal prep)' },
+      ])}
+      <label className="week-fill__check">
+        <input type="checkbox" checked={prefs.leftoverLunches} onChange={(e) => set({ leftoverLunches: e.target.checked })} />
+        Dinner leftovers become the next day’s lunch
+      </label>
+      {choice('dinner', 'Dinners', [
+        { value: 'once', label: 'Each one once' },
+        { value: 'twice', label: 'Each one lasts two nights (batch cooking)' },
+      ])}
+      {choice('snack', 'Snacks', [
+        { value: 'rotate', label: 'Repeat my picks all week' },
+        { value: 'once', label: 'Each one once' },
+      ])}
+      <fieldset className="week-fill__q">
+        <legend>Anything else?</legend>
+        <label className="week-fill__check">
+          <input type="checkbox" checked={prefs.nightOff} onChange={(e) => set({ nightOff: e.target.checked })} />
+          Plan a night off cooking (Friday takeout)
+        </label>
+        <label className="week-fill__check">
+          <input type="checkbox" checked={prefs.weekendOpen} onChange={(e) => set({ weekendOpen: e.target.checked })} />
+          Leave the weekend open
+        </label>
+      </fieldset>
+      <p className="week-sheet__done">
+        <button type="button" className="btn btn--primary" onClick={() => onFill(prefs)}>
+          Fill in my week
+        </button>
+      </p>
+    </Sheet>
+  );
+}
+
+export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => void; onFindMeals: (category?: MealCategory) => void }) {
   const { state, dispatch, meals, selectedMeals } = usePlanner();
   const plan = state.weekPlan;
   const today = todayIso();
@@ -198,8 +363,9 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
   const stale = daysBetween(start, today) > 6;
   const mealsById = useMemo(() => new Map(meals.map((m) => [m.id, m])), [meals]);
   const reminders = stale ? [] : tonightReminders(plan, mealsById, today);
-  const notPlaced = unplacedMeals(plan, selectedMeals);
-  const [open, setOpen] = useState<{ day: number; category: MealCategory } | null>(null);
+  const open = openSpots(plan);
+  const [picker, setPicker] = useState<{ day: number; category: MealCategory } | null>(null);
+  const [filling, setFilling] = useState(false);
   const lastTrigger = useRef<string | null>(null);
 
   // Which days each meal is already on, for the picker ("On Tue, Thu").
@@ -213,16 +379,11 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
     return map;
   }, [plan.slots]);
 
-  const closePicker = () => {
-    setOpen(null);
+  const closeSheet = () => {
+    setPicker(null);
+    setFilling(false);
     const id = lastTrigger.current;
     requestAnimationFrame(() => id && document.getElementById(id)?.focus());
-  };
-
-  const choose = (slot: WeekSlot | null) => {
-    if (!open) return;
-    dispatch({ type: 'setWeekSlot', start, day: open.day, category: open.category, slot });
-    closePicker();
   };
 
   const filledCount = Object.keys(plan.slots).length;
@@ -230,12 +391,16 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
     { start: thisSunday, label: 'This week' },
     { start: addDays(thisSunday, 7), label: 'Next week' },
   ];
+  const yesterdaysDinner = (day: number) => {
+    const slot = day > 0 ? plan.slots[slotKey(day - 1, 'dinner')] : undefined;
+    return slot && (slot.kind === 'meal' || slot.kind === 'leftovers') ? mealsById.get(slot.mealId) : undefined;
+  };
 
   return (
     <section className="week" aria-labelledby="week-title">
       <h2 id="week-title">My week</h2>
       <p className="week__lead">
-        Place your meals on the days you’ll eat them. Tap any spot to pick a meal, a quick option like “Leftovers,” or type your own.
+        Place your meals on the days you’ll eat them. Tap any spot to pick a meal, leftovers, a quick option like “Eating out,” or type your own.
       </p>
 
       {stale && filledCount > 0 ? (
@@ -277,8 +442,16 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
       )}
 
       <div className="week-actions no-print">
-        {notPlaced.length > 0 && (
-          <button type="button" className="btn btn--primary" onClick={() => dispatch({ type: 'fillWeek', start, meals: selectedMeals })}>
+        {open.length > 0 && (
+          <button
+            id="week-fill"
+            type="button"
+            className="btn btn--primary"
+            onClick={() => {
+              lastTrigger.current = 'week-fill';
+              setFilling(true);
+            }}
+          >
             Fill in my week
           </button>
         )}
@@ -295,16 +468,33 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
           </button>
         )}
       </div>
-      {notPlaced.length > 0 && (
-        <p className="small muted no-print week-actions__hint">
-          {notPlaced.length === 1 ? '1 meal you picked isn’t' : `${notPlaced.length} meals you picked aren’t`} on your week yet. “Fill in”
-          places them across the week, with longer recipes on the weekend. You can change any of them.
-        </p>
+
+      {open.length > 0 && filledCount > 0 && (
+        <div className="card week-open no-print" role="note" aria-label="Spots still open">
+          <h3>Still open</h3>
+          <ul>
+            {open.map(({ category, open: n }) => (
+              <li key={category}>
+                <strong>
+                  {n} {lower(category)} {n === 1 ? 'spot' : 'spots'}
+                </strong>
+                {selectedMeals.some((m) => m.category === category) ? '' : ` (no ${lower(category)} ideas picked yet)`} ·{' '}
+                <button type="button" className="link-btn" onClick={() => onFindMeals(category)}>
+                  Find {lower(category)} ideas
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p className="small muted">
+            Tap <em>+ Add</em> on any day to choose a meal, leftovers or a quick option like “Eating out,” or type your own. To fill a whole row with
+            what you picked, use <em>Fill in my week</em> and choose “Repeat my picks all week.”
+          </p>
+        </div>
       )}
       {selectedMeals.length === 0 && filledCount === 0 && (
         <p className="small muted no-print">
           Tip: pick meal ideas in the planner first, then come back to place them here.{' '}
-          <button type="button" className="link-btn" onClick={onFindMeals}>
+          <button type="button" className="link-btn" onClick={() => onFindMeals()}>
             Find meal ideas
           </button>
         </p>
@@ -326,17 +516,18 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
                   const id = `slot-${day}-${category}`;
                   const meal = slot?.kind === 'meal' ? mealsById.get(slot.mealId) : undefined;
                   const label = MEAL_CATEGORY_LABELS[category];
+                  const kindClass = !slot ? '' : slot.kind === 'meal' ? ' is-filled' : slot.kind === 'leftovers' ? ' is-filled is-leftovers' : ' is-filled is-other';
                   return (
                     <li key={category} className="week-slot">
                       <span className="week-slot__type">{label}</span>
                       <button
                         id={id}
                         type="button"
-                        className={`week-slot__btn${slot ? ' is-filled' : ''}${slot && slot.kind !== 'meal' ? ' is-other' : ''}`}
+                        className={`week-slot__btn${kindClass}`}
                         aria-label={slot ? `${dayName} ${label.toLowerCase()}: ${slotLabel(slot, mealsById)}. Change` : `Add ${dayName} ${label.toLowerCase()}`}
                         onClick={() => {
                           lastTrigger.current = id;
-                          setOpen({ day, category });
+                          setPicker({ day, category });
                         }}
                       >
                         {slot ? (
@@ -404,17 +595,37 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
         )}
       </div>
 
-      {open && (
+      {picker && (
         <SlotPicker
-          dayName={DAY_NAMES[open.day]}
-          category={open.category}
-          current={plan.slots[slotKey(open.day, open.category)]}
+          day={picker.day}
+          category={picker.category}
+          current={plan.slots[slotKey(picker.day, picker.category)]}
+          leftoversFrom={picker.category === 'breakfast' ? undefined : yesterdaysDinner(picker.day)}
           placedOn={placedOn}
-          onChoose={choose}
-          onClose={closePicker}
-          onFindMeals={() => {
-            setOpen(null);
-            onFindMeals();
+          onChoose={(slot) => dispatch({ type: 'setWeekSlot', start, day: picker.day, category: picker.category, slot })}
+          onRepeat={(days, reason) => {
+            const slot = plan.slots[slotKey(picker.day, picker.category)] ?? null;
+            if (slot) dispatch({ type: 'repeatWeekSlot', start, category: picker.category, slot, days, reason });
+            closeSheet();
+          }}
+          onLeftovers={(day, category, mealId) => {
+            dispatch({ type: 'repeatWeekSlot', start, category, slot: { kind: 'leftovers', mealId }, days: [day], reason: 'leftovers' });
+            closeSheet();
+          }}
+          onClose={closeSheet}
+          onFindMeals={(category) => {
+            setPicker(null);
+            onFindMeals(category);
+          }}
+        />
+      )}
+      {filling && (
+        <FillSheet
+          initial={state.fillPreferences}
+          onClose={closeSheet}
+          onFill={(preferences) => {
+            dispatch({ type: 'fillWeek', start, meals: selectedMeals, preferences });
+            closeSheet();
           }}
         />
       )}

@@ -16,7 +16,17 @@ import type {
   PlannerPath,
   WeekPreferences,
 } from '../types';
-import { emptyWeekPlan, fillWeek, hydrateWeekPlan, type WeekPlan, type WeekSlot } from '../lib/weekPlan';
+import {
+  DEFAULT_FILL_PREFERENCES,
+  emptyWeekPlan,
+  fillWeek,
+  hydrateFillPreferences,
+  hydrateWeekPlan,
+  repeatSlot,
+  type FillPreferences,
+  type WeekPlan,
+  type WeekSlot,
+} from '../lib/weekPlan';
 import { firstStep, savedStepId, stepsForPath, type StepId } from './steps';
 
 export const STATE_VERSION = 1;
@@ -45,6 +55,8 @@ export interface PlannerState {
   mealHistory: MealHistoryEntry[];
   /** "My week": meals placed on days. Cleared with a new week. */
   weekPlan: WeekPlan;
+  /** How they like "Fill in my week" to work; kept from week to week. */
+  fillPreferences: FillPreferences;
 }
 
 /** How many past weeks of meal choices to remember. */
@@ -77,6 +89,7 @@ export function createInitialState(): PlannerState {
     favorites: [],
     mealHistory: [],
     weekPlan: emptyWeekPlan(),
+    fillPreferences: { ...DEFAULT_FILL_PREFERENCES },
   };
 }
 
@@ -111,7 +124,8 @@ export type PlannerAction =
   | { type: 'toggleStaple'; ingredientId: string }
   | { type: 'startNewWeek'; today?: string }
   | { type: 'setWeekSlot'; start: string; day: number; category: MealCategory; slot: WeekSlot | null }
-  | { type: 'fillWeek'; start: string; meals: MealTemplate[] }
+  | { type: 'fillWeek'; start: string; meals: MealTemplate[]; preferences: FillPreferences }
+  | { type: 'repeatWeekSlot'; start: string; category: MealCategory; slot: WeekSlot; days: readonly number[]; reason: 'every-day' | 'weekdays' | 'leftovers' }
   | { type: 'setWeekStart'; start: string }
   | { type: 'clearWeek' }
   | { type: 'reset' };
@@ -294,7 +308,14 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
     }
 
     case 'fillWeek':
-      return { ...state, weekPlan: fillWeek(state.weekPlan, action.meals, action.start) };
+      return {
+        ...state,
+        fillPreferences: action.preferences,
+        weekPlan: fillWeek(state.weekPlan, action.meals, action.start, action.preferences),
+      };
+
+    case 'repeatWeekSlot':
+      return { ...state, weekPlan: repeatSlot(state.weekPlan, action.category, action.slot, action.days, action.start, action.reason === 'leftovers') };
 
     case 'setWeekStart':
       return { ...state, weekPlan: { ...state.weekPlan, start: action.start } };
@@ -460,5 +481,6 @@ export function hydrateState(saved: unknown): PlannerState {
     favorites: stringArray(saved.favorites),
     mealHistory,
     weekPlan: hydrateWeekPlan(saved.weekPlan),
+    fillPreferences: hydrateFillPreferences(saved.fillPreferences),
   };
 }

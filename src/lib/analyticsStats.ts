@@ -54,6 +54,7 @@ export function labelFor(name: string, value: string): string {
   if (name === 'leave_out_group') return groupNames.get(value) ?? value;
   if (name === 'week_slot_set') {
     if (value === 'meal') return 'A planner meal';
+    if (value === 'leftovers') return 'Leftovers';
     if (value === 'custom') return 'Their own words';
     return QUICK_PICKS.find((q) => q.id === value)?.label ?? value;
   }
@@ -119,6 +120,7 @@ export function buildStats(
       weekSlotsFilled: count(totals, 'week_slot_set'),
       weekFills: count(totals, 'week_filled'),
       weekPrints: count(totals, 'week_print'),
+      weekRepeats: count(totals, 'week_repeat'),
       signInPageViews: page('access'),
       welcomePageViews: page('welcome'),
       signIns: count(totals, 'signed_in'),

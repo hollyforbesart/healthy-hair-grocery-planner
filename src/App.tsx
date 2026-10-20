@@ -17,6 +17,7 @@ import { KitchenStep } from './steps/KitchenStep';
 import { MealsStep } from './steps/MealsStep';
 import { ReviewStep } from './steps/ReviewStep';
 import { PathChooser } from './components/PathChooser';
+import type { MealCategory } from './types';
 
 const STEP_COMPONENTS: Record<StepId, () => JSX.Element> = {
   kitchen: KitchenStep,
@@ -43,7 +44,8 @@ export function App() {
 
   const goTo = (step: StepId) => dispatch({ type: 'goToStep', step });
 
-  const findMeals = () => {
+  const findMeals = (category?: MealCategory) => {
+    if (category) dispatch({ type: 'updatePreferences', patch: { mealCategories: [category] } });
     if (state.path) dispatch({ type: 'goToStep', step: 'meals' });
     else dispatch({ type: 'choosePath', path: 'ideas' });
     navigate('planner');

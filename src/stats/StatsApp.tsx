@@ -302,6 +302,7 @@ function Dashboard({ data }: { data: Data }) {
         <Tile label="“My week” opens" value={h.weekPlanOpens} />
         <Tile label="Week spots filled by hand" value={h.weekSlotsFilled} />
         <Tile label="“Fill in my meals” used" value={h.weekFills} />
+        <Tile label="“Also add it to…” used" value={h.weekRepeats} />
         <Tile label="Weeks printed" value={h.weekPrints} />
       </div>
 

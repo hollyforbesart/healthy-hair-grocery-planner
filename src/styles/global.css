@@ -2688,3 +2688,93 @@ textarea:focus-visible {
 .week {
   padding-top: 0.75rem;
 }
+.week-slot__btn.is-leftovers {
+  background: var(--lavender-soft);
+  border-color: var(--lavender);
+}
+.week-pick--leftovers {
+  background: var(--lavender-soft);
+}
+.week-open {
+  margin: 1rem 0;
+}
+.week-open h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+}
+.week-open ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+}
+.week-added {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin: 0.75rem 0 0;
+}
+.week-added svg {
+  color: #2f7d4f;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+.week-repeat {
+  display: grid;
+  gap: 0.5rem;
+}
+.week-repeat .btn {
+  justify-content: flex-start;
+  text-align: left;
+}
+.week-sheet__done {
+  margin: 1.25rem 0 0;
+}
+.week-fill__q {
+  border: 0;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+.week-fill__q legend {
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  padding: 0;
+}
+.week-fill__options {
+  display: grid;
+  gap: 0.4rem;
+}
+.week-fill__option,
+.week-fill__check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  cursor: pointer;
+}
+.week-fill__check {
+  margin-top: 0.4rem;
+}
+.week-fill__option.is-on {
+  border-color: var(--plum);
+  box-shadow: inset 0 0 0 1px var(--plum);
+}
+.week-fill__option input,
+.week-fill__check input {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--plum);
+  flex-shrink: 0;
+  margin: 0;
+}
+.week-open p {
+  margin: 0.6rem 0 0;
+}
+.week-sheet__more {
+  margin: 0.75rem 0 0;
+}
