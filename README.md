@@ -46,7 +46,7 @@ The two path cards on the home page open the planner straight at the first step 
 - **Print my schedule** prints a simple table for the fridge, with the prep reminders below it.
 - **Prep reminders** for the evening before: a make-ahead meal ("Start Strawberry Overnight Oats for tomorrow's breakfast (it soaks or sets overnight)") or a "More involved" meal ("Prep what you can for tomorrow's dinner… (it takes a while)"). They show on each day's card ("Tonight:"), on the printout ("Prep reminders"), and as a "Tonight" note on the home page and planner. In the app only; no phone notifications.
 - **One week at a time:** a new plan is for this week (Sunday to Saturday), or next week when it's started on a Saturday.
-- **Ways in:** "Schedule" in the top bar on planner pages, "Schedule my meals: put them on days" in the "This week" box at the top of the grocery list, a card at the bottom of the list, "Meal schedule" in the home page's Welcome back box, and the footer.
+- **Ways in:** a dashed "Then, if you like: Schedule your meals" card with a calendar icon on the home page, under the two ways to start; "Schedule" in the top bar on planner pages, "Schedule my meals: put them on days" in the "This week" box at the top of the grocery list, a card at the bottom of the list, "Meal schedule" in the home page's Welcome back box, and the footer.
 - **Round trip:** "Find dinner ideas" (from a spot or the Still open note) opens meal ideas filtered to that type, with a "Picking a dinner for your meal schedule" note and **Back to my schedule →** in place of Review. Going back restores the meal-type filter and reopens the spot (`src/lib/scheduleTrip.ts`).
 - Saved in the browser with the rest of the plan, and cleared by **Start a new week** and **Start over**.
 

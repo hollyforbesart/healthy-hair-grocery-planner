@@ -102,8 +102,20 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
             </div>
           ))}
         </div>
+        <RouteLink to="week" navigate={navigate} className="home-schedule">
+          <Icon name="calendar" size={30} className="home-schedule__icon" />
+          <span>
+            <span className="home-schedule__label">Then, if you like</span>
+            <span className="home-schedule__title">Schedule your meals</span>
+            <span className="home-schedule__text">
+              See how your meals fit into your week: put them on days, add leftovers or a night out, and get a reminder the night before
+              anything needs prepping.
+            </span>
+            <span className="home-schedule__link">Open the meal schedule →</span>
+          </span>
+        </RouteLink>
         <p className="home-hero__included small">
-          Meal ideas with ingredient lists and a grocery list.{' '}
+          Meal ideas with ingredient lists, a grocery list and a meal schedule.{' '}
           <RouteLink to="about" navigate={navigate}>
             Why these meals?
           </RouteLink>
