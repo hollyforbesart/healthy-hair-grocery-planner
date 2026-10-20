@@ -9,6 +9,7 @@ import { AboutPage } from './pages/AboutPage';
 import { PRIVACY_POLICY_URL, TermsPage } from './pages/TermsPage';
 import { HomePage } from './pages/HomePage';
 import { NutrientsPage } from './pages/NutrientsPage';
+import { TonightBanner, WeekPage } from './pages/WeekPage';
 import { usePlanner } from './state/PlannerContext';
 import { firstStep, stepsForPath, type StepId } from './state/steps';
 import { GroceryListStep } from './steps/GroceryListStep';
@@ -41,6 +42,12 @@ export function App() {
   }, [route]);
 
   const goTo = (step: StepId) => dispatch({ type: 'goToStep', step });
+
+  const findMeals = () => {
+    if (state.path) dispatch({ type: 'goToStep', step: 'meals' });
+    else dispatch({ type: 'choosePath', path: 'ideas' });
+    navigate('planner');
+  };
 
   const startOver = () => {
     if (window.confirm(START_OVER_CONFIRM)) dispatch({ type: 'reset' });
@@ -76,7 +83,7 @@ export function App() {
               <span className="site-header__product">Meal &amp; Grocery Planner</span>
             </h1>
           </a>
-          {route === 'planner' && (
+          {(route === 'planner' || route === 'week') && (
             <div className="site-header__actions no-print">
               <a
                 className="site-header__link"
@@ -94,6 +101,7 @@ export function App() {
       </header>
 
       <div className="container">
+        {(route === 'home' || route === 'planner') && <TonightBanner onOpenWeek={() => navigate('week')} />}
         {route === 'home' ? (
           <main id="main" className="main">
             <HomePage onOpenPlanner={() => navigate('planner')} navigate={navigate} />
@@ -105,6 +113,10 @@ export function App() {
         ) : route === 'about' ? (
           <main id="main" className="main">
             <AboutPage onOpenPlanner={() => navigate('planner')} />
+          </main>
+        ) : route === 'week' ? (
+          <main id="main" className="main">
+            <WeekPage onOpenPlanner={() => navigate('planner')} onFindMeals={findMeals} />
           </main>
         ) : route === 'terms' ? (
           <main id="main" className="main">
@@ -126,6 +138,9 @@ export function App() {
           <nav className="footer-links" aria-label="More information">
             <RouteLink to="home" navigate={navigate}>
               Home
+            </RouteLink>
+            <RouteLink to="week" navigate={navigate}>
+              My week
             </RouteLink>
             <RouteLink to="about" navigate={navigate}>
               About these meals

@@ -2,6 +2,7 @@ import ingredients from '../data/library/ingredients.json';
 import meals from '../data/library/meals.json';
 import { AVOID_GROUPS } from '../data/avoidGroups';
 import type { EventName } from './analyticsSchema';
+import { QUICK_PICKS } from './weekPlan';
 
 /** Rows as returned by the stats queries in functions/api/stats.ts. */
 export interface CountRow {
@@ -36,6 +37,7 @@ export const RANKED_EVENTS: EventName[] = [
   'path_chosen',
   'page_view',
   'feedback_sent',
+  'week_slot_set',
 ];
 
 const TOP_N = 15;
@@ -50,6 +52,11 @@ export function labelFor(name: string, value: string): string {
     return value === 'own' ? 'Their own item' : (ingredientNames.get(value) ?? value);
   }
   if (name === 'leave_out_group') return groupNames.get(value) ?? value;
+  if (name === 'week_slot_set') {
+    if (value === 'meal') return 'A planner meal';
+    if (value === 'custom') return 'Their own words';
+    return QUICK_PICKS.find((q) => q.id === value)?.label ?? value;
+  }
   return value;
 }
 
@@ -108,6 +115,10 @@ export function buildStats(
       recipeLinksOpened: count(totals, 'recipe_link'),
       feedbackSent: count(totals, 'feedback_sent'),
       appInstalls: count(totals, 'app_installed'),
+      weekPlanOpens: page('week'),
+      weekSlotsFilled: count(totals, 'week_slot_set'),
+      weekFills: count(totals, 'week_filled'),
+      weekPrints: count(totals, 'week_print'),
       signInPageViews: page('access'),
       welcomePageViews: page('welcome'),
       signIns: count(totals, 'signed_in'),

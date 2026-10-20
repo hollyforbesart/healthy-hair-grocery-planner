@@ -10,10 +10,13 @@ import type {
   KitchenGroupId,
   ManualGroceryItem,
   MealExtras,
+  MealCategory,
   MealHistoryEntry,
+  MealTemplate,
   PlannerPath,
   WeekPreferences,
 } from '../types';
+import { emptyWeekPlan, fillWeek, hydrateWeekPlan, type WeekPlan, type WeekSlot } from '../lib/weekPlan';
 import { firstStep, savedStepId, stepsForPath, type StepId } from './steps';
 
 export const STATE_VERSION = 1;
@@ -40,6 +43,8 @@ export interface PlannerState {
   favorites: string[];
   /** Meals from earlier weeks, newest first (kept for HISTORY_WEEKS weeks). */
   mealHistory: MealHistoryEntry[];
+  /** "My week": meals placed on days. Cleared with a new week. */
+  weekPlan: WeekPlan;
 }
 
 /** How many past weeks of meal choices to remember. */
@@ -71,6 +76,7 @@ export function createInitialState(): PlannerState {
     reviewingPantry: false,
     favorites: [],
     mealHistory: [],
+    weekPlan: emptyWeekPlan(),
   };
 }
 
@@ -104,6 +110,10 @@ export type PlannerAction =
   | { type: 'updateFeedback'; patch: Partial<FeedbackDraft> }
   | { type: 'toggleStaple'; ingredientId: string }
   | { type: 'startNewWeek'; today?: string }
+  | { type: 'setWeekSlot'; start: string; day: number; category: MealCategory; slot: WeekSlot | null }
+  | { type: 'fillWeek'; start: string; meals: MealTemplate[] }
+  | { type: 'setWeekStart'; start: string }
+  | { type: 'clearWeek' }
   | { type: 'reset' };
 
 function withoutKey<T>(record: Record<string, T>, key: string): Record<string, T> {
@@ -271,8 +281,26 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
         groceryOverrides: {},
         manualItems: [],
         reviewingPantry: true,
+        weekPlan: emptyWeekPlan(),
       };
     }
+
+    case 'setWeekSlot': {
+      const key = `${action.day}-${action.category}`;
+      const slots = { ...state.weekPlan.slots };
+      if (action.slot) slots[key] = action.slot;
+      else delete slots[key];
+      return { ...state, weekPlan: { start: action.start, slots } };
+    }
+
+    case 'fillWeek':
+      return { ...state, weekPlan: fillWeek(state.weekPlan, action.meals, action.start) };
+
+    case 'setWeekStart':
+      return { ...state, weekPlan: { ...state.weekPlan, start: action.start } };
+
+    case 'clearWeek':
+      return { ...state, weekPlan: emptyWeekPlan() };
 
     case 'reset':
       return createInitialState();
@@ -431,5 +459,6 @@ export function hydrateState(saved: unknown): PlannerState {
     reviewingPantry: saved.reviewingPantry === true,
     favorites: stringArray(saved.favorites),
     mealHistory,
+    weekPlan: hydrateWeekPlan(saved.weekPlan),
   };
 }

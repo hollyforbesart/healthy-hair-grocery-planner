@@ -55,6 +55,14 @@ export function eventsForAction(prev: PlannerState, next: PlannerState, action: 
     case 'startNewWeek':
       events.push({ name: 'new_week' });
       break;
+    case 'setWeekSlot':
+      if (action.slot) events.push({ name: 'week_slot_set', value: action.slot.kind === 'quick' ? action.slot.id : action.slot.kind });
+      break;
+    case 'fillWeek': {
+      const placed = Object.keys(next.weekPlan.slots).length - Object.keys(prev.weekPlan.slots).length;
+      if (placed > 0) events.push({ name: 'week_filled', value: String(placed) });
+      break;
+    }
     case 'reset':
       events.push({ name: 'start_over' });
       break;

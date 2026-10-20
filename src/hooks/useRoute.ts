@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 
 /** The app's pages. Any unknown path shows the home page. */
-export type Route = 'home' | 'planner' | 'about' | 'nutrients' | 'terms';
+export type Route = 'home' | 'planner' | 'week' | 'about' | 'nutrients' | 'terms';
 
 export const ROUTE_PATHS: Record<Route, string> = {
   home: '/',
   planner: '/planner',
+  week: '/week',
   about: '/about',
   nutrients: '/nutrients',
   terms: '/terms',
@@ -37,4 +38,14 @@ export function useRoute(): [Route, (route: Route) => void] {
   }, []);
 
   return [route, navigate];
+}
+
+/**
+ * Goes to a page from anywhere (e.g. inside a planner step, which doesn't get
+ * `navigate`): updates the address, and useRoute picks it up.
+ */
+export function goToRoute(route: Route): void {
+  window.history.pushState(null, '', ROUTE_PATHS[route]);
+  window.dispatchEvent(new PopStateEvent('popstate'));
+  window.scrollTo({ top: 0 });
 }

@@ -248,6 +248,7 @@ const TOP_LISTS: { event: string; title: string }[] = [
   { event: 'leave_out_food', title: 'Single foods left out' },
   { event: 'time_filter', title: 'Time filters used' },
   { event: 'meal_type_filter', title: 'Meal-type filters used' },
+  { event: 'week_slot_set', title: 'What goes on “My week”' },
 ];
 
 const SOURCE_LABELS: Record<string, string> = { code: 'Bought (access code)', guest: 'Guest list', kit: 'Kit buyer tag' };
@@ -298,6 +299,10 @@ function Dashboard({ data }: { data: Data }) {
         <Tile label="“Find a recipe” taps" value={h.recipeLinksOpened} />
         <Tile label="Installed as an app" value={h.appInstalls} />
         <Tile label="Feedback sent" value={h.feedbackSent} />
+        <Tile label="“My week” opens" value={h.weekPlanOpens} />
+        <Tile label="Week spots filled by hand" value={h.weekSlotsFilled} />
+        <Tile label="“Fill in my meals” used" value={h.weekFills} />
+        <Tile label="Weeks printed" value={h.weekPrints} />
       </div>
 
       <DailyChart title="Meals added" rows={days.map((day) => ({ day, value: eventsByDay.get(day)?.mealsAdded ?? 0 }))} />
