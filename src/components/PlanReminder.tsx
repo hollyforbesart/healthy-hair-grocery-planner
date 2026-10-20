@@ -1,3 +1,4 @@
+import { goToRoute } from '../hooks/useRoute';
 import { usePlanner } from '../state/PlannerContext';
 
 /** "This week" reminder at the top of the grocery list: the chosen meals. */
@@ -14,6 +15,20 @@ export function PlanReminder() {
         </ul>
       ) : (
         <p className="small muted">No meals picked yet.</p>
+      )}
+      {selectedMeals.length > 0 && (
+        <p className="plan-reminder__week no-print">
+          <a
+            href="/schedule"
+            onClick={(e) => {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+              e.preventDefault();
+              goToRoute('week');
+            }}
+          >
+            Schedule my meals: put them on days →
+          </a>
+        </p>
       )}
     </section>
   );

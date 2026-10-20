@@ -48,6 +48,7 @@ export function AboutPage({ onOpenPlanner }: { onOpenPlanner: () => void }) {
               <li>Pantry matching</li>
               <li>Weekly planning</li>
               <li>Grocery-list generation</li>
+              <li>A meal schedule with prep reminders</li>
             </ul>
           </div>
           <div className="card included__card included__card--later">

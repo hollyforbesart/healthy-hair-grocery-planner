@@ -63,10 +63,15 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
             <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
               Continue where you left off →
             </button>
+            {mealCount > 0 && (
+              <button type="button" className="btn btn--secondary" onClick={() => navigate('week')}>
+                Meal schedule
+              </button>
+            )}
             <button type="button" className="btn btn--secondary" onClick={planNewWeek}>
-              Plan a new week
+              Start a new week
             </button>
-            <p className="small muted">“Plan a new week” clears this week’s meals and list, and keeps your staples, favorites and preferences.</p>
+            <p className="small muted">“Start a new week” clears this week’s meals, grocery list and meal schedule, and keeps your staples, favorites and preferences.</p>
           </div>
         </section>
       )}
@@ -97,8 +102,20 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
             </div>
           ))}
         </div>
+        <RouteLink to="week" navigate={navigate} className="home-schedule">
+          <Icon name="calendar" size={30} className="home-schedule__icon" />
+          <span>
+            <span className="home-schedule__label">Then, if you like</span>
+            <span className="home-schedule__title">Schedule your meals</span>
+            <span className="home-schedule__text">
+              See how your meals fit into your week: put them on days, add leftovers or a night out, and get a reminder the night before
+              anything needs prepping.
+            </span>
+            <span className="home-schedule__link">Open the meal schedule →</span>
+          </span>
+        </RouteLink>
         <p className="home-hero__included small">
-          Meal ideas with ingredient lists and a grocery list.{' '}
+          Meal ideas with ingredient lists, a grocery list and a meal schedule.{' '}
           <RouteLink to="about" navigate={navigate}>
             Why these meals?
           </RouteLink>
@@ -108,7 +125,7 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
       <section className="card home-tip" aria-labelledby="week-title">
         <h2 id="week-title">Each week</h2>
         <p>
-          Come back and tap <strong>Plan a new week</strong>. Your staples, favorites and preferences are kept, and
+          Come back and tap <strong>Start a new week</strong>. Your staples, favorites and preferences are kept, and
           meals you’ve had recently move down so ideas stay fresh.
         </p>
       </section>

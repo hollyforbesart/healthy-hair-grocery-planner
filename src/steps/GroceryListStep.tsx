@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { goToRoute } from '../hooks/useRoute';
 import { GroceryItemRow } from '../components/GroceryItemRow';
 import { FeedbackCard } from '../components/FeedbackCard';
 import { Icon } from '../components/Icon';
@@ -294,6 +295,22 @@ export function GroceryListStep() {
         </details>
       )}
 
+      <div className="card week-invite no-print">
+        <h3>Want to schedule your meals?</h3>
+        <p className="small">Place your meals on the days you’ll eat them, so you know what’s for dinner each night.</p>
+        <a
+          className="btn btn--primary"
+          href="/schedule"
+          onClick={(e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+            e.preventDefault();
+            goToRoute('week');
+          }}
+        >
+          Schedule my meals →
+        </a>
+      </div>
+
       <div className="card new-week no-print">
         <h3>Done shopping?</h3>
         <p className="small">
@@ -304,7 +321,7 @@ export function GroceryListStep() {
           className="btn btn--secondary"
           onClick={() => window.confirm(NEW_WEEK_CONFIRM) && dispatch({ type: 'startNewWeek' })}
         >
-          Plan a new week
+          Start a new week
         </button>
       </div>
 

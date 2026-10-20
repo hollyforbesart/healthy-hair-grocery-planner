@@ -60,7 +60,7 @@ The responses allow cross-site reads, so a dashboard hosted elsewhere (for examp
 
 | Event | Value |
 |---|---|
-| `page_view` | value: home, planner, about, nutrients, terms, access (sign-in page), welcome |
+| `page_view` | value: home, planner, week, about, nutrients, terms, access (sign-in page), welcome |
 | `path_chosen` | value: pantry | ideas |
 | `step_view` | value: kitchen | meals | review | list |
 | `food_added` | value: ingredient ID (own items: "own") |
@@ -82,6 +82,9 @@ The responses allow cross-site reads, so a dashboard hosted elsewhere (for examp
 | `list_copy` | — |
 | `list_print` | — |
 | `list_item_added` | no value: what people type stays private |
+| `week_slot_set` | value: meal, custom (never the text), or a quick pick (eating-out, leftovers, pizza-night, takeout, skipping) |
+| `week_filled` | value: how many spots "Fill in my schedule" filled |
+| `week_print` | — |
 | `new_week` | — |
 | `start_over` | — |
 | `install_click` | — |

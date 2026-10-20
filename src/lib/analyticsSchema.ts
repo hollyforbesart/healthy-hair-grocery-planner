@@ -8,7 +8,7 @@
 /** Every event the planner can send. `value` is an ID or a short label, never free text from a person (except search terms). */
 export const EVENT_NAMES = [
   // Pages and steps
-  'page_view', // value: home | planner | about | nutrients | terms | access | welcome
+  'page_view', // value: home | planner | week | about | nutrients | terms | access | welcome
   'path_chosen', // value: pantry | ideas
   'step_view', // value: kitchen | meals | review | list
   // Kitchen
@@ -33,6 +33,11 @@ export const EVENT_NAMES = [
   'list_copy',
   'list_print',
   'list_item_added', // no value: what people type stays private
+  // Meal schedule (/schedule)
+  'week_slot_set', // value: meal | leftovers | custom | a quick pick (eating-out…); never what was typed
+  'week_filled', // value: number of spots filled by "Fill in"
+  'week_repeat', // value: every-day | weekdays | leftovers
+  'week_print',
   // Weekly use, installs and feedback
   'new_week',
   'start_over',

@@ -8,6 +8,8 @@ import { Icon } from '../components/Icon';
 import { MEAL_CATEGORIES, TIME_CATEGORIES } from '../data/categories';
 import { useRecommendations } from '../hooks/useRecommendations';
 import { track } from '../lib/analytics';
+import { cancelScheduleTrip, currentScheduleTrip, endScheduleTrip } from '../lib/scheduleTrip';
+import { goToRoute } from '../hooks/useRoute';
 import { useStepNav } from '../hooks/useStepNav';
 import { ingredientName } from '../lib/ingredients';
 import { previouslyChosenMealIds, recentMealIds } from '../lib/mealHistory';
@@ -140,9 +142,16 @@ export function MealsStep() {
   );
 
   const selectedCount = selectedMealIds.length;
+  // Came here from the meal schedule to fill a spot: offer the way back instead of Review.
+  const [trip] = useState(currentScheduleTrip);
+  const backToSchedule = () => {
+    const ended = endScheduleTrip();
+    if (ended) dispatch({ type: 'updatePreferences', patch: { mealCategories: ended.previousCategories } });
+    goToRoute('week');
+  };
 
   return (
-    <section aria-labelledby="step-title" className={selectedCount > 0 ? 'has-review-bar' : undefined}>
+    <section aria-labelledby="step-title" className={selectedCount > 0 || trip ? 'has-review-bar' : undefined}>
       <StepHeader title={path === 'ideas' ? 'Find meal ideas' : 'Meal ideas from your kitchen'}>
         <p>
           {path === 'ideas'
@@ -150,6 +159,20 @@ export function MealsStep() {
             : 'Within each meal type, ideas that use more of what you have come first. Add the ones you’d like to make.'}
         </p>
       </StepHeader>
+
+      {trip && (
+        <div className="card schedule-trip no-print" role="note">
+          <p>
+            <strong>
+              Picking {trip.category ? `${trip.category === 'snack' ? 'a snack' : `a ${trip.category}`}` : 'meals'} for your meal schedule.
+            </strong>{' '}
+            Anything you add also goes on your grocery list.
+          </p>
+          <button type="button" className="btn btn--secondary btn--small" onClick={backToSchedule}>
+            Back to my schedule →
+          </button>
+        </div>
+      )}
 
       {path === 'ideas' ? (
         <p className="small path-switch">
@@ -339,18 +362,24 @@ export function MealsStep() {
 
       <StepFooter
         onBack={goBack}
-        onNext={goNext}
+        onNext={
+          goNext &&
+          (() => {
+            if (trip) cancelScheduleTrip();
+            goNext();
+          })
+        }
         nextLabel={selectedCount > 0 ? `Review my ${selectedCount} meal${selectedCount === 1 ? '' : 's'}` : 'Review'}
       />
 
-      {selectedCount > 0 && goNext && (
+      {(trip || selectedCount > 0) && (goNext || trip) && (
         <div className="review-bar no-print">
           <div className="container review-bar__inner">
             <span className="review-bar__count" aria-live="polite">
               {selectedCount} selected
             </span>
-            <button type="button" className="btn btn--primary" onClick={goNext}>
-              Review →
+            <button type="button" className="btn btn--primary" onClick={trip ? backToSchedule : goNext}>
+              {trip ? 'Back to my schedule →' : 'Review →'}
             </button>
           </div>
         </div>
