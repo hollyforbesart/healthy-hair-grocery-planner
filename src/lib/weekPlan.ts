@@ -73,8 +73,14 @@ export const sundayOf = (iso: string) => addDays(iso, -toDate(iso).getUTCDay());
 /** "Oct 18" */
 export const shortDate = (iso: string) => toDate(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 
-/** The plan's Sunday: the saved one, or this week's. */
-export const planStart = (plan: WeekPlan, today: string) => plan.start ?? sundayOf(today);
+/**
+ * The Sunday a new plan starts on: this week's, except on Saturday, when
+ * people are usually planning (and shopping) for the week ahead.
+ */
+export const defaultStart = (today: string) => (toDate(today).getUTCDay() === 6 ? addDays(today, 1) : sundayOf(today));
+
+/** The plan's Sunday: the saved one, or the default for a new plan. Plans are one week at a time. */
+export const planStart = (plan: WeekPlan, today: string) => plan.start ?? defaultStart(today);
 
 /** A short label for a slot ("Eating out", the meal's name, or what they typed). */
 export function slotLabel(slot: WeekSlot, mealsById: Map<string, MealTemplate>): string {
@@ -224,27 +230,38 @@ export function mealsOn(plan: WeekPlan, date: string, today: string): { category
   });
 }
 
-/**
- * The "tonight" reminders for tomorrow's meals: ones that need to soak or set
- * overnight, and ones that take a while to make.
- */
-export function tonightReminders(plan: WeekPlan, mealsById: Map<string, MealTemplate>, today: string): string[] {
-  const reminders: string[] = [];
-  for (const { category, slot } of mealsOn(plan, addDays(today, 1), today)) {
-    if (slot.kind !== 'meal') continue;
-    const meal = mealsById.get(slot.mealId);
-    if (!meal) continue;
-    const which = `tomorrow’s ${MEAL_CATEGORY_LABELS[category].toLowerCase()}`;
-    if (meal.makeAhead) {
-      reminders.push(`Tonight: get ${which}, ${meal.name}, started. It needs a few hours or overnight to soak or set.`);
-    } else if (meal.timeCategory === 'more-involved') {
-      reminders.push(`${capitalize(which)}, ${meal.name}, takes a while. Prep what you can tonight to make it easier.`);
-    }
-  }
-  return reminders;
+export interface PrepNote {
+  /** The evening to do it: 0–6 for Sunday–Saturday, or -1 for the Saturday before the plan starts. */
+  evening: number;
+  text: string;
 }
 
-const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+/**
+ * Reminders for the evening before: meals that need to soak or set
+ * overnight, and meals that take a while to make.
+ */
+export function prepNotes(plan: WeekPlan, mealsById: Map<string, MealTemplate>): PrepNote[] {
+  const notes: PrepNote[] = [];
+  for (let day = 0; day < 7; day += 1) {
+    for (const category of WEEK_CATEGORIES) {
+      const slot = plan.slots[slotKey(day, category)];
+      const meal = slot?.kind === 'meal' ? mealsById.get(slot.mealId) : undefined;
+      if (!meal) continue;
+      const which = `tomorrow’s ${MEAL_CATEGORY_LABELS[category].toLowerCase()}`;
+      if (meal.makeAhead) notes.push({ evening: day - 1, text: `Start ${meal.name} for ${which} (it soaks or sets overnight).` });
+      else if (meal.timeCategory === 'more-involved') notes.push({ evening: day - 1, text: `Prep what you can for ${which}, ${meal.name} (it takes a while).` });
+    }
+  }
+  return notes;
+}
+
+/** Tonight's reminders, for the app's "Tonight" notes. */
+export function tonightReminders(plan: WeekPlan, mealsById: Map<string, MealTemplate>, today: string): string[] {
+  const evening = daysBetween(planStart(plan, today), today);
+  return prepNotes(plan, mealsById)
+    .filter((n) => n.evening === evening)
+    .map((n) => `Tonight: ${n.text.charAt(0).toLowerCase()}${n.text.slice(1)}`);
+}
 
 /** Rebuilds a saved plan from untrusted JSON (anything malformed is dropped). */
 export function hydrateWeekPlan(saved: unknown): WeekPlan {

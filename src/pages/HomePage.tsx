@@ -63,6 +63,11 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
             <button type="button" className="btn btn--primary" onClick={onOpenPlanner}>
               Continue where you left off →
             </button>
+            {mealCount > 0 && (
+              <button type="button" className="btn btn--secondary" onClick={() => navigate('week')}>
+                My week
+              </button>
+            )}
             <button type="button" className="btn btn--secondary" onClick={planNewWeek}>
               Plan a new week
             </button>

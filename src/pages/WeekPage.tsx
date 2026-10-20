@@ -13,10 +13,10 @@ import {
   daysBetween,
   openSpots,
   planStart,
+  prepNotes,
   shortDate,
   slotKey,
   slotLabel,
-  sundayOf,
   tonightReminders,
   type FillPreferences,
   type WeekSlot,
@@ -297,9 +297,15 @@ function FillSheet({ initial, onFill, onClose }: { initial: FillPreferences; onF
   const [prefs, setPrefs] = useState(initial);
   const set = (patch: Partial<FillPreferences>) => setPrefs((p) => ({ ...p, ...patch }));
 
-  const choice = <K extends 'breakfast' | 'lunch' | 'dinner' | 'snack'>(key: K, label: string, options: { value: FillPreferences[K]; label: string }[]) => (
+  const choice = <K extends 'breakfast' | 'lunch' | 'dinner' | 'snack'>(
+    key: K,
+    label: string,
+    example: string,
+    options: { value: FillPreferences[K]; label: string }[],
+  ) => (
     <fieldset className="week-fill__q">
       <legend>{label}</legend>
+      <p className="week-fill__example">{example}</p>
       <div className="week-fill__options">
         {options.map((o) => (
           <label key={o.value} className={`week-fill__option${prefs[key] === o.value ? ' is-on' : ''}`}>
@@ -314,23 +320,26 @@ function FillSheet({ initial, onFill, onClose }: { initial: FillPreferences; onF
   return (
     <Sheet title="How do you like to eat?" onClose={onClose}>
       <p className="small muted">We’ll fill your empty spots with the meals you picked. Anything you’ve already planned stays. We’ll remember your answers.</p>
-      {choice('breakfast', 'Breakfasts', [
+      {choice('breakfast', 'Breakfasts', 'Repeat: the same oats every morning, or taking turns between your picks. Once: each breakfast on one day.', [
         { value: 'rotate', label: 'Repeat my picks all week' },
         { value: 'once', label: 'Each one once' },
       ])}
-      {choice('lunch', 'Lunches', [
+      {choice('lunch', 'Lunches', 'Repeat suits meal prep: one batch of salad for the work week.', [
         { value: 'once', label: 'Each one once' },
         { value: 'rotate', label: 'Repeat my picks all week (meal prep)' },
       ])}
       <label className="week-fill__check">
         <input type="checkbox" checked={prefs.leftoverLunches} onChange={(e) => set({ leftoverLunches: e.target.checked })} />
-        Dinner leftovers become the next day’s lunch
+        <span>
+          Dinner leftovers become the next day’s lunch
+          <span className="week-fill__example">e.g. Monday’s dinner is Tuesday’s lunch</span>
+        </span>
       </label>
-      {choice('dinner', 'Dinners', [
+      {choice('dinner', 'Dinners', 'Two nights: cook a big batch on Monday and have it again on Tuesday.', [
         { value: 'once', label: 'Each one once' },
         { value: 'twice', label: 'Each one lasts two nights (batch cooking)' },
       ])}
-      {choice('snack', 'Snacks', [
+      {choice('snack', 'Snacks', 'Repeat: the same go-to snack each day.', [
         { value: 'rotate', label: 'Repeat my picks all week' },
         { value: 'once', label: 'Each one once' },
       ])}
@@ -358,7 +367,6 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
   const { state, dispatch, meals, selectedMeals } = usePlanner();
   const plan = state.weekPlan;
   const today = todayIso();
-  const thisSunday = sundayOf(today);
   const start = planStart(plan, today);
   const stale = daysBetween(start, today) > 6;
   const mealsById = useMemo(() => new Map(meals.map((m) => [m.id, m])), [meals]);
@@ -387,10 +395,9 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
   };
 
   const filledCount = Object.keys(plan.slots).length;
-  const weekChoices = [
-    { start: thisSunday, label: 'This week' },
-    { start: addDays(thisSunday, 7), label: 'Next week' },
-  ];
+  const notes = prepNotes(plan, mealsById);
+  const notesFor = (evening: number) => notes.filter((n) => n.evening === evening);
+  const nightName = (evening: number) => (evening < 0 ? 'Saturday night, before the week starts' : `${DAY_NAMES[evening]} night`);
   const yesterdaysDinner = (day: number) => {
     const slot = day > 0 ? plan.slots[slotKey(day - 1, 'dinner')] : undefined;
     return slot && (slot.kind === 'meal' || slot.kind === 'leftovers') ? mealsById.get(slot.mealId) : undefined;
@@ -413,21 +420,9 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
           </p>
         </div>
       ) : (
-        <div className="week-controls no-print" role="radiogroup" aria-label="Which week">
-          {weekChoices.map((w) => (
-            <button
-              key={w.start}
-              type="button"
-              role="radio"
-              className="chip"
-              aria-checked={start === w.start}
-              aria-pressed={start === w.start}
-              onClick={() => dispatch({ type: 'setWeekStart', start: w.start })}
-            >
-              {w.label} · {shortDate(w.start)}–{shortDate(addDays(w.start, 6))}
-            </button>
-          ))}
-        </div>
+        <p className="week__dates">
+          Week of {shortDate(start)}–{shortDate(addDays(start, 6))}
+        </p>
       )}
 
       {reminders.length > 0 && (
@@ -510,6 +505,18 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
                 {dayName} <span className="week-day__date">{shortDate(date)}</span>
                 {isToday && <span className="week-day__today">Today</span>}
               </h3>
+              {day === 0 && notesFor(-1).length > 0 && (
+                <ul className="week-day__notes">
+                  {notesFor(-1).map((n) => (
+                    <li key={n.text}>
+                      <Icon name="moon" size={14} />
+                      <span>
+                        <strong>The night before:</strong> {n.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <ul className="week-slots">
                 {WEEK_CATEGORIES.map((category) => {
                   const slot = plan.slots[slotKey(day, category)];
@@ -547,6 +554,18 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
                   );
                 })}
               </ul>
+              {notesFor(day).length > 0 && (
+                <ul className="week-day__notes">
+                  {notesFor(day).map((n) => (
+                    <li key={n.text}>
+                      <Icon name="moon" size={14} />
+                      <span>
+                        <strong>Tonight:</strong> {n.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           );
         })}
@@ -583,6 +602,18 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
           ))}
         </tbody>
       </table>
+      {notes.length > 0 && (
+        <div className="week-print-notes print-only">
+          <h3>Prep reminders</h3>
+          <ul>
+            {notes.map((n) => (
+              <li key={n.evening + n.text}>
+                <strong>{nightName(n.evening)}:</strong> {n.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="week-footer no-print">
         <button type="button" className="btn btn--secondary" onClick={onOpenPlanner}>

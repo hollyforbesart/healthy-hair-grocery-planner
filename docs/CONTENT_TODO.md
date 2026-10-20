@@ -21,7 +21,12 @@ The app already has a place for each one; nothing here should be invented.
 
 ## Ideas for future improvements
 
-- **My week: built** (October 2026, from a client conversation: "I never have a plan, I just go by the day"). Watch the dashboard ("My week" opens, spots filled, Fill in, prints) to see if people use it. Possible next steps if they do: drag to move a meal, copying last week's plan, or saving plans to accounts so they follow people between devices.
+- **My week: built** (October 2026, from a client conversation: "I never have a plan, I just go by the day"). Watch the dashboard ("My week" opens, spots filled, Fill in, prints) to see if people use it. Saved for future updates:
+  - **Add to my calendar:** put the week's meals and prep reminders in the phone's calendar (real reminders without building notifications).
+  - **Shopping amounts:** when a meal repeats (e.g. oats ×6), say so on the grocery list so people buy enough.
+  - **Recipes** for the meals.
+  - Also possible: "Move to another day", jumping to today on long weeks, copying last week's plan, and saving plans to accounts so they follow people between devices.
+  - Decided against for now: sharing the week as text (clunky); planning more than one week at a time.
 
 - **Cooking with your appliances.** Holly wants to talk about appliances (air fryer, slow cooker, Instant Pot/pressure cooker, sheet pan, microwave, blender) and how to use them to make meal prep easier and faster. Discuss before building. Possible shapes: appliance tips on meals that suit them, an "I have an air fryer" style filter, or a short guide page.
 - **manemeals.com.** Holly owns manemeals.com (bought to secure the name; not used yet). Possible later uses: a sales/info page, or moving the planner to it. Moving the planner to a new address would separate people's saved plans from the old one, so plan that carefully (or do it after accounts exist).

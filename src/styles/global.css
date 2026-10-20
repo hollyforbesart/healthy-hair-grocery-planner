@@ -2681,6 +2681,7 @@ textarea:focus-visible {
     font-size: 0.9rem;
   }
   .week .week__lead,
+  .week .week__dates,
   .week > h2 {
     display: none;
   }
@@ -2777,4 +2778,62 @@ textarea:focus-visible {
 }
 .week-sheet__more {
   margin: 0.75rem 0 0;
+}
+.plan-reminder__week {
+  margin: 0.75rem 0 0;
+  font-weight: 600;
+}
+.plan-reminder__week a {
+  color: var(--plum);
+}
+.week__dates {
+  font-weight: 700;
+  margin: 0.75rem 0 0;
+}
+.week-day__notes {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0.5rem 0.6rem;
+  background: var(--lavender-soft);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  display: grid;
+  gap: 0.35rem;
+}
+.week-day__notes li {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-start;
+}
+.week-day__notes svg {
+  color: #5b4b9a;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+.week-day__notes:first-child,
+.week-day__title + .week-day__notes {
+  margin: 0 0 0.6rem;
+}
+.week-fill__example {
+  display: block;
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--plum-60);
+}
+.week-fill__check .week-fill__example {
+  margin: 0.1rem 0 0;
+}
+.week-print-notes h3 {
+  font-size: 1.1rem;
+  margin: 1rem 0 0.4rem;
+}
+.week-print-notes ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+}
+@media print {
+  .week-print-notes.print-only {
+    display: block;
+  }
 }

@@ -87,6 +87,9 @@ export function App() {
           </a>
           {(route === 'planner' || route === 'week') && (
             <div className="site-header__actions no-print">
+              <RouteLink to={route === 'week' ? 'planner' : 'week'} navigate={navigate} className="site-header__link">
+                {route === 'week' ? 'Planner' : 'My week'}
+              </RouteLink>
               <a
                 className="site-header__link"
                 href="/"

@@ -4,7 +4,9 @@ import { createInitialState, hydrateState, plannerReducer } from '../state/plann
 import { eventsForAction } from './analyticsActions';
 import {
   DEFAULT_FILL_PREFERENCES,
+  defaultStart,
   emptyWeekPlan,
+  prepNotes,
   fillWeek,
   hydrateWeekPlan,
   mealsOn,
@@ -28,6 +30,12 @@ describe('week dates', () => {
     expect(sundayOf('2026-10-20')).toBe('2026-10-18'); // a Tuesday
     expect(sundayOf('2026-10-18')).toBe('2026-10-18');
     expect(sundayOf('2026-10-24')).toBe('2026-10-18'); // Saturday
+  });
+
+  it('starts a new plan this week, or next week when planning on a Saturday', () => {
+    expect(defaultStart('2026-10-20')).toBe('2026-10-18');
+    expect(defaultStart('2026-10-18')).toBe('2026-10-18');
+    expect(defaultStart('2026-10-24')).toBe('2026-10-25');
   });
 });
 
@@ -110,6 +118,12 @@ describe('tonight reminders', () => {
     expect(tuesday.join(' ')).toContain(slow.name);
     expect(tonightReminders(plan, byId, '2026-10-21')).toEqual([]);
     expect(tonightReminders(plan, byId, '2026-11-10')).toEqual([]); // a different week
+  });
+
+  it('lists every evening’s prep for the day cards and the printout, including the night before the week', () => {
+    const plan: WeekPlan = { start: '2026-10-25', slots: { [slotKey(0, soak.category)]: { kind: 'meal', mealId: soak.id } } };
+    expect(prepNotes(plan, byId)).toEqual([{ evening: -1, text: expect.stringContaining(soak.name) }]);
+    expect(tonightReminders(plan, byId, '2026-10-24')[0]).toContain('Tonight: start'); // Saturday before
   });
 
   it('knows what is on a given day', () => {

@@ -126,7 +126,6 @@ export type PlannerAction =
   | { type: 'setWeekSlot'; start: string; day: number; category: MealCategory; slot: WeekSlot | null }
   | { type: 'fillWeek'; start: string; meals: MealTemplate[]; preferences: FillPreferences }
   | { type: 'repeatWeekSlot'; start: string; category: MealCategory; slot: WeekSlot; days: readonly number[]; reason: 'every-day' | 'weekdays' | 'leftovers' }
-  | { type: 'setWeekStart'; start: string }
   | { type: 'clearWeek' }
   | { type: 'reset' };
 
@@ -316,9 +315,6 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
 
     case 'repeatWeekSlot':
       return { ...state, weekPlan: repeatSlot(state.weekPlan, action.category, action.slot, action.days, action.start, action.reason === 'leftovers') };
-
-    case 'setWeekStart':
-      return { ...state, weekPlan: { ...state.weekPlan, start: action.start } };
 
     case 'clearWeek':
       return { ...state, weekPlan: emptyWeekPlan() };
