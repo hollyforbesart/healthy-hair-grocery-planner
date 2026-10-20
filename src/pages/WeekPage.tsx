@@ -3,6 +3,7 @@ import { Icon } from '../components/Icon';
 import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES } from '../data/categories';
 import { mealPhotoUrl } from '../data/mealPhotos';
 import { track } from '../lib/analytics';
+import { takeSpotToReopen } from '../lib/scheduleTrip';
 import {
   DAY_NAMES,
   MAX_CUSTOM_LENGTH,
@@ -25,7 +26,7 @@ import { usePlanner } from '../state/PlannerContext';
 import { todayIso } from '../state/plannerReducer';
 import type { MealCategory, MealTemplate } from '../types';
 
-const WEEK_CLEAR_CONFIRM = 'Clear everything on this week’s plan? Your meals and grocery list stay as they are.';
+const WEEK_CLEAR_CONFIRM = 'Clear everything on this week’s meal schedule? Your meals and grocery list stay as they are.';
 const lower = (c: MealCategory) => MEAL_CATEGORY_LABELS[c].toLowerCase();
 
 function MealTime({ meal }: { meal: MealTemplate }) {
@@ -356,14 +357,14 @@ function FillSheet({ initial, onFill, onClose }: { initial: FillPreferences; onF
       </fieldset>
       <p className="week-sheet__done">
         <button type="button" className="btn btn--primary" onClick={() => onFill(prefs)}>
-          Fill in my week
+          Fill in my schedule
         </button>
       </p>
     </Sheet>
   );
 }
 
-export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => void; onFindMeals: (category?: MealCategory) => void }) {
+export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => void; onFindMeals: (category?: MealCategory, day?: number) => void }) {
   const { state, dispatch, meals, selectedMeals } = usePlanner();
   const plan = state.weekPlan;
   const today = todayIso();
@@ -396,6 +397,21 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
 
   const filledCount = Object.keys(plan.slots).length;
   const notes = prepNotes(plan, mealsById);
+  // The first empty spot of a meal type, from today on (or from Sunday).
+  const firstEmpty = (category: MealCategory) => {
+    const from = Math.max(0, Math.min(6, daysBetween(start, today)));
+    return [...[0, 1, 2, 3, 4, 5, 6].slice(from), ...[0, 1, 2, 3, 4, 5, 6].slice(0, from)].find((d) => !plan.slots[slotKey(d, category)]);
+  };
+
+  // Back from meal ideas: reopen the spot they were filling, if it's still empty.
+  useEffect(() => {
+    const spot = takeSpotToReopen();
+    if (spot && !plan.slots[slotKey(spot.day, spot.category)]) {
+      lastTrigger.current = `slot-${spot.day}-${spot.category}`;
+      setPicker(spot);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const notesFor = (evening: number) => notes.filter((n) => n.evening === evening);
   const nightName = (evening: number) => (evening < 0 ? 'Saturday night, before the week starts' : `${DAY_NAMES[evening]} night`);
   const yesterdaysDinner = (day: number) => {
@@ -405,7 +421,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
 
   return (
     <section className="week" aria-labelledby="week-title">
-      <h2 id="week-title">My week</h2>
+      <h2 id="week-title">Your meal schedule</h2>
       <p className="week__lead">
         Place your meals on the days you’ll eat them. Tap any spot to pick a meal, leftovers, a quick option like “Eating out,” or type your own.
       </p>
@@ -413,9 +429,9 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
       {stale && filledCount > 0 ? (
         <div className="card week-notice no-print">
           <p>
-            This plan was for the week of {shortDate(start)}.{' '}
+            This schedule was for the week of {shortDate(start)}.{' '}
             <button type="button" className="btn btn--secondary btn--small" onClick={() => dispatch({ type: 'clearWeek' })}>
-              Start this week’s plan
+              Start this week’s schedule
             </button>
           </p>
         </div>
@@ -447,7 +463,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
               setFilling(true);
             }}
           >
-            Fill in my week
+            Fill in my schedule
           </button>
         )}
         {filledCount > 0 && (
@@ -459,7 +475,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
               window.print();
             }}
           >
-            Print my week
+            Print my schedule
           </button>
         )}
       </div>
@@ -474,7 +490,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
                   {n} {lower(category)} {n === 1 ? 'spot' : 'spots'}
                 </strong>
                 {selectedMeals.some((m) => m.category === category) ? '' : ` (no ${lower(category)} ideas picked yet)`} ·{' '}
-                <button type="button" className="link-btn" onClick={() => onFindMeals(category)}>
+                <button type="button" className="link-btn" onClick={() => onFindMeals(category, firstEmpty(category))}>
                   Find {lower(category)} ideas
                 </button>
               </li>
@@ -482,7 +498,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
           </ul>
           <p className="small muted">
             Tap <em>+ Add</em> on any day to choose a meal, leftovers or a quick option like “Eating out,” or type your own. To fill a whole row with
-            what you picked, use <em>Fill in my week</em> and choose “Repeat my picks all week.”
+            what you picked, use <em>Fill in my schedule</em> and choose “Repeat my picks all week.”
           </p>
         </div>
       )}
@@ -574,7 +590,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
       {/* A simple table for the fridge. */}
       <table className="week-print print-only">
         <caption>
-          My week: {shortDate(start)}–{shortDate(addDays(start, 6))}
+          Meal schedule: {shortDate(start)}–{shortDate(addDays(start, 6))}
         </caption>
         <thead>
           <tr>
@@ -621,7 +637,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
         </button>
         {filledCount > 0 && (
           <button type="button" className="link-btn" onClick={() => window.confirm(WEEK_CLEAR_CONFIRM) && dispatch({ type: 'clearWeek' })}>
-            Clear this week’s plan
+            Clear this week’s schedule
           </button>
         )}
       </div>
@@ -646,7 +662,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
           onClose={closeSheet}
           onFindMeals={(category) => {
             setPicker(null);
-            onFindMeals(category);
+            onFindMeals(category, picker.day);
           }}
         />
       )}
@@ -678,7 +694,7 @@ export function TonightBanner({ onOpenWeek }: { onOpenWeek: () => void }) {
       <div>
         <p>{reminders[0]}</p>
         <button type="button" className="link-btn" onClick={onOpenWeek}>
-          See my week →
+          See my meal schedule →
         </button>
       </div>
     </div>

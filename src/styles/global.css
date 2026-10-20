@@ -2837,3 +2837,17 @@ textarea:focus-visible {
     display: block;
   }
 }
+.schedule-trip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  background: var(--lavender-soft);
+  border-color: var(--lavender);
+  margin-bottom: 1rem;
+}
+.schedule-trip p {
+  margin: 0;
+  flex: 1 1 16rem;
+}

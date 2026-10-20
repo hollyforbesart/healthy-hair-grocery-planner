@@ -1,5 +1,5 @@
 /**
- * "My week": placing meals on a Sunday-to-Saturday week. Pure helpers, so the
+ * The meal schedule ("My week" in code): placing meals on a Sunday-to-Saturday week. Pure helpers, so the
  * reducer, the page and the tests share them.
  */
 import { MEAL_CATEGORY_LABELS } from '../data/categories';
@@ -12,7 +12,7 @@ export type WeekSlot =
   | { kind: 'quick'; id: QuickPickId }
   | { kind: 'custom'; text: string };
 
-/** How someone likes to eat, used by "Fill in my week" (remembered from week to week). */
+/** How someone likes to eat, used by "Fill in my schedule" (remembered from week to week). */
 export interface FillPreferences {
   breakfast: 'rotate' | 'once';
   lunch: 'rotate' | 'once';
@@ -162,7 +162,7 @@ function spreadTwice(slots: Record<string, WeekSlot>, meals: MealTemplate[], day
 }
 
 /**
- * "Fill in my week": fills empty spots from the meals they picked, the way
+ * "Fill in my schedule": fills empty spots from the meals they picked, the way
  * they like to eat. Spots already filled are never changed, so it can be
  * pressed again at any time.
  */

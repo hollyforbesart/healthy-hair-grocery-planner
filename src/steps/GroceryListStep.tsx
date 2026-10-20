@@ -296,18 +296,18 @@ export function GroceryListStep() {
       )}
 
       <div className="card week-invite no-print">
-        <h3>Want to map out your week?</h3>
+        <h3>Want to schedule your meals?</h3>
         <p className="small">Place your meals on the days you’ll eat them, so you know what’s for dinner each night.</p>
         <a
           className="btn btn--primary"
-          href="/week"
+          href="/schedule"
           onClick={(e) => {
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
             e.preventDefault();
             goToRoute('week');
           }}
         >
-          Plan my week →
+          Schedule my meals →
         </a>
       </div>
 
@@ -321,7 +321,7 @@ export function GroceryListStep() {
           className="btn btn--secondary"
           onClick={() => window.confirm(NEW_WEEK_CONFIRM) && dispatch({ type: 'startNewWeek' })}
         >
-          Plan a new week
+          Start a new week
         </button>
       </div>
 

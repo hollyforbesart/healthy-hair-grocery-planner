@@ -19,14 +19,14 @@ export function PlanReminder() {
       {selectedMeals.length > 0 && (
         <p className="plan-reminder__week no-print">
           <a
-            href="/week"
+            href="/schedule"
             onClick={(e) => {
               if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
               e.preventDefault();
               goToRoute('week');
             }}
           >
-            Plan my week: put these on days →
+            Schedule my meals: put them on days →
           </a>
         </p>
       )}

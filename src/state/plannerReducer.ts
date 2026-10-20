@@ -53,9 +53,9 @@ export interface PlannerState {
   favorites: string[];
   /** Meals from earlier weeks, newest first (kept for HISTORY_WEEKS weeks). */
   mealHistory: MealHistoryEntry[];
-  /** "My week": meals placed on days. Cleared with a new week. */
+  /** The meal schedule: meals placed on days. Cleared with a new week. */
   weekPlan: WeekPlan;
-  /** How they like "Fill in my week" to work; kept from week to week. */
+  /** How they like "Fill in my schedule" to work; kept from week to week. */
   fillPreferences: FillPreferences;
 }
 

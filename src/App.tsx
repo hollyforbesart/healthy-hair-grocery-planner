@@ -9,6 +9,7 @@ import { AboutPage } from './pages/AboutPage';
 import { PRIVACY_POLICY_URL, TermsPage } from './pages/TermsPage';
 import { HomePage } from './pages/HomePage';
 import { NutrientsPage } from './pages/NutrientsPage';
+import { startScheduleTrip } from './lib/scheduleTrip';
 import { TonightBanner, WeekPage } from './pages/WeekPage';
 import { usePlanner } from './state/PlannerContext';
 import { firstStep, stepsForPath, type StepId } from './state/steps';
@@ -44,7 +45,9 @@ export function App() {
 
   const goTo = (step: StepId) => dispatch({ type: 'goToStep', step });
 
-  const findMeals = (category?: MealCategory) => {
+  /** From the meal schedule: meal ideas (just that meal type), with a way back to the schedule. */
+  const findMeals = (category?: MealCategory, day?: number) => {
+    startScheduleTrip({ day, category, previousCategories: state.preferences.mealCategories });
     if (category) dispatch({ type: 'updatePreferences', patch: { mealCategories: [category] } });
     if (state.path) dispatch({ type: 'goToStep', step: 'meals' });
     else dispatch({ type: 'choosePath', path: 'ideas' });
@@ -88,7 +91,7 @@ export function App() {
           {(route === 'planner' || route === 'week') && (
             <div className="site-header__actions no-print">
               <RouteLink to={route === 'week' ? 'planner' : 'week'} navigate={navigate} className="site-header__link">
-                {route === 'week' ? 'Planner' : 'My week'}
+                {route === 'week' ? 'Planner' : 'Schedule'}
               </RouteLink>
               <a
                 className="site-header__link"
@@ -145,7 +148,7 @@ export function App() {
               Home
             </RouteLink>
             <RouteLink to="week" navigate={navigate}>
-              My week
+              Meal schedule
             </RouteLink>
             <RouteLink to="about" navigate={navigate}>
               About these meals

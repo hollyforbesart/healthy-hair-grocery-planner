@@ -21,7 +21,7 @@ The app already has a place for each one; nothing here should be invented.
 
 ## Ideas for future improvements
 
-- **My week: built** (October 2026, from a client conversation: "I never have a plan, I just go by the day"). Watch the dashboard ("My week" opens, spots filled, Fill in, prints) to see if people use it. Saved for future updates:
+- **Meal schedule (/schedule): built** (October 2026, from a client conversation: "I never have a plan, I just go by the day"). Watch the dashboard (meal schedule opens, spots filled, Fill in, prints) to see if people use it. Saved for future updates:
   - **Add to my calendar:** put the week's meals and prep reminders in the phone's calendar (real reminders without building notifications).
   - **Shopping amounts:** when a meal repeats (e.g. oats ×6), say so on the grocery list so people buy enough.
   - **Recipes** for the meals.

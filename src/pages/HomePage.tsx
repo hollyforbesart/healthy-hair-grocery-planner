@@ -65,13 +65,13 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
             </button>
             {mealCount > 0 && (
               <button type="button" className="btn btn--secondary" onClick={() => navigate('week')}>
-                My week
+                Meal schedule
               </button>
             )}
             <button type="button" className="btn btn--secondary" onClick={planNewWeek}>
-              Plan a new week
+              Start a new week
             </button>
-            <p className="small muted">“Plan a new week” clears this week’s meals and list, and keeps your staples, favorites and preferences.</p>
+            <p className="small muted">“Start a new week” clears this week’s meals, grocery list and meal schedule, and keeps your staples, favorites and preferences.</p>
           </div>
         </section>
       )}
@@ -113,7 +113,7 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
       <section className="card home-tip" aria-labelledby="week-title">
         <h2 id="week-title">Each week</h2>
         <p>
-          Come back and tap <strong>Plan a new week</strong>. Your staples, favorites and preferences are kept, and
+          Come back and tap <strong>Start a new week</strong>. Your staples, favorites and preferences are kept, and
           meals you’ve had recently move down so ideas stay fresh.
         </p>
       </section>

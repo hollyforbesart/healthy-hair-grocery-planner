@@ -6,14 +6,18 @@ export type Route = 'home' | 'planner' | 'week' | 'about' | 'nutrients' | 'terms
 export const ROUTE_PATHS: Record<Route, string> = {
   home: '/',
   planner: '/planner',
-  week: '/week',
+  week: '/schedule',
   about: '/about',
   nutrients: '/nutrients',
   terms: '/terms',
 };
 
+/** Old addresses that still work. */
+const ALIASES: Record<string, Route> = { '/week': 'week' };
+
 const routeFromPath = (path: string): Route => {
   const clean = path.replace(/\/+$/, '') || '/';
+  if (ALIASES[clean]) return ALIASES[clean];
   const match = (Object.keys(ROUTE_PATHS) as Route[]).find((r) => ROUTE_PATHS[r] === clean);
   return match ?? 'home';
 };

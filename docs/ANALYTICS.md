@@ -83,7 +83,7 @@ The responses allow cross-site reads, so a dashboard hosted elsewhere (for examp
 | `list_print` | — |
 | `list_item_added` | no value: what people type stays private |
 | `week_slot_set` | value: meal, custom (never the text), or a quick pick (eating-out, leftovers, pizza-night, takeout, skipping) |
-| `week_filled` | value: how many meals "Fill in my week" placed |
+| `week_filled` | value: how many spots "Fill in my schedule" filled |
 | `week_print` | — |
 | `new_week` | — |
 | `start_over` | — |

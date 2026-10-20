@@ -10,9 +10,9 @@ Version 1 is a static React + TypeScript + Vite app. It has no AI service, no ac
 
 The site has these pages:
 
-- **`/` (home):** what the planner is, the two ways to start, the weekly routine, the nutrient guide, privacy and how to install it on a phone. Everyone sees the two ways to start; returning visitors also get a "Welcome back" bar with **Continue where you left off** and **Plan a new week**. This is the link to send buyers.
+- **`/` (home):** what the planner is, the two ways to start, the weekly routine, the nutrient guide, privacy and how to install it on a phone. Everyone sees the two ways to start; returning visitors also get a "Welcome back" bar with **Continue where you left off** and **Start a new week**. This is the link to send buyers.
 - **`/planner`:** the planner itself. It can be linked directly.
-- **`/week`:** *My week*, an optional page for placing meals on days (see below).
+- **`/schedule`:** the *meal schedule*, an optional page for placing meals on days (see below). The old `/week` address still works.
 - **`/about`:** "Why these meals?" (Holly's note) plus what's included and what's not included yet.
 - **`/terms`:** Terms of Purchase and Use (Holly's wording). The contact address is `SUPPORT_EMAIL` and the "Last updated" date is `TERMS_LAST_UPDATED`, both in `src/pages/TermsPage.tsx`.
 - **`/nutrients`:** *Food for Your Follicles*, the ten-nutrient guide. Its text is in `src/data/nutrients.ts` and its icons are in `public/nutrients/`. Keep the wording in sync with the guide.
@@ -38,21 +38,22 @@ The two path cards on the home page open the planner straight at the first step 
 3. **Review:** the chosen meals (removable), then every ingredient they need, once each and grouped by store section. People tick off what they already have; anything left unticked goes on the list.
 4. **Grocery list** (the finish line): grouped by store section. It shows what to buy, not how much. Items can be added, edited, removed and checked off, and the list can be shared, copied or printed. A short tip explains adding the planner to the phone's home screen. Below the list is an optional feedback card (a rating, "What made this planner helpful?" and "What do you wish this planner could also do?"), sent through Web3Forms (see below).
 
-**My week** (`/week`, optional; linked from the bottom of the grocery list and the footer): a Sunday-to-Saturday week with Breakfast, Lunch, Dinner and Snack for each day, one card per day on phones.
+**Meal schedule** (`/schedule`, optional): a Sunday-to-Saturday week with Breakfast, Lunch, Dinner and Snack for each day, one card per day on phones.
 - Tapping a spot opens a sheet with **Leftovers: <yesterday's dinner>** (lunch and dinner spots), the meals they picked (that meal type first, showing where each is already placed), quick options (**Eating out, Leftovers, Pizza night, Takeout, Not home / skipping**, in `QUICK_PICKS` in `src/lib/weekPlan.ts`) and **Something else** to type their own (up to 60 characters). These are only for the plan; they don't touch the grocery list.
 - After picking a meal, **Also add it to**: *Every day this week* / *Weekdays* (empty spots only), or for a dinner, *Tomorrow's lunch* / *Tomorrow's dinner* as leftovers.
-- **Fill in my week** first asks "How do you like to eat?" (answers remembered week to week, `FillPreferences`): breakfasts, lunches and snacks *repeat my picks all week* (taking turns, least-used first) or *each once*; dinners *each once* or *each lasts two nights*; *dinner leftovers become the next day's lunch*; *a night off cooking (Friday takeout)*; *leave the weekend open*. "Each once" spreads meals out, with "More involved" ones on the weekend. Spots already filled are never changed, and the button stays while any spot is empty.
+- **Fill in my schedule** first asks "How do you like to eat?" (answers remembered week to week, `FillPreferences`): breakfasts, lunches and snacks *repeat my picks all week* (taking turns, least-used first) or *each once*; dinners *each once* or *each lasts two nights*; *dinner leftovers become the next day's lunch*; *a night off cooking (Friday takeout)*; *leave the weekend open*. "Each once" spreads meals out, with "More involved" ones on the weekend. Spots already filled are never changed, and the button stays while any spot is empty.
 - A **Still open** note lists empty spots per meal type, says when no ideas of that type were picked, and links to find more.
-- **Print my week** prints a simple table for the fridge, with the prep reminders below it.
+- **Print my schedule** prints a simple table for the fridge, with the prep reminders below it.
 - **Prep reminders** for the evening before: a make-ahead meal ("Start Strawberry Overnight Oats for tomorrow's breakfast (it soaks or sets overnight)") or a "More involved" meal ("Prep what you can for tomorrow's dinner… (it takes a while)"). They show on each day's card ("Tonight:"), on the printout ("Prep reminders"), and as a "Tonight" note on the home page and planner. In the app only; no phone notifications.
 - **One week at a time:** a new plan is for this week (Sunday to Saturday), or next week when it's started on a Saturday.
-- **Ways in:** "My week" in the top bar on planner pages, "Plan my week: put these on days" in the "This week" box at the top of the grocery list, a card at the bottom of the list, "My week" in the home page's Welcome back box, and the footer.
-- Saved in the browser with the rest of the plan, and cleared by **Plan a new week** and **Start over**.
+- **Ways in:** "Schedule" in the top bar on planner pages, "Schedule my meals: put them on days" in the "This week" box at the top of the grocery list, a card at the bottom of the list, "Meal schedule" in the home page's Welcome back box, and the footer.
+- **Round trip:** "Find dinner ideas" (from a spot or the Still open note) opens meal ideas filtered to that type, with a "Picking a dinner for your meal schedule" note and **Back to my schedule →** in place of Review. Going back restores the meal-type filter and reopens the spot (`src/lib/scheduleTrip.ts`).
+- Saved in the browser with the rest of the plan, and cleared by **Start a new week** and **Start over**.
 
-**Plan a new week** (on the home page, or at the bottom of the grocery list):
+**Start a new week** (on the home page, or at the bottom of the grocery list):
 - **Kept:** meal types, foods to leave out, own ingredients, staples and favorites.
 - **Remembered:** this week's meals go into the history used for rotation.
-- **Cleared:** meals, extras, the grocery list and My week.
+- **Cleared:** meals, extras, the grocery list and the meal schedule.
 - **Where it opens:** the kitchen, with a "check your kitchen" note, or meal ideas on the second path.
 - **Staples:** they start as already in the kitchen, so the user only removes the ones that ran out. Everything else is cleared to be checked again, since last week's food may have been used up.
 
