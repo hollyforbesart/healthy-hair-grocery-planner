@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { track } from '../lib/analytics';
 import { PRIVACY_POLICY_URL, SUPPORT_EMAIL, TermsPage } from '../pages/TermsPage';
 
-/** Where "Get Mane Meals" goes: the Kit product page. */
-export const PURCHASE_URL = 'https://roots.thehairlossnutritionist.com/products/mane-meals-planner';
+/** Where "Get Mane Meals" goes: the sales page on Holly's website (its buy button opens Kit's checkout). */
+export const PURCHASE_URL = 'https://thehairlossnutritionist.com/meal-and-grocery-planner/';
 
 function Header() {
   return (
