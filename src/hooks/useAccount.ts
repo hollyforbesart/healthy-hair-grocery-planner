@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { clearSyncMeta, flushPlan } from '../lib/planSync';
-import { removeKey } from '../lib/storage';
+import { SIGN_OUT_UNSAVED_CONFIRM } from '../lib/confirmations';
+import { readJson, removeKey } from '../lib/storage';
+import { hasPlannerProgress, hydrateState } from '../state/plannerReducer';
 import { STORAGE_KEY } from '../state/PlannerContext';
 
 /**
@@ -25,15 +27,22 @@ export function useAccount(): { email: string | null; signOut: () => Promise<voi
     };
   }, []);
 
+  /**
+   * Saves the latest changes to the account, signs out, then removes the plan
+   * from this device (it's in the account, and the next person to use this
+   * device shouldn't see it). If the latest changes couldn't be saved, they
+   * choose: sign out and lose them, or stay signed in.
+   */
   const signOut = async () => {
-    // Save the latest changes to the account, then remove the plan from this device
-    // (it's in the account, and the next person to use this device shouldn't see it).
-    // If it couldn't be saved (e.g. offline), keep it here rather than lose it.
-    if (await flushPlan()) {
-      removeKey(STORAGE_KEY);
-      clearSyncMeta();
+    const saved = await flushPlan();
+    if (!saved && hasPlannerProgress(hydrateState(readJson(STORAGE_KEY))) && !window.confirm(SIGN_OUT_UNSAVED_CONFIRM)) return;
+    const res = await fetch('/api/auth/signout', { method: 'POST' }).catch(() => null);
+    if (!res?.ok) {
+      window.alert('We couldn’t sign you out. Check your internet connection and try again.');
+      return;
     }
-    await fetch('/api/auth/signout', { method: 'POST' }).catch(() => {});
+    removeKey(STORAGE_KEY);
+    clearSyncMeta();
     window.location.replace('/access');
   };
 

@@ -100,7 +100,8 @@ export function hasPlannerProgress(state: PlannerState): boolean {
     Object.keys(state.ingredientStatuses).length > 0 ||
     state.selectedMealIds.length > 0 ||
     state.manualItems.length > 0 ||
-    state.staples.length > 0
+    state.staples.length > 0 ||
+    Object.keys(state.weekPlan.slots).length > 0
   );
 }
 

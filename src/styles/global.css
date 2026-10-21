@@ -2896,3 +2896,15 @@ textarea:focus-visible {
   text-underline-offset: 2px;
   margin-top: 0.2rem;
 }
+.stats-delete {
+  margin-top: 2rem;
+}
+.stats-delete__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.stats-delete__form input {
+  flex: 1 1 14rem;
+  min-width: 0;
+}

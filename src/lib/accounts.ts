@@ -178,6 +178,23 @@ export async function savePlan(db: D1Database, userId: number, data: string, mod
   return { saved: true as const };
 }
 
+/**
+ * Deletes everything Mane Meals keeps about an email, on the live site and
+ * test previews: the account, its saved plan, the days it was used, and any
+ * pending sign-in code. Returns how many accounts were removed.
+ */
+export async function deleteAccount(db: D1Database, email: string): Promise<number> {
+  await ensureAccountTables(db);
+  const ids = (await db.prepare('SELECT id FROM users WHERE email = ?').bind(email).all<{ id: number }>()).results.map((r) => r.id);
+  for (const id of ids) {
+    await db.prepare('DELETE FROM plans WHERE user_id = ?').bind(id).run();
+    await db.prepare('DELETE FROM user_days WHERE user_id = ?').bind(id).run();
+  }
+  await db.prepare('DELETE FROM sign_in_codes WHERE email = ?').bind(email).run();
+  await db.prepare('DELETE FROM users WHERE email = ?').bind(email).run();
+  return ids.length;
+}
+
 /** Account numbers for the dashboard: never emails. */
 export async function accountStats(db: D1Database, env: string, from: string, to: string) {
   await ensureAccountTables(db);
