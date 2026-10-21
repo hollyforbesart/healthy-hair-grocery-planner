@@ -147,8 +147,8 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
       <section className="home-section" aria-labelledby="privacy-title">
         <h2 id="privacy-title">Your plan stays on your device</h2>
         <p>
-          Your plan is saved in this browser on this device, so it won’t appear on your other devices, and clearing your
-          browser data erases it. Use <strong>Share list</strong> to send your list to your phone or someone you shop
+          You can sign in on any device, but your plan itself is saved in this browser on this device, so it won’t appear
+          on your other devices, and clearing your browser data erases it. Use <strong>Share list</strong> to send your list to your phone or someone you shop
           with.
         </p>
       </section>
@@ -163,7 +163,7 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
             <Icon name="offline" size={22} /> Works with no signal
           </li>
           <li>
-            <Icon name="check" size={22} /> No account needed
+            <Icon name="check" size={22} /> No app store needed
           </li>
         </ul>
         {installed ? (

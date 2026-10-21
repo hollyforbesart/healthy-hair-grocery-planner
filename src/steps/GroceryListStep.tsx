@@ -288,7 +288,7 @@ export function GroceryListStep() {
             </li>
             <li>
               <strong>Coming back later:</strong> your plan is kept automatically in this browser on this device. It isn’t
-              saved online, so it won’t appear on other devices, and clearing your browser data will erase it. Share or
+              saved to your account, so it won’t appear on other devices you sign in on, and clearing your browser data will erase it. Share or
               save a copy if you want to keep it.
             </li>
           </ul>
