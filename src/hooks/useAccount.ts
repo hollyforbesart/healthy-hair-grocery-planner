@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { clearSyncMeta, flushPlan } from '../lib/planSync';
+import { removeKey } from '../lib/storage';
+import { STORAGE_KEY } from '../state/PlannerContext';
 
 /**
  * The signed-in account's email, from /api/auth/me (null before sign-in is
@@ -23,6 +26,13 @@ export function useAccount(): { email: string | null; signOut: () => Promise<voi
   }, []);
 
   const signOut = async () => {
+    // Save the latest changes to the account, then remove the plan from this device
+    // (it's in the account, and the next person to use this device shouldn't see it).
+    // If it couldn't be saved (e.g. offline), keep it here rather than lose it.
+    if (await flushPlan()) {
+      removeKey(STORAGE_KEY);
+      clearSyncMeta();
+    }
     await fetch('/api/auth/signout', { method: 'POST' }).catch(() => {});
     window.location.replace('/access');
   };

@@ -70,7 +70,7 @@ export function eventsForAction(prev: PlannerState, next: PlannerState, action: 
       events.push({ name: 'start_over' });
       break;
   }
-  if (next.path && next.currentStep !== prev.currentStep && action.type !== 'reset') {
+  if (next.path && next.currentStep !== prev.currentStep && action.type !== 'reset' && action.type !== 'replaceState') {
     events.push({ name: 'step_view', value: next.currentStep });
   }
   return events;

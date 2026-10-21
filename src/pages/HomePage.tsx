@@ -145,11 +145,11 @@ export function HomePage({ onOpenPlanner, navigate }: HomePageProps) {
       </section>
 
       <section className="home-section" aria-labelledby="privacy-title">
-        <h2 id="privacy-title">Your plan stays on your device</h2>
+        <h2 id="privacy-title">Your plan follows you</h2>
         <p>
-          You can sign in on any device, but your plan itself is saved in this browser on this device, so it won’t appear
-          on your other devices, and clearing your browser data erases it. Use <strong>Share list</strong> to send your list to your phone or someone you shop
-          with.
+          Your plan, grocery list and meal schedule are saved to your account, so they’re there on any phone, tablet or
+          computer you sign in on. A copy also stays on each device, so the planner works without a signal. Use{' '}
+          <strong>Share list</strong> to send your list to someone you shop with.
         </p>
       </section>
 

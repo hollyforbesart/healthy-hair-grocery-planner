@@ -170,7 +170,7 @@ export function App() {
               <button type="button" className="link-btn" onClick={startOver}>
                 Start over
               </button>{' '}
-              <span className="muted">— clears your kitchen, meals, list, staples and favorites on this device.</span>
+              <span className="muted">— clears your kitchen, meals, list, schedule, staples and favorites, on every device you sign in on.</span>
             </p>
           )}
           {account.email && (

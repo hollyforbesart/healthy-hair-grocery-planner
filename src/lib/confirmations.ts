@@ -4,4 +4,4 @@ export const NEW_WEEK_CONFIRM =
   'Your staples, favorites and preferences are kept.';
 
 export const START_OVER_CONFIRM =
-  'Start over?\n\nThis clears everything on this device: your answers, staples, ingredients, meals and grocery list.';
+  'Start over?\n\nThis clears your whole plan, on every device you sign in on: your answers, staples, ingredients, meals, grocery list and meal schedule.';
