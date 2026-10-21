@@ -25,6 +25,8 @@ After that, the account is what counts: changing the access code doesn't sign an
 - Sign-in emails are sent by Resend from `Mane Meals <signin@mail.thehairlossnutritionist.com>`, with replies going to hello@thehairlossnutritionist.com.
 - Safety: codes expire after 15 minutes, 5 wrong tries cancel a code, 5 codes per email per hour, a pause after a wrong access code, and requests from other websites are refused. Codes are stored only as a keyed hash; access codes only as a short fingerprint.
 
+**Signing out** (footer, on planner pages) saves the latest changes to the account, signs out, then removes the plan from that device. If the latest changes can't be saved (e.g. offline), they're asked whether to sign out anyway and lose them, or stay signed in. Signing out needs a connection; offline, it says so and nothing changes. A plan stays in a browser where someone never signs out (e.g. the session simply expires), until another account signs in there and replaces it.
+
 **The cookie.** `mm_session` holds an account number, a version and a signature. It can't be read by scripts on the page and isn't used for advertising. It's a "strictly necessary" cookie, so it doesn't need a cookie banner.
 
 ## Settings in Cloudflare
@@ -50,6 +52,7 @@ Sign-in switches on once `SESSION_SECRET`, the `DB` database binding and at leas
 
 - **Give someone access** (a mentor, a friend, a buyer whose purchase went wrong): add their email to `GUEST_EMAILS` and redeploy. Once they've signed in, their account stays even if you take them off the list; to remove their access, switch off the account (below).
 - **The code is being shared:** change `ACCESS_CODES` and the Kit Go-to URL to a new code. Existing accounts keep working; only new sign-ups need the new code. Compare the number of accounts with your Kit sales (on `/api/stats`, under `accounts`) to spot sharing.
+- **Delete someone's account** (a deletion request): open **/stats**, scroll to **Delete someone's account**, enter their email and confirm. It removes their account, saved plan, days used and any pending sign-in code, on the live site and test links (`POST /api/admin/delete-account`, protected by `STATS_KEY`). It doesn't touch Kit (purchase record) or Resend (sign-in email logs); delete those in each service if asked. The anonymous usage numbers aren't linked to anyone, so there's nothing to remove there. A copy of the plan can stay in their own browser until they sign out or clear it.
 - **Switch off one account:** in Cloudflare, open the D1 database → Console, and run
   `UPDATE users SET disabled = 1 WHERE email = 'their@email.com';`
   (`disabled = 0` turns it back on.)

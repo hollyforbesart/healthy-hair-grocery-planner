@@ -69,3 +69,35 @@ describe('/api/plan', () => {
     expect((await put({ plan: { big: 'x'.repeat(250_000) }, modifiedAt: 1 })).status).toBe(413);
   });
 });
+
+describe('deleting an account', () => {
+  it('removes the account, saved plan, days used and sign-in codes, on live and preview, with the dashboard key only', async () => {
+    const { onRequestPost: del } = await import('../../functions/api/admin/delete-account');
+    const { recordActiveDay, savePendingSignIn, savePlan } = await import('./accounts');
+    const db = memoryD1();
+    const env: Env = { DB: db, STATS_KEY: 'dashboard-key-123' };
+    await ensureAccountTables(db);
+    const live = await createUser(db, 'live', 'gone@example.com', 'code', 'abc');
+    const preview = await createUser(db, 'preview', 'gone@example.com', 'guest', null);
+    const keep = await createUser(db, 'live', 'stay@example.com', 'guest', null);
+    for (const u of [live, preview, keep]) {
+      await savePlan(db, u.id, '{"selectedMealIds":["a"]}', 1);
+      await recordActiveDay(db, u.id);
+    }
+    await savePendingSignIn(db, 'live', 'gone@example.com', 'hash', null);
+
+    const call = (email: string, key = 'dashboard-key-123') =>
+      del({ env, request: new Request('https://x/api/admin/delete-account', { method: 'POST', headers: { Authorization: `Bearer ${key}` }, body: JSON.stringify({ email }) }) });
+
+    expect((await call('gone@example.com', 'wrong')).status).toBe(401);
+    expect(await (await call(' Gone@Example.com ')).json()).toEqual({ email: 'gone@example.com', deleted: 2 });
+    const count = (sql: string) => (db.sql.prepare(sql).get() as { n: number }).n;
+    expect(count("SELECT COUNT(*) AS n FROM users WHERE email = 'gone@example.com'")).toBe(0);
+    expect(count(`SELECT COUNT(*) AS n FROM plans WHERE user_id IN (${live.id}, ${preview.id})`)).toBe(0);
+    expect(count(`SELECT COUNT(*) AS n FROM user_days WHERE user_id IN (${live.id}, ${preview.id})`)).toBe(0);
+    expect(count("SELECT COUNT(*) AS n FROM sign_in_codes WHERE email = 'gone@example.com'")).toBe(0);
+    expect(count(`SELECT COUNT(*) AS n FROM plans WHERE user_id = ${keep.id}`)).toBe(1); // someone else is untouched
+    expect(await (await call('gone@example.com')).json()).toEqual({ email: 'gone@example.com', deleted: 0 });
+    expect((await call('not an email')).status).toBe(400);
+  });
+});

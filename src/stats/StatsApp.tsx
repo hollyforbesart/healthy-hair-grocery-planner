@@ -251,6 +251,60 @@ const TOP_LISTS: { event: string; title: string }[] = [
   { event: 'week_slot_set', title: 'What goes on the meal schedule' },
 ];
 
+/** For deletion requests: removes someone's account, saved plan and days used. */
+function DeleteAccount({ statsKey }: { statsKey: string }) {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<{ kind: 'idle' | 'busy' } | { kind: 'done' | 'error'; text: string }>({ kind: 'idle' });
+  const run = async () => {
+    const clean = email.trim().toLowerCase();
+    if (!clean) return;
+    if (!window.confirm(`Delete the Mane Meals account for ${clean}?\n\nThis removes their account, saved plan and usage days for good. It can’t be undone.`)) return;
+    setStatus({ kind: 'busy' });
+    try {
+      const res = await fetch('/api/admin/delete-account', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${statsKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: clean }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { deleted?: number; error?: string };
+      if (!res.ok) setStatus({ kind: 'error', text: data.error ?? 'That didn’t work. Please try again.' });
+      else if (data.deleted) {
+        setStatus({ kind: 'done', text: `Deleted the account and saved plan for ${clean}.` });
+        setEmail('');
+      } else setStatus({ kind: 'done', text: `There’s no Mane Meals account for ${clean}. Nothing to delete.` });
+    } catch {
+      setStatus({ kind: 'error', text: 'You seem to be offline. Try again when you’re connected.' });
+    }
+  };
+  return (
+    <section className="card stats-card stats-delete">
+      <h3>Delete someone’s account</h3>
+      <p className="small muted">
+        For deletion requests. Removes their Mane Meals account, saved plan, days used and any pending sign-in code (on the live site and test
+        links). It doesn’t touch Kit, Resend or the anonymous usage numbers. A copy may stay in their own browser until they sign out.
+      </p>
+      <form
+        className="stats-delete__form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          void run();
+        }}
+      >
+        <label className="visually-hidden" htmlFor="delete-email">
+          Email address to delete
+        </label>
+        <input id="delete-email" type="email" placeholder="their@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <button type="submit" className="btn btn--secondary btn--small" disabled={status.kind === 'busy' || !email.trim()}>
+          {status.kind === 'busy' ? 'Deleting…' : 'Delete account'}
+        </button>
+      </form>
+      <p className={`small ${status.kind === 'error' ? 'error' : ''}`} role="status">
+        {status.kind === 'done' || status.kind === 'error' ? status.text : ''}
+      </p>
+    </section>
+  );
+}
+
 const SOURCE_LABELS: Record<string, string> = { code: 'Bought (access code)', guest: 'Guest list', kit: 'Kit buyer tag' };
 
 function Dashboard({ data }: { data: Data }) {
@@ -441,6 +495,7 @@ export function StatsApp() {
                 </p>
               )}
               {data && <Dashboard data={data} />}
+              {data && <DeleteAccount statsKey={key} />}
               {data && (
                 <p className="small muted stats-footnote">
                   Updated {new Date(data.generatedAt).toLocaleString()}. Days are in UTC. Activity counts come from anonymous usage

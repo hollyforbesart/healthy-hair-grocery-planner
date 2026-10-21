@@ -24,6 +24,8 @@ Replace the first paragraph with:
 
 > The Mane Meals planner saves your plan, including foods you have on hand, staples, favorite meals, foods you choose to leave out, selected meals, grocery lists, your meal schedule (including anything you type into it), and meal history, to your Mane Meals account, so it is available on any device where you sign in. This information is stored with our hosting provider, Cloudflare. A copy is also kept in your web browser's local storage on each device you use, so the planner works without an internet connection; signing out removes it from that device.
 >
+> To delete your Mane Meals account and saved plan, contact us at [hello@thehairlossnutritionist.com]. We'll delete your account, saved plan and the record of days you used the planner.
+>
 > We use your saved plan only to provide the planner to you. We do not use it for advertising and do not look at individual plans except when you ask us for help with your account.
 >
 > If you choose to submit feedback through the planner, we collect your rating and the answers you type. Feedback is sent to us by email. Please do not include sensitive medical information in feedback.
