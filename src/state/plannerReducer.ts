@@ -127,6 +127,8 @@ export type PlannerAction =
   | { type: 'fillWeek'; start: string; meals: MealTemplate[]; preferences: FillPreferences }
   | { type: 'repeatWeekSlot'; start: string; category: MealCategory; slot: WeekSlot; days: readonly number[]; reason: 'every-day' | 'weekdays' | 'leftovers' }
   | { type: 'clearWeek' }
+  /** The plan saved to their account (from another device) replaces this one. */
+  | { type: 'replaceState'; state: PlannerState }
   | { type: 'reset' };
 
 function withoutKey<T>(record: Record<string, T>, key: string): Record<string, T> {
@@ -315,6 +317,9 @@ export function plannerReducer(state: PlannerState, action: PlannerAction): Plan
 
     case 'repeatWeekSlot':
       return { ...state, weekPlan: repeatSlot(state.weekPlan, action.category, action.slot, action.days, action.start, action.reason === 'leftovers') };
+
+    case 'replaceState':
+      return action.state;
 
     case 'clearWeek':
       return { ...state, weekPlan: emptyWeekPlan() };

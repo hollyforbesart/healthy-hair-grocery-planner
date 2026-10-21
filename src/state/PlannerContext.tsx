@@ -4,6 +4,7 @@ import { MEALS } from '../data/meals';
 import { track } from '../lib/analytics';
 import { eventsForAction } from '../lib/analyticsActions';
 import { createLookup, type IngredientLookup } from '../lib/ingredients';
+import { usePlanSync } from '../hooks/usePlanSync';
 import { readJson, writeJson } from '../lib/storage';
 import type { Ingredient, MealTemplate } from '../types';
 import { hydrateState, plannerReducer, type PlannerAction, type PlannerState } from './plannerReducer';
@@ -39,6 +40,12 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     writeJson(STORAGE_KEY, state);
   }, [state]);
+
+  // Saved to their account too, so the plan follows them between devices.
+  usePlanSync(state, (next) => {
+    latest.current = next;
+    rawDispatch({ type: 'replaceState', state: next });
+  });
 
   const value = useMemo<PlannerContextValue>(() => {
     const allIngredients = [...INGREDIENTS, ...state.customIngredients];

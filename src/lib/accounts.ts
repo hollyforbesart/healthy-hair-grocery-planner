@@ -38,6 +38,12 @@ export const ACCOUNT_TABLES = [
     new_code_id TEXT,
     PRIMARY KEY (env, email)
   )`,
+  `CREATE TABLE IF NOT EXISTS plans (
+    user_id INTEGER PRIMARY KEY,
+    data TEXT NOT NULL,
+    modified_at INTEGER NOT NULL,
+    saved_at INTEGER NOT NULL
+  )`,
 ];
 
 const ready = new WeakSet<D1Database>();
@@ -149,6 +155,28 @@ export const countFailedAttempt = (db: D1Database, env: string, email: string) =
 /** A used code can't be used again (the hourly send count is kept). */
 export const usePendingSignIn = (db: D1Database, env: string, email: string) =>
   db.prepare('UPDATE sign_in_codes SET code_hash = ?, expires_at = 0 WHERE env = ? AND email = ?').bind('', env, email).run();
+
+export interface SavedPlan {
+  data: string;
+  modified_at: number;
+}
+
+export const findPlan = (db: D1Database, userId: number) =>
+  db.prepare('SELECT data, modified_at FROM plans WHERE user_id = ?').bind(userId).first<SavedPlan>();
+
+/**
+ * Saves a plan unless the account already has one changed more recently
+ * (another device edited it later), in which case the newer one is returned.
+ */
+export async function savePlan(db: D1Database, userId: number, data: string, modifiedAt: number, now = Date.now()) {
+  const existing = await findPlan(db, userId);
+  if (existing && existing.modified_at > modifiedAt) return { saved: false as const, newer: existing };
+  await db
+    .prepare('INSERT OR REPLACE INTO plans (user_id, data, modified_at, saved_at) VALUES (?, ?, ?, ?)')
+    .bind(userId, data, modifiedAt, now)
+    .run();
+  return { saved: true as const };
+}
 
 /** Account numbers for the dashboard: never emails. */
 export async function accountStats(db: D1Database, env: string, from: string, to: string) {

@@ -1,6 +1,7 @@
-import { ensureAccountTables, findUserById, recordActiveDay } from '../../../src/lib/accounts';
-import { SESSION_COOKIE, json, readCookie, readSessionToken, signInEnabled } from '../../../src/lib/access';
+import { recordActiveDay } from '../../../src/lib/accounts';
+import { json, signInEnabled } from '../../../src/lib/access';
 import type { PagesContext } from '../../../src/lib/cloudflareTypes';
+import { currentUser } from '../../../src/lib/session';
 
 /**
  * GET /api/auth/me — who's signed in. The planner calls it when it opens,
@@ -8,11 +9,8 @@ import type { PagesContext } from '../../../src/lib/cloudflareTypes';
  */
 export async function onRequestGet({ request, env }: PagesContext): Promise<Response> {
   if (!signInEnabled(env)) return json({ email: null, signInEnabled: false });
-  const session = await readSessionToken(readCookie(request.headers.get('Cookie'), SESSION_COOKIE), env.SESSION_SECRET!);
-  if (!session) return json({ email: null, signInEnabled: true }, 401);
-  await ensureAccountTables(env.DB!);
-  const user = await findUserById(env.DB!, session.userId);
-  if (!user || user.disabled || user.session_version !== session.version) return json({ email: null, signInEnabled: true }, 401);
+  const user = await currentUser(request, env);
+  if (!user) return json({ email: null, signInEnabled: true }, 401);
   await recordActiveDay(env.DB!, user.id);
   return json({ email: user.email, signInEnabled: true });
 }
