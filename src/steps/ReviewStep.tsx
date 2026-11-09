@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { MealNameButton, MealSheet } from '../components/MealSheet';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
 import { MEAL_CATEGORY_LABELS } from '../data/categories';
@@ -15,6 +16,8 @@ import { usePlanner } from '../state/PlannerContext';
 export function ReviewStep() {
   const { state, dispatch, lookup, selectedMeals } = usePlanner();
   const { goBack, goNext, go } = useStepNav();
+  const [openMealId, setOpenMealId] = useState<string | null>(null);
+  const closeMeal = useCallback(() => setOpenMealId(null), []);
 
   const groups = useMemo(
     () =>
@@ -55,7 +58,9 @@ export function ReviewStep() {
               return (
                 <li key={meal.id}>
                   <div>
-                    <span className="review-meals__name">{meal.name}</span>
+                    <span className="review-meals__name">
+                      <MealNameButton name={meal.name} onOpen={() => setOpenMealId(meal.id)} />
+                    </span>
                     <span className="small muted">
                       {MEAL_CATEGORY_LABELS[meal.category]}
                       {extras.length > 0 && ` · plus ${extras.map((id) => ingredientName(lookup, id).toLowerCase()).join(', ')}`}
@@ -116,6 +121,8 @@ export function ReviewStep() {
           ))}
         </section>
       )}
+
+      {openMealId && <MealSheet mealId={openMealId} backLabel="Back to your plan" onClose={closeMeal} />}
 
       <StepFooter
         onBack={goBack}
