@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Icon } from '../components/Icon';
+import { Sheet } from '../components/Sheet';
 import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES } from '../data/categories';
 import { mealPhotoUrl } from '../data/mealPhotos';
 import { track } from '../lib/analytics';
@@ -46,38 +47,6 @@ function MealTime({ meal }: { meal: MealTemplate }) {
         </span>
       )}
     </>
-  );
-}
-
-/** A panel that slides up from the bottom on phones (centered on bigger screens). */
-function Sheet({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  useEffect(() => {
-    headingRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    document.addEventListener('keydown', onKey);
-    const overflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = overflow;
-    };
-  }, [onClose]);
-
-  return (
-    <div className="week-sheet-backdrop" onClick={onClose}>
-      <div className="week-sheet" role="dialog" aria-modal="true" aria-labelledby="week-sheet-title" onClick={(e) => e.stopPropagation()}>
-        <div className="week-sheet__head">
-          <h3 id="week-sheet-title" tabIndex={-1} ref={headingRef}>
-            {title}
-          </h3>
-          <button type="button" className="week-sheet__close" onClick={onClose} aria-label="Close">
-            ×
-          </button>
-        </div>
-        <div className="week-sheet__body">{children}</div>
-      </div>
-    </div>
   );
 }
 
