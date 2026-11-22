@@ -154,3 +154,7 @@ These include hard-boiling the eggs (~20 min), so they're Moderate. Boiling eggs
 | 100 | Turkey + Cheese Roll-Ups with Grapes | Snack | Quick |
 
 ☾ = make ahead.
+
+## The Iron Refill meals (preview)
+
+Set from each recipe's stated time with the rules above. Quick: all 8 breakfasts, all 7 snack combos, and Sesame Ginger Beef + Lentil Tacos (15 min). Moderate: the 20–25 minute meals, plus the Sesame Tuna + Lentil Poke Bowl (10 minutes with cooked quinoa and lentils; cooking the quinoa makes it about 25). More involved: the three 30-minute meals (Beef + Bean Chili, Sheet-Pan Sesame Salmon, Beef + Lentil Burgers), on the line, so the longer category.

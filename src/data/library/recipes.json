@@ -1,0 +1,2872 @@
+{
+  "spiced-pinto-beans-scrambled-eggs-on-toast": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "10 min",
+    "packable": null,
+    "labels": [
+      "Quick"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 tsp extra virgin olive oil, divided (use a 1/2 tsp measure for each half)",
+              "1 cup canned pinto beans, rinsed and drained (or home-cooked)",
+              "1/4 tsp garlic powder",
+              "1/4 tsp ground coriander",
+              "1/2 red bell pepper, diced",
+              "1/2 cup baby spinach",
+              "2 eggs, whisked",
+              "1 slice whole grain bread",
+              "Sea salt and black pepper, to taste",
+              "Optional: hot sauce, fresh cilantro"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** if using canned beans, pour them into a sieve and rinse under cold water. Dice the red pepper into small squares (about the size of a pea). Crack the eggs into a small bowl and whisk with a fork until the yolks and whites are fully mixed."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Set a nonstick skillet (about 10 inches) over medium heat. Add 1/2 tsp of the oil and let it warm for 30 seconds.",
+              "Add the beans, garlic powder and coriander. Cook for 3 minutes, stirring every 30 seconds or so, until some beans look a little crisp at the edges.",
+              "Add the red pepper and cook for 2 more minutes, stirring, until it is just starting to soften. Sprinkle with a pinch of salt and pepper. Spoon the beans and pepper onto your plate.",
+              "Put the pan back on medium-low heat with the rest of the oil. Add the spinach and stir for about 30 seconds, until it wilts (shrinks and turns dark green).",
+              "Pour in the eggs. Wait 10 seconds, then gently push them around the pan with a spatula. Keep stirring slowly for 1–2 minutes, until there is no runny liquid left. Take the pan off the heat. Season with salt and pepper.",
+              "Toast the bread. Put it on the plate with the beans and eggs."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: the red pepper supplies the vitamin C (81 mg) that helps absorb the plant iron in the beans. Cooking it briefly keeps more vitamin C."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Use canned pinto beans; buy pre-diced peppers; cook the spiced beans ahead for 3 mornings."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**More iron:** beans cooked from dry have more iron than canned (and less sodium) — see *How to Cook Dried Beans*.",
+              "White (cannellini) beans instead of pinto — lighter-colored beans have fewer compounds that block iron absorption.",
+              "Gluten-free bread.",
+              "No pepper? Use 1/2 cup fresh salsa on top, or eat an orange, a kiwi or a cup of strawberries with the meal."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Cook a triple batch of the spiced beans (step 1) and keep in the fridge for up to 3 days (season the beans when you cook them). In the morning, reheat a portion while the eggs cook, and add the pepper fresh — a 5-minute breakfast."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 485,
+      "protein_g": 29,
+      "carbs_g": 54,
+      "fat_g": 18,
+      "fiber_g": 12,
+      "iron_mg": 5.3,
+      "vitamin_c_mg": 67,
+      "b12_mcg": 1.0,
+      "sodium_mg": 620
+    }
+  },
+  "chickpea-tofu-scramble-wrap": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "10 min",
+    "packable": null,
+    "labels": [
+      "Quick",
+      "Batch"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 tsp extra virgin olive oil",
+              "1/4 cup red onion, minced",
+              "1/2 red bell pepper, diced",
+              "1/4 cup cherry tomatoes, chopped",
+              "5 oz extra-firm tofu, patted dry and crumbled",
+              "3/4 cup cooked chickpeas (rinsed and drained if canned)",
+              "1/2 tsp taco seasoning",
+              "1/4 tsp ground turmeric",
+              "Salt and black pepper, to taste",
+              "1 tbsp nutritional yeast (we used Bragg)",
+              "1/2 lime, juiced",
+              "1 small (6-inch) whole wheat tortilla"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** pat the tofu dry with a clean kitchen towel or paper towel, then crumble it with your fingers into small pieces. Rinse the chickpeas in a sieve. Finely chop the onion. Dice the pepper into small squares. Cut the cherry tomatoes into quarters."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Set a nonstick skillet over medium heat and add the oil. Let it warm for 30 seconds.",
+              "Add the onion and cook for 2 minutes, stirring, until it softens and looks slightly see-through.",
+              "Add the pepper and tomatoes. Cook for 1–2 minutes, stirring.",
+              "Add the tofu, chickpeas, taco seasoning and turmeric. Stir well so the tofu turns yellow all over. Cook for 3–4 minutes, stirring now and then, until everything is hot. Season with salt and pepper.",
+              "Take the pan off the heat. Sprinkle in the nutritional yeast and squeeze in the lime juice. Stir.",
+              "Warm the tortilla: microwave it for 10–15 seconds, or heat it in a dry pan for 15 seconds per side. Spoon the filling down the middle, fold in the sides and roll it up. (Or skip the tortilla and eat it from a bowl.)"
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: red pepper, tomatoes and lime (92 mg as calculated). Cook the pepper briefly to keep more of its vitamin C."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Buy pre-chopped onion or frozen pepper strips; cook a triple batch of the scramble filling."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**More iron:** beans cooked from dry have more iron than canned (and less sodium) — see *How to Cook Dried Beans*.",
+              "White (cannellini) beans instead of chickpeas.",
+              "Gluten-free: 1–2 small corn tortillas, or eat it as a bowl.",
+              "Any fortified nutritional yeast — B12 varies a lot by brand."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "A 14-oz block of tofu makes about 3 servings. Cook a triple batch (steps 1–3), keep it in the fridge for up to 3 days, and reheat a portion in the morning. Add the nutritional yeast and lime after reheating."
+          }
+        ]
+      },
+      {
+        "title": "Tip",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Extra-firm tofu doesn't need long pressing — patting it dry with a clean towel is enough for a scramble."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 497,
+      "protein_g": 30,
+      "carbs_g": 55,
+      "fat_g": 19,
+      "fiber_g": 16,
+      "iron_mg": 6.5,
+      "vitamin_c_mg": 81,
+      "b12_mcg": 7.5,
+      "sodium_mg": 556
+    }
+  },
+  "vanilla-strawberry-hemp-oatmeal": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "10 min",
+    "packable": null,
+    "labels": [
+      "Quick",
+      "Overnight option"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 cup unsweetened soy milk (we used Silk Organic Unsweet)",
+              "1/2 cup water",
+              "1/2 scoop Orgain Organic Protein, Vanilla Bean (a full serving is 2 scoops)",
+              "1/4 tsp ground cinnamon",
+              "1/2 cup quick oats",
+              "1 tbsp chia seeds",
+              "1/4 tsp vanilla extract",
+              "2 tbsp hemp seeds",
+              "1 tbsp almond butter",
+              "3/4 cup sliced strawberries",
+              "1 tbsp pumpkin seeds (pepitas)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "ol",
+            "items": [
+              "Pour the soy milk and water into a small saucepan. Add the protein powder and cinnamon. Whisk (or stir hard with a fork) until there are no lumps, or shake them in a shaker bottle until dissolved and pour into the saucepan. Do this before turning on the heat — cold liquid mixes more smoothly.",
+              "Stir in the oats and chia seeds.",
+              "Set the pan over medium heat. When it starts to bubble gently at the edges (about 3–4 minutes), turn the heat to low. Cook for 2–3 minutes, stirring often so it doesn't stick, until thick and creamy. If it gets too thick, stir in a splash of water.",
+              "Take the pan off the heat. Stir in the vanilla and hemp seeds.",
+              "Spoon into a bowl. Add the almond butter on top and swirl it in with a spoon. Top with the sliced strawberries and sprinkle with the pumpkin seeds."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: fresh strawberries (67 mg), added raw so none is lost to cooking. Raspberries or a sliced kiwi work too."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Microwave it: stir everything (except toppings) in a large bowl and microwave 2–3 minutes, stirring halfway; or make it overnight in a jar."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "Rolled oats instead of quick oats (cook 2–3 minutes longer).",
+              "Peanut butter instead of almond butter.",
+              "Any unsweetened, fortified soy or pea milk — check the label for B12."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Make it overnight",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Stir everything except the almond butter and strawberries together in a jar (protein powder and cinnamon into the milk first). Refrigerate overnight; eat cold or warm it up, then add the toppings."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 623,
+      "protein_g": 34,
+      "carbs_g": 57,
+      "fat_g": 33,
+      "fiber_g": 17,
+      "iron_mg": 8.4,
+      "vitamin_c_mg": 75,
+      "b12_mcg": 2.4,
+      "sodium_mg": 180
+    }
+  },
+  "egg-white-bean-mushroom-breakfast-wrap": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "10 min",
+    "packable": null,
+    "labels": [
+      "Quick"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 tsp extra virgin olive oil",
+              "1/4 cup sliced mushrooms",
+              "1/2 cup cannellini (white) beans (rinsed and drained if canned)",
+              "2 eggs, whisked",
+              "Salt and black pepper, to taste",
+              "2 small (6-inch) whole wheat tortillas",
+              "2 tbsp hummus",
+              "On the side: 1 kiwi and 1/2 cup sliced strawberries"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** rinse the white beans in a sieve. Slice the mushrooms thinly. Crack the eggs into a bowl and whisk with a fork."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Set a nonstick skillet over medium heat. Add the oil and let it warm for 30 seconds.",
+              "Add the mushrooms. Cook for 2–3 minutes, stirring now and then, until they shrink and turn golden brown.",
+              "Add the white beans and stir for 1 minute until warm. Season with a pinch of salt and pepper.",
+              "Turn the heat to medium-low. Pour in the eggs. Wait 10 seconds, then gently push them around with a spatula. Keep stirring slowly for 1–2 minutes, until no runny liquid is left. Season with salt and pepper.",
+              "Warm the tortillas in the microwave for 10–15 seconds.",
+              "Spread each tortilla with half the hummus. Spoon half the egg mixture onto each one, fold in the sides and roll up.",
+              "Peel and slice the kiwi (or cut it in half and scoop with a spoon) and serve with the strawberries. Serve them on the side."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The kiwi and strawberries on the side supply the vitamin C that helps absorb the plant iron in the beans and hummus. Swap for an orange or a cup of strawberries."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Canned white beans and pre-sliced mushrooms; cook the bean and mushroom mix ahead."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**More iron:** beans cooked from dry have more iron than canned (and less sodium) — see *How to Cook Dried Beans*.",
+              "Great Northern or navy beans instead of cannellini (also white beans).",
+              "Gluten-free tortillas."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Cook the mushrooms and beans for 3 mornings at once and refrigerate. Reheat a portion, then scramble the eggs fresh."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 614,
+      "protein_g": 29,
+      "carbs_g": 66,
+      "fat_g": 27,
+      "fiber_g": 15,
+      "iron_mg": 5.5,
+      "vitamin_c_mg": 91,
+      "b12_mcg": 1.0,
+      "sodium_mg": 774
+    }
+  },
+  "strawberry-banana-hemp-protein-smoothie": {
+    "source": "The Iron Refill",
+    "serves": "1 (about 3 cups)",
+    "time": "5 min",
+    "packable": null,
+    "labels": [
+      "Quick"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 cup unsweetened soy milk (we used Silk Organic Unsweet)",
+              "1 cup water",
+              "2 scoops (1 serving) Orgain Organic Protein, Vanilla Bean",
+              "1 cup frozen strawberries",
+              "1/2 frozen banana",
+              "3 tbsp hemp seeds",
+              "1 tbsp pumpkin seeds (pepitas)"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "ol",
+            "items": [
+              "Pour the soy milk and water into a blender. Add the protein powder. Put the lid on and blend for 5 seconds (this stops the powder sticking to the sides).",
+              "Add the frozen strawberries, frozen banana, hemp seeds and pumpkin seeds.",
+              "Put the lid on firmly and blend for 30–60 seconds, until smooth with no chunks. If the blender struggles, stop, stir with a spoon, add a splash of water and blend again.",
+              "Pour into a glass and drink right away."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: strawberries. Frozen fruit keeps its vitamin C well."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Prep smoothie packs: put the fruit, hemp and pumpkin seeds in freezer bags; tip one into the blender with the milk, water and powder."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "Any frozen berries — raspberries are also high in vitamin C.",
+              "2 tbsp hemp seeds instead of 3 for a lighter smoothie.",
+              "Any unsweetened, fortified soy or pea milk — check the label for B12."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 550,
+      "protein_g": 42,
+      "carbs_g": 51,
+      "fat_g": 26,
+      "fiber_g": 12,
+      "iron_mg": 11.7,
+      "vitamin_c_mg": 69,
+      "b12_mcg": 2.4,
+      "sodium_mg": 475
+    }
+  },
+  "smoked-salmon-hummus-bagel": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "5 min",
+    "packable": null,
+    "labels": [
+      "Quick"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 plain bagel, sliced in half",
+              "2 tbsp hummus",
+              "1/8 cucumber, thinly sliced",
+              "1 3/4 oz smoked salmon",
+              "1/2 tsp lemon juice",
+              "Black pepper, to taste",
+              "On the side: 1/2 red bell pepper, cut into strips"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** wash the cucumber and slice it into thin rounds. Cut the red pepper into strips, removing the seeds and white parts."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Cut the bagel in half (if it isn't pre-sliced) and toast it until golden.",
+              "Spread 1 tbsp hummus on each half.",
+              "Lay the cucumber slices over the hummus, then lay the smoked salmon on top.",
+              "Squeeze the lemon juice over the salmon and add a little black pepper.",
+              "Serve with the red pepper strips on the side."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The raw red pepper strips supply the vitamin C (78 mg)."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Use pre-sliced smoked salmon and mini cucumbers; buy pre-cut pepper strips."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**Vegetarian:** 2 scrambled or sliced hard-boiled eggs instead of salmon.",
+              "1/4 avocado, mashed, instead of hummus (a little less iron and protein, a little more fat and fiber).",
+              "Whole wheat bagel for more fiber (slightly less iron than an enriched plain bagel).",
+              "Capers if you like them (adds about 200 mg sodium)."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Good to know",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Smoked salmon (lox) is a ready-to-eat cold-smoked fish. If you're pregnant, choose the egg swap or use cooked salmon instead. Smoked salmon is salty, which makes this the highest-sodium recipe in the plan — enjoy it now and then rather than every day, and look for a lower-sodium brand."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: 2 eggs instead of salmon — 6.4 mg iron, 26 g protein, B12 1.0 mcg. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 426,
+      "protein_g": 23,
+      "carbs_g": 65,
+      "fat_g": 9,
+      "fiber_g": 4,
+      "iron_mg": 5.1,
+      "vitamin_c_mg": 87,
+      "b12_mcg": 1.6,
+      "sodium_mg": 1575
+    }
+  },
+  "lentils-tomatoes-on-toast": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "10 min",
+    "packable": null,
+    "labels": [
+      "Quick",
+      "Batch"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "3/4 cup cooked green lentils (rinsed and drained if canned)",
+              "1 cup canned diced tomatoes",
+              "1/4 tsp garlic powder",
+              "1/4 tsp onion powder",
+              "Salt and black pepper, to taste",
+              "Squeeze of lime (about 1 tbsp juice)",
+              "1 tbsp chopped cilantro (optional)",
+              "1 slice whole grain bread",
+              "On the side: 1/2 cup sliced strawberries"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** if using canned lentils, rinse them in a sieve."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Put the lentils, canned tomatoes (with their juice), garlic powder and onion powder in a small saucepan.",
+              "Set over medium heat. When it starts to bubble, turn the heat to low and simmer (gentle bubbles) for about 5 minutes, stirring now and then, until hot and slightly thickened. Season with salt and pepper.",
+              "While it simmers, toast the bread and slice the strawberries.",
+              "Take the pan off the heat and squeeze in the lime juice. Stir.",
+              "Spoon the lentils over the toast (or next to it). Sprinkle with cilantro. Serve with the strawberries."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Strawberries (49 mg), canned tomatoes (~26 mg) and lime (~4 mg). Any fruit from the vitamin C list with about 7 g of carbs or less works instead of the strawberries (e.g. 1/2 cup papaya)."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Use canned lentils; microwave the lentils and tomatoes with the spices for 2–3 minutes instead of using the stove."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "Brown lentils instead of green.",
+              "Gluten-free bread (slightly less protein and iron)."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Make 3 portions of the tomato lentils at once and keep in the fridge for up to 4 days. Reheat, then add the lime."
+          }
+        ]
+      },
+      {
+        "title": "Good to know",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Very low in fat (about 2 g) — a good breakfast for a day with a richer lunch or dinner."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 332,
+      "protein_g": 20,
+      "carbs_g": 61,
+      "fat_g": 3,
+      "fiber_g": 20,
+      "iron_mg": 7.3,
+      "vitamin_c_mg": 88,
+      "b12_mcg": 0.0,
+      "sodium_mg": 441
+    }
+  },
+  "tropical-green-smoothie": {
+    "source": "The Iron Refill",
+    "serves": "1 (about 3 cups)",
+    "time": "5 min",
+    "packable": null,
+    "labels": [
+      "Quick"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 cup unsweetened soy milk (we used Silk Organic Unsweet)",
+              "1 cup water",
+              "2 scoops (1 serving) Orgain Organic Protein, Vanilla Bean",
+              "1 cup chopped kale (stems removed)",
+              "3/4 cup frozen pineapple",
+              "1/2 cup frozen mango",
+              "2 tbsp hemp seeds",
+              "1 tbsp ground flaxseed",
+              "1 tbsp pumpkin seeds (pepitas)",
+              "1/2 tsp ground cinnamon"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "ol",
+            "items": [
+              "Pour the soy milk and water into a blender. Add the protein powder. Blend for 5 seconds.",
+              "Add the kale. Blend for 15–20 seconds, until you can't see any leafy pieces.",
+              "Add the frozen pineapple, frozen mango, hemp seeds, flax, pumpkin seeds and cinnamon.",
+              "Blend for 30–60 seconds, until smooth. If it's too thick, add a splash of water and blend again.",
+              "Pour into a glass and drink right away."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: pineapple and mango (98 mg). Frozen fruit keeps its vitamin C well."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Prep smoothie packs in freezer bags (kale, fruit, seeds, cinnamon)."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "Frozen papaya instead of mango (similar vitamin C, fewer carbs).",
+              "Baby spinach instead of kale.",
+              "Any unsweetened, fortified soy or pea milk — check the label for B12."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Good to know",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The sugar here (about 33 g) comes entirely from fruit — there's no added sugar."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 548,
+      "protein_g": 41,
+      "carbs_g": 58,
+      "fat_g": 24,
+      "fiber_g": 13,
+      "iron_mg": 10.8,
+      "vitamin_c_mg": 122,
+      "b12_mcg": 2.4,
+      "sodium_mg": 490
+    }
+  },
+  "southwest-tofu-white-bean-bowl": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "20 min",
+    "packable": "yes — best reheated",
+    "labels": [
+      "Batch",
+      "Leftovers-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Tofu"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "5 oz extra-firm tofu, patted dry and crumbled",
+              "1 tsp Bragg Liquid Aminos",
+              "1/4 tsp onion powder",
+              "1/4 tsp garlic powder",
+              "1/8 tsp ground turmeric",
+              "1 1/2 tsp nutritional yeast (we used Bragg)",
+              "1 tsp extra virgin olive oil"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Beans and greens"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/2 tsp extra virgin olive oil",
+              "1/4 cup diced onion",
+              "1/2 cup cannellini (white) beans (rinsed and drained if canned)",
+              "1/2 tsp taco seasoning",
+              "1/4 tsp onion powder",
+              "1/4 tsp garlic powder",
+              "2 cups baby spinach",
+              "1 1/2 tsp lime juice"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "To serve"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/2 cup cooked quinoa (about 3 tbsp dry)",
+              "1/2 red bell pepper, diced",
+              "1/4 avocado, sliced",
+              "1 1/2 tbsp salsa verde"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** cook the quinoa (or use leftover): rinse 3 tbsp dry quinoa in a fine sieve, add to a small pan with 6 tbsp water and a pinch of salt, bring to a boil, cover, turn to low and cook 15 minutes until the water is absorbed. Pat the tofu dry and crumble it. Rinse the beans. Dice the onion and red pepper. Slice the avocado."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Put the crumbled tofu in a bowl. Add the liquid aminos, onion powder, garlic powder, turmeric and nutritional yeast. Stir until the tofu is evenly coated and yellow.",
+              "Set a nonstick skillet over medium-high heat with 1 tsp oil. Add the tofu and spread it out. Cook for 6–8 minutes, stirring every minute or two, until golden brown in places. Spoon the tofu onto a plate.",
+              "Turn the heat to medium. Add the remaining 1/2 tsp oil and the diced onion. Cook for 3 minutes, stirring, until soft.",
+              "Add the white beans, taco seasoning, onion powder and garlic powder. Stir and cook for 2 minutes until the beans are hot.",
+              "Add the spinach. Stir for about 1 minute until it wilts. Squeeze in the lime juice and take the pan off the heat.",
+              "Build the bowl: quinoa on the bottom, then the tofu, then the bean and spinach mixture. Top with the red pepper, avocado and salsa verde."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Raw red pepper (plus some from the spinach, onion, lime and salsa)."
+          }
+        ]
+      },
+      {
+        "title": "Packing it for lunch",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Pack the quinoa, tofu and bean mixture together; keep the red pepper, avocado and salsa separate. Reheat the warm part (it tastes best hot), then add the toppings."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Microwave quinoa pouch; pre-washed baby spinach; frozen diced onion; canned white beans."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**More iron:** beans cooked from dry have more iron than canned (and less sodium) — see *How to Cook Dried Beans*.",
+              "Brown rice instead of quinoa (less iron).",
+              "Great Northern or navy beans instead of cannellini. Kale instead of spinach.",
+              "Tamari or soy sauce instead of liquid aminos (check the sodium)."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Cook a double batch of the tofu and the bean mixture, and a pot of quinoa — enough for two lunches, kept in the fridge for up to 3 days."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 549,
+      "protein_g": 31,
+      "carbs_g": 57,
+      "fat_g": 28,
+      "fiber_g": 16,
+      "iron_mg": 7.8,
+      "vitamin_c_mg": 106,
+      "b12_mcg": 3.8,
+      "sodium_mg": 885
+    }
+  },
+  "peanut-tempeh-edamame-stir-fry-with-quinoa": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "20 min",
+    "packable": "yes — cold or reheated",
+    "labels": [
+      "Batch",
+      "Leftovers-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Peanut sauce"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "2 tsp natural peanut butter (runny)",
+              "1/2 tsp apple cider vinegar",
+              "1/2 tsp coconut aminos",
+              "1 1/2 tsp water",
+              "Salt and black pepper, to taste"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Stir fry"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/4 cup dry quinoa, rinsed (makes about 3/4 cup cooked)",
+              "1 tsp extra virgin olive oil",
+              "4 oz tempeh, crumbled",
+              "1/2 cup frozen shelled edamame",
+              "1 cup chopped broccoli",
+              "1 cup coleslaw mix",
+              "1 tsp sesame seeds"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** rinse the quinoa in a fine sieve. Thaw the edamame by running it under warm water. Chop the broccoli into small florets."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "**Cook the quinoa:** put the quinoa in a small pan with 1/2 cup water and a pinch of salt. Bring to a boil, cover with a lid, turn the heat to low and cook for 15 minutes, until the water is gone. Leave the lid on and set aside.",
+              "**Make the sauce:** in a small bowl, stir the peanut butter, vinegar, coconut aminos and water until smooth. Add a pinch of salt and pepper. Set aside.",
+              "**Cook the tempeh:** crumble the tempeh with your fingers. Set a large skillet over medium heat with the oil. Add the tempeh and cook for 7–8 minutes, stirring every minute or two, until golden brown. Season with a pinch of salt.",
+              "**Add the vegetables:** add the edamame and broccoli. Cook for 3 minutes, stirring, until the broccoli is bright green. Add the coleslaw mix and stir for 1–2 minutes until it softens slightly. Take off the heat.",
+              "**Put it together:** spoon the quinoa into a bowl, add the tempeh and vegetables, pour the sauce over and stir to coat. Sprinkle with sesame seeds."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: broccoli and cabbage. Keep the broccoli crisp-tender to hold on to more vitamin C."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Microwave quinoa pouch; bagged broccoli florets and coleslaw mix; frozen shelled edamame."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "Extra-firm tofu instead of tempeh.",
+              "Almond or sunflower seed butter instead of peanut butter (for allergies).",
+              "Brown rice instead of quinoa (less iron).",
+              "Tamari or liquid aminos instead of coconut aminos (more sodium).",
+              "Lighter lunch: 3 oz tempeh (about 600 kcal, 7.9 mg iron)."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Cook the quinoa and tempeh for 2–3 lunches at once. Keeps 3–4 days in the fridge. Store the sauce separately and toss just before eating."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 638,
+      "protein_g": 44,
+      "carbs_g": 57,
+      "fat_g": 31,
+      "fiber_g": 13,
+      "iron_mg": 8.1,
+      "vitamin_c_mg": 88,
+      "b12_mcg": 0.1,
+      "sodium_mg": 118
+    }
+  },
+  "sesame-ginger-beef-lentil-tacos-with-side-salad": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "15 min",
+    "packable": "yes — reheat the filling",
+    "labels": [
+      "Quick",
+      "Batch"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Sauce"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 tsp Bragg Liquid Aminos",
+              "1 1/2 tsp sesame oil",
+              "1 tsp rice vinegar",
+              "1/2 tsp grated fresh ginger",
+              "1/2 garlic clove, minced",
+              "1/4 tsp garlic powder",
+              "1/4 tsp onion powder",
+              "Pinch of red chili flakes"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Tacos"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "4 oz extra-lean (95%) ground beef",
+              "2 tbsp chopped red onion",
+              "1/2 yellow bell pepper, diced",
+              "1/2 cup cooked green, brown or red lentils (rinsed and drained if canned)",
+              "2 small (6-inch) whole wheat tortillas"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Side salad"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 1/2 cups chopped romaine (about 2–3 large leaves)",
+              "1/4 carrot, shredded (about 2 tbsp)",
+              "1/2 cucumber, sliced (about 1 cup)",
+              "1 tsp rice vinegar and a squeeze of lime"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** finely chop the red onion. Dice the yellow pepper. Mince the garlic and grate the ginger. Rinse the lentils if canned. For the salad, chop the romaine, shred the carrot on a grater, and slice the cucumber."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "**Make the sauce:** in a small bowl, stir the liquid aminos, sesame oil, rice vinegar, ginger, garlic, garlic powder, onion powder and chili flakes. Set aside.",
+              "**Cook the beef:** set a nonstick skillet over medium-high heat. Add the beef and sprinkle with salt and pepper. Break it into small pieces with a spatula and cook for about 3 minutes, until mostly browned.",
+              "Add the onion and yellow pepper. Cook for 3–5 minutes, stirring, until no pink meat is left (160°F / 71°C) and the vegetables are soft.",
+              "Add the lentils and pour in the sauce. Stir and cook for 2–3 minutes, until everything is hot.",
+              "**Warm the tortillas** in the microwave for 10–15 seconds. Spoon half the filling into each one.",
+              "**Make the salad:** put the romaine, carrot and cucumber in a bowl. Add the rice vinegar, a squeeze of lime and a pinch of salt. Toss with your hands or two spoons. Serve next to the tacos."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: yellow bell pepper (very high in vitamin C)."
+          }
+        ]
+      },
+      {
+        "title": "Packing it for lunch",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Pack the filling, tortillas and salad separately. Reheat the filling, warm the tortillas if you can, and dress the salad just before eating."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Canned lentils; pre-shredded carrots; bagged chopped romaine; jarred minced ginger and garlic."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**Vegetarian:** 4 oz crumbled tempeh instead of beef, and 1/4 cup lentils instead of 1/2 cup.",
+              "Lean ground turkey (less iron).",
+              "Corn tortillas for gluten-free.",
+              "Tamari instead of liquid aminos (more sodium)."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Make a double batch of the filling — it keeps 3 days in the fridge and makes a second lunch."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: 4 oz tempeh instead of beef, 1/4 cup lentils — 7.4 mg iron, 38 g protein, B12 0.1 mcg. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 613,
+      "protein_g": 44,
+      "carbs_g": 66,
+      "fat_g": 20,
+      "fiber_g": 18,
+      "iron_mg": 8.7,
+      "vitamin_c_mg": 110,
+      "b12_mcg": 2.4,
+      "sodium_mg": 777
+    }
+  },
+  "sesame-tuna-lentil-poke-bowl": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "10 min (with cooked quinoa and lentils)",
+    "packable": "yes — cold, or with a warm base",
+    "labels": [
+      "Quick",
+      "Batch"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Dressing"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 tsp Bragg Liquid Aminos",
+              "1 tsp honey",
+              "1/2 tsp rice vinegar",
+              "1/4 tsp garlic powder",
+              "Pinch of red chili flakes"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Bowl"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/2 cup cooked quinoa (about 3 tbsp dry)",
+              "1/2 cup cooked green, brown or red lentils (rinsed and drained if canned)",
+              "1 can (5 oz) light tuna in water, drained",
+              "1/4 cup shelled edamame, thawed",
+              "1/4 yellow bell pepper and 1/4 red bell pepper, sliced",
+              "1/4 cucumber, sliced",
+              "1/4 avocado, sliced",
+              "1 green onion, sliced",
+              "1 tbsp sesame seeds"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** cook the quinoa and lentils ahead (or use leftovers or canned lentils, rinsed). Thaw the edamame under warm water. Drain the tuna. Slice the peppers, cucumber, avocado and green onion."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "**Make the dressing:** in a small bowl, stir the liquid aminos, honey, rice vinegar, garlic powder and chili flakes until the honey dissolves.",
+              "Put the quinoa and lentils in a bowl or lunch container. Pour over half the dressing and stir.",
+              "In another small bowl, break the tuna into flakes with a fork. Add the rest of the dressing and stir.",
+              "Spoon the tuna over the quinoa and lentils. Arrange the edamame, peppers, cucumber and avocado on top. Sprinkle with green onion and sesame seeds."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: yellow and red bell pepper (eaten raw, so no vitamin C is lost)."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Microwave quinoa pouch; canned lentils; frozen edamame; pre-sliced pepper strips."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**Vegetarian:** 3/4 cup edamame (instead of 1/4 cup) in place of the tuna, and 1/3 cup quinoa.",
+              "Brown rice instead of quinoa (less iron).",
+              "Salmon (canned or leftover) instead of tuna."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Cook quinoa and lentils once for several meals. Pack the toppings separately if making ahead; avocado goes on just before eating."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: 3/4 cup edamame instead of tuna, 1/3 cup quinoa — 8.9 mg iron, 30 g protein, B12 0. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 562,
+      "protein_g": 43,
+      "carbs_g": 64,
+      "fat_g": 20,
+      "fiber_g": 19,
+      "iron_mg": 9.3,
+      "vitamin_c_mg": 117,
+      "b12_mcg": 2.7,
+      "sodium_mg": 563
+    }
+  },
+  "lemon-pepper-mackerel-white-bean-kale-pasta": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "20 min",
+    "packable": "yes — reheats well",
+    "labels": [
+      "Quick",
+      "Leftovers-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 oz dry whole wheat penne (about 2/3 cup cooked)",
+              "2 tsp extra virgin olive oil",
+              "1 garlic clove, thinly sliced",
+              "1/2 red bell pepper, diced",
+              "2 cups chopped kale",
+              "1/2 cup cannellini beans, rinsed and drained",
+              "4 oz canned mackerel, drained",
+              "1 tbsp lemon juice and 1/2 tsp lemon zest",
+              "1/2 tsp coarse black pepper (or salt-free lemon pepper seasoning)",
+              "1 tsp Dijon mustard",
+              "2 tsp chopped fresh dill",
+              "Salt, to taste"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** dice the red pepper. Chop the kale, removing the tough stems. Thinly slice the garlic. Rinse the beans. Drain the mackerel and break it into chunks. Zest the lemon (grate the yellow skin only) and squeeze the juice."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "**Cook the pasta:** fill a pot with water, add a big pinch of salt and bring to a boil. Add the pasta and cook for the time on the package (usually 10–12 minutes), stirring once or twice. Before draining, scoop out a few tablespoons of the pasta water with a mug and set aside. Drain the pasta.",
+              "While the pasta cooks, put the mackerel in a bowl with the lemon zest and black pepper. Toss gently.",
+              "In a small cup, stir the lemon juice and Dijon together.",
+              "Set a skillet over medium heat with the oil. Add the garlic and stir for 30 seconds, until it smells good (don't let it brown).",
+              "Add the red pepper and cook for 2 minutes. Add the kale and a pinch of salt. Cook for 3–4 minutes, stirring, until the kale wilts and turns dark green.",
+              "Add the beans, drained pasta and 2 tbsp of the pasta water. Stir for 1 minute until everything is hot.",
+              "Take the pan off the heat. Pour in the lemon-Dijon mixture, then gently fold in the mackerel and dill. Taste and add salt if needed."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: red bell pepper and kale, finished with lemon."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Bagged chopped kale; jarred minced garlic; bottled lemon juice (zest optional)."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**More iron:** beans cooked from dry have more iron than canned (and less sodium) — see *How to Cook Dried Beans*.",
+              "Canned salmon or sardines instead of mackerel.",
+              "**Vegetarian:** 3/4 cup shelled edamame instead of the mackerel (stir in with the beans).",
+              "Bigger meal: 1 1/2 oz pasta (adds about 10 g carbs)."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Good to know",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Choose Atlantic or jack mackerel (lower in mercury), not king mackerel."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: 3/4 cup edamame instead of mackerel — 6.9 mg iron, 30 g protein, B12 0. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 546,
+      "protein_g": 42,
+      "carbs_g": 53,
+      "fat_g": 19,
+      "fiber_g": 12,
+      "iron_mg": 6.5,
+      "vitamin_c_mg": 102,
+      "b12_mcg": 7.8,
+      "sodium_mg": 723
+    }
+  },
+  "thai-basil-bison-rice-bowl": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "20 min",
+    "packable": "yes — reheat rice, bison and edamame; add the fresh vegetables after",
+    "labels": [
+      "Batch"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Bison"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "4 oz bison steak",
+              "1 1/2 tsp avocado oil",
+              "Salt, black pepper and 1/4 tsp garlic powder"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Sauce"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 tsp fish sauce",
+              "1 tbsp lime juice",
+              "1 tsp maple syrup",
+              "1 small garlic clove, grated",
+              "Pinch of red chili flakes"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Bowl"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/2 cup cooked brown rice (about 2 1/2 tbsp dry)",
+              "3/4 cup shelled edamame, warmed",
+              "1/2 yellow bell pepper, sliced",
+              "1/3 large cucumber, cut into strips",
+              "1/2 carrot, cut into strips or grated",
+              "1/2 green onion, sliced",
+              "2 tbsp chopped Thai basil"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** cook the rice ahead (or use leftover). Take the bison out of the fridge 15 minutes before cooking. Thaw the edamame. Slice the pepper, cut the cucumber and carrot into thin strips, slice the green onion, chop the basil and grate the garlic."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Pat the bison dry with a paper towel. Sprinkle both sides with salt, pepper and garlic powder.",
+              "Set a skillet over high heat with the oil. When the oil shimmers (about 1 minute), add the bison. Cook for about 4 minutes without moving it, then flip and cook 3–4 minutes more, to at least 145°F / 63°C (medium-rare to medium).",
+              "Move the bison to a cutting board and let it rest for 5 minutes (this keeps it juicy). Slice it thinly across the grain (across the lines in the meat).",
+              "**Make the sauce:** stir the fish sauce, lime juice, maple syrup, garlic and chili flakes in a small bowl.",
+              "Warm the rice and edamame in the microwave for 1–2 minutes.",
+              "Put the rice and edamame in a bowl. Top with the bison, pepper, cucumber, carrot, green onion and basil. Pour the sauce over."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: yellow bell pepper, eaten raw — one of the richest vitamin C foods."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Microwave brown rice pouch; pre-cut carrot matchsticks; frozen shelled edamame; cook two steaks and keep one for tomorrow."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**Vegetarian:** 5 oz extra-firm tofu instead of bison.",
+              "Lean sirloin steak instead of bison (slightly less iron).",
+              "Jasmine or white rice instead of brown (enriched white rice has a little more iron)."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Cook rice ahead; sear two bison steaks and keep one sliced for the next day."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: 5 oz tofu instead of bison (soy sauce for fish sauce) — 7.0 mg iron, 34 g protein, B12 0. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 539,
+      "protein_g": 43,
+      "carbs_g": 57,
+      "fat_g": 17,
+      "fiber_g": 12,
+      "iron_mg": 7.5,
+      "vitamin_c_mg": 155,
+      "b12_mcg": 2.6,
+      "sodium_mg": 581
+    }
+  },
+  "chickpea-spinach-shakshuka-with-pita": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "20 min",
+    "packable": "yes (method A)",
+    "labels": [
+      "Batch",
+      "Leftovers-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 tsp extra virgin olive oil",
+              "2 tbsp diced onion",
+              "1/2 red bell pepper, diced",
+              "1 garlic clove, minced",
+              "1/2 tsp ground cumin",
+              "1/2 tsp smoked paprika",
+              "1 tsp harissa (or a pinch of chili flakes)",
+              "3/4 cup cooked chickpeas (rinsed and drained if canned)",
+              "1/4 cup tomato purée (plus a splash of water)",
+              "1 cup baby spinach",
+              "2 eggs",
+              "Salt and black pepper, to taste",
+              "Chopped parsley or cilantro, to finish",
+              "1/2 large whole wheat pita, warmed"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** dice the onion and red pepper. Mince the garlic. Rinse the chickpeas."
+          },
+          {
+            "type": "h",
+            "text": "Make the sauce"
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Set a small skillet over medium heat with the oil. Add the onion and pepper. Cook for 3–4 minutes, stirring, until soft.",
+              "Add the garlic, cumin and paprika. Stir for 30 seconds, until fragrant.",
+              "Add the chickpeas, tomato purée, harissa and 2–3 tbsp water. Stir. When it bubbles, turn the heat to low and simmer for 8–10 minutes, stirring now and then. Add a splash more water if it gets too thick.",
+              "Add the spinach and stir for about 1 minute until wilted. Season with salt and pepper."
+            ],
+            "start": 1
+          },
+          {
+            "type": "h",
+            "text": "A. To pack for lunch"
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Hard-boil the eggs: put them in a small pan, cover with cold water, bring to a boil, then turn off the heat, cover and leave for 10 minutes. Move them to cold water, cool, then peel. As an alternative, to make sure the eggs are fully cooked: once the water boils, reduce the heat and let the eggs boil gently for 10 minutes, then place them in an ice bath for 5 minutes and peel.",
+              "Pack the sauce, eggs and pita separately. At lunch, reheat the sauce in the microwave for 1–2 minutes, stir, and top with the halved eggs and herbs. Scoop with the pita."
+            ],
+            "start": 5
+          },
+          {
+            "type": "h",
+            "text": "B. If you're home"
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Make two small hollows in the hot sauce with a spoon. Crack an egg into each. Cover the pan with a lid and cook on low for 5–6 minutes, until the whites are no longer see-through and the yolks are as set as you like.",
+              "Sprinkle with herbs and serve with warm pita."
+            ],
+            "start": 5
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: red bell pepper and tomato."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Frozen diced onion and peppers; jarred minced garlic; store-bought hard-boiled eggs."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**More iron:** beans cooked from dry have more iron than canned (and less sodium) — see *How to Cook Dried Beans*.",
+              "No harissa? Use a pinch of chili flakes and a little extra paprika.",
+              "White beans instead of chickpeas.",
+              "Gluten-free: skip the pita and serve over 1/3 cup cooked rice.",
+              "**Vegan:** 4 oz crumbled tofu instead of the eggs."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Make a double batch of sauce (keeps 4 days) and hard-boil 4 eggs at once."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste."
+    ],
+    "nutrition": {
+      "calories": 516,
+      "protein_g": 27,
+      "carbs_g": 58,
+      "fat_g": 20,
+      "fiber_g": 14,
+      "iron_mg": 6.4,
+      "vitamin_c_mg": 79,
+      "b12_mcg": 1.0,
+      "sodium_mg": 642
+    }
+  },
+  "moroccan-spiced-chicken-lentil-mushroom-bowl": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "20 min",
+    "packable": "yes — reheats well",
+    "labels": [
+      "Batch",
+      "Leftovers-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Spice mix"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/2 tsp ground cumin",
+              "1/4 tsp ground coriander",
+              "1/4 tsp smoked paprika",
+              "1/8 tsp ground cinnamon",
+              "1/8 tsp ground ginger",
+              "Pinch of ground turmeric",
+              "1/4 tsp garlic powder",
+              "Salt and black pepper"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Bowl"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "4 oz chicken breast, diced",
+              "1 tsp extra virgin olive oil",
+              "1 cup sliced mushrooms",
+              "3/4 cup cooked green, brown or red lentils (rinsed and drained if canned)",
+              "1/3 cup cooked bulgur (about 1 1/2 tbsp dry)",
+              "1/2 red bell pepper, diced",
+              "1 celery stalk, chopped",
+              "1 tbsp finely chopped shallot",
+              "1 tbsp chopped dried apricot",
+              "1 tbsp toasted almonds, chopped",
+              "2 tbsp chopped cilantro"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Dressing"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 1/2 tsp extra virgin olive oil",
+              "1 tsp red wine vinegar",
+              "Juice of 1/4 orange"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Instructions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** dice the chicken into bite-size pieces. Slice the mushrooms. Rinse the lentils if canned. Dice the red pepper and celery, finely chop the shallot, apricot and almonds, and chop the cilantro."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "**Cook the bulgur:** put 1 1/2 tbsp dry bulgur in a small bowl, pour over 1/4 cup boiling water, cover and leave 10–12 minutes until soft. Fluff with a fork.",
+              "**Mix the spices** in a small bowl. Toss the chicken with half of the mix.",
+              "**Cook the chicken and mushrooms:** warm 1 tsp oil in a skillet over medium-high heat. Add the chicken and cook for 5–6 minutes, until golden and cooked through (165°F / 74°C inside; no pink when you cut a piece). Add the mushrooms and cook for 3–4 minutes more, until browned. Move everything to a plate.",
+              "**Season the lentils:** add the lentils, the rest of the spice mix and 2 tbsp water to the same pan. Stir for 2 minutes, until hot.",
+              "**Make the dressing:** whisk the olive oil, vinegar and orange juice.",
+              "**Build the bowl:** bulgur on the bottom, then the spiced lentils, then the chicken and mushrooms. Top with the red pepper, celery, shallot, apricot, almonds and cilantro, and drizzle with the dressing."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: raw red bell pepper, plus orange juice in the dressing."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Use 3 oz shredded rotisserie chicken (skip cooking the chicken; iron changes very little); canned lentils; pre-sliced mushrooms; microwave quinoa or rice pouch instead of bulgur."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**Vegan:** 5 oz extra-firm tofu, cubed, instead of the chicken (sear the same way).",
+              "Chicken thigh instead of breast.",
+              "Gluten-free: quinoa or brown rice instead of bulgur."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Cook the bulgur, chicken, mushrooms and lentils for 2 lunches and store them together. Keep the fresh toppings and dressing separate; reheat, then top."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegan: 5 oz tofu instead of chicken — 10.3 mg iron, 35 g protein, B12 0. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 581,
+      "protein_g": 46,
+      "carbs_g": 62,
+      "fat_g": 20,
+      "fiber_g": 20,
+      "iron_mg": 7.8,
+      "vitamin_c_mg": 102,
+      "b12_mcg": 0.2,
+      "sodium_mg": 130
+    }
+  },
+  "beef-bean-chili-with-roasted-sweet-potatoes": {
+    "source": "The Iron Refill",
+    "serves": "1 (easy to make 4 at once)",
+    "time": "10 min hands-on, 30 min total",
+    "packable": "yes — reheats and freezes well",
+    "labels": [
+      "Batch",
+      "Freezer-friendly",
+      "Leftovers-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients (1 serving — multiply by 4 for a batch)",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Roasted sweet potato"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/2 medium sweet potato",
+              "1/2 tsp extra virgin olive oil",
+              "1/4 tsp smoked paprika",
+              "1/8 tsp garlic powder",
+              "Pinch of salt and black pepper"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Chili"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 tsp extra virgin olive oil",
+              "1/4 onion",
+              "1/2 green bell pepper",
+              "1 garlic clove",
+              "4 oz extra-lean (95%) ground beef",
+              "1 1/2 tsp chili powder",
+              "1/2 tsp ground cumin",
+              "1/4 tsp smoked paprika",
+              "1/2 cup canned pinto beans",
+              "3/4 cup canned crushed tomatoes",
+              "1/4 cup low-sodium broth or water",
+              "Salt and black pepper, to taste"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "To serve"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 tbsp chopped cilantro",
+              "1 lime wedge"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Method",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Get ready (5 minutes)"
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Turn the oven on to 425°F (220°C). Line a baking sheet with parchment paper.",
+              "Peel the sweet potato and cut it into 3/4-inch cubes (about the size of a large grape).",
+              "Dice the onion and the green pepper into small pieces. Mince the garlic (chop it very finely).",
+              "Pour the pinto beans into a sieve and rinse them under cold water. Let them drain."
+            ],
+            "start": 1
+          },
+          {
+            "type": "h",
+            "text": "Roast the sweet potato (25 minutes, mostly hands-off)"
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Put the sweet potato cubes on the baking sheet. Add 1/2 tsp oil, the smoked paprika, garlic powder, salt and pepper. Toss with your hands until every cube is coated. Spread them out in one layer so they don't touch.",
+              "Roast for 20–25 minutes, turning them over with a spatula halfway through. They're done when a fork slides in easily and the edges are browned."
+            ],
+            "start": 5
+          },
+          {
+            "type": "h",
+            "text": "Make the chili (while the potatoes roast)"
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Set a medium saucepan over medium heat. Add 1 tsp oil and let it warm for 30 seconds.",
+              "Add the onion and green pepper. Sauté (cook while stirring often) for about 4 minutes, until soft.",
+              "Add the beef and a pinch of salt. Break the meat into small crumbles with a wooden spoon. Cook for 4–5 minutes, stirring, until no pink is left (160°F / 71°C).",
+              "Add the garlic, chili powder, cumin and smoked paprika. Stir for 30 seconds, until the spices smell fragrant.",
+              "Add the beans, crushed tomatoes and broth. Stir well. When the chili starts to bubble, turn the heat down to low. Put a lid on the pan, leaving a small gap, and simmer (cook at gentle bubbles) for 15 minutes. Stir every few minutes. If it gets too thick, add a splash of water.",
+              "Taste the chili and add more salt and pepper if needed."
+            ],
+            "start": 7
+          },
+          {
+            "type": "h",
+            "text": "Serve"
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Spoon the chili into a bowl. Pile the roasted sweet potato cubes on top of the chili (or serve them in a separate pile next to it if you like them crisp). Sprinkle with cilantro and squeeze the lime wedge over the top."
+            ],
+            "start": 13
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: green bell pepper, tomatoes and sweet potato."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Frozen diced onion and pepper; pre-cubed sweet potato; jarred minced garlic."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**More iron:** beans cooked from dry have more iron than canned (and less sodium) — see *How to Cook Dried Beans*.",
+              "White (cannellini or Great Northern) beans instead of pinto beans.",
+              "**Vegetarian:** 4 oz crumbled tempeh instead of the beef.",
+              "Ground bison (more iron) or lean ground turkey (less iron).",
+              "White potato or 1/2 cup cooked brown rice instead of sweet potato."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Make 4 servings in a large pot (simmer 20 minutes). Roast all the sweet potatoes on one large baking sheet. Keep 4 days in the fridge or 3 months in the freezer — store the potatoes separately so they stay firm, and reheat them in the oven or air fryer."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: 4 oz crumbled tempeh instead of beef — 10.7 mg iron, 35 g protein, B12 0.1 mcg. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 484,
+      "protein_g": 37,
+      "carbs_g": 57,
+      "fat_g": 17,
+      "fiber_g": 14,
+      "iron_mg": 10.4,
+      "vitamin_c_mg": 67,
+      "b12_mcg": 2.4,
+      "sodium_mg": 660
+    }
+  },
+  "sweet-chili-turkey-lentil-rice-bowl-with-broccoli": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "25 min",
+    "packable": "yes — reheats well",
+    "labels": [
+      "Quick",
+      "Batch",
+      "Leftovers-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1/3 cup cooked brown rice (about 1 1/2 tbsp dry)",
+              "1 tsp extra virgin olive oil",
+              "4 oz lean (93%) ground turkey",
+              "1/2 cup cooked green, brown or red lentils (rinsed and drained if canned)",
+              "1 garlic clove, minced",
+              "1/2 tsp grated fresh ginger",
+              "1 cup broccoli florets",
+              "1/2 red bell pepper, sliced",
+              "1/4 cup shelled edamame (frozen is fine)",
+              "1 tbsp sweet chili sauce",
+              "2 1/4 tsp low-sodium soy sauce",
+              "1 green onion, sliced",
+              "Salt and black pepper"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Method",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** cook the rice (or use a microwave pouch or leftovers). Cut the broccoli into small, bite-size florets. Slice the pepper and green onion. Mince the garlic and grate the ginger. Rinse the lentils if canned."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Set a large skillet over medium-high heat with the oil. Add the turkey and a pinch of salt and pepper. Break it into small crumbles with a spoon and cook for 5–6 minutes, until no pink is left (165°F / 74°C).",
+              "Add the lentils, garlic and ginger. Stir for 1–2 minutes, until the lentils are hot and mixed into the turkey.",
+              "Add the broccoli, red pepper, edamame and 2 tbsp water. Cover with a lid and cook for 3–4 minutes, until the broccoli is bright green and just tender.",
+              "Take off the lid. Add the sweet chili sauce and soy sauce and stir for 1 minute until everything is coated.",
+              "Spoon the rice into a bowl, top with the turkey mixture and sprinkle with green onion."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: broccoli and red bell pepper."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Microwave brown rice pouch; canned lentils; bagged broccoli florets; frozen shelled edamame; jarred minced garlic and ginger."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**Vegetarian:** 5 oz extra-firm tofu, crumbled, instead of the turkey.",
+              "95% lean ground beef instead of turkey (more iron).",
+              "Green beans or bok choy instead of broccoli.",
+              "**More iron:** lentils cooked from dry — see *How to Cook Dried Beans*."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Make 3 servings at once; keep 4 days in the fridge."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: 5 oz tofu instead of turkey — 9.1 mg iron, 36 g protein, B12 0. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 591,
+      "protein_g": 45,
+      "carbs_g": 64,
+      "fat_g": 19,
+      "fiber_g": 16,
+      "iron_mg": 7.5,
+      "vitamin_c_mg": 137,
+      "b12_mcg": 1.6,
+      "sodium_mg": 702
+    }
+  },
+  "sheet-pan-sesame-salmon-with-broccoli-edamame-quinoa": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "30 min",
+    "packable": "yes — reheat the quinoa; salmon is good warm or cold",
+    "labels": [
+      "Batch",
+      "Leftovers-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Edamame quinoa"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/4 cup dry quinoa (makes about 3/4 cup cooked)",
+              "3/4 cup frozen shelled edamame",
+              "Pinch of salt"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Sesame sauce"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 1/2 tsp tamari (or low-sodium soy sauce)",
+              "1 tsp rice vinegar",
+              "1 tsp avocado or olive oil",
+              "1/2 tsp honey",
+              "1/2 tsp grated fresh ginger",
+              "1 garlic clove, minced",
+              "1 tsp sesame seeds"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Sheet pan"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "4 oz salmon fillet (wild sockeye is leaner)",
+              "1 1/2 cups broccoli florets",
+              "1/2 red bell pepper, cut into strips",
+              "1/2 green onion, sliced"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Method",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** turn the oven on to 400°F (205°C). Line a baking sheet with parchment paper. Rinse the quinoa in a fine sieve. Cut the broccoli into bite-size florets and the pepper into strips."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "**Cook the quinoa and edamame together:** put the quinoa, frozen edamame, 1/2 cup water and a pinch of salt in a small pan. Bring to a boil, cover, turn the heat to low and cook for 15 minutes, until the water is absorbed. Leave covered. (Or cook them together in a rice cooker on the white rice setting.)",
+              "**Make the sauce:** in a small bowl, stir the tamari, rice vinegar, oil, honey, ginger, garlic and sesame seeds.",
+              "**Roast the vegetables:** put the broccoli and pepper on the baking sheet. Drizzle with one-third of the sauce and toss with your hands. Spread out and roast for 10 minutes.",
+              "**Add the salmon:** take the tray out and push the vegetables to the sides. Put the salmon in the middle, skin side down. Brush it with another third of the sauce. Roast for 10–12 minutes, until the salmon flakes easily with a fork and is no longer see-through in the middle (145°F / 63°C).",
+              "**Serve:** spoon the edamame quinoa onto a plate. Add the broccoli, pepper and salmon. Drizzle with the rest of the sauce and sprinkle with green onion."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Built in: broccoli and red bell pepper."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Microwave quinoa pouch + microwaved frozen edamame; bagged broccoli florets; jarred minced garlic and ginger."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "Farmed Atlantic salmon (more fat) or trout instead of sockeye.",
+              "**Vegetarian:** 5 oz extra-firm tofu, cubed, roasted with the vegetables."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Cook a double batch of edamame quinoa; roast two fillets and keep one for tomorrow's lunch."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: 5 oz tofu instead of salmon — 9.6 mg iron, 40 g protein, B12 0. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 593,
+      "protein_g": 51,
+      "carbs_g": 58,
+      "fat_g": 21,
+      "fiber_g": 16,
+      "iron_mg": 7.2,
+      "vitamin_c_mg": 173,
+      "b12_mcg": 5.8,
+      "sodium_mg": 641
+    }
+  },
+  "beef-lentil-burgers-with-sweet-potato-wedges": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": "30 min",
+    "packable": null,
+    "labels": [
+      "Batch",
+      "Freezer-friendly"
+    ],
+    "sections": [
+      {
+        "title": "Ingredients",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Burger patty"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "3 oz extra-lean (95%) ground beef",
+              "1/3 cup cooked green, brown or red lentils (rinsed and drained if canned)",
+              "1 tbsp ground flaxseed",
+              "1/4 tsp garlic powder",
+              "1/4 tsp onion powder",
+              "1/2 tsp smoked paprika",
+              "1/4 tsp ground cumin",
+              "Salt and black pepper",
+              "1 tsp extra virgin olive oil (for the pan)"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "To serve"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1 whole wheat burger bun",
+              "1 romaine leaf, 2 tomato slices, a few thin red onion rings",
+              "1 tsp mustard (or your favorite sauce)"
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Sides"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "1/3 small sweet potato, cut into wedges",
+              "1 cup broccoli florets",
+              "1/2 red bell pepper, cut into strips",
+              "1 1/2 tsp olive oil, divided",
+              "1/4 tsp garlic powder, 1/4 tsp smoked paprika, salt and black pepper",
+              "Squeeze of lemon"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Method",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "**Before you start:** turn the oven on to 425°F (220°C) and line a baking sheet with parchment paper."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "**Start the wedges:** cut the sweet potato into wedges about 1/2 inch thick. Put them on one side of the baking sheet, toss with 1/2 tsp oil and a pinch of salt and smoked paprika, and spread out. Roast for 10 minutes.",
+              "**Add the vegetables:** in a bowl, toss the broccoli and pepper strips with 1 tsp oil, the garlic powder, smoked paprika, salt and pepper. Turn the wedges over and add the vegetables to the other side of the sheet. Roast 12–15 minutes more, until the broccoli edges are crisp and the wedges are soft inside. Squeeze lemon over the broccoli and pepper.",
+              "**Make the patty while they roast:** put the lentils in a bowl and mash them with a fork until mostly smooth. Add the beef, flaxseed, garlic powder, onion powder, smoked paprika, cumin, a pinch of salt and pepper. Mix with your hands until evenly combined.",
+              "Shape into one patty about 3/4 inch thick, slightly wider than the bun (it shrinks as it cooks). Press a small dip in the middle with your thumb so it stays flat. Rest it in the fridge for 10 minutes if you have time — it holds together better.",
+              "**Cook the patty:** set a skillet over medium heat with 1 tsp oil. Add the patty and cook for 4–5 minutes without moving it, until browned underneath. Flip carefully with a spatula and cook for 4–5 minutes more, until no pink is left in the middle (160°F / 71°C on a meat thermometer).",
+              "**Toast the bun** in the pan or toaster for 1 minute.",
+              "**Build the burger:** bun bottom, mustard, romaine, patty, tomato, red onion, bun top. Serve with the sweet potato wedges and roasted broccoli and peppers."
+            ],
+            "start": 1
+          }
+        ]
+      },
+      {
+        "title": "Vitamin C pairing",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Roasted broccoli and red pepper (plus tomato and sweet potato)."
+          }
+        ]
+      },
+      {
+        "title": "Shortcuts",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Canned lentils; pre-cut sweet potato fries from the produce section; pre-sliced pepper strips."
+          }
+        ]
+      },
+      {
+        "title": "Swaps",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "**Vegetarian:** tempeh patty — grate 4 oz tempeh, mix with the flax and spices (skip the lentils), chill 20 minutes, then cook the same way.",
+              "Ground bison instead of beef (more iron).",
+              "Skip the bun and serve over greens to save about 25 g carbs.",
+              "**More iron:** lentils cooked from dry — see *How to Cook Dried Beans*."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Batch prep",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Make 4 patties at once. Freeze uncooked patties between parchment for up to 3 months; cook from frozen (6–7 minutes per side)."
+          }
+        ]
+      },
+      {
+        "title": "Timing note",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Have tea or coffee at least an hour away from this meal."
+          }
+        ]
+      }
+    ],
+    "nutritionNotes": [
+      "Calculated from USDA FoodData Central (newer Foundation data preferred; canned beans drained and rinsed). Vitamin C is estimated after cooking. Sodium is before salt added to taste.",
+      "**Vegetarian swap:** vegetarian: tempeh patty (4 oz tempeh, grated, + flax) — 7.2 mg iron, 36 g protein, B12 0.1 mcg. Plant swaps contain little or no B12 — see the B12 note in the guide."
+    ],
+    "nutrition": {
+      "calories": 596,
+      "protein_g": 38,
+      "carbs_g": 65,
+      "fat_g": 22,
+      "fiber_g": 17,
+      "iron_mg": 8.2,
+      "vitamin_c_mg": 143,
+      "b12_mcg": 1.9,
+      "sodium_mg": 422
+    }
+  },
+  "strawberries-pumpkin-hemp-seeds": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": null,
+    "packable": null,
+    "labels": [],
+    "sections": [
+      {
+        "title": "What you need",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 cup sliced strawberries",
+              "2 tbsp toasted pumpkin seeds",
+              "1 tbsp hemp seeds",
+              "A drizzle of maple syrup, if you like"
+            ]
+          }
+        ]
+      }
+    ],
+    "nutrition": {
+      "calories": 190,
+      "protein_g": 9,
+      "iron_mg": 2.6,
+      "vitamin_c_mg": 86
+    },
+    "nutritionNotes": [
+      "Values from USDA FoodData Central (newer data preferred); calories approximate."
+    ]
+  },
+  "trail-mix-orange": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": null,
+    "packable": null,
+    "labels": [],
+    "sections": [
+      {
+        "title": "What you need",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "2 tbsp pumpkin seeds",
+              "1 tbsp cashews",
+              "3 dried apricots, chopped",
+              "1 orange"
+            ]
+          }
+        ]
+      }
+    ],
+    "nutrition": {
+      "calories": 255,
+      "protein_g": 8,
+      "iron_mg": 3.0,
+      "vitamin_c_mg": 83
+    },
+    "nutritionNotes": [
+      "Values from USDA FoodData Central (newer data preferred); calories approximate."
+    ]
+  },
+  "hummus-pita-pepper-strips": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": null,
+    "packable": null,
+    "labels": [],
+    "sections": [
+      {
+        "title": "What you need",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1/4 cup hummus",
+              "1/2 whole wheat pita",
+              "1/2 red pepper, cut into strips"
+            ]
+          }
+        ]
+      }
+    ],
+    "nutrition": {
+      "calories": 240,
+      "protein_g": 8,
+      "iron_mg": 2.6,
+      "vitamin_c_mg": 85
+    },
+    "nutritionNotes": [
+      "Values from USDA FoodData Central (newer data preferred); calories approximate."
+    ]
+  },
+  "sea-salt-edamame-clementine": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": null,
+    "packable": null,
+    "labels": [],
+    "sections": [
+      {
+        "title": "What you need",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 cup edamame in pods, warm, sprinkled with flaky salt",
+              "1 clementine"
+            ]
+          }
+        ]
+      }
+    ],
+    "nutrition": {
+      "calories": 130,
+      "protein_g": 10,
+      "iron_mg": 1.9,
+      "vitamin_c_mg": 45
+    },
+    "nutritionNotes": [
+      "Values from USDA FoodData Central (newer data preferred); calories approximate."
+    ]
+  },
+  "beef-jerky-orange": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": null,
+    "packable": null,
+    "labels": [],
+    "sections": [
+      {
+        "title": "What you need",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "1 oz beef jerky",
+              "1 orange"
+            ]
+          }
+        ]
+      }
+    ],
+    "nutrition": {
+      "calories": 180,
+      "protein_g": 11,
+      "iron_mg": 2.0,
+      "vitamin_c_mg": 83
+    },
+    "nutritionNotes": [
+      "Values from USDA FoodData Central (newer data preferred); calories approximate."
+    ]
+  },
+  "rice-cakes-almond-butter-strawberries": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": null,
+    "packable": null,
+    "labels": [],
+    "sections": [
+      {
+        "title": "What you need",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "2 brown rice cakes",
+              "1 tbsp almond butter",
+              "1/2 cup sliced strawberries",
+              "1 tbsp hemp seeds"
+            ]
+          }
+        ]
+      }
+    ],
+    "nutrition": {
+      "calories": 220,
+      "protein_g": 9,
+      "iron_mg": 1.9,
+      "vitamin_c_mg": 50
+    },
+    "nutritionNotes": [
+      "Values from USDA FoodData Central (newer data preferred); calories approximate."
+    ]
+  },
+  "cheesy-popcorn-kiwi": {
+    "source": "The Iron Refill",
+    "serves": "1",
+    "time": null,
+    "packable": null,
+    "labels": [],
+    "sections": [
+      {
+        "title": "What you need",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "3 cups air-popped popcorn",
+              "1 tsp oil",
+              "1 tbsp nutritional yeast",
+              "1 kiwi"
+            ]
+          }
+        ]
+      }
+    ],
+    "nutrition": {
+      "calories": 155,
+      "protein_g": 6,
+      "iron_mg": 1.3,
+      "vitamin_c_mg": 41
+    },
+    "nutritionNotes": [
+      "Values from USDA FoodData Central (newer data preferred); calories approximate."
+    ]
+  }
+}

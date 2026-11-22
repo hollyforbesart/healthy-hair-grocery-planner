@@ -1669,5 +1669,640 @@
     "optionalIngredients": [],
     "source": "Planner expansion",
     "preparationNote": "Roll ready-to-eat turkey slices around pieces of cheddar and serve with grapes and crackers."
+  },
+  {
+    "id": "spiced-pinto-beans-scrambled-eggs-on-toast",
+    "name": "Spiced Pinto Beans + Scrambled Eggs on Toast",
+    "category": "breakfast",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "pinto-beans",
+      "bell-peppers",
+      "spinach",
+      "eggs",
+      "whole-wheat-bread"
+    ],
+    "optionalIngredients": [
+      "olive-oil",
+      "hot-sauce",
+      "cilantro"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Cook the beans with the spices until a little crisp, then add the red pepper. Wilt the spinach, scramble the eggs in the same pan, and serve with toast.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "chickpea-tofu-scramble-wrap",
+    "name": "Chickpea + Tofu Scramble Wrap",
+    "category": "breakfast",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "tofu",
+      "chickpeas",
+      "onions",
+      "bell-peppers",
+      "cherry-tomatoes",
+      "nutritional-yeast",
+      "lime",
+      "whole-grain-wraps"
+    ],
+    "optionalIngredients": [
+      "olive-oil",
+      "taco-seasoning"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Cook the onion, pepper and tomatoes, then add the crumbled tofu, chickpeas and spices until hot. Stir in the nutritional yeast and lime juice, and roll it up in a warm tortilla.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "vanilla-strawberry-hemp-oatmeal",
+    "name": "Vanilla Strawberry Hemp Oatmeal",
+    "category": "breakfast",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "soy-milk",
+      "protein-powder",
+      "oats",
+      "chia-seeds",
+      "hemp-seeds",
+      "almond-butter",
+      "strawberries",
+      "pumpkin-seeds"
+    ],
+    "optionalIngredients": [
+      "cinnamon"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Whisk the protein powder into the cold soy milk and water, then cook with the oats and chia seeds until thick. Stir in the hemp seeds and top with almond butter, strawberries and pumpkin seeds.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "egg-white-bean-mushroom-breakfast-wrap",
+    "name": "Egg, White Bean + Mushroom Breakfast Wrap",
+    "category": "breakfast",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "eggs",
+      "mushrooms",
+      "white-beans",
+      "whole-grain-wraps",
+      "hummus",
+      "kiwi",
+      "strawberries"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Brown the mushrooms, warm the white beans, then scramble the eggs in the same pan. Spread the tortillas with hummus, fill and roll, and serve with kiwi and strawberries.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "strawberry-banana-hemp-protein-smoothie",
+    "name": "Strawberry Banana Hemp Protein Smoothie",
+    "category": "breakfast",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "soy-milk",
+      "protein-powder",
+      "strawberries",
+      "banana",
+      "hemp-seeds",
+      "pumpkin-seeds"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "preparationNote": "Blend the soy milk, water and protein powder for a few seconds, then add the frozen fruit and seeds and blend until smooth.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "smoked-salmon-hummus-bagel",
+    "name": "Smoked Salmon + Hummus Bagel",
+    "category": "breakfast",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "bagels",
+      "hummus",
+      "cucumber",
+      "smoked-salmon",
+      "lemon",
+      "bell-peppers"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "preparationNote": "Toast the bagel, spread with hummus, and top with cucumber, smoked salmon, lemon juice and black pepper. Serve with red pepper strips.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "lentils-tomatoes-on-toast",
+    "name": "Lentils + Tomatoes on Toast",
+    "category": "breakfast",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "lentils",
+      "canned-tomatoes",
+      "lime",
+      "whole-wheat-bread",
+      "strawberries"
+    ],
+    "optionalIngredients": [
+      "cilantro"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Simmer the lentils and canned tomatoes for about 5 minutes, then stir in the lime juice. Spoon over toast and serve with strawberries.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "tropical-green-smoothie",
+    "name": "Tropical Green Smoothie",
+    "category": "breakfast",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "soy-milk",
+      "protein-powder",
+      "kale",
+      "pineapple",
+      "mango",
+      "hemp-seeds",
+      "ground-flaxseed",
+      "pumpkin-seeds"
+    ],
+    "optionalIngredients": [
+      "cinnamon"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Blend the soy milk, water and protein powder, then blend in the kale until smooth. Add the frozen fruit and seeds and blend again.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "southwest-tofu-white-bean-bowl",
+    "name": "Southwest Tofu + White Bean Bowl",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "moderate",
+    "requiredIngredients": [
+      "tofu",
+      "soy-sauce",
+      "nutritional-yeast",
+      "onions",
+      "white-beans",
+      "spinach",
+      "lime",
+      "quinoa",
+      "bell-peppers",
+      "avocado",
+      "salsa"
+    ],
+    "optionalIngredients": [
+      "olive-oil",
+      "taco-seasoning"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Cook the quinoa, and brown the seasoned crumbled tofu in a skillet. Cook the onion, beans and spinach, then build the bowl with red pepper, avocado and salsa verde.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "peanut-tempeh-edamame-stir-fry-with-quinoa",
+    "name": "Peanut Tempeh + Edamame Stir-Fry with Quinoa",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "moderate",
+    "requiredIngredients": [
+      "peanut-butter",
+      "vinegar",
+      "soy-sauce",
+      "quinoa",
+      "tempeh",
+      "edamame",
+      "broccoli",
+      "coleslaw-mix",
+      "sesame-seeds"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "While the quinoa cooks, brown the crumbled tempeh, then add the edamame, broccoli and coleslaw mix. Toss with the peanut sauce and sprinkle with sesame seeds.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "sesame-ginger-beef-lentil-tacos-with-side-salad",
+    "name": "Sesame Ginger Beef + Lentil Tacos with Side Salad",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "soy-sauce",
+      "sesame-oil",
+      "vinegar",
+      "ginger",
+      "garlic",
+      "ground-beef",
+      "onions",
+      "bell-peppers",
+      "lentils",
+      "whole-grain-wraps",
+      "lettuce",
+      "carrots",
+      "cucumber",
+      "lime"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "preparationNote": "Brown the beef with the onion and pepper, then stir in the lentils and sesame-ginger sauce. Fill warm tortillas and serve with a romaine, carrot and cucumber salad.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "sesame-tuna-lentil-poke-bowl",
+    "name": "Sesame Tuna + Lentil Poke Bowl",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "moderate",
+    "requiredIngredients": [
+      "soy-sauce",
+      "honey",
+      "vinegar",
+      "quinoa",
+      "lentils",
+      "canned-tuna",
+      "edamame",
+      "bell-peppers",
+      "cucumber",
+      "avocado",
+      "green-onions",
+      "sesame-seeds"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "preparationNote": "Toss cooked quinoa and lentils with half the dressing, and the flaked tuna with the rest. Top with edamame, peppers, cucumber, avocado, green onion and sesame seeds.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "lemon-pepper-mackerel-white-bean-kale-pasta",
+    "name": "Lemon Pepper Mackerel, White Bean + Kale Pasta",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "moderate",
+    "requiredIngredients": [
+      "whole-wheat-pasta",
+      "garlic",
+      "bell-peppers",
+      "kale",
+      "white-beans",
+      "canned-mackerel",
+      "lemon",
+      "mustard",
+      "fresh-dill"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "While the pasta cooks, sauté the garlic, red pepper and kale, then add the beans, pasta and a splash of pasta water. Off the heat, stir in the lemon-Dijon mix and fold in the mackerel and dill.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "thai-basil-bison-rice-bowl",
+    "name": "Thai Basil Bison Rice Bowl",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "moderate",
+    "requiredIngredients": [
+      "bison",
+      "fish-sauce",
+      "lime",
+      "maple-syrup",
+      "garlic",
+      "rice",
+      "edamame",
+      "bell-peppers",
+      "cucumber",
+      "carrots",
+      "green-onions",
+      "fresh-basil"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Sear the seasoned bison, let it rest for 5 minutes and slice it thinly. Serve over warm rice and edamame with the fresh vegetables, basil and lime sauce.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "chickpea-spinach-shakshuka-with-pita",
+    "name": "Chickpea + Spinach Shakshuka with Pita",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "moderate",
+    "requiredIngredients": [
+      "onions",
+      "bell-peppers",
+      "garlic",
+      "chickpeas",
+      "canned-tomatoes",
+      "spinach",
+      "eggs",
+      "pita-bread"
+    ],
+    "optionalIngredients": [
+      "olive-oil",
+      "harissa",
+      "cilantro"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Simmer the onion, pepper, chickpeas and tomato purée with the spices, then wilt in the spinach. Cook the eggs in the sauce (or hard-boil them to pack for lunch) and serve with warm pita.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "moroccan-spiced-chicken-lentil-mushroom-bowl",
+    "name": "Moroccan-Spiced Chicken, Lentil + Mushroom Bowl",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "moderate",
+    "requiredIngredients": [
+      "chicken-breast",
+      "mushrooms",
+      "lentils",
+      "bulgur",
+      "bell-peppers",
+      "celery",
+      "onions",
+      "dried-apricots",
+      "almonds",
+      "cilantro",
+      "vinegar",
+      "orange"
+    ],
+    "optionalIngredients": [
+      "olive-oil",
+      "cinnamon"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Soak the bulgur in boiling water while you cook the spiced chicken and mushrooms. Warm the lentils with the rest of the spices, then build the bowl with the toppings and orange dressing.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "beef-bean-chili-with-roasted-sweet-potatoes",
+    "name": "Beef + Bean Chili with Roasted Sweet Potatoes",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "more-involved",
+    "requiredIngredients": [
+      "sweet-potatoes",
+      "onions",
+      "bell-peppers",
+      "garlic",
+      "ground-beef",
+      "pinto-beans",
+      "canned-tomatoes",
+      "cilantro",
+      "lime"
+    ],
+    "optionalIngredients": [
+      "olive-oil",
+      "chili-powder",
+      "broth"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Roast the seasoned sweet potato cubes while you brown the beef with the onion, pepper and spices. Add the beans, crushed tomatoes and broth, simmer, and serve with the sweet potatoes.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "sweet-chili-turkey-lentil-rice-bowl-with-broccoli",
+    "name": "Sweet Chili Turkey + Lentil Rice Bowl with Broccoli",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "moderate",
+    "requiredIngredients": [
+      "rice",
+      "ground-turkey",
+      "lentils",
+      "garlic",
+      "ginger",
+      "broccoli",
+      "bell-peppers",
+      "edamame",
+      "sweet-thai-chili-sauce",
+      "soy-sauce",
+      "green-onions"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Brown the turkey, then stir in the lentils, garlic and ginger. Steam the broccoli, pepper and edamame in the covered pan, toss with sweet chili and soy sauce, and serve over rice.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "sheet-pan-sesame-salmon-with-broccoli-edamame-quinoa",
+    "name": "Sheet-Pan Sesame Salmon with Broccoli, Edamame + Quinoa",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "more-involved",
+    "requiredIngredients": [
+      "quinoa",
+      "edamame",
+      "soy-sauce",
+      "vinegar",
+      "honey",
+      "ginger",
+      "garlic",
+      "sesame-seeds",
+      "salmon",
+      "broccoli",
+      "bell-peppers",
+      "green-onions"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Cook the quinoa and edamame together while the broccoli and pepper roast with some of the sesame sauce. Add the salmon to the pan for the last 10–12 minutes, then drizzle with the rest of the sauce.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "beef-lentil-burgers-with-sweet-potato-wedges",
+    "name": "Beef + Lentil Burgers with Sweet Potato Wedges",
+    "category": "lunch",
+    "extraCategories": [
+      "dinner"
+    ],
+    "timeCategory": "more-involved",
+    "requiredIngredients": [
+      "ground-beef",
+      "lentils",
+      "ground-flaxseed",
+      "burger-buns",
+      "lettuce",
+      "tomatoes",
+      "onions",
+      "mustard",
+      "sweet-potatoes",
+      "broccoli",
+      "bell-peppers",
+      "lemon"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Roast the sweet potato wedges, broccoli and pepper while you mix mashed lentils into the beef and shape a patty. Cook the patty until no pink is left and serve on a toasted bun.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "strawberries-pumpkin-hemp-seeds",
+    "name": "Strawberries with Pumpkin + Hemp Seeds",
+    "category": "snack",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "strawberries",
+      "pumpkin-seeds",
+      "hemp-seeds"
+    ],
+    "optionalIngredients": [
+      "maple-syrup"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Top sliced strawberries with toasted pumpkin seeds and hemp seeds, with a drizzle of maple if you like.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "trail-mix-orange",
+    "name": "Trail Mix + Orange",
+    "category": "snack",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "pumpkin-seeds",
+      "cashews",
+      "dried-apricots",
+      "orange"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "preparationNote": "Mix pumpkin seeds, cashews and chopped dried apricots, and eat with an orange.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "hummus-pita-pepper-strips",
+    "name": "Hummus + Pita with Pepper Strips",
+    "category": "snack",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "hummus",
+      "pita-bread",
+      "bell-peppers"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "sea-salt-edamame-clementine",
+    "name": "Sea-Salt Edamame + Clementine",
+    "category": "snack",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "edamame",
+      "mandarin-oranges"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "preparationNote": "Warm the edamame in their pods and sprinkle with flaky salt. Serve with a clementine.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "beef-jerky-orange",
+    "name": "Beef Jerky + Orange",
+    "category": "snack",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "beef-jerky",
+      "orange"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "rice-cakes-almond-butter-strawberries",
+    "name": "Rice Cakes with Almond Butter + Strawberries",
+    "category": "snack",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "rice-cakes",
+      "almond-butter",
+      "strawberries",
+      "hemp-seeds"
+    ],
+    "optionalIngredients": [],
+    "source": "The Iron Refill",
+    "preparationNote": "Spread brown rice cakes with almond butter and top with sliced strawberries and hemp seeds.",
+    "highIron": true,
+    "preview": true
+  },
+  {
+    "id": "cheesy-popcorn-kiwi",
+    "name": "“Cheesy” Popcorn + Kiwi",
+    "category": "snack",
+    "timeCategory": "quick",
+    "requiredIngredients": [
+      "popcorn",
+      "nutritional-yeast",
+      "kiwi"
+    ],
+    "optionalIngredients": [
+      "olive-oil"
+    ],
+    "source": "The Iron Refill",
+    "preparationNote": "Toss air-popped popcorn with a teaspoon of oil and the nutritional yeast. Serve with a kiwi.",
+    "highIron": true,
+    "preview": true
   }
 ]

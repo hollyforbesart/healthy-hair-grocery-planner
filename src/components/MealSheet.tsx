@@ -1,7 +1,10 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { RECIPES } from '../data/recipes';
+import { useBackToClose } from '../hooks/useBackToClose';
 import { matchMeal } from '../lib/matching';
 import { usePlanner } from '../state/PlannerContext';
 import { MealCard } from './MealCard';
+import { RecipeView } from './RecipeView';
 import { Sheet } from './Sheet';
 
 interface MealSheetProps {
@@ -14,6 +17,7 @@ interface MealSheetProps {
 /**
  * A meal's full card, opened from a meal name (Review, the grocery list).
  * It works like the card on Meal ideas, and the phone's back gesture closes it.
+ * In preview, "See the recipe" shows the recipe in the same panel.
  */
 export function MealSheet({ mealId, backLabel, onClose }: MealSheetProps) {
   const { state, dispatch, meals, lookup } = usePlanner();
@@ -27,20 +31,21 @@ export function MealSheet({ mealId, backLabel, onClose }: MealSheetProps) {
     return { meal, match, reasons, isFavorite: favorites.includes(meal.id), isRecent: false };
   }, [meal, ingredientStatuses, preferences.avoidIngredientIds, favorites]);
 
-  // An extra history entry while the card is open, so "back" closes the card
-  // instead of leaving the planner.
-  useEffect(() => {
-    if (!(window.history.state as { mealSheet?: boolean } | null)?.mealSheet) {
-      window.history.pushState({ ...(window.history.state ?? {}), mealSheet: true }, '');
-    }
-    window.addEventListener('popstate', onClose);
-    return () => window.removeEventListener('popstate', onClose);
-  }, [onClose]);
-  const close = useCallback(() => window.history.back(), []);
+  const close = useBackToClose(onClose);
+  // The recipe opens inside this same panel, with its own way back to the card.
+  const [showRecipe, setShowRecipe] = useState(false);
+  const recipe = meal ? RECIPES[meal.id] : undefined;
 
   if (!meal || !recommendation) return null;
+  if (showRecipe && recipe) {
+    return (
+      <Sheet key="recipe" title={`${meal.name} recipe`} onClose={() => setShowRecipe(false)} backLabel="Back to the meal">
+        <RecipeView name={meal.name} recipe={recipe} highIron={meal.highIron} />
+      </Sheet>
+    );
+  }
   return (
-    <Sheet title={meal.name} onClose={close} backLabel={backLabel}>
+    <Sheet key="card" title={meal.name} onClose={close} backLabel={backLabel}>
       <MealCard
         recommendation={recommendation}
         lookup={lookup}
@@ -50,6 +55,7 @@ export function MealSheet({ mealId, backLabel, onClose }: MealSheetProps) {
         onToggle={() => dispatch({ type: 'toggleMeal', mealId: meal.id })}
         onToggleFavorite={() => dispatch({ type: 'toggleFavorite', mealId: meal.id })}
         onToggleExtra={(ingredientId) => dispatch({ type: 'toggleMealExtra', mealId: meal.id, ingredientId })}
+        onOpenRecipe={() => setShowRecipe(true)}
       />
     </Sheet>
   );

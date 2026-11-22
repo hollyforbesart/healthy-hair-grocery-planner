@@ -47,14 +47,18 @@ describe('ingredient catalog', () => {
 });
 
 describe('meal library', () => {
-  it('has 100 meals with unique IDs and names', () => {
-    expect(MEALS).toHaveLength(100);
+  it('has 100 launched meals plus 27 from The Iron Refill (in preview), with unique IDs and names', () => {
+    expect(MEALS.filter((m) => !m.preview)).toHaveLength(100);
+    expect(MEALS.filter((m) => m.preview)).toHaveLength(27);
     expect(new Set(MEALS.map((m) => m.id)).size).toBe(MEALS.length);
     expect(new Set(MEALS.map((m) => m.name.toLowerCase())).size).toBe(MEALS.length);
   });
 
   it('uses only valid meal categories', () => {
-    for (const m of MEALS) expect(mealCategories.has(m.category), `${m.id} category "${m.category}"`).toBe(true);
+    for (const m of MEALS) {
+      for (const c of [m.category, ...(m.extraCategories ?? [])]) expect(mealCategories.has(c), `${m.id} category "${c}"`).toBe(true);
+      expect(m.extraCategories ?? [], `${m.id} repeats its main category`).not.toContain(m.category);
+    }
   });
 
   it('gives every meal a time category', () => {
@@ -105,6 +109,48 @@ describe('meal library', () => {
     for (const m of withNotes) {
       expect(m.preparationNote!.trim(), m.id).not.toBe('');
       expect(m.preparationNote!.length, `${m.id} prep note is too long`).toBeLessThanOrEqual(400);
+    }
+  });
+});
+
+describe('The Iron Refill meals', () => {
+  const ironRefill = MEALS.filter((m) => m.source === 'The Iron Refill');
+
+  it('are all tagged high iron and stay in preview, with a recipe each', async () => {
+    const { RECIPES } = await import('./recipes');
+    expect(ironRefill).toHaveLength(27);
+    for (const m of ironRefill) {
+      expect(m.highIron, m.id).toBe(true);
+      expect(m.preview, m.id).toBe(true);
+      expect(RECIPES[m.id], `recipe for ${m.id}`).toBeDefined();
+    }
+  });
+
+  it('never include dairy, pork, liver or organ meats, oysters, mussels, farro or chocolate', () => {
+    const banned = /cheese|yogurt|milk|butter|cream|tzatziki|pesto|pork|bacon|ham|sausage|liver|organ|oyster|mussel|farro|chocolate|cocoa/;
+    for (const m of ironRefill) {
+      for (const id of [...m.requiredIngredients, ...m.optionalIngredients]) {
+        const allowed = id === 'soy-milk' || id === 'almond-butter' || id === 'peanut-butter';
+        expect(allowed || !banned.test(id), `${m.id} → ${id}`).toBe(true);
+      }
+    }
+  });
+
+  it('only use preview ingredients in preview meals, so the live planner never shows them', () => {
+    const previewIngredients = new Set(INGREDIENTS.filter((i) => i.preview).map((i) => i.id));
+    for (const m of MEALS.filter((m) => !m.preview)) {
+      for (const id of [...m.requiredIngredients, ...m.optionalIngredients]) expect(previewIngredients.has(id), `${m.id} → ${id}`).toBe(false);
+    }
+  });
+});
+
+describe('recipes', () => {
+  it('belong to meals that exist, and every nutrition value is a number', async () => {
+    const { RECIPES } = await import('./recipes');
+    for (const [id, recipe] of Object.entries(RECIPES)) {
+      expect(MEALS.some((m) => m.id === id), id).toBe(true);
+      expect(recipe.sections.length, id).toBeGreaterThan(0);
+      for (const [key, value] of Object.entries(recipe.nutrition ?? {})) expect(typeof value, `${id} ${key}`).toBe('number');
     }
   });
 });
@@ -181,5 +227,27 @@ describe('timing tips', () => {
     expect(timingTipsFor(fajita)).toEqual([expect.stringContaining('white rice')]);
     const tacos = MEALS.find((m) => m.id === 'breakfast-egg-black-bean-tacos')!;
     expect(timingTipsFor(tacos)).toEqual([expect.stringContaining('canned beans')]);
+  });
+});
+
+describe('foods added to a "leave out" group later', () => {
+  it('keep the group ticked for people who had already ticked it', async () => {
+    const { addNewGroupMembers } = await import('./avoidGroups');
+    const meat = AVOID_GROUPS.find((g) => g.id === 'meat')!.ingredientIds;
+    const before = meat.filter((id) => id !== 'bison' && id !== 'beef-jerky');
+    expect(addNewGroupMembers(before).sort()).toEqual([...meat].sort());
+    // Only part of the group ticked: nothing is added.
+    expect(addNewGroupMembers(before.slice(1))).toEqual(before.slice(1));
+  });
+});
+
+describe('meal types', () => {
+  it('name "lunch or dinner" meals as both', async () => {
+    const { isMealType, mealTypeLabel } = await import('./categories');
+    const bowl = MEALS.find((m) => m.id === 'sesame-tuna-lentil-poke-bowl')!;
+    expect(isMealType(bowl, 'lunch')).toBe(true);
+    expect(isMealType(bowl, 'dinner')).toBe(true);
+    expect(isMealType(bowl, 'breakfast')).toBe(false);
+    expect(mealTypeLabel(bowl)).toBe('Lunch or dinner');
   });
 });

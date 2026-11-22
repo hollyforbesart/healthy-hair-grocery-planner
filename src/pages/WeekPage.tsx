@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Icon } from '../components/Icon';
 import { Sheet } from '../components/Sheet';
-import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES } from '../data/categories';
+import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES, isMealType } from '../data/categories';
 import { mealPhotoUrl } from '../data/mealPhotos';
 import { track } from '../lib/analytics';
 import { takeSpotToReopen } from '../lib/scheduleTrip';
@@ -70,8 +70,8 @@ function SlotPicker({ day, category, current, leftoversFrom, placedOn, onChoose,
   const [text, setText] = useState(current?.kind === 'custom' ? current.text : '');
   const [added, setAdded] = useState<MealTemplate | null>(null);
   const dayName = DAY_NAMES[day];
-  const sameType = selectedMeals.filter((m) => m.category === category);
-  const otherTypes = selectedMeals.filter((m) => m.category !== category);
+  const sameType = selectedMeals.filter((m) => isMealType(m, category));
+  const otherTypes = selectedMeals.filter((m) => !isMealType(m, category));
 
   if (added) {
     // Step 2: repeat it, or save leftovers for tomorrow.
@@ -458,7 +458,7 @@ export function WeekPage({ onOpenPlanner, onFindMeals }: { onOpenPlanner: () => 
                 <strong>
                   {n} {lower(category)} {n === 1 ? 'spot' : 'spots'}
                 </strong>
-                {selectedMeals.some((m) => m.category === category) ? '' : ` (no ${lower(category)} ideas picked yet)`} ·{' '}
+                {selectedMeals.some((m) => isMealType(m, category)) ? '' : ` (no ${lower(category)} ideas picked yet)`} ·{' '}
                 <button type="button" className="link-btn" onClick={() => onFindMeals(category, firstEmpty(category))}>
                   Find {lower(category)} ideas
                 </button>

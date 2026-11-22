@@ -5,7 +5,7 @@ import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
 import { AVOID_GROUPS } from '../data/avoidGroups';
 import { Icon } from '../components/Icon';
-import { MEAL_CATEGORIES, TIME_CATEGORIES } from '../data/categories';
+import { MEAL_CATEGORIES, TIME_CATEGORIES, isMealType } from '../data/categories';
 import { useRecommendations } from '../hooks/useRecommendations';
 import { track } from '../lib/analytics';
 import { cancelScheduleTrip, currentScheduleTrip, endScheduleTrip } from '../lib/scheduleTrip';
@@ -55,7 +55,7 @@ export function MealsStep() {
 
   const matching = result.data.filter(
     (r) =>
-      (categories.length === 0 || categories.includes(r.meal.category)) &&
+      (categories.length === 0 || categories.some((c) => isMealType(r.meal, c))) &&
       (!favoritesOnly || r.isFavorite) &&
       (!time || r.meal.timeCategory === time) &&
       mealMatchesQuery(r.meal, query, lookup),
@@ -63,7 +63,7 @@ export function MealsStep() {
   // Browsing several meal types: one short section each, so snacks don't crowd out dinners.
   const sectioned = !query.trim() && !favoritesOnly && categories.length !== 1;
   const sections = MEAL_CATEGORIES.filter((c) => categories.length === 0 || categories.includes(c.id))
-    .map((c) => ({ ...c, items: matching.filter((r) => r.meal.category === c.id) }))
+    .map((c) => ({ ...c, items: matching.filter((r) => isMealType(r.meal, c.id)) }))
     .filter((s) => s.items.length > 0);
   const visible = matching.slice(0, shown);
   const hasAnything = Object.values(ingredientStatuses).some((s) => s === 'have');

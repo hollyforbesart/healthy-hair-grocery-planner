@@ -180,3 +180,14 @@ describe('repeat my picks', () => {
     expect(plan.slots[slotKey(6, 'breakfast')]).toEqual({ kind: 'meal', mealId: smoothie.id });
   });
 });
+
+describe('"lunch or dinner" meals (The Iron Refill)', () => {
+  it('can fill a lunch or a dinner, but are placed only once', () => {
+    const both = MEALS.filter((m) => m.extraCategories?.includes('dinner')).slice(0, 2);
+    expect(both).toHaveLength(2);
+    const plan = fillWeek(emptyWeekPlan(), both, '2026-10-18', { ...DEFAULT_FILL_PREFERENCES, dinner: 'once', leftoverLunches: false, lunch: 'once' });
+    const placed = Object.values(plan.slots).flatMap((s) => (s.kind === 'meal' ? [s.mealId] : []));
+    expect(placed.sort()).toEqual(both.map((m) => m.id).sort());
+    expect(Object.keys(plan.slots).some((k) => k.endsWith('dinner'))).toBe(true);
+  });
+});

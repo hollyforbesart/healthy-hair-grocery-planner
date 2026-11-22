@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { MealNameButton, MealSheet } from '../components/MealSheet';
 import { StepFooter } from '../components/StepFooter';
 import { StepHeader } from '../components/StepHeader';
-import { MEAL_CATEGORY_LABELS } from '../data/categories';
+import { mealTypeLabel } from '../data/categories';
 import { useStepNav } from '../hooks/useStepNav';
 import { ingredientName } from '../lib/ingredients';
 import { buildReviewList } from '../lib/review';
@@ -62,7 +62,7 @@ export function ReviewStep() {
                       <MealNameButton name={meal.name} onOpen={() => setOpenMealId(meal.id)} />
                     </span>
                     <span className="small muted">
-                      {MEAL_CATEGORY_LABELS[meal.category]}
+                      {mealTypeLabel(meal)}
                       {extras.length > 0 && ` · plus ${extras.map((id) => ingredientName(lookup, id).toLowerCase()).join(', ')}`}
                     </span>
                   </div>

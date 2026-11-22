@@ -2,7 +2,7 @@
  * The meal schedule ("My week" in code): placing meals on a Sunday-to-Saturday week. Pure helpers, so the
  * reducer, the page and the tests share them.
  */
-import { MEAL_CATEGORY_LABELS } from '../data/categories';
+import { MEAL_CATEGORY_LABELS, isMealType } from '../data/categories';
 import type { MealCategory, MealTemplate } from '../types';
 
 /** What can go in a slot: one of the planner's meals, leftovers of one, a quick pick, or the person's own words. */
@@ -169,9 +169,13 @@ function spreadTwice(slots: Record<string, WeekSlot>, meals: MealTemplate[], day
 export function fillWeek(plan: WeekPlan, meals: MealTemplate[], start: string, prefs: FillPreferences = DEFAULT_FILL_PREFERENCES): WeekPlan {
   const slots = { ...plan.slots };
   const days = prefs.weekendOpen ? [1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5, 6];
-  const placed = new Set(Object.values(slots).flatMap((s) => (s.kind === 'meal' ? [s.mealId] : [])));
-  const picks = (c: MealCategory) => meals.filter((m) => m.category === c);
-  const notYetPlaced = (c: MealCategory) => picks(c).filter((m) => !placed.has(m.id));
+  // Worked out each time, so a "lunch or dinner" meal already placed at dinner isn't placed again at lunch.
+  const placed = () => new Set(Object.values(slots).flatMap((s) => (s.kind === 'meal' ? [s.mealId] : [])));
+  const picks = (c: MealCategory) => meals.filter((m) => isMealType(m, c));
+  const notYetPlaced = (c: MealCategory) => {
+    const already = placed();
+    return picks(c).filter((m) => !already.has(m.id));
+  };
 
   if (prefs.nightOff && days.includes(5) && !slots[slotKey(5, 'dinner')]) slots[slotKey(5, 'dinner')] = { kind: 'quick', id: 'takeout' };
 

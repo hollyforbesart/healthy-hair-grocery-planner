@@ -2,7 +2,8 @@ import type { MealTemplate } from '../types';
 import library from './library/meals.json';
 
 /**
- * Meal library — Mane Meals library v1 (100 reviewed meals).
+ * Meal library — Mane Meals library v1 (100 reviewed meals), plus 27 from
+ * The Iron Refill marked "preview" (hidden until launch; see src/lib/preview.ts).
  *
  * Edit src/data/library/meals.json to add or change meals. Each meal lists
  * ingredient IDs from ingredients.json; required ones drive matching and the

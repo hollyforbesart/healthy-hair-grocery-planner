@@ -1,4 +1,8 @@
-import { MEAL_CATEGORY_LABELS, TIME_CATEGORIES } from '../data/categories';
+import { useCallback, useState } from 'react';
+import { TIME_CATEGORIES, mealTypeLabel } from '../data/categories';
+import { RECIPES } from '../data/recipes';
+import { PREVIEW } from '../lib/preview';
+import { RecipeSheet } from './RecipeSheet';
 import { mealPhotoUrl } from '../data/mealPhotos';
 import { timingTipsFor } from '../data/timingTips';
 import { track } from '../lib/analytics';
@@ -18,6 +22,8 @@ interface MealCardProps {
   onToggle: () => void;
   onToggleFavorite: () => void;
   onToggleExtra: (ingredientId: string) => void;
+  /** Shows the recipe somewhere else (e.g. inside an open panel); otherwise it opens in its own panel. */
+  onOpenRecipe?: () => void;
 }
 
 const TAG_LABELS: Record<string, string> = {
@@ -39,7 +45,12 @@ export function MealCard({
   onToggle,
   onToggleFavorite,
   onToggleExtra,
+  onOpenRecipe,
 }: MealCardProps) {
+  const [recipeOpen, setRecipeOpen] = useState(false);
+  const closeRecipe = useCallback(() => setRecipeOpen(false), []);
+  // Recipes aren't launched yet: only shown in preview (src/lib/preview.ts).
+  const hasRecipe = PREVIEW && Boolean(RECIPES[recommendation.meal.id]);
   const { meal, match, reasons, isFavorite } = recommendation;
   const photo = mealPhotoUrl(meal.id);
   const name = (id: string) => ingredientName(lookup, id);
@@ -95,7 +106,7 @@ export function MealCard({
         <div className="meal-card__title">
           <h3 id={headingId}>{meal.name}</h3>
           <p className="meal-card__meta">
-            {MEAL_CATEGORY_LABELS[meal.category]}
+            {mealTypeLabel(meal)}
             {time && (
               <span className={`meal-time meal-time--${time.id}`} title={time.hint}>
                 <Icon name="clock" size={15} />
@@ -103,6 +114,7 @@ export function MealCard({
                 {time.label}
               </span>
             )}
+            {meal.highIron && <span className="iron-tag meal-card__iron">High iron</span>}
             {meal.makeAhead && (
               <span className="meal-time meal-time--ahead" title="Needs a few hours or overnight to soak or set">
                 <Icon name="moon" size={14} />
@@ -241,7 +253,13 @@ export function MealCard({
         >
           {selected ? '✓ In my plan' : 'Add to my plan'}
         </button>
-        {/* A web search, not an endorsed recipe; ingredients in outside recipes may differ from the list. */}
+        {hasRecipe ? (
+          <button type="button" className="link-btn meal-card__recipe" onClick={() => (onOpenRecipe ? onOpenRecipe() : setRecipeOpen(true))}>
+            See the recipe
+            <span className="visually-hidden"> for {meal.name}</span>
+          </button>
+        ) : (
+        /* A web search, not an endorsed recipe; ingredients in outside recipes may differ from the list. */
         <a
           className="meal-card__recipe"
           href={`https://www.google.com/search?q=${encodeURIComponent(`${meal.name} recipe`)}`}
@@ -252,7 +270,9 @@ export function MealCard({
           Find a recipe <span aria-hidden="true">↗</span>
           <span className="visually-hidden"> for {meal.name} (opens a web search in a new tab)</span>
         </a>
+        )}
       </div>
+      {recipeOpen && <RecipeSheet meal={meal} backLabel="Back to meal ideas" onClose={closeRecipe} />}
     </article>
   );
 }

@@ -11,3 +11,4 @@ dist
 # Cloudflare local development
 .wrangler/
 .dev.vars
+__pycache__/

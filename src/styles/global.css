@@ -2949,3 +2949,95 @@ textarea:focus-visible {
 .week-sheet__body .meal-card {
   margin-top: 0.75rem;
 }
+
+/* The Iron Refill: "High iron" tag (cards and recipes). */
+.iron-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  background: #f6dde8;
+  color: #8e2a5a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.meal-card__iron {
+  margin-left: 0.5rem;
+}
+
+/* A full recipe, in a panel. */
+.recipe {
+  padding-top: 0.75rem;
+}
+.recipe__head h3 {
+  margin: 0 0 0.25rem;
+}
+.recipe__meta {
+  margin: 0 0 0.5rem;
+  color: var(--plum-60);
+}
+.recipe__labels {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.recipe__labels li:not(.iron-tag) {
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  background: var(--lavender-soft);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.recipe__nutrition {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.75rem 0.9rem;
+  margin: 0.5rem 0 1rem;
+}
+.recipe__nutrition h4,
+.recipe__section h4 {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--plum-60);
+  margin: 0 0 0.5rem;
+}
+.recipe__nutrition dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem 0.75rem;
+  margin: 0 0 0.5rem;
+}
+.recipe__nutrition dt {
+  font-size: 0.8rem;
+  color: var(--plum-60);
+}
+.recipe__nutrition dd {
+  margin: 0;
+  font-weight: 700;
+}
+.recipe__section {
+  margin-bottom: 1rem;
+}
+.recipe__section ul,
+.recipe__section ol {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.3rem;
+}
+.recipe__section li + li {
+  margin-top: 0.3rem;
+}
+.recipe__subhead {
+  font-family: var(--font);
+  font-size: 1rem;
+  margin: 0.75rem 0 0.25rem;
+}
+.recipe__source {
+  margin-top: 1rem;
+}

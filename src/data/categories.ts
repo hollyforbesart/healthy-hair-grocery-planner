@@ -1,4 +1,4 @@
-import type { FoodGroupId, Ingredient, KitchenGroupId, MealCategory, StoreSectionId, TimeCategory } from '../types';
+import type { FoodGroupId, Ingredient, KitchenGroupId, MealCategory, MealTemplate, StoreSectionId, TimeCategory } from '../types';
 import storeSections from './library/store-sections.json';
 
 /** Nutrition food groups, in display order. */
@@ -59,3 +59,18 @@ export const TIME_CATEGORY_IDS = new Set<string>(TIME_CATEGORIES.map((t) => t.id
 export const MEAL_CATEGORY_LABELS: Record<MealCategory, string> = Object.fromEntries(
   MEAL_CATEGORIES.map((c) => [c.id, c.label]),
 ) as Record<MealCategory, string>;
+
+/** A meal's types: its main one, plus any it also counts as ("lunch or dinner"). */
+export const mealTypesOf = (meal: Pick<MealTemplate, 'category' | 'extraCategories'>): MealCategory[] => [
+  meal.category,
+  ...(meal.extraCategories ?? []),
+];
+
+export const isMealType = (meal: Pick<MealTemplate, 'category' | 'extraCategories'>, category: MealCategory): boolean =>
+  meal.category === category || (meal.extraCategories?.includes(category) ?? false);
+
+/** "Dinner", or "Lunch or dinner" for a meal that counts as both. */
+export const mealTypeLabel = (meal: Pick<MealTemplate, 'category' | 'extraCategories'>): string =>
+  mealTypesOf(meal)
+    .map((c, i) => (i === 0 ? MEAL_CATEGORY_LABELS[c] : MEAL_CATEGORY_LABELS[c].toLowerCase()))
+    .join(' or ');

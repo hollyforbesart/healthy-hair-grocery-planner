@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, type Dispatch, type ReactNode } from 'react';
 import { INGREDIENTS } from '../data/ingredients';
 import { MEALS } from '../data/meals';
+import { PREVIEW } from '../lib/preview';
 import { track } from '../lib/analytics';
 import { eventsForAction } from '../lib/analyticsActions';
 import { createLookup, type IngredientLookup } from '../lib/ingredients';
@@ -10,6 +11,10 @@ import type { Ingredient, MealTemplate } from '../types';
 import { hydrateState, plannerReducer, type PlannerAction, type PlannerState } from './plannerReducer';
 
 export const STORAGE_KEY = 'healthy-hair-grocery-planner:v1';
+
+// Meals and ingredients that aren't launched yet only appear in preview (src/lib/preview.ts).
+const VISIBLE_MEALS = PREVIEW ? MEALS : MEALS.filter((m) => !m.preview);
+const VISIBLE_INGREDIENTS = PREVIEW ? INGREDIENTS : INGREDIENTS.filter((i) => !i.preview);
 
 interface PlannerContextValue {
   state: PlannerState;
@@ -48,15 +53,16 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
   });
 
   const value = useMemo<PlannerContextValue>(() => {
-    const allIngredients = [...INGREDIENTS, ...state.customIngredients];
+    const allIngredients = [...VISIBLE_INGREDIENTS, ...state.customIngredients];
     return {
       state,
       dispatch,
       allIngredients,
-      lookup: createLookup(allIngredients),
-      meals: MEALS,
-      // Silently drops saved IDs for meals no longer in the library.
-      selectedMeals: MEALS.filter((m) => state.selectedMealIds.includes(m.id)),
+      // Names for every catalog item, so a plan made in preview still reads correctly.
+      lookup: createLookup([...INGREDIENTS, ...state.customIngredients]),
+      meals: VISIBLE_MEALS,
+      // Silently drops saved IDs for meals no longer in the library (or not launched yet).
+      selectedMeals: VISIBLE_MEALS.filter((m) => state.selectedMealIds.includes(m.id)),
     };
   }, [state, dispatch]);
 

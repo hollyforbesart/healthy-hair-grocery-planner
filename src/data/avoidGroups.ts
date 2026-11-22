@@ -1,3 +1,7 @@
+import { INGREDIENTS } from './ingredients';
+
+const PREVIEW_INGREDIENT_IDS = new Set(INGREDIENTS.filter((i) => i.preview).map((i) => i.id));
+
 /**
  * Quick-pick groups for "Foods to leave out" on the meal ideas page.
  * Each group simply expands to catalog ingredient IDs — keep in sync when
@@ -14,12 +18,12 @@ export const AVOID_GROUPS: AvoidGroup[] = [
   {
     id: 'meat',
     label: 'Meat & poultry',
-    ingredientIds: ['beef-strips', 'chicken-breast', 'chicken-legs', 'chicken-thighs', 'ground-beef', 'ground-turkey', 'sliced-turkey-breast'],
+    ingredientIds: ['beef-strips', 'chicken-breast', 'chicken-legs', 'chicken-thighs', 'ground-beef', 'ground-turkey', 'sliced-turkey-breast', 'bison', 'beef-jerky'],
   },
   {
     id: 'fish',
     label: 'Fish & seafood',
-    ingredientIds: ['canned-salmon', 'canned-tuna', 'salmon', 'sardines', 'shrimp', 'smoked-salmon', 'trout', 'white-fish'],
+    ingredientIds: ['canned-salmon', 'canned-tuna', 'salmon', 'sardines', 'shrimp', 'smoked-salmon', 'trout', 'white-fish', 'canned-mackerel', 'fish-sauce'],
   },
   {
     id: 'dairy',
@@ -46,7 +50,7 @@ export const AVOID_GROUPS: AvoidGroup[] = [
     // Pesto is traditionally made with pine nuts.
     ingredientIds: ['almond-butter', 'almonds', 'basil-pesto', 'cashews', 'peanut-butter', 'walnuts'],
   },
-  { id: 'soy', label: 'Soy', ingredientIds: ['edamame', 'soy-sauce', 'tempeh', 'tofu'] },
+  { id: 'soy', label: 'Soy', ingredientIds: ['edamame', 'soy-sauce', 'tempeh', 'tofu', 'soy-milk'] },
   {
     id: 'wheat',
     label: 'Wheat',
@@ -65,6 +69,8 @@ export const AVOID_GROUPS: AvoidGroup[] = [
       'whole-grain-wraps',
       'whole-wheat-bread',
       'whole-wheat-pasta',
+      'bagels',
+      'bulgur',
     ],
   },
 ];
@@ -79,4 +85,18 @@ export function avoidGroupsFor(ingredientId: string, avoidIngredientIds: string[
   return AVOID_GROUPS.filter((g) => g.ingredientIds.includes(ingredientId) && g.ingredientIds.every((id) => avoid.has(id))).map(
     (g) => g.label,
   );
+}
+
+/**
+ * Ingredients added to a group after people may already have ticked it (the
+ * "preview" ones, e.g. from The Iron Refill). If someone's saved list has every
+ * other ingredient of a group, the group was ticked, so the newcomers are added
+ * too and it stays ticked.
+ */
+export function addNewGroupMembers(avoidIngredientIds: string[]): string[] {
+  const avoid = new Set(avoidIngredientIds);
+  const added = AVOID_GROUPS.filter((g) => g.ingredientIds.some((id) => PREVIEW_INGREDIENT_IDS.has(id)))
+    .filter((g) => g.ingredientIds.every((id) => avoid.has(id) || PREVIEW_INGREDIENT_IDS.has(id)))
+    .flatMap((g) => g.ingredientIds.filter((id) => !avoid.has(id)));
+  return added.length ? [...avoidIngredientIds, ...new Set(added)] : avoidIngredientIds;
 }

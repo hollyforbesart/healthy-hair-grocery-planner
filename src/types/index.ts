@@ -33,6 +33,8 @@ export interface Ingredient {
   aliases?: string[];
   /** True for entries the user typed in themselves. */
   custom?: boolean;
+  /** Not launched yet: only shown in preview mode (see src/lib/preview.ts). */
+  preview?: boolean;
 }
 
 export interface IngredientSubstitution {
@@ -51,6 +53,8 @@ export interface MealTemplate {
   id: string;
   name: string;
   category: MealCategory;
+  /** Other meal types it also counts as (a "lunch or dinner" meal is lunch, also dinner). */
+  extraCategories?: MealCategory[];
   /** Estimated by realistic home prep; see docs/TIME_CATEGORIES.md. */
   timeCategory?: TimeCategory;
   /** Needs a few hours or overnight to soak or set (overnight oats, chia pudding). */
@@ -72,6 +76,10 @@ export interface MealTemplate {
   /** Internal editorial metadata (where the meal came from). Not shown to users. */
   source?: string;
   dietaryTags?: DietaryTag[];
+  /** Shows the "High iron" tag (The Iron Refill meals). */
+  highIron?: boolean;
+  /** Not launched yet: only shown in preview mode (see src/lib/preview.ts). */
+  preview?: boolean;
 }
 
 /** What the user told us about an ingredient: have it, or need to buy it. */

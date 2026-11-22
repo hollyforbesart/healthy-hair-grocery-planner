@@ -1,5 +1,6 @@
 import { KITCHEN_GROUP_IDS, OTHER_SECTION, STORE_SECTION_IDS, defaultStoreSection } from '../data/categories';
 import { canonicalIngredientId } from '../data/legacyIds';
+import { addNewGroupMembers } from '../data/avoidGroups';
 import type {
   FeedbackDraft,
   FoodGroupId,
@@ -378,7 +379,7 @@ export function hydrateState(saved: unknown): PlannerState {
           ['breakfast', 'lunch', 'dinner', 'snack'].includes(c as string),
         ) as WeekPreferences['mealCategories'])
       : [],
-    avoidIngredientIds: migrateIds(stringArray(prefs.avoidIngredientIds)),
+    avoidIngredientIds: addNewGroupMembers(migrateIds(stringArray(prefs.avoidIngredientIds))),
   };
 
   const savedStatuses: IngredientStatusMap = {};

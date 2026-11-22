@@ -576,7 +576,11 @@
     "name": "Mandarin oranges",
     "category": "produce",
     "kitchenGroup": "produce",
-    "storeSection": "produce"
+    "storeSection": "produce",
+    "aliases": [
+      "clementines",
+      "clementine"
+    ]
   },
   {
     "id": "mango",
@@ -1080,5 +1084,221 @@
     "aliases": [
       "oregano"
     ]
+  },
+  {
+    "id": "pinto-beans",
+    "name": "Pinto beans",
+    "category": "proteins",
+    "kitchenGroup": "proteins",
+    "storeSection": "canned-jarred",
+    "preview": true
+  },
+  {
+    "id": "cilantro",
+    "name": "Fresh cilantro",
+    "category": "produce",
+    "kitchenGroup": "produce",
+    "storeSection": "produce",
+    "aliases": [
+      "cilantro",
+      "coriander leaves"
+    ],
+    "preview": true
+  },
+  {
+    "id": "hot-sauce",
+    "name": "Hot sauce",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments",
+    "preview": true
+  },
+  {
+    "id": "nutritional-yeast",
+    "name": "Nutritional yeast",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "baking-pantry",
+    "preview": true
+  },
+  {
+    "id": "soy-milk",
+    "name": "Soy milk",
+    "category": "fats-extras",
+    "kitchenGroup": "dairy-eggs",
+    "storeSection": "dairy-eggs",
+    "aliases": [
+      "unsweetened soy milk"
+    ],
+    "preview": true
+  },
+  {
+    "id": "hemp-seeds",
+    "name": "Hemp seeds",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "nuts-seeds",
+    "aliases": [
+      "hemp hearts"
+    ],
+    "preview": true
+  },
+  {
+    "id": "bagels",
+    "name": "Bagels",
+    "category": "carbohydrates",
+    "kitchenGroup": "grains",
+    "storeSection": "grains-bread-pasta",
+    "aliases": [
+      "bagel"
+    ],
+    "preview": true
+  },
+  {
+    "id": "vinegar",
+    "name": "Vinegar",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": [
+      "rice vinegar",
+      "apple cider vinegar",
+      "red wine vinegar"
+    ],
+    "preview": true
+  },
+  {
+    "id": "coleslaw-mix",
+    "name": "Coleslaw mix",
+    "category": "produce",
+    "kitchenGroup": "produce",
+    "storeSection": "produce",
+    "preview": true
+  },
+  {
+    "id": "sesame-oil",
+    "name": "Sesame oil",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments",
+    "preview": true
+  },
+  {
+    "id": "green-onions",
+    "name": "Green onions",
+    "category": "produce",
+    "kitchenGroup": "produce",
+    "storeSection": "produce",
+    "aliases": [
+      "scallions",
+      "green onion"
+    ],
+    "preview": true
+  },
+  {
+    "id": "canned-mackerel",
+    "name": "Canned mackerel",
+    "category": "proteins",
+    "kitchenGroup": "proteins",
+    "storeSection": "canned-jarred",
+    "aliases": [
+      "mackerel"
+    ],
+    "preview": true
+  },
+  {
+    "id": "mustard",
+    "name": "Mustard",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments",
+    "aliases": [
+      "dijon mustard"
+    ],
+    "preview": true
+  },
+  {
+    "id": "fresh-dill",
+    "name": "Fresh dill",
+    "category": "produce",
+    "kitchenGroup": "produce",
+    "storeSection": "produce",
+    "preview": true
+  },
+  {
+    "id": "bison",
+    "name": "Bison steak",
+    "category": "proteins",
+    "kitchenGroup": "proteins",
+    "storeSection": "meat-seafood",
+    "aliases": [
+      "bison"
+    ],
+    "preview": true
+  },
+  {
+    "id": "fish-sauce",
+    "name": "Fish sauce",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments",
+    "preview": true
+  },
+  {
+    "id": "harissa",
+    "name": "Harissa",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "oils-sauces-condiments",
+    "preview": true
+  },
+  {
+    "id": "bulgur",
+    "name": "Bulgur",
+    "category": "carbohydrates",
+    "kitchenGroup": "grains",
+    "storeSection": "grains-bread-pasta",
+    "aliases": [
+      "bulgur wheat"
+    ],
+    "preview": true
+  },
+  {
+    "id": "celery",
+    "name": "Celery",
+    "category": "produce",
+    "kitchenGroup": "produce",
+    "storeSection": "produce",
+    "preview": true
+  },
+  {
+    "id": "dried-apricots",
+    "name": "Dried apricots",
+    "category": "fats-extras",
+    "kitchenGroup": "pantry",
+    "storeSection": "baking-pantry",
+    "preview": true
+  },
+  {
+    "id": "beef-jerky",
+    "name": "Beef jerky",
+    "category": "proteins",
+    "kitchenGroup": "proteins",
+    "storeSection": "other",
+    "aliases": [
+      "jerky"
+    ],
+    "preview": true
+  },
+  {
+    "id": "popcorn",
+    "name": "Popcorn",
+    "category": "carbohydrates",
+    "kitchenGroup": "grains",
+    "storeSection": "baking-pantry",
+    "aliases": [
+      "popcorn kernels"
+    ],
+    "preview": true
   }
 ]
